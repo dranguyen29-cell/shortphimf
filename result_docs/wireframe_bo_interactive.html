@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PineDrama BO - Back Office Web Admin Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0b0b10;
+      --bg-sidebar: #12121a;
+      --bg-card: #181824;
+      --bg-card-hover: #202030;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --primary: #ff2a5f;
+      --primary-gradient: linear-gradient(135deg, #ff2a5f 0%, #ff5e3a 100%);
+      --accent-gold: #ffb800;
+      --accent-green: #00e676;
+      --accent-blue: #29b6f6;
+      --accent-purple: #ab47bc;
+      --text-main: #ffffff;
+      --text-muted: #8e8e9e;
+      --text-sub: #b0b0c2;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Layout Components */
+    .app-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      z-index: 100;
+    }
+
+    .brand-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 4px 14px rgba(255, 42, 95, 0.4);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #fff, #ffb800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tag {
+      font-size: 10px;
+      background: rgba(255, 42, 95, 0.15);
+      color: var(--primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-left: auto;
+    }
+
+    .sidebar-menu {
+      padding: 20px 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow-y: auto;
+    }
+
+    .menu-group-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      padding: 10px 12px 6px;
+      font-weight: 700;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .menu-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+    }
+
+    .menu-item.active {
+      background: var(--primary-gradient);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 42, 95, 0.35);
+    }
+
+    .menu-item .icon {
+      font-size: 18px;
+      width: 22px;
+      text-align: center;
+    }
+
+    .menu-badge {
+      margin-left: auto;
+      background: #ff3b30;
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .user-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .user-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-role {
+      font-size: 11px;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    /* Main Area */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Top Bar */
+    .topbar {
+      height: 70px;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+    }
+
+    .search-box {
+      position: relative;
+      width: 320px;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 10px 16px 10px 40px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 42, 95, 0.15);
+    }
+
+    .search-box .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .top-icon-btn {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .top-icon-btn:hover {
+      background: var(--bg-card-hover);
+      color: #fff;
+    }
+
+    .dot-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 24px 28px;
+      overflow-y: auto;
+    }
+
+    .view-section {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 42, 95, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 42, 95, 0.45);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-sub);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      color: #fff;
+    }
+
+    .btn-success {
+      background: var(--accent-green);
+      color: #000;
+    }
+
+    .btn-warning {
+      background: var(--accent-gold);
+      color: #000;
+    }
+
+    .btn-api {
+      background: linear-gradient(135deg, #29b6f6, #6366f1);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(41, 182, 246, 0.3);
+    }
+
+    .btn-api:hover {
+      box-shadow: 0 6px 20px rgba(41, 182, 246, 0.45);
+    }
+
+    /* Grid Layouts & Cards */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .stat-card.gold::before {
+      background: var(--accent-gold);
+    }
+
+    .stat-card.green::before {
+      background: var(--accent-green);
+    }
+
+    .stat-card.blue::before {
+      background: var(--accent-blue);
+    }
+
+    .stat-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      margin: 8px 0 4px;
+    }
+
+    .stat-change {
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stat-change.up {
+      color: var(--accent-green);
+    }
+
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Tables */
+    .data-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 14px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table td {
+      padding: 16px;
+      font-size: 13.5px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-sub);
+    }
+
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+      color: #fff;
+    }
+
+    .table-poster {
+      width: 42px;
+      height: 56px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: #252535;
+      border: 1px solid var(--border-color);
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .badge-published {
+      background: rgba(0, 230, 118, 0.15);
+      color: var(--accent-green);
+    }
+
+    .badge-draft {
+      background: rgba(255, 184, 0, 0.15);
+      color: var(--accent-gold);
+    }
+
+    .badge-free {
+      background: rgba(41, 182, 246, 0.15);
+      color: var(--accent-blue);
+    }
+
+    .badge-category {
+      background: rgba(255, 42, 95, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(255, 42, 95, 0.3);
+      margin: 2px;
+    }
+
+    .badge-api {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a855f7;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .badge-unmapped {
+      background: rgba(255, 184, 0, 0.2);
+      color: var(--accent-gold);
+      border: 1px dashed var(--accent-gold);
+    }
+
+    .quick-tag-btn {
+      background: rgba(255, 184, 0, 0.1);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 6px;
+      transition: all 0.2s;
+    }
+
+    .quick-tag-btn:hover {
+      background: var(--accent-gold);
+      color: #000;
+    }
+
+    .action-btn-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .icon-action-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .icon-action-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* Floating Bulk Action Bar */
+    .bulk-action-bar {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #181828;
+      border: 1px solid var(--primary);
+      box-shadow: 0 15px 40px rgba(255, 42, 95, 0.4);
+      border-radius: 30px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 500;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .bulk-action-bar.active {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      width: 750px;
+      max-width: 90vw;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .close-modal-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .close-modal-btn:hover {
+      color: #fff;
+    }
+
+    .modal-body {
+      padding: 24px;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .tag-checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .tag-checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .tag-checkbox-item:hover {
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- SIDEBAR NAV -->
+    <aside class="sidebar">
+      <div class="brand-header">
+        <div class="brand-logo">P</div>
+        <div>
+          <div class="brand-title">PineDrama</div>
+          <div style="font-size: 10px; color: var(--text-muted);">Short Drama CMS</div>
+        </div>
+        <span class="brand-tag">BO v3.0</span>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="menu-group-title">Menu Vận Hành (Phase 1)</div>
+        <a class="menu-item active" onclick="switchView('view-dashboard', this)">
+          <span class="icon">📊</span>
+          <span>Dashboard Tổng Quan</span>
+        </a>
+        <a class="menu-item" onclick="switchView('view-dramas', this)">
+          <span class="icon">🎬</span>
+          <span>Quản Lý Phim & Gán Thể Loại</span>
+        </a>
+        <a class="menu-item" onclick="switchView('view-app-config', this)">
+          <span class="icon">🖼️</span>
+          <span>Trang Chủ & Category Tabs</span>
+        </a>
+
+        <div class="menu-group-title">Quản Lý Người Dùng</div>
+        <a class="menu-item" onclick="switchView('view-user-management', this)">
+          <span class="icon">👥</span>
+          <span>Quản Lý User & Cấm Chat</span>
+          <span class="menu-badge" style="background: var(--accent-gold); color: #000;">124.8K</span>
+        </a>
+
+        <div class="menu-group-title">Cấu Hình BO</div>
+        <a class="menu-item" onclick="switchView('view-settings', this)">
+          <span class="icon">⚙️</span>
+          <span>Cài Đặt & Phân Quyền</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-avatar">LN</div>
+        <div class="user-info">
+          <div class="user-name">Long Nguyen</div>
+          <div class="user-role">Super Admin</div>
+        </div>
+        <span style="color: var(--text-muted); cursor: pointer;" title="Đăng xuất">🚪</span>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-wrapper">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Tìm tên phim, tập phim, ID người dùng...">
+        </div>
+
+        <div class="topbar-actions">
+          <div class="top-icon-btn" title="Thông báo hệ thống">
+            🔔
+            <span class="dot-badge"></span>
+          </div>
+          <div class="top-icon-btn" title="Trợ giúp & Docs">❓</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--text-sub); display: flex; align-items: center; gap: 6px;">
+            <span>🇻🇳 Tiếng Việt</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT VIEWPORT -->
+      <div class="content-area">
+
+        <!-- VIEW 1: DASHBOARD -->
+        <section id="view-dashboard" class="view-section active">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">📊 Dashboard Tổng Quan Vận Hành</h1>
+              <p class="page-subtitle">Thống kê hiệu suất lượt xem phim và chỉ số người dùng thời gian thực</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-secondary">📅 Hôm nay: 11/08/2026</button>
+              <button class="btn btn-primary" onclick="alert('Đã xuất báo cáo thống kê định dạng CSV thành công!')">📥 Xuất Báo Cáo</button>
+            </div>
+          </div>
+
+          <!-- Stat Cards -->
+          <div class="grid-4">
+            <div class="stat-card">
+              <div class="stat-title">Tổng Lượt Xem Hôm Nay</div>
+              <div class="stat-value">1,482,900</div>
+              <div class="stat-change up">▲ +18.4% so với tuần trước</div>
+            </div>
+            <div class="stat-card gold">
+              <div class="stat-title">Thời Lượng Xem (Watch Time)</div>
+              <div class="stat-value">82,450 Giờ</div>
+              <div class="stat-change up">▲ +12.1% tăng trưởng</div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-title">DAU (User Hoạt Động)</div>
+              <div class="stat-value">124,800</div>
+              <div class="stat-change up">▲ +8.9% người dùng mới</div>
+            </div>
+            <div class="stat-card blue">
+              <div class="stat-title">Tỷ Lệ Xem Hết Bộ (100% Free)</div>
+              <div class="stat-value">68.5%</div>
+              <div class="stat-change up">▲ +5.2% trọn bộ 80 tập</div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="panel-card">
+              <div class="panel-title">
+                <span>📈 Lượng Truy Cập Xem Phim Theo Giờ (Hourly Traffic)</span>
+                <span class="badge badge-published">Live Traffic</span>
+              </div>
+              <div style="height: 220px; width: 100%; display: flex; align-items: flex-end; gap: 12px; padding-top: 20px; border-bottom: 1px solid var(--border-color);">
+                <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"></div>
+                <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"></div>
+                <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;"></div>
+                <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;"></div>
+                <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;"></div>
+                <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);"></div>
+                <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;"></div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-title">🔥 Top 5 Phim Hot Nhất Hôm Nay</div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                  <div>
+                    <div style="font-size: 13px; font-weight: 700; color: #fff;">1. Vợ Cũ Lật Kèo</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình</div>
+                  </div>
+                  <span class="badge badge-published">342K Lượt xem</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- VIEW 2: DRAMAS & API IMPORT & 3 FAST TAGGING SOLUTIONS -->
+        <section id="view-dramas" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">🎬 Quản Lý Phim, Import API & Gán Category Siêu Tốc</h1>
+              <p class="page-subtitle">Kéo dữ liệu phim thô từ API (Dù không có genre) và tự động gán Category siêu tốc trong 1 giây</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-api" onclick="openModal('modal-api-sync')">🔄 Kéo Phim Từ API Đối Tác</button>
+              <button class="btn btn-secondary" onclick="openModal('modal-create-drama')">+ Tạo Thủ Công</button>
+            </div>
+          </div>
+
+          <!-- Informational Banner for 3 Fast Tagging Solutions -->
+          <div class="panel-card" style="background: linear-gradient(135deg, rgba(41,182,246,0.1), rgba(99,102,241,0.08)); border: 1px solid rgba(41,182,246,0.3); padding: 18px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: flex-start; gap: 14px;">
+              <span style="font-size: 26px;">⚡</span>
+              <div>
+                <div style="font-size: 14.5px; font-weight: 800; color: #fff; margin-bottom: 4px;">3 GIẢI PHÁP GÁN CATEGORY SIÊU TỐC KHI API PHIM KHÔNG CÓ THỂ LOẠI:</div>
+                <div style="font-size: 12.5px; color: var(--text-sub); line-height: 1.6;">
+                  1️⃣ <strong>Gán Mặc Định Khi Import:</strong> Chọn sẵn Category (ví dụ <em>Ngôn Tình</em>) trong Modal Kéo API -> Tất cả phim mới lập tức có Category!<br>
+                  2️⃣ <strong>🤖 AI Auto-Classifier:</strong> Tự động quét Tên & Tóm tắt phim để tự động gán Thể loại (*Ví dụ: Tên có 'Cô Vợ/Tổng Tài' -> Auto Ngôn Tình*).<br>
+                  3️⃣ <strong>Inline Quick-Tagging:</strong> Bấm nút <code>[+ Gán Nhanh]</code> trực tiếp trên dòng hoặc tích Checkbox nhiều dòng để Gán Đồng Loạt!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <!-- Filter Bar -->
+            <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;">
+              <select style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+                <option>▼ Tất cả nguồn Phim</option>
+                <option>⚡ API Partner A</option>
+                <option>⚡ API Partner B</option>
+                <option>✍️ Tạo thủ công BO</option>
+              </select>
+
+              <select style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+                <option>▼ Trạng thái Category</option>
+                <option>🟢 Đã gán Category</option>
+                <option>🟡 Chưa gán Category (Unmapped)</option>
+              </select>
+
+              <input type="text" placeholder="🔍 Tìm tên phim, ID phim..." style="flex: 1; min-width: 200px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;"><input type="checkbox" id="select-all-dramas" onclick="toggleSelectAllDramas(this)"></th>
+                    <th>STT</th>
+                    <th>Poster</th>
+                    <th>Tên Bộ Phim & Mã ID</th>
+                    <th>Nguồn Phim (Source)</th>
+                    <th>Thể Loại (Categories)</th>
+                    <th>Số Tập</th>
+                    <th>Trạng Thái</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="drama-row-1">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>01</td>
+                    <td><div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">VCLK</div></td>
+                    <td>
+                      <strong style="color: #fff;">Vợ Cũ Lật Kèo</strong>
+                      <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-8842</div>
+                    </td>
+                    <td><span class="badge badge-api">⚡ Partner A API</span></td>
+                    <td id="cat-tags-row-1">
+                      <span class="badge badge-category">Ngôn Tình</span>
+                      <span class="badge badge-category">Trả Thù</span>
+                    </td>
+                    <td><strong style="color: var(--accent-gold);">80/80 Tập</strong></td>
+                    <td><span class="badge badge-published">🟢 Published</span></td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" title="Gán Category phim này" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn" title="Xóa phim">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr id="drama-row-2">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>02</td>
+                    <td><div class="table-poster" style="background: linear-gradient(135deg, #ffb800, #ff5e3a); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">MCSC</div></td>
+                    <td>
+                      <strong style="color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu Triệu Đô</strong>
+                      <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-7712</div>
+                    </td>
+                    <td><span class="badge badge-api">⚡ Partner A API</span></td>
+                    <td id="cat-tags-row-2">
+                      <span class="badge badge-category">Gia Đình</span>
+                      <span class="badge badge-category">Ngôn Tình</span>
+                    </td>
+                    <td><strong style="color: var(--accent-gold);">65/65 Tập</strong></td>
+                    <td><span class="badge badge-published">🟢 Published</span></td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 3: UNMAPPED WITH INLINE QUICK TAG BUTTON -->
+                  <tr id="drama-row-3">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>03</td>
+                    <td><div class="table-poster" style="background: linear-gradient(135deg, #29b6f6, #00e676); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">CVST</div></td>
+                    <td>
+                      <strong style="color: #fff;">Cô Vợ Sát Thủ & Tổng Tài Bá Đạo</strong>
+                      <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-9901</div>
+                    </td>
+                    <td><span class="badge badge-api">⚡ Partner B API (No Genre)</span></td>
+                    <td id="cat-tags-row-3">
+                      <span class="badge badge-unmapped">🟡 Chưa gán</span>
+                      <button class="quick-tag-btn" onclick="quickTagRow(3, '❤️ Ngôn Tình')">+ Gán Ngôn Tình</button>
+                    </td>
+                    <td><strong style="color: var(--accent-gold);">80/80 Tập</strong></td>
+                    <td><span class="badge badge-draft">🟡 Draft</span></td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 4: UNMAPPED WITH INLINE QUICK TAG BUTTON -->
+                  <tr id="drama-row-4">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>04</td>
+                    <td><div class="table-poster" style="background: linear-gradient(135deg, #ab47bc, #ff2a5f); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">TTTB</div></td>
+                    <td>
+                      <strong style="color: #fff;">Tổng Tài Thần Báo Lật Kèo Báo Thù</strong>
+                      <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-5521</div>
+                    </td>
+                    <td><span class="badge badge-api">⚡ Partner B API (No Genre)</span></td>
+                    <td id="cat-tags-row-4">
+                      <span class="badge badge-unmapped">🟡 Chưa gán</span>
+                      <button class="quick-tag-btn" onclick="quickTagRow(4, '⚔️ Trả Thù')">+ Gán Trả Thù</button>
+                    </td>
+                    <td><strong style="color: var(--accent-gold);">50/50 Tập</strong></td>
+                    <td><span class="badge badge-draft">🟡 Draft</span></td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- VIEW 3: APP HOME LAYOUT & CATEGORY MANAGER -->
+        <section id="view-app-config" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">🖼️ Cấu Hình Trang Chủ & Quản Lý Category Tabs</h1>
+              <p class="page-subtitle">Tạo mới Thể Loại, sắp xếp các Tab Category trên App và cấu hình thuật toán gợi ý Tab "Cho Bạn"</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-primary" onclick="openModal('modal-create-category')">➕ Tạo Category Mới</button>
+              <button class="btn btn-success" onclick="alert('Đã lưu và xuất bản toàn bộ cấu hình Category lên App Client!')">💾 Lưu & Xuất Bản</button>
+            </div>
+          </div>
+
+          <!-- Category Tabs Management Table -->
+          <div class="panel-card">
+            <div class="panel-title">
+              <span>🏷️ Danh Sách Category Tabs Đang Hiển Thị Trên Trang Chủ App</span>
+              <span class="badge badge-published" id="category-count-badge">6 Categories Active</span>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Thứ Tự Tab</th>
+                    <th>Tên Category Tab</th>
+                    <th>Loại Category</th>
+                    <th>Số Bộ Phim Thuộc Category</th>
+                    <th>Trạng Thái App</th>
+                    <th>Hành Động Quản Lý</th>
+                  </tr>
+                </thead>
+                <tbody id="category-table-body">
+                  <tr>
+                    <td><strong style="color: var(--accent-gold);">#1 (Mặc Định)</strong></td>
+                    <td><strong style="color: #fff;">✨ Cho Bạn (For You)</strong></td>
+                    <td><span class="badge badge-free">⚡ Gợi ý Thuật toán Random</span></td>
+                    <td>Tất cả phim (Auto Random)</td>
+                    <td><span class="badge badge-published">🟢 Hệ thống cố định</span></td>
+                    <td><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;" disabled>Cố định Tab 1</button></td>
+                  </tr>
+                  <tr>
+                    <td>#2</td>
+                    <td><strong style="color: #fff;">🔥 Hot Trend</strong></td>
+                    <td><span class="badge badge-category">Thể loại Đã Gán</span></td>
+                    <td>28 Phim</td>
+                    <td><span class="badge badge-published">🟢 Hiển thị</span></td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬆️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬇️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" onclick="alert('Đã ẩn Category Tab này!')">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#3</td>
+                    <td><strong style="color: #fff;">❤️ Ngôn Tình</strong></td>
+                    <td><span class="badge badge-category">Thể loại Đã Gán</span></td>
+                    <td>45 Phim</td>
+                    <td><span class="badge badge-published">🟢 Hiển thị</span></td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬆️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬇️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" onclick="alert('Đã ẩn Category Tab này!')">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- VIEW 4: USER MANAGEMENT -->
+        <section id="view-user-management" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">👥 Quản Lý Người Dùng & Trung Tâm Cấm Chat / Khóa Account</h1>
+              <p class="page-subtitle">Quản lý tệp người dùng, xem lịch sử cày phim, áp đặt chế độ Cấm Chat (Mute) hoặc Khóa Tài Khoản (Ban Acc)</p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>User ID / Tên Hiển Thị</th>
+                    <th>Đăng Nhập</th>
+                    <th>Ngày Tham Gia</th>
+                    <th>Tiến Trình Cày Phim</th>
+                    <th>Trạng Thái Tài Khoản</th>
+                    <th>Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>USR-9921 / Minh Anh</td>
+                    <td><span class="badge badge-free">Google</span></td>
+                    <td>10/05/2026</td>
+                    <td><strong style="color: var(--accent-gold);">12 Bộ (145 Tập)</strong></td>
+                    <td><span class="badge badge-published">🟢 Active</span></td>
+                    <td><button class="btn btn-warning" style="padding: 4px 10px; font-size: 11px;" onclick="alert('Đã áp dụng chế độ Cấm Chat cho User này!')">🔇 Cấm Chat / Ban</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- VIEW 5: SETTINGS & RBAC -->
+        <section id="view-settings" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">⚙️ Cài Đặt Hệ Thống & Nhật Ký Thao Tác (Audit Trail)</h1>
+              <p class="page-subtitle">Quản lý thành viên Admin BO, phân quyền RBAC và xem lịch sử thao tác hệ thống</p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-title">📜 Audit Logs (Nhật Ký Thao Tác Vận Hành)</div>
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Thời Gian</th>
+                    <th>Admin Thực Hiện</th>
+                    <th>Hành Động Xử Lý</th>
+                    <th>Chi Tiết / Đối Tượng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>11/08/2026 11:20:10</td>
+                    <td><strong style="color: #fff;">Long Nguyen</strong> (Super Admin)</td>
+                    <td>Gán Category Đồng Loạt (50 Phim)</td>
+                    <td>Đã gán Category "Ngôn Tình, Trả Thù" cho 50 bộ phim API Import</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- FLOATING BULK ACTION BAR -->
+    <div id="bulk-action-bar" class="bulk-action-bar">
+      <div style="font-size: 13px; font-weight: 800; color: #fff;">
+        ⚡ ĐÃ CHỌN <span id="selected-count" style="color: var(--accent-gold);">0</span> BỘ PHIM
+      </div>
+      <div style="height: 20px; width: 1px; background: var(--border-color);"></div>
+      <button class="btn btn-primary" style="padding: 8px 16px; font-size: 12px;" onclick="openModal('modal-bulk-category')">🏷️ GÁN CATEGORY ĐỒNG LOẠT</button>
+      <button class="btn btn-success" style="padding: 8px 16px; font-size: 12px;" onclick="bulkPublishAction()">🟢 XUẤT BẢN CÁC PHIM ĐÃ CHỌN</button>
+      <button class="btn btn-danger" style="padding: 8px 16px; font-size: 12px;" onclick="bulkDeleteAction()">🗑️ XÓA ĐÃ CHỌN</button>
+    </div>
+
+  </div>
+
+
+  <!-- MODAL 1: TẠO CATEGORY MỚI -->
+  <div id="modal-create-category" class="modal-overlay">
+    <div class="modal-content" style="width: 580px;">
+      <div class="modal-header">
+        <div class="modal-title">➕ Tạo Mới Category Tab (Thể Loại Phim)</div>
+        <button class="close-modal-btn" onclick="closeModal('modal-create-category')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN CATEGORY TAB (HIỂN THỊ TRÊN APP)</label>
+          <input type="text" id="new-category-name" placeholder="Ví dụ: Kinh Dị, Hài Hước, Võ Thuật..." value="Kinh Dị Siêu Nhất" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">VỊ TRÍ HIỂN THỊ (ORDER INDEX)</label>
+          <select style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+            <option>▼ Vị trí #4 (Sau Ngôn Tình)</option>
+            <option>▼ Vị trí #2 (Sau Cho Bạn)</option>
+            <option>▼ Vị trí Cuối cùng</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TRẠNG THÁI TRÊN APP</label>
+          <div style="display: flex; gap: 20px;">
+            <label style="font-size: 13px; color: #fff; cursor: pointer;"><input type="radio" name="cat_app_status" checked> 🟢 Hiển thị ngay trên App</label>
+            <label style="font-size: 13px; color: #fff; cursor: pointer;"><input type="radio" name="cat_app_status"> 🔴 Ẩn (Lưu nháp)</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-create-category')">Hủy Bỏ</button>
+        <button class="btn btn-primary" onclick="executeCreateCategoryAction()">💾 LƯU CATEGORY TAB</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 2: CREATE DRAMA MANUAL -->
+  <div id="modal-create-drama" class="modal-overlay">
+    <div class="modal-content" style="width: 680px;">
+      <div class="modal-header">
+        <div class="modal-title">➕ Tạo Phim & Gán Thể Loại Thủ Công</div>
+        <button class="close-modal-btn" onclick="closeModal('modal-create-drama')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN BỘ PHIM</label>
+          <input type="text" value="Cô Vợ Sát Thủ & Tổng Tài Bá Đạo" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-create-drama')">Hủy Bỏ</button>
+        <button class="btn btn-primary" onclick="closeModal('modal-create-drama')">LƯU THÔNG TIN</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 3: API SYNC WITH DEFAULT CATEGORY PRESET & AI AUTO-CLASSIFIER -->
+  <div id="modal-api-sync" class="modal-overlay">
+    <div class="modal-content" style="width: 680px;">
+      <div class="modal-header">
+        <div class="modal-title">🔄 Kéo Phim Từ API Đối Tác (Bao Gồm API Không Có Genre)</div>
+        <button class="close-modal-btn" onclick="closeModal('modal-api-sync')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">1. CHỌN ĐỐI TÁC CUNG CẤP API (API PROVIDER)</label>
+          <select style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+            <option>▼ ShortDrama Partner B (Dữ liệu thô - Chưa phân loại Thể loại)</option>
+            <option>▼ ShortDrama Global API Partner A (100 Phim Mới)</option>
+          </select>
+        </div>
+
+        <!-- FAST SOLUTION 1: DEFAULT CATEGORY PRESET -->
+        <div style="margin-bottom: 18px; background: rgba(255,184,0,0.06); border: 1px solid rgba(255,184,0,0.3); padding: 16px; border-radius: 14px;">
+          <label style="font-size: 12.5px; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 8px;">🚀 GIẢI PHÁP 1: GÁN MẶC ĐỊNH CATEGORY CHO ĐỢT IMPORT NÀY (DEFAULT PRESET)</label>
+          <div style="font-size: 12px; color: var(--text-sub); margin-bottom: 10px;">
+            Tất cả 100 phim kéo về trong đợt này sẽ tự động được gắn luôn các Thể loại chọn dưới đây (Không tốn 1 giây làm tay nào):
+          </div>
+          <div class="tag-checkbox-grid">
+            <label class="tag-checkbox-item">
+              <input type="checkbox" id="preset-cat-1" checked> <span>❤️ Ngôn Tình</span>
+            </label>
+            <label class="tag-checkbox-item">
+              <input type="checkbox" id="preset-cat-2"> <span>⚔️ Trả Thù</span>
+            </label>
+            <label class="tag-checkbox-item">
+              <input type="checkbox" id="preset-cat-3" checked> <span>🔥 Hot Trend</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- FAST SOLUTION 2: AI AUTO CLASSIFIER TOGGLE -->
+        <div style="margin-bottom: 16px; background: rgba(41,182,246,0.06); border: 1px solid rgba(41,182,246,0.25); padding: 14px; border-radius: 12px;">
+          <label style="font-size: 12.5px; color: var(--accent-blue); font-weight: 800; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+            <input type="checkbox" id="chk-ai-classifier" checked>
+            <span>🤖 GIẢI PHÁP 2: BẬT AI TỰ ĐỘNG QUÉT TÊN & MÔ TẢ PHIM ĐỂ GÁN THỂ LOẠI (AUTO AI CLASSIFIER)</span>
+          </label>
+          <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 6px; margin-left: 24px;">
+            Hệ thống tự động quét từ khóa (*Cô dâu, Tổng tài -> Ngôn Tình; Lật kèo, Báo thù -> Trả Thù*) để gán Category thông minh đạt 95% độ chính xác.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-api-sync')">Hủy Bỏ</button>
+        <button class="btn btn-api" onclick="executeApiSyncAction()">🚀 KÉO PHIM & TỰ ĐỘNG GÁN CATEGORY</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 4: BULK CATEGORY -->
+  <div id="modal-bulk-category" class="modal-overlay">
+    <div class="modal-content" style="width: 620px;">
+      <div class="modal-header">
+        <div class="modal-title">🏷️ Gán Category Đồng Loạt Cho các Bộ Phim Đã Chọn</div>
+        <button class="close-modal-btn" onclick="closeModal('modal-bulk-category')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="background: rgba(255,42,95,0.1); border: 1px solid rgba(255,42,95,0.3); padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 13px; color: #fff;">
+          🎯 Bạn đang thực hiện gán Thể loại đồng loạt cho <strong id="bulk-modal-count" style="color: var(--accent-gold);">0 bộ phim</strong> đã chọn!
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 8px;">CHỌN CÁC CATEGORIES CẦN GÁN ĐỒNG LOẠT:</label>
+          <div class="tag-checkbox-grid">
+            <label class="tag-checkbox-item">
+              <input type="checkbox" id="chk-cat-1" checked> <span>❤️ Ngôn Tình</span>
+            </label>
+            <label class="tag-checkbox-item">
+              <input type="checkbox" id="chk-cat-2" checked> <span>⚔️ Trả Thù</span>
+            </label>
+            <label class="tag-checkbox-item">
+              <input type="checkbox" id="chk-cat-3"> <span>👑 Chủ Tịch Bá Đạo</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-bulk-category')">Hủy Bỏ</button>
+        <button class="btn btn-primary" onclick="executeBulkCategoryTagging()">⚡ ÁP DỤNG ĐỒNG LOẠT</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- INTERACTIVE JS -->
+  <script>
+    function switchView(viewId, element) {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+
+      document.getElementById(viewId).classList.add('active');
+      if (element) element.classList.add('active');
+    }
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+      } else {
+        alert('Modal ID not found: ' + modalId);
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    }
+
+    function executeCreateCategoryAction() {
+      const catName = document.getElementById('new-category-name').value || 'Kinh Dị Siêu Nhất';
+      const tbody = document.getElementById('category-table-body');
+
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>#4</td>
+        <td><strong style="color: #fff;">👻 ${catName}</strong></td>
+        <td><span class="badge badge-category">Thể loại Mới</span></td>
+        <td>0 Phim</td>
+        <td><span class="badge badge-published">🟢 Hiển thị</span></td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬆️</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬇️</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" onclick="this.closest('tr').remove();">🗑️</button>
+          </div>
+        </td>
+      `;
+
+      tbody.appendChild(newRow);
+      alert(`🎉 Đã tạo thành công Category Tab mới: "${catName}" và hiển thị ngay trên bảng!`);
+      closeModal('modal-create-category');
+    }
+
+    function quickTagRow(rowNum, tagName) {
+      const tagCell = document.getElementById(`cat-tags-row-${rowNum}`);
+      if (tagCell) {
+        tagCell.innerHTML = `<span class="badge badge-category">${tagName}</span> <span class="badge badge-category">Hot Trend</span>`;
+        alert(`⚡ [Inline Quick Tag] Đã gán ngay Category "${tagName}" cho bộ phim dòng #${rowNum}!`);
+      }
+    }
+
+    function toggleSelectAllDramas(master) {
+      const checkboxes = document.querySelectorAll('.drama-checkbox');
+      checkboxes.forEach(cb => cb.checked = master.checked);
+      updateBulkBar();
+    }
+
+    function updateBulkBar() {
+      const checkedBoxes = document.querySelectorAll('.drama-checkbox:checked');
+      const count = checkedBoxes.length;
+      const bulkBar = document.getElementById('bulk-action-bar');
+
+      document.getElementById('selected-count').innerText = count;
+      document.getElementById('bulk-modal-count').innerText = count > 0 ? count : '0';
+
+      if (count > 0) {
+        bulkBar.classList.add('active');
+      } else {
+        bulkBar.classList.remove('active');
+      }
+    }
+
+    function executeApiSyncAction() {
+      document.getElementById('cat-tags-row-3').innerHTML = '<span class="badge badge-category">Ngôn Tình</span> <span class="badge badge-category">Hot Trend</span>';
+      document.getElementById('cat-tags-row-4').innerHTML = '<span class="badge badge-category">Trả Thù</span> <span class="badge badge-category">Hot Trend</span>';
+
+      alert('🚀 Đã kéo thành công 100 bộ phim từ API Đối Tác!\n• Áp dụng Preset Category mặc định [Ngôn Tình, Hot Trend] thành công.\n• AI Auto-Classifier phân loại tự động 100% phim không có genre!');
+      closeModal('modal-api-sync');
+    }
+
+    function executeBulkCategoryTagging() {
+      alert('⚡ Đã gán Category đồng loạt thành công!');
+      closeModal('modal-bulk-category');
+    }
+
+    function bulkPublishAction() {
+      alert('🟢 Đã xuất bản các phim được chọn!');
+      document.querySelectorAll('.drama-checkbox').forEach(cb => cb.checked = false);
+      updateBulkBar();
+    }
+
+    function bulkDeleteAction() {
+      alert('🗑️ Đã xóa các phim được chọn!');
+      document.querySelectorAll('.drama-checkbox').forEach(cb => cb.checked = false);
+      updateBulkBar();
+    }
+  </script>
+</body>
+
+</html>
