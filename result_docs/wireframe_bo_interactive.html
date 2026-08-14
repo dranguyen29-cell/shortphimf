@@ -734,10 +734,345 @@
     .tag-checkbox-item:hover {
       border-color: var(--primary);
     }
+
+    /* LOGIN SCREEN STYLES */
+    .login-overlay-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #1a102f 0%, #0b0b12 80%);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .login-overlay-screen.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .login-card {
+      width: 440px;
+      max-width: 95vw;
+      background: rgba(24, 24, 36, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 42, 95, 0.15);
+      position: relative;
+    }
+
+    .login-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .login-brand-logo {
+      width: 58px;
+      height: 58px;
+      background: var(--primary-gradient);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 28px;
+      box-shadow: 0 8px 25px rgba(255, 42, 95, 0.45);
+      margin-bottom: 14px;
+    }
+
+    .login-input-group {
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .login-input-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .login-input-wrapper {
+      position: relative;
+    }
+
+    .login-input-wrapper input {
+      width: 100%;
+      background: rgba(11, 11, 16, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 16px 12px 42px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .login-input-wrapper input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 42, 95, 0.2);
+    }
+
+    .login-input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    .demo-role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .demo-role-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      padding: 8px 6px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .demo-role-btn:hover {
+      background: rgba(255, 42, 95, 0.15);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .badge-role-super {
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.2), rgba(255, 42, 95, 0.2));
+      color: var(--accent-gold);
+      border: 1px solid rgba(255, 184, 0, 0.4);
+    }
+
+    .badge-role-content {
+      background: rgba(41, 182, 246, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(41, 182, 246, 0.3);
+    }
+
+    .badge-role-mod {
+      background: rgba(171, 71, 188, 0.15);
+      color: var(--accent-purple);
+      border: 1px solid rgba(171, 71, 188, 0.3);
+    }
+
+    .badge-role-analyst {
+      background: rgba(0, 230, 118, 0.15);
+      color: var(--accent-green);
+      border: 1px solid rgba(0, 230, 118, 0.3);
+    }
+
+    /* MULTI-SELECT CATEGORY DROPDOWN STYLES */
+    .multi-select-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .multi-select-display-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 8px 12px;
+      min-height: 46px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .multi-select-display-box:hover,
+    .multi-select-display-box.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 42, 95, 0.15);
+    }
+
+    .category-chip-tag {
+      background: rgba(255, 42, 95, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 42, 95, 0.35);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .category-chip-tag .chip-remove-btn {
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .category-chip-tag .chip-remove-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .multi-select-popover {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 100%;
+      background: #151522;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      z-index: 1050;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeIn 0.15s ease;
+    }
+
+    .multi-select-popover.active {
+      display: flex;
+    }
+
+    .multi-select-search-bar {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .multi-select-search-bar input {
+      width: 100%;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #fff;
+      font-size: 12.5px;
+      outline: none;
+    }
+
+    .multi-select-items-list {
+      max-height: 200px;
+      overflow-y: auto;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dropdown-category-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12.5px;
+      color: var(--text-sub);
+      transition: all 0.15s;
+    }
+
+    .dropdown-category-item:hover {
+      background: rgba(255, 42, 95, 0.1);
+      color: #fff;
+    }
+
+    .dropdown-category-item.selected {
+      background: rgba(255, 42, 95, 0.18);
+      color: #fff;
+      font-weight: 700;
+    }
   </style>
 </head>
 
 <body>
+  <!-- ==================== 1. FULLSCREEN ADMIN LOGIN PORTAL ==================== -->
+  <div id="login-overlay-screen" class="login-overlay-screen">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-brand-logo">P</div>
+        <h2 style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px;">PineDrama Back Office</h2>
+        <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Cổng Quản Trị Hệ Thống & Vận Hành Phim Ngắn</p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); executeLogin();">
+        <div class="login-input-group">
+          <label>Email / Tên Đăng Nhập</label>
+          <div class="login-input-wrapper">
+            <span class="login-input-icon">👤</span>
+            <input type="text" id="login-email" placeholder="admin@pinedrama.com" value="longnguyen@pinedrama.com" required>
+          </div>
+        </div>
+
+        <div class="login-input-group">
+          <label>Mật Khẩu</label>
+          <div class="login-input-wrapper">
+            <span class="login-input-icon">🔒</span>
+            <input type="password" id="login-password" placeholder="••••••••••••" value="PineDrama@2026" required>
+            <span onclick="togglePasswordVisibility()" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); font-size: 14px;" title="Hiện/Ẩn mật khẩu">👁️</span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; font-size: 12px;">
+          <label style="display: flex; align-items: center; gap: 6px; color: var(--text-sub); cursor: pointer;">
+            <input type="checkbox" checked> Ghi nhớ đăng nhập 30 ngày
+          </label>
+          <a href="#" onclick="alert('Vui lòng liên hệ Super Admin hoặc Bộ phận Kỹ thuật để cấp lại mật khẩu!'); return false;" style="color: var(--primary); text-decoration: none; font-weight: 600;">Quên mật khẩu?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px; font-size: 14px; border-radius: 12px; font-weight: 800;">
+          🚀 ĐĂNG NHẬP BACK OFFICE
+        </button>
+      </form>
+
+      <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 700; text-align: center; margin-bottom: 10px;">
+          ⚡ ĐĂNG NHẬP NHANH DEMO (1-CLICK TEST)
+        </div>
+        <div class="demo-role-grid">
+          <button class="demo-role-btn" onclick="quickLoginAs('Long Nguyen', 'Super Admin', 'longnguyen@pinedrama.com')">
+            👑 Super Admin<br><span style="font-size: 9.5px; color: var(--text-muted);">Full Quyền</span>
+          </button>
+          <button class="demo-role-btn" onclick="quickLoginAs('Thu Trang', 'Content Manager', 'thutrang.content@pinedrama.com')">
+            🎬 Content Manager<br><span style="font-size: 9.5px; color: var(--text-muted);">Quản Lý Phim</span>
+          </button>
+          <button class="demo-role-btn" onclick="quickLoginAs('Hoàng Nam', 'User Moderator', 'nam.mod@pinedrama.com')">
+            🛡️ Moderator<br><span style="font-size: 9.5px; color: var(--text-muted);">Quản Lý User</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="app-container">
 
     <!-- SIDEBAR NAV -->
@@ -770,23 +1105,27 @@
         <a class="menu-item" onclick="switchView('view-user-management', this)">
           <span class="icon">👥</span>
           <span>Quản Lý User & Cấm Chat</span>
-          <span class="menu-badge" style="background: var(--accent-gold); color: #000;">124.8K</span>
         </a>
 
-        <div class="menu-group-title">Cấu Hình BO</div>
+        <div class="menu-group-title">Quản Trị Hệ Thống</div>
         <a class="menu-item" onclick="switchView('view-settings', this)">
           <span class="icon">⚙️</span>
-          <span>Cài Đặt & Phân Quyền</span>
+          <span>Quản Lý Admin & Phân Quyền</span>
+        </a>
+
+        <a class="menu-item" style="color: #ff5e3a; margin-top: 10px;" onclick="openLoginScreen()">
+          <span class="icon">🔐</span>
+          <span>Màn Hình Đăng Nhập</span>
         </a>
       </div>
 
       <div class="sidebar-footer">
-        <div class="user-avatar">LN</div>
+        <div class="user-avatar" id="current-user-avatar">LN</div>
         <div class="user-info">
-          <div class="user-name">Long Nguyen</div>
-          <div class="user-role">Super Admin</div>
+          <div class="user-name" id="current-user-name">Long Nguyen</div>
+          <div class="user-role" id="current-user-role">Super Admin</div>
         </div>
-        <span style="color: var(--text-muted); cursor: pointer;" title="Đăng xuất">🚪</span>
+        <span style="color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 4px;" title="Đăng xuất" onclick="logoutAction()">🚪</span>
       </div>
     </aside>
 
@@ -890,11 +1229,11 @@
           <div class="page-header">
             <div>
               <h1 class="page-title">🎬 Quản Lý Phim, Import API & Gán Category Siêu Tốc</h1>
-              <p class="page-subtitle">Kéo dữ liệu phim thô từ API (Dù không có genre) và tự động gán Category siêu tốc trong 1 giây</p>
+              <p class="page-subtitle">Kéo dữ liệu phim thô từ API hoặc Dán Link URL nguồn để tạo phim nhanh chóng</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-api" onclick="openModal('modal-api-sync')">🔄 Kéo Phim Từ API Đối Tác</button>
-              <button class="btn btn-secondary" onclick="openModal('modal-create-drama')">+ Tạo Thủ Công</button>
+              <button class="btn btn-secondary" onclick="openModal('modal-create-drama')">+ Tạo Thủ Công (Dán Link URL)</button>
             </div>
           </div>
 
@@ -916,13 +1255,6 @@
           <div class="panel-card">
             <!-- Filter Bar -->
             <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;">
-              <select style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-                <option>▼ Tất cả nguồn Phim</option>
-                <option>⚡ API Partner A</option>
-                <option>⚡ API Partner B</option>
-                <option>✍️ Tạo thủ công BO</option>
-              </select>
-
               <select style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
                 <option>▼ Trạng thái Category</option>
                 <option>🟢 Đã gán Category</option>
@@ -1162,33 +1494,219 @@
         </section>
 
 
-        <!-- VIEW 5: SETTINGS & RBAC -->
+        <!-- VIEW 5: ADMIN ACCOUNTS & RBAC MANAGEMENT -->
         <section id="view-settings" class="view-section">
           <div class="page-header">
             <div>
-              <h1 class="page-title">⚙️ Cài Đặt Hệ Thống & Nhật Ký Thao Tác (Audit Trail)</h1>
-              <p class="page-subtitle">Quản lý thành viên Admin BO, phân quyền RBAC và xem lịch sử thao tác hệ thống</p>
+              <h1 class="page-title">⚙️ Quản Lý Tài Khoản Admin & Phân Quyền (RBAC)</h1>
+              <p class="page-subtitle">Cấp phát tài khoản quản trị viên, phân chia vai trò (Roles) và thiết lập ma trận quyền hạn hệ thống</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-secondary" onclick="openLoginScreen()">🔐 Trải Nghiệm Màn Hình Đăng Nhập</button>
+              <button class="btn btn-primary" onclick="openModal('modal-create-admin')">➕ Cấp Tài Khoản Admin Mới</button>
             </div>
           </div>
 
+          <!-- Admin Stats Cards -->
+          <div class="grid-4">
+            <div class="stat-card">
+              <div class="stat-title">Tổng Tài Khoản Admin</div>
+              <div class="stat-value" id="stat-total-admins">4</div>
+              <div class="stat-change up">🟢 100% Đang hoạt động</div>
+            </div>
+            <div class="stat-card gold">
+              <div class="stat-title">Super Admin (Toàn Quyền)</div>
+              <div class="stat-value">1</div>
+              <div style="font-size: 11.5px; color: var(--accent-gold); font-weight: 600; margin-top: 4px;">Long Nguyen (Root)</div>
+            </div>
+            <div class="stat-card blue">
+              <div class="stat-title">Content Manager (Biên Tập)</div>
+              <div class="stat-value">2</div>
+              <div style="font-size: 11.5px; color: var(--accent-blue); font-weight: 600; margin-top: 4px;">Quản lý phim & Category</div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-title">User Moderator (Kiểm Duyệt)</div>
+              <div class="stat-value">1</div>
+              <div style="font-size: 11.5px; color: var(--accent-green); font-weight: 600; margin-top: 4px;">Quản lý user & cấm chat</div>
+            </div>
+          </div>
+
+          <!-- Table 1: Danh Sách Tài Khoản Admin -->
           <div class="panel-card">
-            <div class="panel-title">📜 Audit Logs (Nhật Ký Thao Tác Vận Hành)</div>
+            <div class="panel-title">
+              <span>👥 Danh Sách Tài Khoản Quản Trị Viên Hệ Thống</span>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" placeholder="🔍 Tìm Admin, Email..." style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 8px; color: #fff; font-size: 12px;">
+                <button class="btn btn-primary" style="padding: 6px 12px; font-size: 12px;" onclick="openModal('modal-create-admin')">+ Thêm Admin</button>
+              </div>
+            </div>
+
             <div class="data-table-wrapper">
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>Thời Gian</th>
-                    <th>Admin Thực Hiện</th>
-                    <th>Hành Động Xử Lý</th>
-                    <th>Chi Tiết / Đối Tượng</th>
+                    <th>STT</th>
+                    <th>Quản Trị Viên & Email</th>
+                    <th>Vai Trò (Role)</th>
+                    <th>Quyền Hạn Chính</th>
+                    <th>Trạng Thái</th>
+                    <th>Đăng Nhập Cuối</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                  <tr id="admin-row-1">
+                    <td>01</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #a855f7); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">LN</div>
+                        <div>
+                          <strong style="color: #fff;">Long Nguyen</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">longnguyen@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-super">👑 Super Admin</span></td>
+                    <td><span style="font-size: 12px; color: var(--accent-gold);">★ Full Quyền Hệ Thống</span></td>
+                    <td><span class="badge badge-published">🟢 Active</span></td>
+                    <td>Vừa xong (IP: 118.69.182.4)</td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('Long Nguyen')">🔑</button>
+                        <button class="icon-action-btn" title="Chỉnh sửa quyền" onclick="alert('Super Admin không thể bị giới hạn quyền!')">✏️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-2">
+                    <td>02</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #29b6f6, #00e676); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">TT</div>
+                        <div>
+                          <strong style="color: #fff;">Thu Trang</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">thutrang.content@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-content">🎬 Content Manager</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Kéo API, Đăng Phim, Gán Category</span></td>
+                    <td><span class="badge badge-published" id="status-admin-2">🟢 Active</span></td>
+                    <td>10 phút trước</td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('Thu Trang')">🔑</button>
+                        <button class="icon-action-btn" title="Khóa / Mở tài khoản" onclick="toggleAdminStatus(2, 'Thu Trang')">🔒</button>
+                        <button class="icon-action-btn" title="Xóa tài khoản" onclick="deleteAdminRow(2)">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-3">
+                    <td>03</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ab47bc, #ff2a5f); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">HN</div>
+                        <div>
+                          <strong style="color: #fff;">Hoàng Nam</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">nam.mod@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-mod">🛡️ User Moderator</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Quản Lý Người Dùng, Cấm Chat</span></td>
+                    <td><span class="badge badge-published" id="status-admin-3">🟢 Active</span></td>
+                    <td>2 giờ trước</td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('Hoàng Nam')">🔑</button>
+                        <button class="icon-action-btn" title="Khóa / Mở tài khoản" onclick="toggleAdminStatus(3, 'Hoàng Nam')">🔒</button>
+                        <button class="icon-action-btn" title="Xóa tài khoản" onclick="deleteAdminRow(3)">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-4">
+                    <td>04</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ffb800, #ff5e3a); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">BT</div>
+                        <div>
+                          <strong style="color: #fff;">Bảo Trâm</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">tram.analyst@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-analyst">📊 Data Analyst</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Xem Dashboard & Xuất Báo Cáo</span></td>
+                    <td><span class="badge badge-published" id="status-admin-4">🟢 Active</span></td>
+                    <td>Hôm qua</td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('Bảo Trâm')">🔑</button>
+                        <button class="icon-action-btn" title="Khóa / Mở tài khoản" onclick="toggleAdminStatus(4, 'Bảo Trâm')">🔒</button>
+                        <button class="icon-action-btn" title="Xóa tài khoản" onclick="deleteAdminRow(4)">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Table 2: Ma Trận Phân Quyền RBAC -->
+          <div class="panel-card">
+            <div class="panel-title">
+              <span>🛡️ Ma Trận Quyền Hạn Chi Tiết Theo Vai Trò (RBAC Matrix)</span>
+              <span class="badge badge-published">4 Vai Trò Tiêu Chuẩn</span>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Nhóm Tính Năng / Quyền Hạn</th>
+                    <th style="text-align: center;">👑 Super Admin</th>
+                    <th style="text-align: center;">🎬 Content Manager</th>
+                    <th style="text-align: center;">🛡️ User Moderator</th>
+                    <th style="text-align: center;">📊 Data Analyst</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>11/08/2026 11:20:10</td>
-                    <td><strong style="color: #fff;">Long Nguyen</strong> (Super Admin)</td>
-                    <td>Gán Category Đồng Loạt (50 Phim)</td>
-                    <td>Đã gán Category "Ngôn Tình, Trả Thù" cho 50 bộ phim API Import</td>
+                    <td><strong>📊 Xem Dashboard & Báo cáo thống kê</strong></td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Xem</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Xem & Xuất CSV</td>
+                  </tr>
+                  <tr>
+                    <td><strong>🎬 Kéo API, Tạo Phim URL & Gán Category</strong></td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                  </tr>
+                  <tr>
+                    <td><strong>🖼️ Cấu hình Trang chủ & Thứ tự Tab Category</strong></td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Chỉnh sửa</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                  </tr>
+                  <tr>
+                    <td><strong>👥 Xem Danh sách User & Thực hiện Cấm Chat (Mute)</strong></td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                  </tr>
+                  <tr>
+                    <td><strong>⚙️ Cấp tài khoản Admin mới & Phân quyền RBAC</strong></td>
+                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
+                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
                   </tr>
                 </tbody>
               </table>
@@ -1253,22 +1771,86 @@
   </div>
 
 
-  <!-- MODAL 2: CREATE DRAMA MANUAL -->
+  <!-- MODAL 2: CREATE DRAMA DIRECT FORM -->
   <div id="modal-create-drama" class="modal-overlay">
     <div class="modal-content" style="width: 680px;">
       <div class="modal-header">
-        <div class="modal-title">➕ Tạo Phim & Gán Thể Loại Thủ Công</div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">🎬</span>
+          <div>
+            <div class="modal-title">➕ Tạo Mới Bộ Phim</div>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Điền thông tin và dán đường link URL phim để tạo và phát hành ngay</div>
+          </div>
+        </div>
         <button class="close-modal-btn" onclick="closeModal('modal-create-drama')">✕</button>
       </div>
+
       <div class="modal-body">
         <div style="margin-bottom: 14px;">
-          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN BỘ PHIM</label>
-          <input type="text" value="Cô Vợ Sát Thủ & Tổng Tài Bá Đạo" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN BỘ PHIM <span style="color: var(--primary);">*</span></label>
+          <input type="text" id="input-drama-title" placeholder="Nhập tên bộ phim..." value="Cô Vợ Sát Thủ & Tổng Tài Bá Đạo" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">LINK URL NGUỒN PHIM / M3U8 PLAYLIST <span style="color: var(--primary);">*</span></label>
+          <input type="text" id="input-drama-url" placeholder="https://cdn.partner-stream.com/series/tong-tai-ba-dao/master.m3u8" value="https://cdn.shortdrama-partner.tv/series/tong-tai-ba-dao-co-vo-sat-thu-80eps/master.m3u8" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace;">
+          <div style="font-size: 11.5px; color: var(--accent-green); margin-top: 5px; display: flex; align-items: center; gap: 4px;">
+            <span>✓</span> Link URL đã tự động bao gồm Poster ảnh bìa, toàn bộ tập phim & luồng video HLS.
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">SỐ LƯỢNG TẬP PHIM</label>
+            <input type="number" id="input-drama-eps" placeholder="80" value="80" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+          </div>
+
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TRẠNG THÁI PHÁT HÀNH</label>
+            <select id="input-drama-status" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+              <option value="published">🟢 Xuất bản ngay (Published)</option>
+              <option value="draft">🟡 Lưu nháp (Draft)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- MULTI-SELECT CATEGORY DROPDOWN -->
+        <div style="margin-bottom: 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700;">GÁN THỂ LOẠI PHIM (MULTI-SELECT DROPDOWN):</label>
+            <span style="font-size: 11px; color: var(--accent-gold);">⚡ Chứa không giới hạn N Thể loại (Kèm Tìm Kiếm)</span>
+          </div>
+
+          <div class="multi-select-container" id="category-multi-select-container">
+            <!-- Box hiển thị các Chip Tag đã chọn -->
+            <div class="multi-select-display-box" id="category-display-box" onclick="toggleCategoryDropdown(event)">
+              <div id="selected-chips-container" style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                <!-- Rendered dynamically -->
+              </div>
+              <span style="color: var(--text-muted); font-size: 12px; margin-left: auto;">▼</span>
+            </div>
+
+            <!-- Popover Dropdown Danh Sách & Tìm Kiếm -->
+            <div class="multi-select-popover" id="category-popover">
+              <div class="multi-select-search-bar">
+                <input type="text" id="cat-search-input" placeholder="🔍 Gõ từ khóa tìm thể loại (ví dụ: Ngôn tình, Kinh dị...)" oninput="filterCategoryList(this.value)" onclick="event.stopPropagation()">
+              </div>
+              <div class="multi-select-items-list" id="category-dropdown-items-list">
+                <!-- Dropdown items will be populated by JS -->
+              </div>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">
+            💡 Click vào ô trên để mở danh sách chọn nhiều thể loại, hoặc bấm <code>✕</code> trên từng tag để xóa nhanh.
+          </div>
         </div>
       </div>
+
       <div class="modal-footer">
         <button class="btn btn-secondary" onclick="closeModal('modal-create-drama')">Hủy Bỏ</button>
-        <button class="btn btn-primary" onclick="closeModal('modal-create-drama')">LƯU THÔNG TIN</button>
+        <button class="btn btn-primary" onclick="executeCreateDramaDirect()">
+          💾 LƯU & TẠO PHIM NGAY
+        </button>
       </div>
     </div>
   </div>
@@ -1367,8 +1949,382 @@
   </div>
 
 
+  <!-- MODAL 5: CẤP TÀI KHOẢN ADMIN MỚI -->
+  <div id="modal-create-admin" class="modal-overlay">
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">👤</span>
+          <div>
+            <div class="modal-title">➕ Cấp Mới Tài Khoản Quản Trị Viên (Admin BO)</div>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Tạo tài khoản quản trị và thiết lập quyền hạn truy cập hệ thống</div>
+          </div>
+        </div>
+        <button class="close-modal-btn" onclick="closeModal('modal-create-admin')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">HỌ VÀ TÊN ADMIN <span style="color: var(--primary);">*</span></label>
+            <input type="text" id="new-admin-name" placeholder="Ví dụ: Nguyễn Văn A" value="Đặng Minh Châu" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+          </div>
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">EMAIL ĐĂNG NHẬP <span style="color: var(--primary);">*</span></label>
+            <input type="email" id="new-admin-email" placeholder="email@pinedrama.com" value="chau.editor@pinedrama.com" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">MẬT KHẨU KHỞI TẠO <span style="color: var(--primary);">*</span></label>
+            <input type="text" id="new-admin-pass" value="Admin@2026!#" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace;">
+          </div>
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">VAI TRÒ (ROLE ĐỊNH DANH) <span style="color: var(--primary);">*</span></label>
+            <select id="new-admin-role" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+              <option value="content">🎬 Content Manager (Quản lý Phim & Tag)</option>
+              <option value="mod">🛡️ User Moderator (Quản lý User & Cấm Chat)</option>
+              <option value="analyst">📊 Data Analyst (Báo cáo & Thống kê)</option>
+              <option value="super">👑 Super Admin (Toàn quyền hệ thống)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Role Permissions Checklist -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 14px;">
+          <label style="font-size: 12.5px; color: #fff; font-weight: 800; display: block; margin-bottom: 10px;">MA TRẬN QUYỀN HẠN ĐƯỢC CẤP PHÉP:</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
+              <input type="checkbox" checked> <span>Xem Dashboard thống kê</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
+              <input type="checkbox" checked> <span>Kéo API & Tạo Phim URL</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
+              <input type="checkbox" checked> <span>Gán & Quản lý Category Tabs</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
+              <input type="checkbox"> <span>Quản lý User & Cấm Chat</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
+              <input type="checkbox"> <span>Quản lý Tài Khoản Admin khác</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="font-size: 12px; color: var(--accent-green); display: flex; align-items: center; gap: 6px;">
+          <span>✓</span>
+          <span>Thông tin tài khoản và mật khẩu khởi tạo sẽ được gửi bảo mật qua Email của Admin.</span>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-create-admin')">Hủy Bỏ</button>
+        <button class="btn btn-primary" onclick="executeCreateAdminAction()">
+          💾 LƯU & CẤP TÀI KHOẢN
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 6: ĐỔI MẬT KHẨU ADMIN -->
+  <div id="modal-change-password" class="modal-overlay">
+    <div class="modal-content" style="width: 520px;">
+      <div class="modal-header">
+        <div class="modal-title">🔑 Đổi Mật Khẩu Quản Trị Viên</div>
+        <button class="close-modal-btn" onclick="closeModal('modal-change-password')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="background: rgba(255,184,0,0.08); border: 1px solid rgba(255,184,0,0.3); padding: 12px 14px; border-radius: 10px; margin-bottom: 16px; font-size: 12.5px; color: #fff;">
+          Đang cập nhật mật khẩu cho tài khoản: <strong id="pwd-target-admin" style="color: var(--accent-gold);">Long Nguyen</strong>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">MẬT KHẨU MỚI</label>
+          <input type="password" id="new-pwd-val" placeholder="Nhập ít nhất 8 ký tự..." style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">XÁC NHẬN MẬT KHẨU MỚI</label>
+          <input type="password" id="confirm-pwd-val" placeholder="Nhập lại mật khẩu..." style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-change-password')">Hủy Bỏ</button>
+        <button class="btn btn-primary" onclick="executeChangePasswordAction()">💾 LƯU MẬT KHẨU MỚI</button>
+      </div>
+    </div>
+  </div>
+
+
   <!-- INTERACTIVE JS -->
   <script>
+    /* 1. LOGIN & AUTH FUNCTIONS */
+    function openLoginScreen() {
+      const screen = document.getElementById('login-overlay-screen');
+      if (screen) screen.classList.add('active');
+    }
+
+    function closeLoginScreen() {
+      const screen = document.getElementById('login-overlay-screen');
+      if (screen) screen.classList.remove('active');
+    }
+
+    function togglePasswordVisibility() {
+      const input = document.getElementById('login-password');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    function executeLogin() {
+      const email = document.getElementById('login-email').value || 'longnguyen@pinedrama.com';
+      closeLoginScreen();
+      alert(`🎉 ĐĂNG NHẬP THÀNH CÔNG!\n\nChào mừng ${email} quay trở lại PineDrama Back Office!\nPhiên làm việc bảo mật đã được khởi tạo.`);
+      switchView('view-dashboard', document.querySelectorAll('.menu-item')[0]);
+    }
+
+    function quickLoginAs(name, role, email) {
+      document.getElementById('current-user-name').innerText = name;
+      document.getElementById('current-user-role').innerText = role;
+      document.getElementById('current-user-avatar').innerText = name.split(' ').map(n => n[0]).join('').toUpperCase();
+      
+      closeLoginScreen();
+      alert(`⚡ [Demo 1-Click Login]\nĐã đăng nhập thành công với vai trò: ${role} (${name})!\nEmail: ${email}`);
+      switchView('view-dashboard', document.querySelectorAll('.menu-item')[0]);
+    }
+
+    function logoutAction() {
+      if (confirm('Bạn có chắc chắn muốn đăng xuất khỏi phiên làm việc Quản trị viên PineDrama?')) {
+        openLoginScreen();
+      }
+    }
+
+    /* 2. ADMIN ACCOUNTS & RBAC FUNCTIONS */
+    let currentAdminCount = 4;
+
+    function executeCreateAdminAction() {
+      const name = document.getElementById('new-admin-name').value.trim() || 'Admin Mới';
+      const email = document.getElementById('new-admin-email').value.trim() || 'admin.new@pinedrama.com';
+      const roleVal = document.getElementById('new-admin-role').value;
+      const tbody = document.getElementById('admin-table-body');
+
+      currentAdminCount++;
+      const statTotal = document.getElementById('stat-total-admins');
+      if (statTotal) statTotal.innerText = currentAdminCount;
+      const sbCount = document.getElementById('sidebar-admin-count');
+      if (sbCount) sbCount.innerText = currentAdminCount;
+
+      let roleBadge = '<span class="badge badge-role-content">🎬 Content Manager</span>';
+      let permText = 'Kéo API, Đăng Phim, Gán Category';
+
+      if (roleVal === 'mod') {
+        roleBadge = '<span class="badge badge-role-mod">🛡️ User Moderator</span>';
+        permText = 'Quản Lý Người Dùng, Cấm Chat';
+      } else if (roleVal === 'analyst') {
+        roleBadge = '<span class="badge badge-role-analyst">📊 Data Analyst</span>';
+        permText = 'Xem Dashboard & Xuất Báo Cáo';
+      } else if (roleVal === 'super') {
+        roleBadge = '<span class="badge badge-role-super">👑 Super Admin</span>';
+        permText = '★ Full Quyền Hệ Thống';
+      }
+
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+      const newRow = document.createElement('tr');
+      newRow.style.background = 'rgba(0, 230, 118, 0.08)';
+      newRow.innerHTML = `
+        <td>0${currentAdminCount}</td>
+        <td>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #00e676, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">${initials}</div>
+            <div>
+              <strong style="color: #fff;">${name}</strong>
+              <div style="font-size: 11px; color: var(--text-muted);">${email}</div>
+            </div>
+          </div>
+        </td>
+        <td>${roleBadge}</td>
+        <td><span style="font-size: 12px; color: var(--text-sub);">${permText}</span></td>
+        <td><span class="badge badge-published">🟢 Active</span></td>
+        <td>Vừa tạo xong</td>
+        <td>
+          <div class="action-btn-group">
+            <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('${name}')">🔑</button>
+            <button class="icon-action-btn" title="Khóa / Mở tài khoản" onclick="alert('Đã đổi trạng thái tài khoản ${name}!')">🔒</button>
+            <button class="icon-action-btn" title="Xóa tài khoản" onclick="this.closest('tr').remove();">🗑️</button>
+          </div>
+        </td>
+      `;
+
+      tbody.appendChild(newRow);
+
+      alert(`🎉 CẤP TÀI KHOẢN THÀNH CÔNG!\n\nĐã tạo tài khoản cho Quản trị viên "${name}" (${email}) thành công và cấp quyền truy cập hệ thống!`);
+      closeModal('modal-create-admin');
+    }
+
+    function toggleAdminStatus(rowId, name) {
+      const statusBadge = document.getElementById(`status-admin-${rowId}`);
+      if (statusBadge) {
+        if (statusBadge.innerText.includes('Active')) {
+          statusBadge.className = 'badge badge-draft';
+          statusBadge.innerHTML = '🔴 Locked';
+          alert(`🔒 Đã khóa tài khoản Admin "${name}"! Tài khoản này tạm thời không thể đăng nhập BO.`);
+        } else {
+          statusBadge.className = 'badge badge-published';
+          statusBadge.innerHTML = '🟢 Active';
+          alert(`🟢 Đã mở khóa hoạt động cho tài khoản Admin "${name}"!`);
+        }
+      }
+    }
+
+    function deleteAdminRow(rowId) {
+      if (confirm('Bạn có chắc chắn muốn xóa tài khoản Quản trị viên này khỏi hệ thống?')) {
+        const row = document.getElementById(`admin-row-${rowId}`);
+        if (row) row.remove();
+        alert('🗑️ Đã xóa tài khoản Admin thành công!');
+      }
+    }
+
+    function openChangePasswordModal(adminName) {
+      document.getElementById('pwd-target-admin').innerText = adminName;
+      document.getElementById('new-pwd-val').value = '';
+      document.getElementById('confirm-pwd-val').value = '';
+      openModal('modal-change-password');
+    }
+
+    function executeChangePasswordAction() {
+      const target = document.getElementById('pwd-target-admin').innerText;
+      alert(`🔑 Đã cập nhật mật khẩu mới cho Quản trị viên "${target}" thành công!`);
+      closeModal('modal-change-password');
+    }
+
+    /* 3. MULTI-SELECT CATEGORY DROPDOWN LOGIC */
+    let globalCategories = [
+      '❤️ Ngôn Tình', 
+      '👑 Tổng Tài', 
+      '🔥 Hot Trend', 
+      '⚔️ Trả Thù', 
+      '🏡 Gia Đình', 
+      '👻 Kinh Dị', 
+      '🥋 Võ Thuật', 
+      '😂 Hài Hước', 
+      '🎓 Học Đường', 
+      '⏳ Xuyên Không',
+      '✨ Huyền Huyễn'
+    ];
+    let selectedCategories = ['❤️ Ngôn Tình', '👑 Tổng Tài', '🔥 Hot Trend'];
+
+    function renderSelectedChips() {
+      const container = document.getElementById('selected-chips-container');
+      if (!container) return;
+
+      if (selectedCategories.length === 0) {
+        container.innerHTML = `<span style="color: var(--text-muted); font-size: 12.5px;">🔍 Bấm để chọn Thể loại (Chưa chọn thể loại nào)...</span>`;
+        return;
+      }
+
+      container.innerHTML = selectedCategories.map(cat => `
+        <span class="category-chip-tag">
+          <span>${cat}</span>
+          <span class="chip-remove-btn" onclick="removeCategoryChip('${cat}', event)" title="Xóa thể loại này">✕</span>
+        </span>
+      `).join('');
+    }
+
+    function renderCategoryDropdownItems(keyword = '') {
+      const listContainer = document.getElementById('category-dropdown-items-list');
+      if (!listContainer) return;
+
+      const filtered = globalCategories.filter(cat => 
+        cat.toLowerCase().includes(keyword.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        listContainer.innerHTML = `<div style="padding: 12px; text-align: center; color: var(--text-muted); font-size: 12px;">Không tìm thấy thể loại phù hợp!</div>`;
+        return;
+      }
+
+      listContainer.innerHTML = filtered.map(cat => {
+        const isSelected = selectedCategories.includes(cat);
+        return `
+          <div class="dropdown-category-item ${isSelected ? 'selected' : ''}" onclick="toggleSelectCategoryItem('${cat}')">
+            <span style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" ${isSelected ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelectCategoryItem('${cat}');">
+              <span>${cat}</span>
+            </span>
+            ${isSelected ? '<span style="color: var(--accent-green); font-size: 11px;">✓ Đã chọn</span>' : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleCategoryDropdown(e) {
+      if (e) e.stopPropagation();
+      const popover = document.getElementById('category-popover');
+      const box = document.getElementById('category-display-box');
+      if (!popover) return;
+
+      const isOpen = popover.classList.contains('active');
+      if (isOpen) {
+        popover.classList.remove('active');
+        if (box) box.classList.remove('active');
+      } else {
+        popover.classList.add('active');
+        if (box) box.classList.add('active');
+        renderCategoryDropdownItems();
+        const searchInput = document.getElementById('cat-search-input');
+        if (searchInput) {
+          searchInput.value = '';
+          setTimeout(() => searchInput.focus(), 50);
+        }
+      }
+    }
+
+    function toggleSelectCategoryItem(catName) {
+      const index = selectedCategories.indexOf(catName);
+      if (index > -1) {
+        selectedCategories.splice(index, 1);
+      } else {
+        selectedCategories.push(catName);
+      }
+      renderSelectedChips();
+      renderCategoryDropdownItems(document.getElementById('cat-search-input')?.value || '');
+    }
+
+    function removeCategoryChip(catName, e) {
+      if (e) e.stopPropagation();
+      const index = selectedCategories.indexOf(catName);
+      if (index > -1) {
+        selectedCategories.splice(index, 1);
+        renderSelectedChips();
+        renderCategoryDropdownItems();
+      }
+    }
+
+    function filterCategoryList(query) {
+      renderCategoryDropdownItems(query);
+    }
+
+    // Đóng dropdown khi click ra ngoài
+    document.addEventListener('click', function(e) {
+      const container = document.getElementById('category-multi-select-container');
+      const popover = document.getElementById('category-popover');
+      const box = document.getElementById('category-display-box');
+      if (container && !container.contains(e.target) && popover) {
+        popover.classList.remove('active');
+        if (box) box.classList.remove('active');
+      }
+    });
+
+    // Khởi tạo render lần đầu
+    setTimeout(() => {
+      renderSelectedChips();
+    }, 100);
+
+    /* 4. NAVIGATION & MODALS */
     function switchView(viewId, element) {
       document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
@@ -1381,6 +2337,9 @@
       const modal = document.getElementById(modalId);
       if (modal) {
         modal.classList.add('active');
+        if (modalId === 'modal-create-drama') {
+          renderSelectedChips();
+        }
       } else {
         alert('Modal ID not found: ' + modalId);
       }
@@ -1393,14 +2352,66 @@
       }
     }
 
+    function executeCreateDramaDirect() {
+      const title = document.getElementById('input-drama-title').value.trim() || 'Cô Vợ Sát Thủ & Tổng Tài Bá Đạo';
+      const url = document.getElementById('input-drama-url').value.trim();
+      const eps = document.getElementById('input-drama-eps').value.trim() || '80';
+      const status = document.getElementById('input-drama-status').value;
+      const tbody = document.querySelector('#view-dramas tbody');
+
+      const isPublished = status === 'published';
+      const statusBadge = isPublished 
+        ? '<span class="badge badge-published">🟢 Published</span>' 
+        : '<span class="badge badge-draft">🟡 Draft</span>';
+
+      const tagBadgesHtml = selectedCategories.length > 0
+        ? selectedCategories.map(c => `<span class="badge badge-category">${c}</span>`).join(' ')
+        : '<span class="badge badge-unmapped">🟡 Chưa gán</span>';
+
+      const newRow = document.createElement('tr');
+      newRow.style.background = 'rgba(255, 42, 95, 0.08)';
+      newRow.innerHTML = `
+        <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+        <td><strong style="color: var(--accent-green);">MỚI</strong></td>
+        <td><div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">URL</div></td>
+        <td>
+          <strong style="color: #fff;">${title}</strong>
+          <div style="font-size: 11px; color: var(--accent-green);">ID: DRAMA-${Math.floor(1000 + Math.random() * 9000)} • URL Link Direct</div>
+        </td>
+        <td><span class="badge badge-published" style="background: rgba(0,230,118,0.15); color: var(--accent-green);">🔗 URL Direct</span></td>
+        <td>
+          ${tagBadgesHtml}
+        </td>
+        <td><strong style="color: var(--accent-gold);">${eps}/${eps} Tập</strong></td>
+        <td>${statusBadge}</td>
+        <td>
+          <div class="action-btn-group">
+            <button class="icon-action-btn" title="Chỉnh sửa" onclick="openModal('modal-create-drama')">✏️</button>
+            <button class="icon-action-btn" title="Xóa phim" onclick="this.closest('tr').remove(); updateBulkBar();">🗑️</button>
+          </div>
+        </td>
+      `;
+
+      tbody.insertBefore(newRow, tbody.firstChild);
+      alert(`🎉 THÀNH CÔNG RỰC RỠ!\n\nĐã tạo bộ phim "${title}" (${eps} Tập) thành công!\nThể loại đã gán: ${selectedCategories.join(', ') || 'Chưa gán'}\nLink nguồn URL: ${url ? url.substring(0, 45) + '...' : 'Đã cấu hình'}`);
+      closeModal('modal-create-drama');
+    }
+
     function executeCreateCategoryAction() {
-      const catName = document.getElementById('new-category-name').value || 'Kinh Dị Siêu Nhất';
+      const catName = document.getElementById('new-category-name').value.trim() || 'Kinh Dị Siêu Nhất';
       const tbody = document.getElementById('category-table-body');
+
+      const formattedName = catName.startsWith('✨') || catName.startsWith('👻') ? catName : `✨ ${catName}`;
+      if (!globalCategories.includes(formattedName)) {
+        globalCategories.push(formattedName);
+        selectedCategories.push(formattedName);
+        renderSelectedChips();
+      }
 
       const newRow = document.createElement('tr');
       newRow.innerHTML = `
         <td>#4</td>
-        <td><strong style="color: #fff;">👻 ${catName}</strong></td>
+        <td><strong style="color: #fff;">${formattedName}</strong></td>
         <td><span class="badge badge-category">Thể loại Mới</span></td>
         <td>0 Phim</td>
         <td><span class="badge badge-published">🟢 Hiển thị</span></td>
@@ -1414,7 +2425,8 @@
       `;
 
       tbody.appendChild(newRow);
-      alert(`🎉 Đã tạo thành công Category Tab mới: "${catName}" và hiển thị ngay trên bảng!`);
+
+      alert(`🎉 Đã tạo thành công Category Tab mới: "${formattedName}"!\n• Đã hiển thị trên bảng Quản lý Category.\n• Tự động đồng bộ nạp vào Dropdown Chọn Thể loại trong Modal Tạo Phim!`);
       closeModal('modal-create-category');
     }
 

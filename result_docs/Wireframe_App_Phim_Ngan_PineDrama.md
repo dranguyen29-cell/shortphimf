@@ -17,7 +17,7 @@
 2. **Không có Ổ Khóa (No Lock Icons):** Giao diện loại bỏ toàn bộ icon Ổ khóa 🔐, loại bỏ các màn hìnhPaywall/Unlock.
 3. **Mục đích Đăng nhập / Đăng ký:**
    - Người dùng có thể xem phim ngay lập tức mà không cần đăng nhập.
-   - Đăng nhập (qua Google, Apple ID, TikTok, SĐT OTP) được khuyến khích để **lưu Tủ Phim**, **thả tim/bình luận** và **đồng bộ Lịch sử xem phim** giữa các thiết bị.
+   - Đăng nhập (qua Google, SĐT/Email) được khuyến khích để **lưu Tủ Phim**, **thả tim/bình luận** và **đồng bộ Lịch sử xem phim** giữa các thiết bị.
 
 ---
 
@@ -49,12 +49,51 @@ Below is the detail breakdown for 5 main screens, including layout wireframes, c
 
 ---
 
-### MÀN HÌNH 1: TRÌNH CHỦ DỌC FULLSCREEN (IMMERSIVE VERTICAL VIDEO PLAYER)
+### MÀN HÌNH 1: TRANG KHÁM PHÁ & TRANG CHỦ (HOME & DISCOVER - LANDING SCREEN)
 
 #### 1.1 Khái niệm & Mục tiêu UX
-Màn hình trải nghiệm cốt lõi của ứng dụng. Video hiển thị tràn màn hình tỷ lệ 9:16, hỗ trợ vuốt dọc để chuyển tập mượt mà, tự động phát tất cả các tập tiếp theo không giới hạn.
+Màn hình mặc định khi người dùng mới mở ứng dụng (Landing Screen). Hiển thị Banner Phim Hot nhất, danh mục **✨ Phim Đề Xuất Cho Bạn**, Bảng xếp hạng Top 10 và Danh sách phim mới cập nhật.
 
-#### 1.2 Wireframe Layout (Cấu trúc giao diện)
+#### 1.2 Wireframe Layout
+```
++-------------------------------------------------------------+
+|  [LOGO APP]   [🔍 Tìm phim...]               [🔔 Thông Báo] |  <-- Top Bar & Header
++-------------------------------------------------------------+
+|  [Cho Bạn]  [Hot Trend]  [Ngôn Tình]  [Chủ Tịch]  [Trả Thù] |  <-- Category Horizontal Tabs
++-------------------------------------------------------------+
+| +---------------------------------------------------------+ |
+| | [HERO BANNER SLIDER: PHIM HOT NHẤT TUẦN]                | |  <-- Big Featured Carousel Banner
+| | Phim: "MẸ CHỒNG SIÊU CẤP & NÀNG DÂU TRIỆU ĐÔ"           | |
+| | Trọn bộ 80 Tập • Thể loại Ngôn Tình                     | |
+| | [▶ XEM NGAY TẬP 1]         [❤️ Yêu Thích]               | |
+| +---------------------------------------------------------+ |
++-------------------------------------------------------------+
+|  🔥 BẢNG XẾP HẠNG TOP 10 PHIM HOT                           |  <-- Top Chart Section
+|  +------------+  +------------+  +------------+             |
+|  | #1 POSTER  |  | #2 POSTER  |  | #3 POSTER  |             |
+|  | 4.9★ - 1.2M|  | 4.8★ - 980K|  | 4.7★ - 850K|             |
+|  | Tên Phim A |  | Tên Phim B |  | Tên Phim C |             |
+|  +------------+  +------------+  +------------+             |
++-------------------------------------------------------------+
+|  🎬 PHIM MỚI CẬP NHẬT                              [Xem tất cả]|  <-- Vertical Grid Section
+|  +-----------------------+   +-----------------------+      |
+|  | [POSTER 3:4]          |   | [POSTER 3:4]          |      |
+|  | Cô Vợ Sát Thủ         |   | Tổng Tài Bá Đạo       |      |
+|  | 80 Tập | 4.9★         |   | 65 Tập | 4.8★         |      |
+|  +-----------------------+   +-----------------------+      |
++-------------------------------------------------------------+
+| [🏠 Trang Chủ]         [🎬 Xem Phim]     [👤 Tài Khoản / Tôi]| <-- Bottom Nav Bar (Gộp Tab)
++-------------------------------------------------------------+
+```
+
+---
+
+### MÀN HÌNH 2: TRÌNH CHỦ DỌC FULLSCREEN (IMMERSIVE VERTICAL VIDEO PLAYER)
+
+#### 2.1 Khái niệm & Mục tiêu UX
+Màn hình trình chiếu video dọc 9:16 tràn màn hình. Hỗ trợ vuốt dọc chuyển tập mượt mà và tự động phát liên tục.
+
+#### 2.2 Wireframe Layout (Cấu trúc giao diện)
 ```
 +-------------------------------------------------------------+
 |  [<] Phim: Vợ Cũ Lật Kèo (Tập 12/80)    [Sub: VI] [1.25x]  [*] |  <-- Top Bar (Overlay)
@@ -66,10 +105,8 @@ Màn hình trải nghiệm cốt lõi của ứng dụng. Video hiển thị tr�
 |                   (Vertical Drama Content)                  |
 |                                                             |
 |                                                     [ (A) ] |  <-- Avatar Diễn Viên / Follow
-|                                                     [ (♥) ] |  <-- Heart / Like (12.4K)
+|                                                     [ (♥) ] |  <-- Heart / Thêm Yêu Thích (12.4K)
 |                                                     [ (💬) ]|  <-- Bình Luận (1.8K)
-|                                                     [ (🔖) ]|  <-- Thêm Tủ Phim
-|                                                     [ (↗) ] |  <-- Chia Sẻ (Share)
 |                                                     [ (≡) ] |  <-- Drawer Tập Phim
 |                                                             |
 |                                                             |
@@ -77,45 +114,9 @@ Màn hình trải nghiệm cốt lõi của ứng dụng. Video hiển thị tr�
 | Subtitle: "Anh nghĩ tôi còn là cô gái dễ bị gạt năm xưa sao?"|  <-- Subtitle Overlay
 +-------------------------------------------------------------+
 | [Play/Pause]  ==========o====================  01:15 / 02:30 |  <-- Progress Seekbar
-| [<<< Tập 11]            [TẬP TIẾP THEO >>>]  [▶ Xem Ngay]  |  <-- Quick Episode Nav Bar (Free)
+| [<<< Tập 11]            [TẬP TIẾP THEO >>>]  [▶ Xem Ngay]  |  <-- Quick Episode Nav Bar
 +-------------------------------------------------------------+
-| [Home]        [Khám Phá]        [Tủ Phim]        [Cá Nhân]  |  <-- Bottom Navigation
-+-------------------------------------------------------------+
-```
-
----
-
-### MÀN HÌNH 2: TRANG KHÁM PHÁ & TRANG CHỦ (HOME & DISCOVER)
-
-#### 2.1 Wireframe Layout
-```
-+-------------------------------------------------------------+
-|  [LOGO APP]   [🔍 Tìm phim, diễn viên...]   [🔔] [🎁 FREE]|  <-- Top Bar & Header (FREE Chip)
-+-------------------------------------------------------------+
-|  [Cho Bạn]  [Hot Trend]  [Ngôn Tình]  [Chủ Tịch]  [Trả Thù] |  <-- Category Horizontal Tabs
-+-------------------------------------------------------------+
-| +---------------------------------------------------------+ |
-| | [HERO BANNER SLIDER: PHIM HOT NHẤT TUẦN]                | |  <-- Big Featured Carousel Banner
-| | Phim: "MẸ CHỒNG SIÊU CẤP & NÀNG DÂU TRIỆU ĐÔ"           | |
-| | Trọn bộ 80 Tập • Xem Miễn Phí 100%                      | |
-| | [▶ XEM NGAY TẬP 1]         [+ Thêm Tủ Phim]             | |
-| +---------------------------------------------------------+ |
-+-------------------------------------------------------------+
-|  🔥 BẢNG XẾP HẠNG TOP 10 PHIM HOT                           |  <-- Top Chart Section
-|  +------------+  +------------+  +------------+             |
-|  | #1 POSTER  |  | #2 POSTER  |  | #3 POSTER  |             |
-|  | 4.9★ - 1.2M|  | 4.8★ - 980K|  | 4.7★ - 850K|             |
-|  | Tên Phim A |  | Tên Phim B |  | Tên Phim C |             |
-|  +------------+  +------------+  +------------+             |
-+-------------------------------------------------------------+
-|  🎬 PHIM MỚI CẬP NHẬT (ALL FREE)                 [Xem tất cả]|  <-- Vertical Grid Section
-|  +-----------------------+   +-----------------------+      |
-|  | [POSTER 3:4 - FREE]   |   | [POSTER 3:4 - FREE]   |      |
-|  | Cô Vợ Sát Thủ         |   | Tổng Tài Bá Đạo       |      |
-|  | 80 Tập | 4.9★         |   | 65 Tập | 4.8★         |      |
-|  +-----------------------+   +-----------------------+      |
-+-------------------------------------------------------------+
-| [🏠 Trang Chủ]  [🔍 Khám Phá]  [📚 Tủ Phim]  [👤 Cá Nhân]   | <-- Bottom Nav Bar
+| [🏠 Trang Chủ]         [🎬 Xem Phim]     [👤 Tài Khoản / Tôi]|  <-- Bottom Nav Bar (Gộp Tab)
 +-------------------------------------------------------------+
 ```
 
@@ -123,31 +124,33 @@ Màn hình trải nghiệm cốt lõi của ứng dụng. Video hiển thị tr�
 
 ### MÀN HÌNH 3: TRANG CHI TIẾT PHIM (DRAMA DETAIL & EPISODE LIST)
 
-#### 3.1 Wireframe Layout (100% Free Episode Grid - KHÔNG Ổ KHÓA)
+#### 3.1 Wireframe Layout (Cấu trúc giao diện chi tiết)
 ```
 +-------------------------------------------------------------+
-|  [< Back]               [CHI TIẾT PHIM]            [↗ Share] |  <-- Top Bar
+|  [< Back]               [CHI TIẾT PHIM]                      |  <-- Top Bar
 +-------------------------------------------------------------+
 | +---------------------------------------------------------+ |
 | | [BLUR BACKGROUND POSTER COVER]                          | |  <-- Header Backdrop
 | |  +------------+  Tên Phim: VỢ CŨ LẬT KÈO                | |
-| |  |  POSTER    |  Đánh giá: ⭐ 4.9/5.0 (14.2K lượt)       | |
+| |  |  POSTER    |  Đánh giá: ⭐ 9.8 / 10 (14.2K lượt)     | |
 | |  |   3:4      |  Thể loại: Ngôn Tình, Trả Thù, CEO     | |
-| |  +------------+  Trạng thái: 80/80 Tập (Xem Miễn Phí 100%)| |
+| |  +------------+  Trạng thái: Trọn bộ 80/80 Tập            | |
 | +---------------------------------------------------------+ |
 +-------------------------------------------------------------+
-|  [ ▶ XEM TỪ TẬP 1 ]        [ + THÊM VÀO TỦ PHIM ]           |  <-- Main Action CTA Buttons
+|  ⭐ ĐÁNH GIÁ PHIM NÀY:  [⭐] [⭐] [⭐] [⭐] [⭐] (Chấm điểm) |  <-- User Interactive Star Rating Widget
++-------------------------------------------------------------+
+|  [ ▶ XEM TỪ TẬP 1 ]        [ ❤️ YÊU THÍCH ]                 |  <-- Main Action CTA Buttons
 +-------------------------------------------------------------+
 | 📖 TÓM TẮT NỘI DUNG:                                        |
 | Sau khi bị gia đình chồng cũ hãm hại và tước đoạt tài sản,...|
 +-------------------------------------------------------------+
-| 🎬 DANH SÁCH TẬP (80 Tập)      [🎁 Tất cả các tập Miễn Phí]  |  <-- Episode Selector Header
+| 🎞️ CHỌN PHẦN PHIM: [▼ Phần 1: Vợ Cũ Lật Kèo (80 Tập)]       | <-- Dropdown Select phần phim (Gọn gàng)
++-------------------------------------------------------------+
+| 🎬 DANH SÁCH TẬP - PHẦN 1 (80 Tập) [Cập nhật trọn bộ Phần 1] |  <-- Episode Selector Header
 | +---------+ +---------+ +---------+ +---------+ +---------+ |
 | | Tập 1   | | Tập 2   | | Tập 3   | | Tập 4   | | Tập 5   | |
-| | (Free)  | | (Free)  | | (Free)  | | (Free)  | | (Free)  | |
 | +---------+ +---------+ +---------+ +---------+ +---------+ |
 | | Tập 6   | | Tập 7   | | Tập 8   | | Tập 9   | | Tập 10  | |
-| | (Free)  | | (Free)  | | (Free)  | | (Free)  | | (Free)  | |
 | +---------+ +---------+ +---------+ +---------+ +---------+ |
 +-------------------------------------------------------------+
 ```
@@ -160,6 +163,8 @@ Màn hình trải nghiệm cốt lõi của ứng dụng. Video hiển thị tr�
 Màn hình xác thực tài khoản phục vụ mục đích cá nhân hóa trải nghiệm (Lưu tủ phim, đồng bộ thiết bị, bình luận).
 
 #### 4.2 Wireframe Layout
+
+##### TAB 1: FORM ĐĂNG NHẬP
 ```
 +-------------------------------------------------------------+
 |  [X Đóng]                                       [Trợ Giúp ?]|  <-- Top Bar
@@ -169,7 +174,7 @@ Màn hình xác thực tài khoản phục vụ mục đích cá nhân hóa tr�
 |           Đăng nhập để lưu tủ phim & đồng bộ lịch sử        |
 |                                                             |
 |   +-----------------------------------------------------+   |
-|   |  [ TAB: ĐĂNG NHẬP ]          [ TAB: ĐĂNG KÝ ]       |   |  <-- Switch Tab
+|   |  [* TAB: ĐĂNG NHẬP *]        [ TAB: ĐĂNG KÝ ]       |   |  <-- Switch Tab
 |   +-----------------------------------------------------+   |
 |                                                             |
 |   📱 SỐ ĐIỆN THOẠI / EMAIL:                                 |
@@ -177,26 +182,68 @@ Màn hình xác thực tài khoản phục vụ mục đích cá nhân hóa tr�
 |   | 🇻🇳 +84 | Nhập số điện thoại hoặc email...          |   |  <-- Input Field
 |   +-----------------------------------------------------+   |
 |                                                             |
-|   🔑 MẬT KHẨU / MÃ OTP:                                      |
+|   🔑 MẬT KHẨU:                                              |
 |   +-----------------------------------------------------+   |
-|   | Nhập mật khẩu...                     [Gửi OTP SMS]  |   |  <-- Password/OTP Field
+|   | Nhập mật khẩu...                                    |   |  <-- Password Field
 |   +-----------------------------------------------------+   |
 |                                                             |
-|   [Quên mật khẩu?]                             [Đăng nhập OTP]
+|                                                [Quên mật khẩu?]
 |                                                             |
 |   +-----------------------------------------------------+   |
-|   | ⚡ ĐĂNG NHẬP TÀI KHOẢN                               |   |  <-- Primary CTA Button
+|   | ⚡ ĐĂNG NHẬP NGAY                                    |   |  <-- Primary CTA Button
 |   +-----------------------------------------------------+   |
 |                                                             |
 |   ------------ Hoặc đăng nhập nhanh bằng ------------       |
 |                                                             |
 |   +-----------------------------------------------------+   |
-|   | [G] Đăng nhập bằng Google                           |   |  <-- Social Login 1
+|   | [G] Đăng nhập bằng Google                           |   |  <-- Social Login
 |   +-----------------------------------------------------+   |
-|   | [] Đăng nhập bằng Apple ID                         |   |  <-- Social Login 2
++-------------------------------------------------------------+
+| [🏠 Trang Chủ]         [🎬 Phim Dọc]     [🔑 Tài Khoản (Active)]| <-- Bottom Nav (Unauthenticated)
++-------------------------------------------------------------+
+```
+
+##### TAB 2: FORM ĐĂNG KÝ (REBUILT TAB ĐĂNG KÝ)
+```
++-------------------------------------------------------------+
+|  [X Đóng]                                       [Trợ Giúp ?]|  <-- Top Bar
++-------------------------------------------------------------+
+|                                                             |
+|                 🔥 PINE DRAMA SHORT APP                     |
+|           Đăng ký tài khoản PineDrama                       |
+|                                                             |
 |   +-----------------------------------------------------+   |
-|   | [🎵] Đăng nhập bằng TikTok                           |   |  <-- Social Login 3
+|   |  [ TAB: ĐĂNG NHẬP ]        [* TAB: ĐĂNG KÝ *]       |   |  <-- Switch Tab
 |   +-----------------------------------------------------+   |
+|                                                             |
+|   👤 HỌ VÀ TÊN:                                             |
+|   +-----------------------------------------------------+   |
+|   | Nhập họ và tên...                                   |   |
+|   +-----------------------------------------------------+   |
+|                                                             |
+|   📱 SỐ ĐIỆN THOẠI / EMAIL:                                 |
+|   +-----------------------------------------------------+   |
+|   | 🇻🇳 +84 | Nhập số điện thoại hoặc email...          |   |
+|   +-----------------------------------------------------+   |
+|                                                             |
+|   🔑 MẬT KHẨU MỚI & XÁC NHẬN:                               |
+|   +-----------------------------------------------------+   |
+|   | Nhập mật khẩu mới (Tối thiểu 6 ký tự)...            |   |
+|   | Nhập lại mật khẩu để xác nhận...                    |   |
+|   +-----------------------------------------------------+   |
+|                                                             |
+|   [x] Tôi đồng ý với Điều khoản dịch vụ & Chính sách         |
+|                                                             |
+|   +-----------------------------------------------------+   |
+|   | 🚀 ĐĂNG KÝ TÀI KHOẢN                                |   |  <-- Primary CTA Button
+|   +-----------------------------------------------------+   |
+|                                                             |
+|   ------------ Hoặc đăng ký nhanh bằng ------------        |
+|   +-----------------------------------------------------+   |
+|   | [G] Đăng ký bằng Google                             |   |
+|   +-----------------------------------------------------+   |
++-------------------------------------------------------------+
+| [🏠 Trang Chủ]         [🎬 Phim Dọc]     [🔑 Tài Khoản (Active)]| <-- Bottom Nav (Unauthenticated)
 +-------------------------------------------------------------+
 ```
 
@@ -204,33 +251,61 @@ Màn hình xác thực tài khoản phục vụ mục đích cá nhân hóa tr�
 
 ### MÀN HÌNH 5: TRANG TỦ PHIM & HỒ SƠ CÁ NHÂN (MY LIBRARY & PROFILE)
 
-#### 5.1 Wireframe Layout
+#### 5.1 Khái niệm & Logic Chuyển Đổi Tab
+* **Khi chưa Đăng Nhập:** Tab thứ 3 trên Bottom Nav hiển thị icon `🔑` & nhãn **"Tài Khoản"**. Khi người dùng bấm vào sẽ tự động điều hướng sang **Màn hình Đăng Nhập / Đăng Ký (Màn hình 4)**.
+* **Khi đã Đăng Nhập:** Icon đổi sang `👤` & nhãn đổi thành **"Tôi"**. Bấm vào sẽ mở màn hình Hồ Sơ Cá Nhân (Màn hình 5).
+
+#### 5.2 Wireframe Layout
+
 ```
 +-------------------------------------------------------------+
 | [⚙️ Cài Đặt]                CÁ NHÂN                  [🔔 2] |  <-- Top Bar
 +-------------------------------------------------------------+
 |  +-------------------------------------------------------+  |
-|  |  [AVATAR]  HOÀNG NGUYỄN (ID: 889210)                    |  |
-|  |            [🎁 TÀI KHOẢN MIỄN PHÍ]                      |  |
+|  |  [AVATAR]  HOÀNG NGUYỄN (ID: 889210)      [✏️ Sửa]     |  |  <-- Nút Chỉnh sửa Profile
+|  |            [✨ THÀNH VIÊN PINEDRAMA]                    |  |
 |  |            SĐT: 098****888 • Email: hoang@gmail.com     |  |
 |  +-------------------------------------------------------+  |
+|                                                             |
+|  +-------------------------------------------------------+  |
+|  | ✏️ CHỈNH SỬA HỒ SƠ & AVATAR (Edit Profile & Avatar):  |  |  <-- Edit Profile Form
+|  | - Đổi Avatar: [🖼️ Chọn Ảnh Mẫu] hoặc [📷 Tải Ảnh Lên]   |  |
+|  | - Viết tắt 2 chữ: [ HN ]                              |  |
+|  | - Tên hiển thị: [ Hoàng Nguyễn ]                      |  |
+|  | - Số điện thoại: [ 098****888 ]                       |  |
+|  | [ 💾 Lưu Thay Đổi ]               [ Hủy ]             |  |
+|  +-------------------------------------------------------+  |
 +-------------------------------------------------------------+
-|  [▶ Đang Xem (4)]        [🔖 Tủ Phim (12)]       [❤️ Đã Thả Tim]|  <-- Horizontal Tabs
+|  [* ⏯️ Lịch Sử Xem (2) *]        [ ❤️ Phim Yêu Thích (3) ] |  <-- Sub-tabs Chuyển đổi
 +-------------------------------------------------------------+
-|  ⏯️ TIẾP TỤC XEM (CONTINUE WATCHING):                       |
+|  TAB 1: ⏯️ LỊCH SỬ PHIM ĐÃ XEM:                              |
 |  +-------------------------------------------------------+  |
 |  | [POSTER]  Vợ Cũ Lật Kèo                               |  |
-|  |           Đã xem: Tập 12/80 (Tiến trình: 65%)         |  |
+|  |           Đã xem: Tập 12/80                           |  |
 |  |           [ ▶ XEM TIẾP TẬP 13 ]                       |  |
 |  +-------------------------------------------------------+  |
+|  | [POSTER]  Cô Vợ Sát Thủ                               |  |
+|  |           Đã xem: Tập 4/80                            |  |
+|  |           [ ▶ XEM TIẾP TẬP 5 ]                        |  |
+|  +-------------------------------------------------------+  |
+|                                                             |
+|  TAB 2: ❤️ PHIM YÊU THÍCH (SAVED WATCHLIST):                 |
+|  +-------------------------------------------------------+  |
+|  | [POSTER]  Tổng Tài Bá Đạo (⭐ 4.9 • 80 Tập)             |  |
+|  |           [ ▶ XEM PHIM ]                              |  |
+|  +-------------------------------------------------------+  |
+|  | [POSTER]  Mẹ Chồng Siêu Cấp (⭐ 4.8 • 65 Tập)           |  |
+|  |           [ ▶ XEM PHIM ]                              |  |
+|  +-------------------------------------------------------+  |
+|  | [POSTER]  Cậu Út Nhà Tỷ Phú (⭐ 4.9 • 90 Tập)           |  |
+|  |           [ ▶ XEM PHIM ]                              |  |
+|  +-------------------------------------------------------+  |
 +-------------------------------------------------------------+
-|  ⚙️ TIỆN ÍCH & CÀI ĐẶT:                                     |
-|  - 🌐 Ngôn ngữ ứng dụng / Phụ đề mặc định     [ Tiếng Việt >]|
-|  - 🔒 Quản lý tài khoản & Bảo mật                            [>]|
-|  - 💬 Trung tâm hỗ trợ & Góp ý ý kiến                      [>]|
-|  - 🚪 Đăng xuất tài khoản                                  [>]|
+|  +-------------------------------------------------------+  |
+|  | 🚪 ĐĂNG XUẤT TÀI KHOẢN                                |  | <-- Nút Đăng Xuất (Revert về Chưa Login)
+|  +-------------------------------------------------------+  |
 +-------------------------------------------------------------+
-| [🏠 Trang Chủ]  [🔍 Khám Phá]  [📚 Tủ Phim]  [👤 Cá Nhân]   | <-- Bottom Nav Bar
+| [🏠 Trang Chủ]         [🎬 Phim Dọc]            [👤 Tôi (Active)]| <-- Bottom Nav (Authenticated)
 +-------------------------------------------------------------+
 ```
 
