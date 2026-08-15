@@ -160,13 +160,95 @@
       font-weight: 700;
     }
 
+    .sidebar-footer-container {
+      position: relative;
+    }
+
     .sidebar-footer {
-      padding: 16px;
+      padding: 14px 16px;
       border-top: 1px solid var(--border-color);
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: rgba(0, 0, 0, 0.2);
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.25);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .sidebar-footer:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 42, 95, 0.3);
+    }
+
+    .user-profile-dropup {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 10px;
+      right: 10px;
+      background: #181828;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      animation: fadeIn 0.15s ease;
+    }
+
+    .user-profile-dropup.active {
+      display: flex;
+    }
+
+    .dropup-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .dropup-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+    }
+
+    .dropup-item.danger {
+      color: #ff4757;
+      font-weight: 700;
+    }
+
+    .dropup-item.danger:hover {
+      background: rgba(255, 71, 87, 0.15);
+      color: #ff6b81;
+    }
+
+    .logout-btn-direct {
+      background: rgba(255, 71, 87, 0.12);
+      border: 1px solid rgba(255, 71, 87, 0.3);
+      color: #ff4757;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .logout-btn-direct:hover {
+      background: #ff4757;
+      color: #fff;
+      border-color: #ff4757;
+      box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
     }
 
     .user-avatar {
@@ -1094,11 +1176,11 @@
         </a>
         <a class="menu-item" onclick="switchView('view-dramas', this)">
           <span class="icon">🎬</span>
-          <span>Quản Lý Phim & Gán Thể Loại</span>
+          <span>Quản Lý Phim</span>
         </a>
         <a class="menu-item" onclick="switchView('view-app-config', this)">
-          <span class="icon">🖼️</span>
-          <span>Trang Chủ & Category Tabs</span>
+          <span class="icon">🏷️</span>
+          <span>Quản Lý Category</span>
         </a>
 
         <div class="menu-group-title">Quản Lý Người Dùng</div>
@@ -1110,22 +1192,40 @@
         <div class="menu-group-title">Quản Trị Hệ Thống</div>
         <a class="menu-item" onclick="switchView('view-settings', this)">
           <span class="icon">⚙️</span>
-          <span>Quản Lý Admin & Phân Quyền</span>
-        </a>
-
-        <a class="menu-item" style="color: #ff5e3a; margin-top: 10px;" onclick="openLoginScreen()">
-          <span class="icon">🔐</span>
-          <span>Màn Hình Đăng Nhập</span>
+          <span>Quản Lý Admin</span>
         </a>
       </div>
 
-      <div class="sidebar-footer">
-        <div class="user-avatar" id="current-user-avatar">LN</div>
-        <div class="user-info">
-          <div class="user-name" id="current-user-name">Long Nguyen</div>
-          <div class="user-role" id="current-user-role">Super Admin</div>
+      <!-- SIDEBAR FOOTER & USER PROFILE ACTIONS -->
+      <div class="sidebar-footer-container">
+        <!-- Profile Dropup Menu -->
+        <div class="user-profile-dropup" id="user-profile-dropup">
+          <div style="padding: 6px 10px; border-bottom: 1px solid var(--border-color); margin-bottom: 4px;">
+            <strong style="color: #fff; font-size: 13px;" id="dropup-user-name">Long Nguyen</strong>
+            <div style="font-size: 11px; color: var(--accent-gold);" id="dropup-user-role">👑 Super Admin</div>
+          </div>
+          <div class="dropup-item" onclick="openLoginScreen(); toggleUserProfileDropup();">
+            <span>🔐</span> <span>Đổi Tài Khoản (Login Screen)</span>
+          </div>
+          <div class="dropup-item" onclick="switchView('view-settings', document.querySelectorAll('.menu-item')[3]); toggleUserProfileDropup();">
+            <span>⚙️</span> <span>Quản Lý Admin</span>
+          </div>
+          <div style="height: 1px; background: var(--border-color); margin: 4px 0;"></div>
+          <div class="dropup-item danger" onclick="logoutAction(); toggleUserProfileDropup();">
+            <span>🚪</span> <span>Đăng Xuất Khỏi Hệ Thống</span>
+          </div>
         </div>
-        <span style="color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 4px;" title="Đăng xuất" onclick="logoutAction()">🚪</span>
+
+        <div class="sidebar-footer" onclick="toggleUserProfileDropup(event)">
+          <div class="user-avatar" id="current-user-avatar">LN</div>
+          <div class="user-info">
+            <div class="user-name" id="current-user-name">Long Nguyen</div>
+            <div class="user-role" id="current-user-role">Super Admin</div>
+          </div>
+          <button class="logout-btn-direct" onclick="event.stopPropagation(); logoutAction();" title="Đăng xuất khỏi tài khoản này">
+            <span>🚪</span> <span>Đăng xuất</span>
+          </button>
+        </div>
       </div>
     </aside>
 
@@ -1134,20 +1234,9 @@
 
       <!-- TOPBAR -->
       <header class="topbar">
-        <div class="search-box">
+        <div class="search-box" style="width: 380px;">
           <span class="search-icon">🔍</span>
           <input type="text" placeholder="Tìm tên phim, tập phim, ID người dùng...">
-        </div>
-
-        <div class="topbar-actions">
-          <div class="top-icon-btn" title="Thông báo hệ thống">
-            🔔
-            <span class="dot-badge"></span>
-          </div>
-          <div class="top-icon-btn" title="Trợ giúp & Docs">❓</div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--text-sub); display: flex; align-items: center; gap: 6px;">
-            <span>🇻🇳 Tiếng Việt</span>
-          </div>
         </div>
       </header>
 
@@ -1224,31 +1313,16 @@
         </section>
 
 
-        <!-- VIEW 2: DRAMAS & API IMPORT & 3 FAST TAGGING SOLUTIONS -->
+        <!-- VIEW 2: DRAMAS & API IMPORT -->
         <section id="view-dramas" class="view-section">
           <div class="page-header">
             <div>
-              <h1 class="page-title">🎬 Quản Lý Phim, Import API & Gán Category Siêu Tốc</h1>
-              <p class="page-subtitle">Kéo dữ liệu phim thô từ API hoặc Dán Link URL nguồn để tạo phim nhanh chóng</p>
+              <h1 class="page-title">🎬 Quản Lý Phim</h1>
+              <p class="page-subtitle">Quản lý danh sách phim, đồng bộ API và phát hành phim ngắn</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-api" onclick="openModal('modal-api-sync')">🔄 Kéo Phim Từ API Đối Tác</button>
               <button class="btn btn-secondary" onclick="openModal('modal-create-drama')">+ Tạo Thủ Công (Dán Link URL)</button>
-            </div>
-          </div>
-
-          <!-- Informational Banner for 3 Fast Tagging Solutions -->
-          <div class="panel-card" style="background: linear-gradient(135deg, rgba(41,182,246,0.1), rgba(99,102,241,0.08)); border: 1px solid rgba(41,182,246,0.3); padding: 18px; margin-bottom: 20px;">
-            <div style="display: flex; align-items: flex-start; gap: 14px;">
-              <span style="font-size: 26px;">⚡</span>
-              <div>
-                <div style="font-size: 14.5px; font-weight: 800; color: #fff; margin-bottom: 4px;">3 GIẢI PHÁP GÁN CATEGORY SIÊU TỐC KHI API PHIM KHÔNG CÓ THỂ LOẠI:</div>
-                <div style="font-size: 12.5px; color: var(--text-sub); line-height: 1.6;">
-                  1️⃣ <strong>Gán Mặc Định Khi Import:</strong> Chọn sẵn Category (ví dụ <em>Ngôn Tình</em>) trong Modal Kéo API -> Tất cả phim mới lập tức có Category!<br>
-                  2️⃣ <strong>🤖 AI Auto-Classifier:</strong> Tự động quét Tên & Tóm tắt phim để tự động gán Thể loại (*Ví dụ: Tên có 'Cô Vợ/Tổng Tài' -> Auto Ngôn Tình*).<br>
-                  3️⃣ <strong>Inline Quick-Tagging:</strong> Bấm nút <code>[+ Gán Nhanh]</code> trực tiếp trên dòng hoặc tích Checkbox nhiều dòng để Gán Đồng Loạt!
-                </div>
-              </div>
             </div>
           </div>
 
@@ -1380,16 +1454,15 @@
         </section>
 
 
-        <!-- VIEW 3: APP HOME LAYOUT & CATEGORY MANAGER -->
+        <!-- VIEW 3: CATEGORY MANAGER -->
         <section id="view-app-config" class="view-section">
           <div class="page-header">
             <div>
-              <h1 class="page-title">🖼️ Cấu Hình Trang Chủ & Quản Lý Category Tabs</h1>
-              <p class="page-subtitle">Tạo mới Thể Loại, sắp xếp các Tab Category trên App và cấu hình thuật toán gợi ý Tab "Cho Bạn"</p>
+              <h1 class="page-title">🏷️ Quản Lý Category</h1>
+              <p class="page-subtitle">Tạo mới, sắp xếp thứ tự và quản lý hiển thị các Thể loại phim trên App</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-primary" onclick="openModal('modal-create-category')">➕ Tạo Category Mới</button>
-              <button class="btn btn-success" onclick="alert('Đã lưu và xuất bản toàn bộ cấu hình Category lên App Client!')">💾 Lưu & Xuất Bản</button>
             </div>
           </div>
 
@@ -1494,47 +1567,22 @@
         </section>
 
 
-        <!-- VIEW 5: ADMIN ACCOUNTS & RBAC MANAGEMENT -->
+        <!-- VIEW 5: ADMIN ACCOUNTS MANAGEMENT -->
         <section id="view-settings" class="view-section">
           <div class="page-header">
             <div>
-              <h1 class="page-title">⚙️ Quản Lý Tài Khoản Admin & Phân Quyền (RBAC)</h1>
-              <p class="page-subtitle">Cấp phát tài khoản quản trị viên, phân chia vai trò (Roles) và thiết lập ma trận quyền hạn hệ thống</p>
+              <h1 class="page-title">⚙️ Quản Lý Tài Khoản Admin</h1>
+              <p class="page-subtitle">Quản lý danh sách tài khoản quản trị viên và quyền hạn truy cập hệ thống</p>
             </div>
             <div class="btn-group">
-              <button class="btn btn-secondary" onclick="openLoginScreen()">🔐 Trải Nghiệm Màn Hình Đăng Nhập</button>
               <button class="btn btn-primary" onclick="openModal('modal-create-admin')">➕ Cấp Tài Khoản Admin Mới</button>
             </div>
           </div>
 
-          <!-- Admin Stats Cards -->
-          <div class="grid-4">
-            <div class="stat-card">
-              <div class="stat-title">Tổng Tài Khoản Admin</div>
-              <div class="stat-value" id="stat-total-admins">4</div>
-              <div class="stat-change up">🟢 100% Đang hoạt động</div>
-            </div>
-            <div class="stat-card gold">
-              <div class="stat-title">Super Admin (Toàn Quyền)</div>
-              <div class="stat-value">1</div>
-              <div style="font-size: 11.5px; color: var(--accent-gold); font-weight: 600; margin-top: 4px;">Long Nguyen (Root)</div>
-            </div>
-            <div class="stat-card blue">
-              <div class="stat-title">Content Manager (Biên Tập)</div>
-              <div class="stat-value">2</div>
-              <div style="font-size: 11.5px; color: var(--accent-blue); font-weight: 600; margin-top: 4px;">Quản lý phim & Category</div>
-            </div>
-            <div class="stat-card green">
-              <div class="stat-title">User Moderator (Kiểm Duyệt)</div>
-              <div class="stat-value">1</div>
-              <div style="font-size: 11.5px; color: var(--accent-green); font-weight: 600; margin-top: 4px;">Quản lý user & cấm chat</div>
-            </div>
-          </div>
-
-          <!-- Table 1: Danh Sách Tài Khoản Admin -->
+          <!-- Danh Sách Tài Khoản Admin -->
           <div class="panel-card">
             <div class="panel-title">
-              <span>👥 Danh Sách Tài Khoản Quản Trị Viên Hệ Thống</span>
+              <span>👥 Danh Sách Tài Khoản Quản Trị Viên</span>
               <div style="display: flex; gap: 8px;">
                 <input type="text" placeholder="🔍 Tìm Admin, Email..." style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 8px; color: #fff; font-size: 12px;">
                 <button class="btn btn-primary" style="padding: 6px 12px; font-size: 12px;" onclick="openModal('modal-create-admin')">+ Thêm Admin</button>
@@ -1653,65 +1701,6 @@
               </table>
             </div>
           </div>
-
-          <!-- Table 2: Ma Trận Phân Quyền RBAC -->
-          <div class="panel-card">
-            <div class="panel-title">
-              <span>🛡️ Ma Trận Quyền Hạn Chi Tiết Theo Vai Trò (RBAC Matrix)</span>
-              <span class="badge badge-published">4 Vai Trò Tiêu Chuẩn</span>
-            </div>
-
-            <div class="data-table-wrapper">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Nhóm Tính Năng / Quyền Hạn</th>
-                    <th style="text-align: center;">👑 Super Admin</th>
-                    <th style="text-align: center;">🎬 Content Manager</th>
-                    <th style="text-align: center;">🛡️ User Moderator</th>
-                    <th style="text-align: center;">📊 Data Analyst</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>📊 Xem Dashboard & Báo cáo thống kê</strong></td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Xem</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Xem & Xuất CSV</td>
-                  </tr>
-                  <tr>
-                    <td><strong>🎬 Kéo API, Tạo Phim URL & Gán Category</strong></td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                  </tr>
-                  <tr>
-                    <td><strong>🖼️ Cấu hình Trang chủ & Thứ tự Tab Category</strong></td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Chỉnh sửa</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                  </tr>
-                  <tr>
-                    <td><strong>👥 Xem Danh sách User & Thực hiện Cấm Chat (Mute)</strong></td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                  </tr>
-                  <tr>
-                    <td><strong>⚙️ Cấp tài khoản Admin mới & Phân quyền RBAC</strong></td>
-                    <td style="text-align: center; color: var(--accent-green);">✅ Toàn quyền</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                    <td style="text-align: center; color: var(--text-muted);">⛔ Không</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
         </section>
 
       </div>
@@ -1796,21 +1785,6 @@
           <input type="text" id="input-drama-url" placeholder="https://cdn.partner-stream.com/series/tong-tai-ba-dao/master.m3u8" value="https://cdn.shortdrama-partner.tv/series/tong-tai-ba-dao-co-vo-sat-thu-80eps/master.m3u8" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace;">
           <div style="font-size: 11.5px; color: var(--accent-green); margin-top: 5px; display: flex; align-items: center; gap: 4px;">
             <span>✓</span> Link URL đã tự động bao gồm Poster ảnh bìa, toàn bộ tập phim & luồng video HLS.
-          </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-          <div>
-            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">SỐ LƯỢNG TẬP PHIM</label>
-            <input type="number" id="input-drama-eps" placeholder="80" value="80" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-          </div>
-
-          <div>
-            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TRẠNG THÁI PHÁT HÀNH</label>
-            <select id="input-drama-status" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-              <option value="published">🟢 Xuất bản ngay (Published)</option>
-              <option value="draft">🟡 Lưu nháp (Draft)</option>
-            </select>
           </div>
         </div>
 
@@ -2086,11 +2060,31 @@
       switchView('view-dashboard', document.querySelectorAll('.menu-item')[0]);
     }
 
+    function toggleUserProfileDropup(e) {
+      if (e) e.stopPropagation();
+      const dropup = document.getElementById('user-profile-dropup');
+      if (dropup) dropup.classList.toggle('active');
+    }
+
+    // Đóng dropup khi click ra ngoài
+    document.addEventListener('click', function(e) {
+      const container = document.querySelector('.sidebar-footer-container');
+      const dropup = document.getElementById('user-profile-dropup');
+      if (container && !container.contains(e.target) && dropup) {
+        dropup.classList.remove('active');
+      }
+    });
+
     function quickLoginAs(name, role, email) {
       document.getElementById('current-user-name').innerText = name;
       document.getElementById('current-user-role').innerText = role;
       document.getElementById('current-user-avatar').innerText = name.split(' ').map(n => n[0]).join('').toUpperCase();
       
+      const dropupName = document.getElementById('dropup-user-name');
+      if (dropupName) dropupName.innerText = name;
+      const dropupRole = document.getElementById('dropup-user-role');
+      if (dropupRole) dropupRole.innerText = role;
+
       closeLoginScreen();
       alert(`⚡ [Demo 1-Click Login]\nĐã đăng nhập thành công với vai trò: ${role} (${name})!\nEmail: ${email}`);
       switchView('view-dashboard', document.querySelectorAll('.menu-item')[0]);
@@ -2355,14 +2349,10 @@
     function executeCreateDramaDirect() {
       const title = document.getElementById('input-drama-title').value.trim() || 'Cô Vợ Sát Thủ & Tổng Tài Bá Đạo';
       const url = document.getElementById('input-drama-url').value.trim();
-      const eps = document.getElementById('input-drama-eps').value.trim() || '80';
-      const status = document.getElementById('input-drama-status').value;
+      const eps = '80'; // Tự động bóc tách từ Playlist M3U8
       const tbody = document.querySelector('#view-dramas tbody');
 
-      const isPublished = status === 'published';
-      const statusBadge = isPublished 
-        ? '<span class="badge badge-published">🟢 Published</span>' 
-        : '<span class="badge badge-draft">🟡 Draft</span>';
+      const statusBadge = '<span class="badge badge-published">🟢 Published</span>';
 
       const tagBadgesHtml = selectedCategories.length > 0
         ? selectedCategories.map(c => `<span class="badge badge-category">${c}</span>`).join(' ')
