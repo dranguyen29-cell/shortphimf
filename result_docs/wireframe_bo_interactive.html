@@ -478,6 +478,251 @@
       box-shadow: 0 6px 20px rgba(41, 182, 246, 0.45);
     }
 
+    /* Dashboard Time Filter Styles */
+    .dashboard-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-time-group {
+      display: flex;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .filter-time-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      padding: 7px 13px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .filter-time-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .filter-time-btn.active {
+      background: var(--primary-gradient);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(255, 42, 95, 0.35);
+    }
+
+    .filter-month-select {
+      background: var(--bg-card);
+      color: #fff;
+      border: 1px solid var(--border-color);
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .filter-month-select:focus, .filter-month-select:hover {
+      border-color: var(--primary);
+    }
+
+    .data-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid rgba(0, 230, 118, 0.25);
+      color: var(--accent-green);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Modern User Action Buttons */
+    .user-action-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .user-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 96px;
+      text-align: center;
+      border: 1px solid transparent;
+      outline: none;
+    }
+
+    .user-action-btn.mute {
+      background: rgba(255, 184, 0, 0.12);
+      color: #ffb800;
+      border-color: rgba(255, 184, 0, 0.35);
+    }
+    .user-action-btn.mute:hover {
+      background: rgba(255, 184, 0, 0.25);
+      border-color: #ffb800;
+      transform: translateY(-1px);
+    }
+
+    .user-action-btn.unmute {
+      background: rgba(0, 230, 118, 0.12);
+      color: #00e676;
+      border-color: rgba(0, 230, 118, 0.35);
+    }
+    .user-action-btn.unmute:hover {
+      background: rgba(0, 230, 118, 0.25);
+      border-color: #00e676;
+      transform: translateY(-1px);
+    }
+
+    .user-action-btn.ban {
+      background: rgba(255, 42, 95, 0.12);
+      color: #ff4d6d;
+      border-color: rgba(255, 42, 95, 0.35);
+    }
+    .user-action-btn.ban:hover {
+      background: rgba(255, 42, 95, 0.25);
+      border-color: #ff4d6d;
+      transform: translateY(-1px);
+    }
+
+    .user-action-btn.unban {
+      background: rgba(41, 182, 246, 0.12);
+      color: #29b6f6;
+      border-color: rgba(41, 182, 246, 0.35);
+    }
+    .user-action-btn.unban:hover {
+      background: rgba(41, 182, 246, 0.25);
+      border-color: #29b6f6;
+      transform: translateY(-1px);
+    }
+
+    /* Report Management & Sub-Tabs Styles */
+    .report-subtabs-nav {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .report-tab-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      padding: 9px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .report-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .report-tab-btn.active {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 42, 95, 0.35);
+    }
+
+    .report-filter-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .report-filter-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .report-input-date {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      outline: none;
+    }
+
+    .report-input-date:focus {
+      border-color: var(--primary);
+    }
+
+    .report-subview {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .report-subview.active {
+      display: block;
+    }
+
+    .metric-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .metric-badge.views {
+      background: rgba(41, 182, 246, 0.15);
+      color: var(--accent-blue);
+    }
+
+    .metric-badge.likes {
+      background: rgba(255, 42, 95, 0.15);
+      color: var(--primary);
+    }
+
+    .metric-badge.completion {
+      background: rgba(0, 230, 118, 0.15);
+      color: var(--accent-green);
+    }
+
     /* Grid Layouts & Cards */
     .grid-4 {
       display: grid;
@@ -1111,7 +1356,7 @@
           <label>Email / Tên Đăng Nhập</label>
           <div class="login-input-wrapper">
             <span class="login-input-icon">👤</span>
-            <input type="text" id="login-email" placeholder="admin@pinedrama.com" value="longnguyen@pinedrama.com" required>
+            <input type="text" id="login-email" placeholder="admin@pinedrama.com" value="hoangbach@pinedrama.com" required>
           </div>
         </div>
 
@@ -1141,7 +1386,7 @@
           ⚡ ĐĂNG NHẬP NHANH DEMO (1-CLICK TEST)
         </div>
         <div class="demo-role-grid">
-          <button class="demo-role-btn" onclick="quickLoginAs('Long Nguyen', 'Super Admin', 'longnguyen@pinedrama.com')">
+          <button class="demo-role-btn" onclick="quickLoginAs('Hoàng Bách', 'Super Admin', 'hoangbach@pinedrama.com')">
             👑 Super Admin<br><span style="font-size: 9.5px; color: var(--text-muted);">Full Quyền</span>
           </button>
           <button class="demo-role-btn" onclick="quickLoginAs('Thu Trang', 'Content Manager', 'thutrang.content@pinedrama.com')">
@@ -1182,6 +1427,10 @@
           <span class="icon">🏷️</span>
           <span>Quản Lý Category</span>
         </a>
+        <a class="menu-item" onclick="switchView('view-reports', this)">
+          <span class="icon">📈</span>
+          <span>Quản Lý Báo Cáo</span>
+        </a>
 
         <div class="menu-group-title">Quản Lý Người Dùng</div>
         <a class="menu-item" onclick="switchView('view-user-management', this)">
@@ -1201,7 +1450,7 @@
         <!-- Profile Dropup Menu -->
         <div class="user-profile-dropup" id="user-profile-dropup">
           <div style="padding: 6px 10px; border-bottom: 1px solid var(--border-color); margin-bottom: 4px;">
-            <strong style="color: #fff; font-size: 13px;" id="dropup-user-name">Long Nguyen</strong>
+            <strong style="color: #fff; font-size: 13px;" id="dropup-user-name">Hoàng Bách</strong>
             <div style="font-size: 11px; color: var(--accent-gold);" id="dropup-user-role">👑 Super Admin</div>
           </div>
           <div class="dropup-item" onclick="openLoginScreen(); toggleUserProfileDropup();">
@@ -1217,9 +1466,9 @@
         </div>
 
         <div class="sidebar-footer" onclick="toggleUserProfileDropup(event)">
-          <div class="user-avatar" id="current-user-avatar">LN</div>
+          <div class="user-avatar" id="current-user-avatar">HB</div>
           <div class="user-info">
-            <div class="user-name" id="current-user-name">Long Nguyen</div>
+            <div class="user-name" id="current-user-name">Hoàng Bách</div>
             <div class="user-role" id="current-user-role">Super Admin</div>
           </div>
           <button class="logout-btn-direct" onclick="event.stopPropagation(); logoutAction();" title="Đăng xuất khỏi tài khoản này">
@@ -1232,80 +1481,118 @@
     <!-- MAIN CONTENT AREA -->
     <main class="main-wrapper">
 
-      <!-- TOPBAR -->
-      <header class="topbar">
-        <div class="search-box" style="width: 380px;">
-          <span class="search-icon">🔍</span>
-          <input type="text" placeholder="Tìm tên phim, tập phim, ID người dùng...">
-        </div>
-      </header>
-
       <!-- CONTENT VIEWPORT -->
       <div class="content-area">
 
         <!-- VIEW 1: DASHBOARD -->
         <section id="view-dashboard" class="view-section active">
-          <div class="page-header">
+          <div class="page-header" style="align-items: flex-start;">
             <div>
               <h1 class="page-title">📊 Dashboard Tổng Quan Vận Hành</h1>
-              <p class="page-subtitle">Thống kê hiệu suất lượt xem phim và chỉ số người dùng thời gian thực</p>
+              <p class="page-subtitle" id="dashboard-subtitle">Thống kê hiệu suất & chỉ số người dùng chốt sổ trọn vẹn ngày <strong>D-1 (10/08/2026)</strong></p>
             </div>
-            <div class="btn-group">
-              <button class="btn btn-secondary">📅 Hôm nay: 11/08/2026</button>
-              <button class="btn btn-primary" onclick="alert('Đã xuất báo cáo thống kê định dạng CSV thành công!')">📥 Xuất Báo Cáo</button>
+            <div class="dashboard-filter-bar">
+              <!-- Mode Selection Pills -->
+              <div class="filter-time-group">
+                <button class="filter-time-btn active" id="btn-filter-d1" onclick="setDashboardFilter('d1')">
+                  ⚡ D-1 (Hôm qua)
+                </button>
+                <button class="filter-time-btn" id="btn-filter-live" onclick="setDashboardFilter('live')">
+                  🔴 Hôm nay (Live)
+                </button>
+                <button class="filter-time-btn" id="btn-filter-month" onclick="setDashboardFilter('month')">
+                  📅 Theo Tháng
+                </button>
+              </div>
+
+              <!-- Month Picker Dropdown -->
+              <div id="month-picker-wrapper" style="display: inline-block;">
+                <select id="filter-month-select" class="filter-month-select" onchange="setDashboardFilter('month', this.value)" title="Chọn tháng cần xem">
+                  <option value="2026-08" selected>Tháng 08/2026 (Hiện tại)</option>
+                  <option value="2026-07">Tháng 07/2026</option>
+                  <option value="2026-06">Tháng 06/2026</option>
+                  <option value="2026-05">Tháng 05/2026</option>
+                </select>
+              </div>
+
+              <!-- Export Button -->
+              <button class="btn btn-primary" onclick="exportDashboardReport()">📥 Xuất Báo Cáo</button>
             </div>
           </div>
 
           <!-- Stat Cards -->
           <div class="grid-4">
             <div class="stat-card">
-              <div class="stat-title">Tổng Lượt Xem Hôm Nay</div>
-              <div class="stat-value">1,482,900</div>
-              <div class="stat-change up">▲ +18.4% so với tuần trước</div>
+              <div class="stat-title" id="stat-title-1">TỔNG LƯỢT XEM (D-1 - HÔM QUA)</div>
+              <div class="stat-value" id="stat-val-1">1,482,900</div>
+              <div class="stat-change up" id="stat-change-1">▲ +18.4% so với D-2</div>
             </div>
             <div class="stat-card gold">
-              <div class="stat-title">Thời Lượng Xem (Watch Time)</div>
-              <div class="stat-value">82,450 Giờ</div>
-              <div class="stat-change up">▲ +12.1% tăng trưởng</div>
+              <div class="stat-title" id="stat-title-2">THỜI LƯỢNG XEM (WATCH TIME D-1)</div>
+              <div class="stat-value" id="stat-val-2">82,450 Giờ</div>
+              <div class="stat-change up" id="stat-change-2">▲ +12.1% tăng trưởng</div>
             </div>
             <div class="stat-card green">
-              <div class="stat-title">DAU (User Hoạt Động)</div>
-              <div class="stat-value">124,800</div>
-              <div class="stat-change up">▲ +8.9% người dùng mới</div>
+              <div class="stat-title" id="stat-title-3">DAU (USER HOẠT ĐỘNG D-1)</div>
+              <div class="stat-value" id="stat-val-3">124,800</div>
+              <div class="stat-change up" id="stat-change-3">▲ +8.9% người dùng mới</div>
             </div>
             <div class="stat-card blue">
-              <div class="stat-title">Tỷ Lệ Xem Hết Bộ (100% Free)</div>
-              <div class="stat-value">68.5%</div>
-              <div class="stat-change up">▲ +5.2% trọn bộ 80 tập</div>
+              <div class="stat-title" id="stat-title-4">TỶ LỆ XEM HẾT BỘ (100% FREE D-1)</div>
+              <div class="stat-value" id="stat-val-4">68.5%</div>
+              <div class="stat-change up" id="stat-change-4">▲ +5.2% trọn bộ 80 tập</div>
             </div>
           </div>
 
           <div class="grid-2">
             <div class="panel-card">
               <div class="panel-title">
-                <span>📈 Lượng Truy Cập Xem Phim Theo Giờ (Hourly Traffic)</span>
-                <span class="badge badge-published">Live Traffic</span>
+                <span id="chart-panel-title">📈 Lượng Truy Cập Xem Phim Theo Giờ (D-1 Hourly Traffic: 00:00 - 23:59)</span>
+                <span class="badge badge-published" id="chart-badge">D-1 Complete</span>
               </div>
-              <div style="height: 220px; width: 100%; display: flex; align-items: flex-end; gap: 12px; padding-top: 20px; border-bottom: 1px solid var(--border-color);">
-                <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"></div>
-                <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"></div>
-                <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;"></div>
-                <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;"></div>
-                <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;"></div>
-                <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);"></div>
-                <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;"></div>
+              <div id="chart-bars-container" style="height: 220px; width: 100%; display: flex; align-items: flex-end; gap: 12px; padding-top: 20px; border-bottom: 1px solid var(--border-color);">
+                <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="00:00 - 04:00"></div>
+                <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="04:00 - 08:00"></div>
+                <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;" title="08:00 - 12:00"></div>
+                <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;" title="12:00 - 16:00"></div>
+                <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;" title="16:00 - 19:00"></div>
+                <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);" title="19:00 - 22:00 (Peak)"></div>
+                <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;" title="22:00 - 24:00"></div>
+              </div>
+              <div id="chart-axis-labels" style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+                <span>00:00</span>
+                <span>04:00</span>
+                <span>08:00</span>
+                <span>12:00</span>
+                <span>16:00</span>
+                <span>20:00 (Peak)</span>
+                <span>23:59</span>
               </div>
             </div>
 
             <div class="panel-card">
-              <div class="panel-title">🔥 Top 5 Phim Hot Nhất Hôm Nay</div>
-              <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="panel-title" id="top-dramas-title">🔥 Top 5 Phim Hot Nhất Hôm Qua (D-1)</div>
+              <div id="top-dramas-list" style="display: flex; flex-direction: column; gap: 12px;">
                 <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
                   <div>
                     <div style="font-size: 13px; font-weight: 700; color: #fff;">1. Vợ Cũ Lật Kèo</div>
                     <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình</div>
                   </div>
                   <span class="badge badge-published">342K Lượt xem</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                  <div>
+                    <div style="font-size: 13px; font-weight: 700; color: #fff;">2. Mẹ Chồng Siêu Cấp & Nàng Dâu</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 65/65 Tập • Gia Đình</div>
+                  </div>
+                  <span class="badge badge-published">285K Lượt xem</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                  <div>
+                    <div style="font-size: 13px; font-weight: 700; color: #fff;">3. Hợp Đồng Hôn Nhân Với Tổng Tài</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 92/92 Tập • Tổng Tài</div>
+                  </div>
+                  <span class="badge badge-published">210K Lượt xem</span>
                 </div>
               </div>
             </div>
@@ -1529,36 +1816,411 @@
         </section>
 
 
+        <!-- VIEW 3.5: DETAILED REPORTS & ANALYTICS -->
+        <section id="view-reports" class="view-section">
+          <div class="page-header" style="align-items: flex-start;">
+            <div>
+              <h1 class="page-title">📈 Quản Lý Báo Cáo & Thống Kê Chi Tiết</h1>
+              <p class="page-subtitle" id="report-page-subtitle">Khai thác sâu số liệu lượt xem, phim yêu thích, hành vi người dùng và xuất file báo cáo theo ngày/tháng</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-primary" onclick="exportCustomReport('current')">📥 Xuất File Báo Cáo Này (Excel/CSV)</button>
+            </div>
+          </div>
+
+          <!-- BỘ LỌC ĐA CHIỀU NÂNG CAO (ADVANCED REPORT FILTER PANEL) -->
+          <div class="report-filter-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+              <div style="font-size: 13px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px;">
+                <span>🎯 Bộ Lọc Báo Cáo Nâng Cao</span>
+                <span class="badge badge-published" id="report-filter-summary-badge">Kỳ lọc: D-1 (10/08/2026)</span>
+              </div>
+              <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;" onclick="resetReportFilter()">🔄 Đặt lại mặc định</button>
+            </div>
+
+            <!-- Filter Controls Row -->
+            <div class="report-filter-row">
+              <!-- Mode Selection -->
+              <div class="filter-time-group">
+                <button class="filter-time-btn active" id="btn-report-mode-day" onclick="setReportTimeMode('day')">⚡ Theo Ngày (D-1)</button>
+                <button class="filter-time-btn" id="btn-report-mode-month" onclick="setReportTimeMode('month')">📅 Theo Tháng</button>
+              </div>
+
+              <!-- Day Range Inputs -->
+              <div id="report-day-inputs" style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Từ ngày:</span>
+                <input type="date" class="report-input-date" id="report-from-date" value="2026-08-10">
+                <span style="font-size: 12px; color: var(--text-muted);">Đến:</span>
+                <input type="date" class="report-input-date" id="report-to-date" value="2026-08-10">
+              </div>
+
+              <!-- Month Select -->
+              <div id="report-month-input-wrapper" style="display: none;">
+                <select class="filter-month-select" id="report-month-select" onchange="applyReportFilter()">
+                  <option value="2026-08" selected>Tháng 08/2026 (Hiện tại)</option>
+                  <option value="2026-07">Tháng 07/2026</option>
+                  <option value="2026-06">Tháng 06/2026</option>
+                </select>
+              </div>
+
+              <!-- Category Filter -->
+              <select class="filter-month-select" id="report-category-filter">
+                <option value="all">▼ Tất cả thể loại</option>
+                <option value="Ngôn Tình">❤️ Ngôn Tình</option>
+                <option value="Trả Thù">⚔️ Trả Thù</option>
+                <option value="Gia Đình">🏡 Gia Đình</option>
+                <option value="Tổng Tài">👑 Tổng Tài</option>
+              </select>
+
+              <!-- Search Drama -->
+              <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim, ID..." style="flex: 1; min-width: 160px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; color: #fff; font-size: 12.5px;">
+
+              <!-- Apply Button -->
+              <button class="btn btn-primary" onclick="applyReportFilter()" style="padding: 8px 16px; font-size: 12.5px;">🔍 Áp Dụng Lọc</button>
+            </div>
+          </div>
+
+          <!-- SUMMARY MINI KPI METRICS -->
+          <div class="grid-4" style="margin-bottom: 20px;">
+            <div class="stat-card">
+              <div class="stat-title">TỔNG LƯỢT XEM TRONG KỲ</div>
+              <div class="stat-value" id="rep-kpi-views">1,482,900</div>
+              <div class="stat-change up" id="rep-kpi-views-sub">▲ 100% phim mở xem miễn phí</div>
+            </div>
+            <div class="stat-card gold">
+              <div class="stat-title">PHIM XEM NHIỀU NHẤT</div>
+              <div class="stat-value" style="font-size: 18px; margin: 12px 0 6px;" id="rep-kpi-top-drama">Vợ Cũ Lật Kèo</div>
+              <div class="stat-change up" id="rep-kpi-top-views">🔥 342,000 Lượt xem</div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid var(--primary);">
+              <div class="stat-title">PHIM YÊU THÍCH NHẤT</div>
+              <div class="stat-value" style="font-size: 18px; margin: 12px 0 6px;" id="rep-kpi-top-fav">Hào Môn Trả Thù</div>
+              <div class="stat-change up" style="color: var(--primary);" id="rep-kpi-top-likes">❤️ 36,500 Lượt thích (98.2%)</div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-title">USER HOẠT ĐỘNG (ACTIVE USERS)</div>
+              <div class="stat-value" id="rep-kpi-users">124,800</div>
+              <div class="stat-change up" id="rep-kpi-users-sub">⏱️ TB 48.5 phút xem/User</div>
+            </div>
+          </div>
+
+          <!-- REPORT SUB-TABS NAVIGATION -->
+          <div class="report-subtabs-nav">
+            <button class="report-tab-btn active" onclick="switchReportSubTab('rep-tab-dramas', this)">
+              🎬 Báo Cáo Hiệu Suất Từng Phim
+            </button>
+            <button class="report-tab-btn" onclick="switchReportSubTab('rep-tab-users', this)">
+              👥 Báo Cáo Hành Vi & User
+            </button>
+            <button class="report-tab-btn" onclick="switchReportSubTab('rep-tab-categories', this)">
+              🏷️ Báo Cáo Tỷ Trọng Thể Loại
+            </button>
+          </div>
+
+          <!-- SUB-VIEW 1: BÁO CÁO HIỆU SUẤT TỪNG BỘ PHIM -->
+          <div id="rep-tab-dramas" class="report-subview active">
+            <div class="panel-card">
+              <div class="panel-title">
+                <span>🎬 Danh Sách Số Liệu Chi Tiết Từng Bộ Phim (Dữ Liệu Khai Thác Theo Kỳ Lọc)</span>
+                <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="alert('Đã sắp xếp theo lượt xem cao nhất!')">⚡ Xếp theo Lượt xem cao nhất</button>
+              </div>
+
+              <div class="data-table-wrapper">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Poster</th>
+                      <th>Tên Bộ Phim & ID</th>
+                      <th>Thể Loại</th>
+                      <th>👁️ Lượt Xem</th>
+                      <th>❤️ Yêu Thích</th>
+                      <th>🔄 Chia Sẻ</th>
+                      <th>⏱️ Thời Lượng TB / User</th>
+                    </tr>
+                  </thead>
+                  <tbody id="report-drama-table-body">
+                    <tr>
+                      <td><strong style="color: var(--accent-gold);">#1</strong></td>
+                      <td><div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">VCLK</div></td>
+                      <td>
+                        <strong style="color: #fff;">Vợ Cũ Lật Kèo</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-8842 • 80 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Ngôn Tình</span> <span class="badge badge-category">Trả Thù</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">342,000</strong></td>
+                      <td><span class="metric-badge likes">❤️ 28,400</span></td>
+                      <td>12,500</td>
+                      <td>48.2 phút</td>
+                    </tr>
+
+                    <tr>
+                      <td><strong style="color: var(--accent-gold);">#2</strong></td>
+                      <td><div class="table-poster" style="background: linear-gradient(135deg, #ffb800, #ff5e3a); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">MCSC</div></td>
+                      <td>
+                        <strong style="color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu Triệu Đô</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-7712 • 65 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Gia Đình</span> <span class="badge badge-category">Ngôn Tình</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">285,000</strong></td>
+                      <td><span class="metric-badge likes">❤️ 24,100</span></td>
+                      <td>9,800</td>
+                      <td>41.5 phút</td>
+                    </tr>
+
+                    <tr>
+                      <td><strong style="color: var(--accent-gold);">#3</strong></td>
+                      <td><div class="table-poster" style="background: linear-gradient(135deg, #29b6f6, #6366f1); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">HDHN</div></td>
+                      <td>
+                        <strong style="color: #fff;">Hợp Đồng Hôn Nhân Với Tổng Tài</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-6621 • 92 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Tổng Tài</span> <span class="badge badge-category">Ngôn Tình</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">210,000</strong></td>
+                      <td><span class="metric-badge likes">❤️ 31,200</span></td>
+                      <td>15,200</td>
+                      <td>52.0 phút</td>
+                    </tr>
+
+                    <tr>
+                      <td>#4</td>
+                      <td><div class="table-poster" style="background: linear-gradient(135deg, #ab47bc, #ff2a5f); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">HMTH</div></td>
+                      <td>
+                        <strong style="color: #fff;">Hào Môn Trả Thù: Vương Giả Trở Lại</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-5521 • 100 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Trả Thù</span> <span class="badge badge-category">Hành Động</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">198,000</strong></td>
+                      <td><span class="metric-badge likes" style="border: 1px solid var(--primary);">❤️ 36,500 (TOP 1)</span></td>
+                      <td>18,900</td>
+                      <td>55.8 phút</td>
+                    </tr>
+
+                    <tr>
+                      <td>#5</td>
+                      <td><div class="table-poster" style="background: linear-gradient(135deg, #00e676, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">CVST</div></td>
+                      <td>
+                        <strong style="color: #fff;">Cô Vợ Sát Thủ & Tổng Tài Bá Đạo</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-9901 • 80 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Ngôn Tình</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">165,000</strong></td>
+                      <td><span class="metric-badge likes">❤️ 19,800</span></td>
+                      <td>7,400</td>
+                      <td>39.0 phút</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 2: BÁO CÁO HÀNH VI & USER -->
+          <div id="rep-tab-users" class="report-subview">
+            <div class="panel-card">
+              <div class="panel-title">
+                <span>👥 Chỉ Số Giữ Chân Người Dùng & Thời Lượng Tương Tác (User Retention Cohort)</span>
+                <span class="badge badge-published">Tính toán dựa trên lịch sử xem phim</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; font-size: 13px;">
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                    <span>D1 Retention (Quay lại sau 1 ngày):</span>
+                    <strong style="color: var(--accent-green); font-size: 14px;">58.4% (Tốt)</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                    <span>D7 Retention (Quay lại sau 7 ngày):</span>
+                    <strong style="color: var(--accent-green); font-size: 14px;">34.8%</strong>
+                  </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                    <span>D30 Retention (Quay lại sau 30 ngày):</span>
+                    <strong style="color: var(--accent-gold); font-size: 14px;">21.2%</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                    <span>Thời gian xem trung bình mỗi User:</span>
+                    <strong style="color: var(--accent-blue); font-size: 14px;">48.5 Phút / Ngày</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 3: BÁO CÁO TỶ TRỌNG THỂ LOẠI -->
+          <div id="rep-tab-categories" class="report-subview">
+            <div class="panel-card">
+              <div class="panel-title">🏷️ Bảng Xếp Hạng & Thị Phần Thể Loại Phim (Category Performance)</div>
+              <div class="data-table-wrapper">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Hạng</th>
+                      <th>Thể Loại (Category)</th>
+                      <th>Thị Phần Lượt Xem (%)</th>
+                      <th>Tổng Lượt Xem</th>
+                      <th>Số Bộ Phim</th>
+                      <th>Độ Yêu Thích (Like Rate)</th>
+                      <th>Tỷ Lệ Xem Hết Bộ TB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong style="color: var(--accent-gold);">#1</strong></td>
+                      <td><strong style="color: #fff;">❤️ Ngôn Tình</strong></td>
+                      <td><strong style="color: var(--primary);">45.2%</strong></td>
+                      <td>670,260 Views</td>
+                      <td>45 Phim</td>
+                      <td><span class="metric-badge likes">❤️ 92.4%</span></td>
+                      <td><span class="metric-badge completion">74.2%</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color: var(--accent-gold);">#2</strong></td>
+                      <td><strong style="color: #fff;">⚔️ Trả Thù / Lật Kèo</strong></td>
+                      <td><strong style="color: var(--accent-blue);">26.8%</strong></td>
+                      <td>397,410 Views</td>
+                      <td>28 Phim</td>
+                      <td><span class="metric-badge likes">❤️ 96.1% (Cao Nhất)</span></td>
+                      <td><span class="metric-badge completion">78.5%</span></td>
+                    </tr>
+                    <tr>
+                      <td>#3</td>
+                      <td><strong style="color: #fff;">🏡 Gia Đình / Mẹ Chồng</strong></td>
+                      <td><strong>16.5%</strong></td>
+                      <td>244,670 Views</td>
+                      <td>18 Phim</td>
+                      <td><span class="metric-badge likes">❤️ 88.0%</span></td>
+                      <td><span class="metric-badge completion">68.0%</span></td>
+                    </tr>
+                    <tr>
+                      <td>#4</td>
+                      <td><strong style="color: #fff;">👑 Tổng Tài / Hào Môn</strong></td>
+                      <td><strong>11.5%</strong></td>
+                      <td>170,560 Views</td>
+                      <td>14 Phim</td>
+                      <td><span class="metric-badge likes">❤️ 90.5%</span></td>
+                      <td><span class="metric-badge completion">71.0%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         <!-- VIEW 4: USER MANAGEMENT -->
         <section id="view-user-management" class="view-section">
-          <div class="page-header">
+          <div class="page-header" style="align-items: flex-start;">
             <div>
               <h1 class="page-title">👥 Quản Lý Người Dùng & Trung Tâm Cấm Chat / Khóa Account</h1>
-              <p class="page-subtitle">Quản lý tệp người dùng, xem lịch sử cày phim, áp đặt chế độ Cấm Chat (Mute) hoặc Khóa Tài Khoản (Ban Acc)</p>
+              <p class="page-subtitle">Quản lý tệp người dùng, xem trạng thái hoạt động, áp dụng Cấm Chat (Mute), Khóa Tài Khoản (Ban) hoặc Mở Khóa (Unban / Unmute)</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-secondary" onclick="alert('📥 Đã xuất danh sách User vi phạm (Cấm chat / Banned) thành công!')">📥 Xuất DS Vi Phạm</button>
             </div>
           </div>
 
           <div class="panel-card">
+            <!-- Filter & Search Bar -->
+            <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; flex: 1;">
+                <select id="user-status-filter" onchange="filterUserTable(this.value)" style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 9px 14px; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
+                  <option value="all">▼ Tất cả trạng thái</option>
+                  <option value="active">🟢 Active (Hoạt động)</option>
+                  <option value="inactive">🔴 Inactive (Bị khóa)</option>
+                </select>
+
+                <input type="text" id="user-search-input" onkeyup="searchUserTable(this.value)" placeholder="🔍 Tìm theo User ID, Tên hiển thị..." style="flex: 1; min-width: 240px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 9px 14px; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
+              </div>
+              <div style="font-size: 12.5px; color: var(--text-muted);">
+                Tổng cộng: <strong style="color: #fff;" id="user-count-display">4 Người Dùng</strong>
+              </div>
+            </div>
+
             <div class="data-table-wrapper">
               <table class="data-table">
                 <thead>
                   <tr>
+                    <th>STT</th>
                     <th>User ID / Tên Hiển Thị</th>
-                    <th>Đăng Nhập</th>
+                    <th>Hình Thức Đăng Nhập</th>
                     <th>Ngày Tham Gia</th>
-                    <th>Tiến Trình Cày Phim</th>
                     <th>Trạng Thái Tài Khoản</th>
-                    <th>Thao Tác</th>
+                    <th>Thao Tác Quản Trị</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>USR-9921 / Minh Anh</td>
+                <tbody id="user-table-body">
+                  <!-- USER 1: ACTIVE -->
+                  <tr id="user-row-1" data-status="active" data-chat="normal">
+                    <td>01</td>
+                    <td>
+                      <strong style="color: #fff;">Minh Anh</strong>
+                      <div style="font-size: 11px; color: var(--text-muted);">ID: USR-9921 • minhanh.drama@gmail.com</div>
+                    </td>
                     <td><span class="badge badge-free">Google</span></td>
                     <td>10/05/2026</td>
-                    <td><strong style="color: var(--accent-gold);">12 Bộ (145 Tập)</strong></td>
-                    <td><span class="badge badge-published">🟢 Active</span></td>
-                    <td><button class="btn btn-warning" style="padding: 4px 10px; font-size: 11px;" onclick="alert('Đã áp dụng chế độ Cấm Chat cho User này!')">🔇 Cấm Chat / Ban</button></td>
+                    <td id="user-status-cell-1"><span class="badge badge-published">🟢 Active</span></td>
+                    <td id="user-action-cell-1">
+                      <div class="user-action-group">
+                        <button class="user-action-btn mute" onclick="toggleMuteUser(1, 'Minh Anh')">🔇 Cấm Chat</button>
+                        <button class="user-action-btn ban" onclick="toggleBanUser(1, 'Minh Anh')">🔒 Khóa Acc</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 2: MUTED (VẪN LÀ ACTIVE NHƯNG ĐANG BỊ MUTE CHAT) -->
+                  <tr id="user-row-2" data-status="active" data-chat="muted">
+                    <td>02</td>
+                    <td>
+                      <strong style="color: #fff;">Tuấn Kiệt</strong>
+                      <div style="font-size: 11px; color: var(--text-muted);">ID: USR-8812 • tuankiet.drama@gmail.com</div>
+                    </td>
+                    <td><span class="badge badge-free">Google</span></td>
+                    <td>02/06/2026</td>
+                    <td id="user-status-cell-2"><span class="badge badge-published">🟢 Active</span></td>
+                    <td id="user-action-cell-2">
+                      <div class="user-action-group">
+                        <button class="user-action-btn unmute" onclick="toggleMuteUser(2, 'Tuấn Kiệt')">🔊 Mở Chat</button>
+                        <button class="user-action-btn ban" onclick="toggleBanUser(2, 'Tuấn Kiệt')">🔒 Khóa Acc</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 3: INACTIVE (BANNED) -->
+                  <tr id="user-row-3" data-status="inactive" data-chat="banned">
+                    <td>03</td>
+                    <td>
+                      <strong style="color: #fff;">Spam_Bot_999</strong>
+                      <div style="font-size: 11px; color: #ff4d6d;">ID: USR-4402 • Vi phạm spam link lừa đảo</div>
+                    </td>
+                    <td><span class="badge badge-free">Google</span></td>
+                    <td>15/07/2026</td>
+                    <td id="user-status-cell-3"><span class="badge badge-category" style="background: rgba(255,42,95,0.2); color: #ff4d6d; border-color: rgba(255,42,95,0.4);">🔴 Inactive</span></td>
+                    <td id="user-action-cell-3">
+                      <div class="user-action-group">
+                        <button class="user-action-btn unban" style="min-width: 120px;" onclick="toggleBanUser(3, 'Spam_Bot_999')">🔓 Mở Khóa Acc</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 4: ACTIVE -->
+                  <tr id="user-row-4" data-status="active" data-chat="normal">
+                    <td>04</td>
+                    <td>
+                      <strong style="color: #fff;">Phương Linh</strong>
+                      <div style="font-size: 11px; color: var(--text-muted);">ID: USR-7731 • phuonglinh.vip@gmail.com</div>
+                    </td>
+                    <td><span class="badge badge-free">Google</span></td>
+                    <td>22/07/2026</td>
+                    <td id="user-status-cell-4"><span class="badge badge-published">🟢 Active</span></td>
+                    <td id="user-action-cell-4">
+                      <div class="user-action-group">
+                        <button class="user-action-btn mute" onclick="toggleMuteUser(4, 'Phương Linh')">🔇 Cấm Chat</button>
+                        <button class="user-action-btn ban" onclick="toggleBanUser(4, 'Phương Linh')">🔒 Khóa Acc</button>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -1607,10 +2269,10 @@
                     <td>01</td>
                     <td>
                       <div style="display: flex; align-items: center; gap: 10px;">
-                        <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #a855f7); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">LN</div>
+                        <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #a855f7); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">HB</div>
                         <div>
-                          <strong style="color: #fff;">Long Nguyen</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">longnguyen@pinedrama.com</div>
+                          <strong style="color: #fff;">Hoàng Bách</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">hoangbach@pinedrama.com</div>
                         </div>
                       </div>
                     </td>
@@ -1620,7 +2282,7 @@
                     <td>Vừa xong (IP: 118.69.182.4)</td>
                     <td>
                       <div class="action-btn-group">
-                        <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('Long Nguyen')">🔑</button>
+                        <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('Hoàng Bách')">🔑</button>
                         <button class="icon-action-btn" title="Chỉnh sửa quyền" onclick="alert('Super Admin không thể bị giới hạn quyền!')">✏️</button>
                       </div>
                     </td>
@@ -2013,7 +2675,7 @@
 
       <div class="modal-body">
         <div style="background: rgba(255,184,0,0.08); border: 1px solid rgba(255,184,0,0.3); padding: 12px 14px; border-radius: 10px; margin-bottom: 16px; font-size: 12.5px; color: #fff;">
-          Đang cập nhật mật khẩu cho tài khoản: <strong id="pwd-target-admin" style="color: var(--accent-gold);">Long Nguyen</strong>
+          Đang cập nhật mật khẩu cho tài khoản: <strong id="pwd-target-admin" style="color: var(--accent-gold);">Hoàng Bách</strong>
         </div>
 
         <div style="margin-bottom: 14px;">
@@ -2054,7 +2716,7 @@
     }
 
     function executeLogin() {
-      const email = document.getElementById('login-email').value || 'longnguyen@pinedrama.com';
+      const email = document.getElementById('login-email').value || 'hoangbach@pinedrama.com';
       closeLoginScreen();
       alert(`🎉 ĐĂNG NHẬP THÀNH CÔNG!\n\nChào mừng ${email} quay trở lại PineDrama Back Office!\nPhiên làm việc bảo mật đã được khởi tạo.`);
       switchView('view-dashboard', document.querySelectorAll('.menu-item')[0]);
@@ -2472,6 +3134,398 @@
       alert('🗑️ Đã xóa các phim được chọn!');
       document.querySelectorAll('.drama-checkbox').forEach(cb => cb.checked = false);
       updateBulkBar();
+    }
+
+    // ==========================================
+    // DASHBOARD TIME FILTER SYSTEM (D-1 & MONTHLY)
+    // ==========================================
+    let currentDashboardMode = 'd1';
+    let currentDashboardMonth = '2026-08';
+
+    function setDashboardFilter(mode, monthVal) {
+      if (monthVal) {
+        currentDashboardMonth = monthVal;
+      }
+      currentDashboardMode = mode;
+
+      // Update button active state
+      const btnD1 = document.getElementById('btn-filter-d1');
+      const btnLive = document.getElementById('btn-filter-live');
+      const btnMonth = document.getElementById('btn-filter-month');
+      
+      if (btnD1) btnD1.classList.toggle('active', mode === 'd1');
+      if (btnLive) btnLive.classList.toggle('active', mode === 'live');
+      if (btnMonth) btnMonth.classList.toggle('active', mode === 'month');
+
+      const subtitle = document.getElementById('dashboard-subtitle');
+      const statusBadge = document.getElementById('badge-status-text');
+      const statTitle1 = document.getElementById('stat-title-1');
+      const statVal1 = document.getElementById('stat-val-1');
+      const statChange1 = document.getElementById('stat-change-1');
+      
+      const statTitle2 = document.getElementById('stat-title-2');
+      const statVal2 = document.getElementById('stat-val-2');
+      const statChange2 = document.getElementById('stat-change-2');
+
+      const statTitle3 = document.getElementById('stat-title-3');
+      const statVal3 = document.getElementById('stat-val-3');
+      const statChange3 = document.getElementById('stat-change-3');
+
+      const statTitle4 = document.getElementById('stat-title-4');
+      const statVal4 = document.getElementById('stat-val-4');
+      const statChange4 = document.getElementById('stat-change-4');
+
+      const chartTitle = document.getElementById('chart-panel-title');
+      const chartBadge = document.getElementById('chart-badge');
+      const topTitle = document.getElementById('top-dramas-title');
+      const chartBars = document.getElementById('chart-bars-container');
+      const chartLabels = document.getElementById('chart-axis-labels');
+      const topList = document.getElementById('top-dramas-list');
+
+      if (mode === 'd1') {
+        // D-1 Mode (Default)
+        if (subtitle) subtitle.innerHTML = 'Thống kê hiệu suất & chỉ số người dùng chốt sổ trọn vẹn ngày <strong>D-1 (10/08/2026)</strong>';
+        if (statusBadge) statusBadge.innerHTML = 'Đã Chốt Sổ D-1 (10/08)';
+        
+        if (statTitle1) statTitle1.innerText = 'TỔNG LƯỢT XEM (D-1 - HÔM QUA)';
+        if (statVal1) statVal1.innerText = '1,482,900';
+        if (statChange1) statChange1.innerText = '▲ +18.4% so với D-2';
+
+        if (statTitle2) statTitle2.innerText = 'THỜI LƯỢNG XEM (WATCH TIME D-1)';
+        if (statVal2) statVal2.innerText = '82,450 Giờ';
+        if (statChange2) statChange2.innerText = '▲ +12.1% tăng trưởng';
+
+        if (statTitle3) statTitle3.innerText = 'DAU (USER HOẠT ĐỘNG D-1)';
+        if (statVal3) statVal3.innerText = '124,800';
+        if (statChange3) statChange3.innerText = '▲ +8.9% người dùng mới';
+
+        if (statTitle4) statTitle4.innerText = 'TỶ LỆ XEM HẾT BỘ (100% FREE D-1)';
+        if (statVal4) statVal4.innerText = '68.5%';
+        if (statChange4) statChange4.innerText = '▲ +5.2% trọn bộ 80 tập';
+
+        if (chartTitle) chartTitle.innerText = '📈 Lượng Truy Cập Xem Phim Theo Giờ (D-1 Hourly Traffic: 00:00 - 23:59)';
+        if (chartBadge) {
+          chartBadge.innerText = 'D-1 Complete';
+          chartBadge.className = 'badge badge-published';
+        }
+
+        if (chartBars) {
+          chartBars.innerHTML = `
+            <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="00:00 - 04:00"></div>
+            <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="04:00 - 08:00"></div>
+            <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;" title="08:00 - 12:00"></div>
+            <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;" title="12:00 - 16:00"></div>
+            <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;" title="16:00 - 19:00"></div>
+            <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);" title="19:00 - 22:00 (Peak)"></div>
+            <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;" title="22:00 - 24:00"></div>
+          `;
+        }
+        if (chartLabels) {
+          chartLabels.innerHTML = `
+            <span>00:00</span><span>04:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>20:00 (Peak)</span><span>23:59</span>
+          `;
+        }
+
+        if (topTitle) topTitle.innerText = '🔥 Top 5 Phim Hot Nhất Hôm Qua (D-1)';
+        if (topList) {
+          topList.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">1. Vợ Cũ Lật Kèo</div><div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình</div></div>
+              <span class="badge badge-published">342K Lượt xem</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">2. Mẹ Chồng Siêu Cấp & Nàng Dâu</div><div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 65/65 Tập • Gia Đình</div></div>
+              <span class="badge badge-published">285K Lượt xem</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">3. Hợp Đồng Hôn Nhân Với Tổng Tài</div><div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 92/92 Tập • Tổng Tài</div></div>
+              <span class="badge badge-published">210K Lượt xem</span>
+            </div>
+          `;
+        }
+      } else if (mode === 'month') {
+        // Month Filter Mode
+        const monthNames = {
+          '2026-08': 'Tháng 08/2026',
+          '2026-07': 'Tháng 07/2026',
+          '2026-06': 'Tháng 06/2026',
+          '2026-05': 'Tháng 05/2026'
+        };
+        const selectedMonthLabel = monthNames[currentDashboardMonth] || 'Tháng Đã Chọn';
+        
+        if (subtitle) subtitle.innerHTML = `Thống kê tổng hợp số liệu lũy kế trong <strong>${selectedMonthLabel}</strong>`;
+        if (statusBadge) statusBadge.innerHTML = `Lũy Kế ${selectedMonthLabel}`;
+        
+        if (statTitle1) statTitle1.innerText = `TỔNG LƯỢT XEM ${selectedMonthLabel.toUpperCase()}`;
+        if (statVal1) statVal1.innerText = currentDashboardMonth === '2026-08' ? '18,420,500' : '42,150,000';
+        if (statChange1) statChange1.innerText = '▲ +24.6% so với tháng trước';
+
+        if (statTitle2) statTitle2.innerText = 'THỜI LƯỢNG XEM (WATCH TIME THÁNG)';
+        if (statVal2) statVal2.innerText = currentDashboardMonth === '2026-08' ? '1,024,800 Giờ' : '2,310,000 Giờ';
+        if (statChange2) statChange2.innerText = '▲ +19.2% tăng trưởng';
+
+        if (statTitle3) statTitle3.innerText = 'MAU (USER HOẠT ĐỘNG THÁNG)';
+        if (statVal3) statVal3.innerText = currentDashboardMonth === '2026-08' ? '860,500' : '1,240,000';
+        if (statChange3) statChange3.innerText = '▲ +15.3% người dùng active';
+
+        if (statTitle4) statTitle4.innerText = 'TỶ LỆ XEM HẾT BỘ TB THÁNG';
+        if (statVal4) statVal4.innerText = '71.2%';
+        if (statChange4) statChange4.innerText = '▲ +3.8% trung bình tháng';
+
+        if (chartTitle) chartTitle.innerText = `📈 Xu Hướng Lượt Xem Phim Từng Ngày (${selectedMonthLabel}: Ngày 1 - 31)`;
+        if (chartBadge) {
+          chartBadge.innerText = `Theo Tháng: ${selectedMonthLabel}`;
+          chartBadge.className = 'badge badge-category';
+        }
+
+        if (chartBars) {
+          chartBars.innerHTML = `
+            <div style="flex: 1; height: 40%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Tuần 1 (Ngày 1-7)"></div>
+            <div style="flex: 1; height: 65%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Tuần 2 (Ngày 8-14)"></div>
+            <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Tuần 3 (Ngày 15-21)"></div>
+            <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 4px 4px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);" title="Tuần 4 (Ngày 22-28 Peak)"></div>
+            <div style="flex: 1; height: 75%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Cuối tháng (Ngày 29-31)"></div>
+          `;
+        }
+        if (chartLabels) {
+          chartLabels.innerHTML = `
+            <span>Tuần 1 (01-07)</span><span>Tuần 2 (08-14)</span><span>Tuần 3 (15-21)</span><span>Tuần 4 (22-28 Peak)</span><span>Cuối tháng (29-31)</span>
+          `;
+        }
+
+        if (topTitle) topTitle.innerText = `🔥 Top Phim Hot Nhất Trong ${selectedMonthLabel}`;
+        if (topList) {
+          topList.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">1. Vợ Cũ Lật Kèo</div><div style="font-size: 11px; color: var(--text-muted);">80/80 Tập • Ngôn Tình</div></div>
+              <span class="badge badge-published">4.8M Lượt xem</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">2. Mẹ Chồng Siêu Cấp & Nàng Dâu</div><div style="font-size: 11px; color: var(--text-muted);">65/65 Tập • Gia Đình</div></div>
+              <span class="badge badge-published">3.9M Lượt xem</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">3. Hào Môn Trả Thù: Vương Giả Trở Lại</div><div style="font-size: 11px; color: var(--text-muted);">100/100 Tập • Trả Thù</div></div>
+              <span class="badge badge-published">3.1M Lượt xem</span>
+            </div>
+          `;
+        }
+      } else if (mode === 'live') {
+        // Realtime Live Mode
+        if (subtitle) subtitle.innerHTML = 'Thống kê lượt xem và người dùng thời gian thực trong ngày <strong>Hôm nay (11/08/2026 - Realtime)</strong>';
+        if (statusBadge) statusBadge.innerHTML = '🔴 Realtime Live';
+        
+        if (statTitle1) statTitle1.innerText = 'TỔNG LƯỢT XEM HÔM NAY (LIVE)';
+        if (statVal1) statVal1.innerText = '942,600';
+        if (statChange1) statChange1.innerText = '▲ Đang tăng (+15.2k/giờ)';
+
+        if (statTitle2) statTitle2.innerText = 'THỜI LƯỢNG XEM (WATCH TIME LIVE)';
+        if (statVal2) statVal2.innerText = '51,320 Giờ';
+        if (statChange2) statChange2.innerText = '▲ Tính đến thời điểm hiện tại';
+
+        if (statTitle3) statTitle3.innerText = 'CCU HIỆN TẠI (ĐANG ONLINE)';
+        if (statVal3) statVal3.innerText = '38,450 CCU';
+        if (statChange3) statChange3.innerText = '▲ Cao điểm buổi trưa/tối';
+
+        if (statTitle4) statTitle4.innerText = 'TỶ LỆ XEM HẾT BỘ (LIVE)';
+        if (statVal4) statVal4.innerText = '66.8%';
+        if (statChange4) statChange4.innerText = '▲ Ước tính trong ngày';
+
+        if (chartTitle) chartTitle.innerText = '📈 Lượng Truy Cập Xem Phim Thời Gian Thực (Hourly Realtime)';
+        if (chartBadge) {
+          chartBadge.innerText = '🔴 Realtime Live';
+          chartBadge.className = 'badge badge-category';
+        }
+
+        if (topTitle) topTitle.innerText = '🔥 Top 5 Phim Đang Hot Nhất Hiện Tại (Live)';
+      }
+    }
+
+    function exportDashboardReport() {
+      let reportName = 'Báo cáo D-1 (10/08/2026)';
+      if (currentDashboardMode === 'month') {
+        reportName = `Báo cáo Tổng Hợp ${currentDashboardMonth}`;
+      } else if (currentDashboardMode === 'live') {
+        reportName = 'Báo cáo Thời Gian Thực (Live)';
+      }
+      alert(`📥 XUẤT BÁO CÁO THÀNH CÔNG!\n\n• Tên file: PineDrama_Report_${currentDashboardMode}_${Date.now()}.csv\n• Nội dung: ${reportName}\n• Các chỉ số: Lượt xem, Watch Time, DAU/MAU, Tỷ lệ xem hết bộ 100% Free, Top Phim Hot.`);
+    }
+
+    // ==========================================
+    // DETAILED REPORT MANAGEMENT & SUB-TABS LOGIC
+    // ==========================================
+    let currentReportTimeMode = 'day';
+
+    function switchReportSubTab(subTabId, tabBtn) {
+      document.querySelectorAll('.report-subview').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.report-tab-btn').forEach(b => b.classList.remove('active'));
+      
+      const targetView = document.getElementById(subTabId);
+      if (targetView) targetView.classList.add('active');
+      if (tabBtn) tabBtn.classList.add('active');
+    }
+
+    function setReportTimeMode(mode) {
+      currentReportTimeMode = mode;
+      const btnDay = document.getElementById('btn-report-mode-day');
+      const btnMonth = document.getElementById('btn-report-mode-month');
+      const dayInputs = document.getElementById('report-day-inputs');
+      const monthInput = document.getElementById('report-month-input-wrapper');
+
+      if (btnDay) btnDay.classList.toggle('active', mode === 'day');
+      if (btnMonth) btnMonth.classList.toggle('active', mode === 'month');
+
+      if (mode === 'day') {
+        if (dayInputs) dayInputs.style.display = 'flex';
+        if (monthInput) monthInput.style.display = 'none';
+      } else {
+        if (dayInputs) dayInputs.style.display = 'none';
+        if (monthInput) monthInput.style.display = 'block';
+      }
+      applyReportFilter();
+    }
+
+    function applyReportFilter() {
+      const summaryBadge = document.getElementById('report-filter-summary-badge');
+      const repKpiViews = document.getElementById('rep-kpi-views');
+      const repKpiTopDrama = document.getElementById('rep-kpi-top-drama');
+      const repKpiTopViews = document.getElementById('rep-kpi-top-views');
+      const repKpiTopFav = document.getElementById('rep-kpi-top-fav');
+      const repKpiTopLikes = document.getElementById('rep-kpi-top-likes');
+      const repKpiUsers = document.getElementById('rep-kpi-users');
+
+      if (currentReportTimeMode === 'day') {
+        const fromDate = document.getElementById('report-from-date').value || '10/08/2026';
+        const toDate = document.getElementById('report-to-date').value || '10/08/2026';
+        if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: Ngày ${fromDate} -> ${toDate}`;
+        
+        if (repKpiViews) repKpiViews.innerText = '1,482,900';
+        if (repKpiTopDrama) repKpiTopDrama.innerText = 'Vợ Cũ Lật Kèo';
+        if (repKpiTopViews) repKpiTopViews.innerText = '🔥 342,000 Lượt xem';
+        if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
+        if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 36,500 Lượt thích (98.2%)';
+        if (repKpiUsers) repKpiUsers.innerText = '124,800';
+      } else {
+        const monthSelect = document.getElementById('report-month-select');
+        const monthText = monthSelect ? monthSelect.options[monthSelect.selectedIndex].text : 'Tháng 08/2026';
+        if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: ${monthText}`;
+        
+        if (repKpiViews) repKpiViews.innerText = '18,420,500';
+        if (repKpiTopDrama) repKpiTopDrama.innerText = 'Vợ Cũ Lật Kèo';
+        if (repKpiTopViews) repKpiTopViews.innerText = '🔥 4.8M Lượt xem';
+        if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
+        if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 452,000 Lượt thích (98.5%)';
+        if (repKpiUsers) repKpiUsers.innerText = '860,500';
+      }
+
+      alert(`✅ ĐÃ LỌC BÁO CÁO THÀNH CÔNG!\n\n• Chế độ: ${currentReportTimeMode === 'day' ? 'Theo Ngày' : 'Theo Tháng'}\n• Thể loại: ${document.getElementById('report-category-filter').value}\n• Đã cập nhật lại toàn bộ bảng số liệu chi tiết từng bộ phim & User.`);
+    }
+
+    function resetReportFilter() {
+      document.getElementById('report-from-date').value = '2026-08-10';
+      document.getElementById('report-to-date').value = '2026-08-10';
+      document.getElementById('report-category-filter').value = 'all';
+      document.getElementById('report-search-drama').value = '';
+      setReportTimeMode('day');
+    }
+
+    function exportCustomReport(type) {
+      const modeLabel = currentReportTimeMode === 'day' ? 'Ngay_20260810' : 'Thang_202608';
+      alert(`📥 XUẤT TẬP TIN BÁO CÁO CHI TIẾT THÀNH CÔNG!\n\n• Tên tệp: PineDrama_Detailed_Metrics_${modeLabel}.xlsx\n• Định dạng: Microsoft Excel (.xlsx)\n• Nội dung bao gồm:\n  + Sheet 1: Hiệu suất từng bộ phim (Views, Likes, Share, Drop-off, Watch Time)\n  + Sheet 2: Chỉ số User Retention Cohort (D1, D7, D30)\n  + Sheet 3: Thị phần phân bổ Category\n• Tệp đã được lưu vào mục 'Lịch Sử Xuất File & Logs'.`);
+    }
+
+    // ==========================================
+    // USER MANAGEMENT INTERACTIVE (MUTE / UNMUTE & BAN / UNBAN)
+    // ==========================================
+    function toggleMuteUser(rowId, userName) {
+      const actionCell = document.getElementById(`user-action-cell-${rowId}`);
+      const row = document.getElementById(`user-row-${rowId}`);
+      
+      const isCurrentlyMuted = row.getAttribute('data-chat') === 'muted';
+      
+      if (isCurrentlyMuted) {
+        // Unmute
+        row.setAttribute('data-chat', 'normal');
+        actionCell.innerHTML = `
+          <div class="user-action-group">
+            <button class="user-action-btn mute" onclick="toggleMuteUser(${rowId}, '${userName}')">🔇 Cấm Chat</button>
+            <button class="user-action-btn ban" onclick="toggleBanUser(${rowId}, '${userName}')">🔒 Khóa Acc</button>
+          </div>
+        `;
+        alert(`🔊 ĐÃ MỞ CẤM CHAT (UNMUTE) THÀNH CÔNG!\n\nNgười dùng "${userName}" đã được khôi phục quyền bình luận và tương tác trong phòng xem phim.`);
+      } else {
+        // Mute
+        row.setAttribute('data-chat', 'muted');
+        actionCell.innerHTML = `
+          <div class="user-action-group">
+            <button class="user-action-btn unmute" onclick="toggleMuteUser(${rowId}, '${userName}')">🔊 Mở Chat</button>
+            <button class="user-action-btn ban" onclick="toggleBanUser(${rowId}, '${userName}')">🔒 Khóa Acc</button>
+          </div>
+        `;
+        alert(`🔇 ĐÃ ÁP DỤNG CẤM CHAT (MUTE) THÀNH CÔNG!\n\nNgười dùng "${userName}" đã bị khóa quyền bình luận / spam trong phòng xem phim.`);
+      }
+    }
+
+    function toggleBanUser(rowId, userName) {
+      const statusCell = document.getElementById(`user-status-cell-${rowId}`);
+      const actionCell = document.getElementById(`user-action-cell-${rowId}`);
+      const row = document.getElementById(`user-row-${rowId}`);
+      
+      const isCurrentlyInactive = row.getAttribute('data-status') === 'inactive';
+      
+      if (isCurrentlyInactive) {
+        // Unban -> Active
+        row.setAttribute('data-status', 'active');
+        statusCell.innerHTML = '<span class="badge badge-published">🟢 Active</span>';
+        actionCell.innerHTML = `
+          <div class="user-action-group">
+            <button class="user-action-btn mute" onclick="toggleMuteUser(${rowId}, '${userName}')">🔇 Cấm Chat</button>
+            <button class="user-action-btn ban" onclick="toggleBanUser(${rowId}, '${userName}')">🔒 Khóa Acc</button>
+          </div>
+        `;
+        alert(`🔓 ĐÃ MỞ KHÓA TÀI KHOẢN (UNBAN) THÀNH CÔNG!\n\nTrạng thái người dùng "${userName}" đã được chuyển sang Active (Hoạt động bình thường).`);
+      } else {
+        // Ban -> Inactive
+        row.setAttribute('data-status', 'inactive');
+        statusCell.innerHTML = '<span class="badge badge-category" style="background: rgba(255,42,95,0.2); color: #ff4d6d; border-color: rgba(255,42,95,0.4);">🔴 Inactive</span>';
+        actionCell.innerHTML = `
+          <div class="user-action-group">
+            <button class="user-action-btn unban" style="min-width: 120px;" onclick="toggleBanUser(${rowId}, '${userName}')">🔓 Mở Khóa Acc</button>
+          </div>
+        `;
+        alert(`🔒 ĐÃ KHÓA TÀI KHOẢN (BAN ACCOUNT) THÀNH CÔNG!\n\nTrạng thái người dùng "${userName}" đã được chuyển sang Inactive (Bị khóa đăng nhập).`);
+      }
+    }
+
+    function filterUserTable(filterVal) {
+      const rows = document.querySelectorAll('#user-table-body tr');
+      let visibleCount = 0;
+      rows.forEach(r => {
+        const st = r.getAttribute('data-status');
+        if (filterVal === 'all' || st === filterVal) {
+          r.style.display = '';
+          visibleCount++;
+        } else {
+          r.style.display = 'none';
+        }
+      });
+      document.getElementById('user-count-display').innerText = `${visibleCount} Người Dùng`;
+    }
+
+    function searchUserTable(query) {
+      const rows = document.querySelectorAll('#user-table-body tr');
+      const q = query.toLowerCase().trim();
+      let visibleCount = 0;
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        if (text.includes(q)) {
+          r.style.display = '';
+          visibleCount++;
+        } else {
+          r.style.display = 'none';
+        }
+      });
+      document.getElementById('user-count-display').innerText = `${visibleCount} Người Dùng`;
     }
   </script>
 </body>

@@ -101,10 +101,6 @@ flowchart TD
 | LINK URL NGUỒN PHIM / M3U8 PLAYLIST (*):                                                          |
 | [ https://cdn.shortdrama-partner.tv/series/tong-tai-ba-dao-co-vo-sat-thu-80eps/master.m3u8     ] |
 | ✓ Link URL đã tự động bao gồm Poster ảnh bìa, toàn bộ tập phim & luồng video HLS                  |
-|                                                                                                   |
-| SỐ LƯỢNG TẬP PHIM:                      TRẠNG THÁI PHÁT HÀNH:                                     |
-| [ 80                                  ] [ ▼ 🟢 Xuất bản ngay (Published)                        ] |
-|                                                                                                   |
 | GÁN THỂ LOẠI (MULTI-SELECT SEARCH DROPDOWN - CHỨA N ITEMS):                                       |
 | +-----------------------------------------------------------------------------------------------+ |
 | | [❤️ Ngôn Tình ✕]  [👑 Tổng Tài ✕]  [🔥 Hot Trend ✕]   |  🔍 Tìm hoặc chọn thêm thể loại...   ▼| |
@@ -150,7 +146,7 @@ flowchart TD
 |                          Cổng Quản Trị Hệ Thống & Vận Hành Phim Ngắn                              |
 +---------------------------------------------------------------------------------------------------+
 | EMAIL / TÊN ĐĂNG NHẬP:                                                                            |
-| [ 👤 longnguyen@pinedrama.com                                                                   ] |
+| [ 👤 hoangbach@pinedrama.com                                                                    ] |
 |                                                                                                   |
 | MẬT KHẨU:                                                                                         |
 | [ 🔒 •••••••••••••••••                                                                       👁️ ] |
@@ -164,35 +160,121 @@ flowchart TD
 +---------------------------------------------------------------------------------------------------+
 ```
 
-### MÀN HÌNH 4: QUẢN LÝ TÀI KHOẢN ADMIN & MA TRẬN PHÂN QUYỀN (RBAC)
+### MÀN HÌNH 4: QUẢN LÝ TÀI KHOẢN ADMIN
 ```
 +---------------------------------------------------------------------------------------------------+
-| ⚙️ QUẢN LÝ TÀI KHOẢN ADMIN & PHÂN QUYỀN (RBAC)               [🔐 Màn Hình Login] [➕ Thêm Admin]  |
+| ⚙️ QUẢN LÝ TÀI KHOẢN ADMIN                                                  [➕ Cấp Tài Khoản Mới]  |
 +---------------------------------------------------------------------------------------------------+
-| [ Tổng Admin: 4 ]      [ 👑 Super Admin: 1 ]     [ 🎬 Content: 2 ]         [ 🛡️ Moderator: 1 ]     |
-+---------------------------------------------------------------------------------------------------+
-| 👥 DANH SÁCH TÀI KHOẢN QUẢN TRỊ VIÊN:                                                             |
+| 👥 DANH SÁCH TÀI KHOẢN QUẢN TRỊ VIÊN:                       [🔍 Tìm Admin, Email...] [+ Thêm Admin]|
 | STT  ADMIN & EMAIL              VAI TRÒ (ROLE)        QUYỀN HẠN               TRẠNG THÁI  HÀNH ĐỘNG |
-| 01   Long Nguyen (longnguyen@)  👑 Super Admin        ★ Full Quyền Hệ Thống    🟢 Active   [🔑] [✏️] |
+| 01   Hoàng Bách (hoangbach@)    👑 Super Admin        ★ Full Quyền Hệ Thống    🟢 Active   [🔑] [✏️] |
 | 02   Thu Trang (thutrang.c@)    🎬 Content Manager    Kéo API, Đăng Phim, Tag 🟢 Active   [🔑][🔒][🗑️]|
-| 03   Hoàng Nam (nam.mod@)       🛡️ User Moderator     Quản Lý User, Cấm Chat  🟢 Active   [🔑][🔒][🗑️]|
+| 03   Hoàng Nam (nam.mod@)       🛡️ User Moderator     Quản Lý Người Dùng, Chat 🟢 Active  [🔑][🔒][🗑️]|
 | 04   Bảo Trâm (tram.analyst@)   📊 Data Analyst       Xem Dashboard & Báo Cáo 🟢 Active   [🔑][🔒][🗑️]|
-+---------------------------------------------------------------------------------------------------+
-| 🛡️ MA TRẬN PHÂN QUYỀN CHI TIẾT THEO VAI TRÒ (RBAC MATRIX):                                        |
-| Nhóm Quyền Hạn                   👑 Super Admin   🎬 Content Manager   🛡️ Moderator   📊 Analyst   |
-| • Dashboard & Báo Cáo Thống Kê   ✅ Toàn quyền     ✅ Xem               ⛔ Không        ✅ Xem & CSV |
-| • Kéo API, Tạo Phim & Category   ✅ Toàn quyền     ✅ Toàn quyền        ⛔ Không        ⛔ Không     |
-| • Quản Lý User & Cấm Chat        ✅ Toàn quyền     ⛔ Không             ✅ Toàn quyền   ⛔ Không     |
-| • Cấp Admin Mới & Phân Quyền     ✅ Toàn quyền     ⛔ Không             ⛔ Không        ⛔ Không     |
 +---------------------------------------------------------------------------------------------------+
 ```
 
 ---
 
-## 6. TỔNG KẾT
+### MÀN HÌNH 4B: QUẢN LÝ NGƯỜI DÙNG & TRUNG TÂM CẤM CHAT / KHÓA ACCOUNT
+```
++---------------------------------------------------------------------------------------------------+
+| 👥 QUẢN LÝ NGƯỜI DÙNG & TRUNG TÂM CẤM CHAT / KHÓA ACCOUNT                   [📥 Xuất DS Vi Phạm]  |
++---------------------------------------------------------------------------------------------------+
+| 🎯 BỘ LỌC: [ ▼ Tất cả trạng thái (Active / Inactive) ] [ 🔍 Tìm User ID, Tên... ] Tổng cộng: 4 Users|
+| STT  USER ID / TÊN HIỂN THỊ     ĐĂNG NHẬP     NGÀY THAM GIA   TRẠNG THÁI        THAO TÁC QUẢN TRỊ |
+| 01   Minh Anh (USR-9921)        Google        10/05/2026      🟢 Active         [🔇 Mute] [🔒 Ban]|
+| 02   Tuấn Kiệt (USR-8812)       Google        02/06/2026      🟢 Active         [🔊 Unmute][🔒Ban]|
+| 03   Spam_Bot_999 (USR-4402)    Google        15/07/2026      🔴 Inactive       [🔓 Mở Khóa Acc]  |
+| 04   Phương Linh (USR-7731)     Google        22/07/2026      🟢 Active         [🔇 Mute] [🔒 Ban]|
++---------------------------------------------------------------------------------------------------+
+```
+
+---
+
+### MÀN HÌNH 5: DASHBOARD TỔNG QUAN VẬN HÀNH (D-1 MẶC ĐỊNH & BỘ LỌC THEO THÁNG)
+```
++-------------------------------------------------------------------------------------------------------------------------------+
+| 📊 DASHBOARD TỔNG QUAN VẬN HÀNH                                                                                              |
+| Thống kê hiệu suất lượt xem & chỉ số người dùng chốt sổ trọn vẹn ngày D-1 (10/08/2026)                                       |
++-------------------------------------------------------------------------------------------------------------------------------+
+| BỘ LỌC THỜI GIAN: [ ⚡ D-1 (Hôm qua - Mặc định) ]  [ 🔴 Hôm nay (Live) ]  [ 📅 Theo Tháng: ▼ Tháng 08/2026 ] [ 📥 XUẤT BÁO CÁO CSV ] |
++-------------------------------------------------------------------------------------------------------------------------------+
+| [ 1. TỔNG LƯỢT XEM D-1 ]   | [ 2. WATCH TIME D-1 ]     | [ 3. DAU USER D-1 ]       | [ 4. TỶ LỆ XEM HẾT BỘ D-1 ]               |
+| 1,482,900                  | 82,450 Giờ                | 124,800                   | 68.5%                                     |
+| ▲ +18.4% so với D-2        | ▲ +12.1% tăng trưởng      | ▲ +8.9% người dùng mới    | ▲ +5.2% trọn bộ 80 tập                    |
++-------------------------------------------------------------------------------------------------------------------------------+
+| 📈 LƯỢNG TRUY CẬP THEO GIỜ (D-1 HOURLY: 00:00 - 23:59)            | 🔥 TOP 5 PHIM HOT NHẤT HÔM QUA (D-1)                       |
+| [ ▂▃▅█▇█▆ ] Biểu đồ 24 giờ chốt sổ D-1                            | 1. Vợ Cũ Lật Kèo (80/80 Tập) • 342K Lượt xem              |
+| 00:00  04:00  08:00  12:00  16:00  20:00(Peak)  23:59             | 2. Mẹ Chồng Siêu Cấp & Nàng Dâu • 285K Lượt xem           |
+|                                                                   | 3. Hợp Đồng Hôn Nhân Với Tổng Tài • 210K Lượt xem         |
++-------------------------------------------------------------------------------------------------------------------------------+
+```
+
+### 5.1 Quy Tắc Nghiệp Vụ Bộ Lọc Dashboard (Business Rules - BA / PO Spec):
+1. **Quy tắc D-1 Mặc Định (Default D-1 Closed Data):**
+   * Mặc định khi Admin/Analyst truy cập Dashboard, hệ thống **luôn hiển thị dữ liệu ngày D-1 (Hôm qua)**.
+   * **Lý do nghiệp vụ:** Dữ liệu D-1 đã được hệ thống Data Warehouse / ETL chốt sổ hoàn chỉnh 24 giờ (00:00:00 - 23:59:59), đảm bảo tính toàn vẹn và độ chính xác 100% khi đánh giá hiệu suất.
+2. **Bộ Lọc Theo Tháng (Monthly Filter):**
+   * Cho phép chọn Tháng hiện tại hoặc các tháng lịch sử (Tháng 08/2026, Tháng 07/2026, Tháng 06/2026...).
+   * Khi chọn Tháng:
+     - **Card KPI 1:** Tổng lượt xem lũy kế trong tháng (Monthly Views).
+     - **Card KPI 2:** Tổng thời lượng xem trong tháng (Monthly Watch Time).
+     - **Card KPI 3:** Chỉ số người dùng hoạt động trong tháng (MAU).
+     - **Card KPI 4:** Tỷ lệ xem hết bộ trung bình trong tháng.
+     - **Biểu đồ:** Tự động chuyển thành biểu đồ cột theo từng ngày / từng tuần trong tháng.
+     - **Top Phim:** Hiển thị Top phim có lượt xem cao nhất trong toàn bộ tháng được chọn.
+3. **Bộ Lọc Thời Gian Thực (Live / Realtime):**
+   * Phục vụ theo dõi tải hệ thống trực tiếp trong ngày (CCU trực tiếp, tốc độ tăng trưởng lượt xem theo giờ).
+
+---
+
+---
+
+### MÀN HÌNH 6: QUẢN LÝ BÁO CÁO & THỐNG KÊ CHI TIẾT (DETAILED REPORTING CENTER)
+```
++-------------------------------------------------------------------------------------------------------------------------------+
+| 📈 QUẢN LÝ BÁO CÁO & THỐNG KÊ CHI TIẾT                                                                                       |
+| Khai thác sâu số liệu lượt xem, phim yêu thích, hành vi người dùng và xuất file báo cáo theo ngày/tháng                       |
+|                                                                                    [ 📥 XUẤT FILE BÁO CÁO NÀY (EXCEL/CSV) ]   |
++-------------------------------------------------------------------------------------------------------------------------------+
+| 🎯 BỘ LỌC ĐA CHIỀU:                                                                                                           |
+| [ ⚡ Theo Ngày (D-1) ] [ 📅 Theo Tháng ] | Từ ngày: [10/08/2026] Đến: [10/08/2026]                                            |
+| Thể loại: [ ▼ Tất cả thể loại ] | [ 🔍 Tìm tên phim, ID... ]                                        [ 🔍 ÁP DỤNG LỌC ]          |
++-------------------------------------------------------------------------------------------------------------------------------+
+| [ 1. TỔNG LƯỢT XEM ]       | [ 2. PHIM XEM NHIỀU NHẤT ] | [ 3. PHIM YÊU THÍCH NHẤT ] | [ 4. USER HOẠT ĐỘNG (ACTIVE) ]         |
+| 1,482,900                  | Vợ Cũ Lật Kèo              | Hào Môn Trả Thù            | 124,800 Users                          |
+| ▲ 100% phim xem miễn phí   | 🔥 342,000 Lượt xem        | ❤️ 36,500 Lượt thích(98.2%)| ⏱️ TB 48.5 phút xem/User               |
++-------------------------------------------------------------------------------------------------------------------------------+
+| ĐIỀU HƯỚNG BÁO CÁO (SUB-TABS):                                                                                                |
+| [ 🎬 BÁO CÁO HIỆU SUẤT TỪNG PHIM ]        [ 👥 BÁO CÁO HÀNH VI & USER ]        [ 🏷️ BÁO CÁO TỶ TRỌNG THỂ LOẠI ]                 |
++-------------------------------------------------------------------------------------------------------------------------------+
+| STT  POSTER  TÊN BỘ PHIM & ID    THỂ LOẠI     LƯỢT XEM  ❤️ LIKE    chia sẻ  ⏱️ TB/USER                              |
+| #1   [VCLK]  Vợ Cũ Lật Kèo (80T) Ngôn Tình    342,000   28,400    12,500   48.2 phút                               |
+| #2   [MCSC]  Mẹ Chồng Siêu Cấp   Gia Đình     285,000   24,100    9,800    41.5 phút                               |
+| #3   [HDHN]  Hợp Đồng Hôn Nhân   Tổng Tài     210,000   31,200    15,200   52.0 phút                               |
+| #4   [HMTH]  Hào Môn Trả Thù     Trả Thù      198,000   36,500(⭐) 18,900   55.8 phút                               |
+| #5   [CVST]  Cô Vợ Sát Thủ       Ngôn Tình    165,000   19,800    7,400    39.0 phút                               |
++-------------------------------------------------------------------------------------------------------------------------------+
+```
+
+### 6.1 Các Báo Cáo Chuyên Sâu Tích Hợp (BA & PO Feature Scope):
+1. **Báo Cáo Hiệu Suất Từng Phim (Drama Granular Metrics):**
+   * Cho phép lọc và sắp xếp theo: Tổng lượt xem, Lượng yêu thích (Likes/Favorites), Lượng chia sẻ (Shares) và Thời gian xem trung bình mỗi User.
+2. **Báo Cáo Hành Vi & User Retention:**
+   * Tỷ lệ quay lại của người dùng theo chu kỳ Cohort (D1 Retention: 58.4%, D7: 34.8%, D30: 21.2%) và thời gian xem phim trung bình/ngày.
+3. **Báo Cáo Tỷ Trọng Thể Loại (Category Breakdown):**
+   * Thị phần xem giữa các thể loại (Ngôn Tình 45.2%, Trả Thù 26.8%, Gia Đình 16.5%, Tổng Tài 11.5%).
+
+---
+
+## 7. TỔNG KẾT
 
 Hệ thống Back Office PineDrama hoàn thiện toàn bộ các cấu phần cốt lõi:
-1. **Màn Hình Đăng Nhập Bảo Mật:** Hỗ trợ đăng nhập đa vai trò, kiểm soát phiên làm việc và đăng nhập demo 1-click.
-2. **Quản Lý Tài Khoản Admin & RBAC:** Cấp phát tài khoản, phân chia 4 vai trò tiêu chuẩn (`Super Admin`, `Content Manager`, `User Moderator`, `Data Analyst`) kèm ma trận phân quyền chi tiết.
-3. **Dán Link URL Tạo Phim 1-Click:** Chỉ cần dán link URL nguồn (M3U8 / CDN / Web) là có trọn bộ phim phát hành ngay.
-4. **Kéo API Phim Thô:** Kéo hàng trăm bộ phim từ API Đối tác với bộ lọc Gán Mặc Định Preset và AI Classifier.
+1. **Dashboard Tổng Quan Vận Hành:** Chế độ xem **D-1 mặc định**, tích hợp **Bộ lọc theo Tháng** và **Realtime Live**.
+2. **Màn Hình Quản Lý Báo Cáo Chi Tiết (Report Center):** Hỗ trợ lọc đa chiều (ngày/tháng, thể loại, nguồn đối tác API), phân tích sâu hiệu suất từng bộ phim, độ yêu thích và hành vi người dùng.
+3. **Màn Hình Đăng Nhập Bảo Mật:** Hỗ trợ đăng nhập đa vai trò, kiểm soát phiên làm việc và đăng nhập demo 1-click.
+4. **Quản Lý Tài Khoản Admin:** Cấp phát tài khoản, phân chia vai trò (`Super Admin`, `Content Manager`, `User Moderator`, `Data Analyst`) và quản lý khóa/mở khóa/đổi mật khẩu.
+5. **Dán Link URL Tạo Phim 1-Click:** Chỉ cần dán link URL nguồn (M3U8 / CDN / Web) là có trọn bộ phim phát hành ngay.
+6. **Kéo API Phim Thô:** Kéo hàng trăm bộ phim từ API Đối tác với bộ lọc Gán Mặc Định Preset và AI Classifier.
+7. **Multi-Select Category Dropdown:** Chọn nhiều thể loại phim linh hoạt kèm thanh cuộn và ô tìm kiếm thông minh.
