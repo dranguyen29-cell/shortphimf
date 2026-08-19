@@ -2051,14 +2051,14 @@
           <!-- SUB-VIEW 3: BÁO CÁO TỶ TRỌNG THỂ LOẠI -->
           <div id="rep-tab-categories" class="report-subview">
             <div class="panel-card">
-              <div class="panel-title">🏷️ Bảng Xếp Hạng & Thị Phần Thể Loại Phim (Category Performance)</div>
+              <div class="panel-title">🏷️ Bảng Xếp Hạng & Tỉ Lệ Thể Loại Phim (Category Performance)</div>
               <div class="data-table-wrapper">
                 <table class="data-table">
                   <thead>
                     <tr>
                       <th>Hạng</th>
                       <th>Thể Loại (Category)</th>
-                      <th>Thị Phần Lượt Xem (%)</th>
+                      <th>Tỉ Lệ Lượt Xem (%)</th>
                       <th>Tổng Lượt Xem</th>
                       <th>Số Bộ Phim</th>
                       <th>Độ Yêu Thích (Like Rate)</th>
@@ -3426,7 +3426,7 @@
 
     function exportCustomReport(type) {
       const modeLabel = currentReportTimeMode === 'day' ? 'Ngay_20260810' : 'Thang_202608';
-      alert(`📥 XUẤT TẬP TIN BÁO CÁO CHI TIẾT THÀNH CÔNG!\n\n• Tên tệp: PineDrama_Detailed_Metrics_${modeLabel}.xlsx\n• Định dạng: Microsoft Excel (.xlsx)\n• Nội dung bao gồm:\n  + Sheet 1: Hiệu suất từng bộ phim (Views, Likes, Share, Drop-off, Watch Time)\n  + Sheet 2: Chỉ số User Retention Cohort (D1, D7, D30)\n  + Sheet 3: Thị phần phân bổ Category\n• Tệp đã được lưu vào mục 'Lịch Sử Xuất File & Logs'.`);
+      alert(`📥 XUẤT TẬP TIN BÁO CÁO CHI TIẾT THÀNH CÔNG!\n\n• Tên tệp: PineDrama_Detailed_Metrics_${modeLabel}.xlsx\n• Định dạng: Microsoft Excel (.xlsx)\n• Nội dung bao gồm:\n  + Sheet 1: Hiệu suất từng bộ phim (Views, Likes, Share, Drop-off, Watch Time)\n  + Sheet 2: Chỉ số User Retention Cohort (D1, D7, D30)\n  + Sheet 3: Tỉ lệ lượt xem phân bổ Category\n• Tệp đã được lưu vào mục 'Lịch Sử Xuất File & Logs'.`);
     }
 
     // ==========================================
