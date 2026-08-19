@@ -1935,8 +1935,6 @@
                       <th>Thể Loại</th>
                       <th>👁️ Lượt Xem</th>
                       <th>❤️ Yêu Thích</th>
-                      <th>🔄 Chia Sẻ</th>
-                      <th>⏱️ Thời Lượng TB / User</th>
                     </tr>
                   </thead>
                   <tbody id="report-drama-table-body">
@@ -1950,8 +1948,6 @@
                       <td><span class="badge badge-category">Ngôn Tình</span> <span class="badge badge-category">Trả Thù</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">342,000</strong></td>
                       <td><span class="metric-badge likes">❤️ 28,400</span></td>
-                      <td>12,500</td>
-                      <td>48.2 phút</td>
                     </tr>
 
                     <tr>
@@ -1964,8 +1960,6 @@
                       <td><span class="badge badge-category">Gia Đình</span> <span class="badge badge-category">Ngôn Tình</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">285,000</strong></td>
                       <td><span class="metric-badge likes">❤️ 24,100</span></td>
-                      <td>9,800</td>
-                      <td>41.5 phút</td>
                     </tr>
 
                     <tr>
@@ -1978,8 +1972,6 @@
                       <td><span class="badge badge-category">Tổng Tài</span> <span class="badge badge-category">Ngôn Tình</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">210,000</strong></td>
                       <td><span class="metric-badge likes">❤️ 31,200</span></td>
-                      <td>15,200</td>
-                      <td>52.0 phút</td>
                     </tr>
 
                     <tr>
@@ -1992,8 +1984,6 @@
                       <td><span class="badge badge-category">Trả Thù</span> <span class="badge badge-category">Hành Động</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">198,000</strong></td>
                       <td><span class="metric-badge likes" style="border: 1px solid var(--primary);">❤️ 36,500 (TOP 1)</span></td>
-                      <td>18,900</td>
-                      <td>55.8 phút</td>
                     </tr>
 
                     <tr>
@@ -2006,8 +1996,6 @@
                       <td><span class="badge badge-category">Ngôn Tình</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">165,000</strong></td>
                       <td><span class="metric-badge likes">❤️ 19,800</span></td>
-                      <td>7,400</td>
-                      <td>39.0 phút</td>
                     </tr>
                   </tbody>
                 </table>
@@ -2440,16 +2428,12 @@
         <div style="margin-bottom: 14px;">
           <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">LINK URL NGUỒN PHIM / M3U8 PLAYLIST <span style="color: var(--primary);">*</span></label>
           <input type="text" id="input-drama-url" placeholder="https://cdn.partner-stream.com/series/tong-tai-ba-dao/master.m3u8" value="https://cdn.shortdrama-partner.tv/series/tong-tai-ba-dao-co-vo-sat-thu-80eps/master.m3u8" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace;">
-          <div style="font-size: 11.5px; color: var(--accent-green); margin-top: 5px; display: flex; align-items: center; gap: 4px;">
-            <span>✓</span> Link URL đã tự động bao gồm Poster ảnh bìa, toàn bộ tập phim & luồng video HLS.
-          </div>
         </div>
 
         <!-- MULTI-SELECT CATEGORY DROPDOWN -->
         <div style="margin-bottom: 14px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <div style="margin-bottom: 8px;">
             <label style="font-size: 12px; color: var(--text-muted); font-weight: 700;">GÁN THỂ LOẠI PHIM (MULTI-SELECT DROPDOWN):</label>
-            <span style="font-size: 11px; color: var(--accent-gold);">⚡ Chứa không giới hạn N Thể loại (Kèm Tìm Kiếm)</span>
           </div>
 
           <div class="multi-select-container" id="category-multi-select-container">
