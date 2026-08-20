@@ -619,6 +619,101 @@
       transform: translateY(-1px);
     }
 
+    /* Modern Category Toggle Switch */
+    .cat-toggle-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cat-toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+    .cat-toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .cat-toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--border-color);
+      transition: all 0.25s ease;
+      border-radius: 22px;
+    }
+    .cat-toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: #fff;
+      transition: all 0.25s ease;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    .cat-toggle-switch input:checked + .cat-toggle-slider {
+      background-color: #00e676;
+      border-color: #00e676;
+    }
+    .cat-toggle-switch input:checked + .cat-toggle-slider:before {
+      transform: translateX(18px);
+    }
+    .cat-toggle-switch input:disabled + .cat-toggle-slider {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background-color: rgba(0, 230, 118, 0.35);
+    }
+
+    /* Category Drag & Drop Styles */
+    .drag-handle {
+      cursor: grab;
+      color: var(--text-muted);
+      font-size: 16px;
+      padding: 4px 6px;
+      user-select: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+    .drag-handle:hover {
+      color: var(--accent-gold);
+      background: rgba(255, 184, 0, 0.15);
+    }
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+    tr.cat-drag-row {
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    tr.cat-drag-row.dragging {
+      opacity: 0.45;
+      background: rgba(255, 42, 95, 0.2) !important;
+      outline: 1px dashed var(--primary);
+    }
+    tr.cat-drag-row.drag-over-top {
+      border-top: 2px solid var(--accent-gold) !important;
+      background: rgba(255, 184, 0, 0.1) !important;
+    }
+    tr.cat-drag-row.drag-over-bottom {
+      border-bottom: 2px solid var(--accent-gold) !important;
+      background: rgba(255, 184, 0, 0.1) !important;
+    }
+    .stt-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     /* Report Management & Sub-Tabs Styles */
     .report-subtabs-nav {
       display: flex;
@@ -862,7 +957,11 @@
       border-radius: 20px;
       font-size: 11px;
       font-weight: 700;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      white-space: nowrap;
     }
 
     .badge-published {
@@ -915,6 +1014,50 @@
     .quick-tag-btn:hover {
       background: var(--accent-gold);
       color: #000;
+    }
+
+    /* SEASON TABS & EPISODE MANAGER STYLES */
+    .season-tab-btn {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .season-tab-btn:hover {
+      border-color: rgba(255, 42, 95, 0.4);
+      color: #fff;
+    }
+
+    .season-tab-btn.active {
+      background: rgba(255, 42, 95, 0.15);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .ep-row-input {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      width: 100%;
+      font-family: monospace;
+      transition: border-color 0.2s;
+    }
+
+    .ep-row-input:focus {
+      border-color: var(--primary);
+      outline: none;
     }
 
     .action-btn-group {
@@ -1655,10 +1798,10 @@
                       <span class="badge badge-category">Trả Thù</span>
                     </td>
                     <td><strong style="color: var(--accent-gold);">80/80 Tập</strong></td>
-                    <td><span class="badge badge-published">🟢 Published</span></td>
+                    <td><span class="badge badge-published">🟢 Đã Publish</span></td>
                     <td>
                       <div class="action-btn-group">
-                        <button class="icon-action-btn" title="Gán Category phim này" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn" title="Chỉnh sửa chi tiết phim & các tập" onclick="openEditDramaModal('DRAMA-8842', 'Vợ Cũ Lật Kèo', ['Ngôn Tình', 'Trả Thù'])">✏️</button>
                         <button class="icon-action-btn" title="Xóa phim">🗑️</button>
                       </div>
                     </td>
@@ -1678,10 +1821,10 @@
                       <span class="badge badge-category">Ngôn Tình</span>
                     </td>
                     <td><strong style="color: var(--accent-gold);">65/65 Tập</strong></td>
-                    <td><span class="badge badge-published">🟢 Published</span></td>
+                    <td><span class="badge badge-published">🟢 Đã Publish</span></td>
                     <td>
                       <div class="action-btn-group">
-                        <button class="icon-action-btn" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn" title="Chỉnh sửa chi tiết phim & các tập" onclick="openEditDramaModal('DRAMA-7712', 'Mẹ Chồng Siêu Cấp & Nàng Dâu Triệu Đô', ['Gia Đình', 'Ngôn Tình'])">✏️</button>
                         <button class="icon-action-btn">🗑️</button>
                       </div>
                     </td>
@@ -1702,10 +1845,10 @@
                       <button class="quick-tag-btn" onclick="quickTagRow(3, '❤️ Ngôn Tình')">+ Gán Ngôn Tình</button>
                     </td>
                     <td><strong style="color: var(--accent-gold);">80/80 Tập</strong></td>
-                    <td><span class="badge badge-draft">🟡 Draft</span></td>
+                    <td><span class="badge badge-draft">🔴 Tạm ẩn</span></td>
                     <td>
                       <div class="action-btn-group">
-                        <button class="icon-action-btn" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn" title="Chỉnh sửa chi tiết phim & các tập" onclick="openEditDramaModal('DRAMA-9901', 'Cô Vợ Sát Thủ & Tổng Tài Bá Đạo', ['Ngôn Tình'])">✏️</button>
                         <button class="icon-action-btn">🗑️</button>
                       </div>
                     </td>
@@ -1726,10 +1869,10 @@
                       <button class="quick-tag-btn" onclick="quickTagRow(4, '⚔️ Trả Thù')">+ Gán Trả Thù</button>
                     </td>
                     <td><strong style="color: var(--accent-gold);">50/50 Tập</strong></td>
-                    <td><span class="badge badge-draft">🟡 Draft</span></td>
+                    <td><span class="badge badge-draft">🔴 Tạm ẩn</span></td>
                     <td>
                       <div class="action-btn-group">
-                        <button class="icon-action-btn" onclick="openModal('modal-create-drama')">✏️</button>
+                        <button class="icon-action-btn" title="Chỉnh sửa chi tiết phim & các tập" onclick="openEditDramaModal('DRAMA-5521', 'Tổng Tài Thần Báo Lật Kèo Báo Thù', ['Trả Thù'])">✏️</button>
                         <button class="icon-action-btn">🗑️</button>
                       </div>
                     </td>
@@ -1764,48 +1907,110 @@
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>Thứ Tự Tab</th>
-                    <th>Tên Category Tab</th>
-                    <th>Loại Category</th>
+                    <th>Thứ Tự</th>
+                    <th>Tên Category</th>
                     <th>Số Bộ Phim Thuộc Category</th>
-                    <th>Trạng Thái App</th>
+                    <th>Trạng Thái</th>
                     <th>Hành Động Quản Lý</th>
                   </tr>
                 </thead>
                 <tbody id="category-table-body">
-                  <tr>
-                    <td><strong style="color: var(--accent-gold);">#1 (Mặc Định)</strong></td>
-                    <td><strong style="color: #fff;">✨ Cho Bạn (For You)</strong></td>
-                    <td><span class="badge badge-free">⚡ Gợi ý Thuật toán Random</span></td>
-                    <td>Tất cả phim (Auto Random)</td>
-                    <td><span class="badge badge-published">🟢 Hệ thống cố định</span></td>
-                    <td><button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;" disabled>Cố định Tab 1</button></td>
-                  </tr>
-                  <tr>
-                    <td>#2</td>
-                    <td><strong style="color: #fff;">🔥 Hot Trend</strong></td>
-                    <td><span class="badge badge-category">Thể loại Đã Gán</span></td>
-                    <td>28 Phim</td>
-                    <td><span class="badge badge-published">🟢 Hiển thị</span></td>
+                  <!-- ROW 1 (DEFAULT SYSTEM TAB - FIXED POSITION & LOGIC, EDITABLE NAME) -->
+                  <tr id="cat-row-1" class="cat-fixed-row">
+                    <td>
+                      <div class="stt-cell">
+                        <span style="color: var(--text-muted); opacity: 0.6; font-size: 13px;" title="Tab #1 mặc định của hệ thống - Cố định vị trí không kéo thả">🔒</span>
+                        <strong style="color: var(--accent-gold);">#1 (Mặc Định)</strong>
+                      </div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-1">✨ Cho Bạn (For You)</strong></td>
+                    <td>
+                      <span style="color: var(--text-muted); font-size: 12px; display: inline-flex; align-items: center; gap: 6px;" title="Tab này chạy thuật toán tự động quét toàn bộ kho phim khi người dùng mở App">
+                        <span>⚡ Tất cả phim (Auto Random)</span>
+                      </span>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch" title="Tab mặc định hệ thống luôn cố định hiển thị">
+                          <input type="checkbox" checked disabled>
+                          <span class="cat-toggle-slider"></span>
+                        </label>
+                        <span class="badge badge-published" style="font-size: 11px;">🟢 Cố định</span>
+                      </div>
+                    </td>
                     <td>
                       <div class="btn-group">
-                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬆️</button>
-                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬇️</button>
-                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" onclick="alert('Đã ẩn Category Tab này!')">🗑️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; display: inline-flex; align-items: center; gap: 4px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);" title="Chỉnh sửa tên hiển thị của Tab Mặc Định" onclick="openEditCategoryModal('cat-row-1', '✨ Cho Bạn (For You)', true)">✏️ Đổi Tên Tab</button>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>#3</td>
-                    <td><strong style="color: #fff;">❤️ Ngôn Tình</strong></td>
-                    <td><span class="badge badge-category">Thể loại Đã Gán</span></td>
-                    <td>45 Phim</td>
-                    <td><span class="badge badge-published">🟢 Hiển thị</span></td>
+
+                  <!-- ROW 2 -->
+                  <tr id="cat-row-2" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)" ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)" ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell">
+                        <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
+                        <strong class="cat-order-num" style="color: #fff;">#2</strong>
+                      </div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-2">🔥 Hot Trend</strong></td>
+                    <td>
+                      <button class="btn btn-secondary" style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;" onclick="openListDramasByCategory('🔥 Hot Trend', 'hot-trend')" title="Bấm để xem danh sách 28 bộ phim thuộc Hot Trend">
+                        <span>🎬 <strong>28 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch" title="Bật/Tắt hiển thị Category trên App & Web">
+                          <input type="checkbox" checked onchange="toggleCategoryDisplay(this, 'Hot Trend')">
+                          <span class="cat-toggle-slider"></span>
+                        </label>
+                        <span class="badge badge-published cat-status-badge" style="font-size: 11px;">🟢 Hiển thị</span>
+                      </div>
+                    </td>
                     <td>
                       <div class="btn-group">
-                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬆️</button>
-                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬇️</button>
-                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" onclick="alert('Đã ẩn Category Tab này!')">🗑️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Xem danh sách phim thuộc Hot Trend" onclick="openListDramasByCategory('🔥 Hot Trend', 'hot-trend')">👁️ Phim</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Chỉnh sửa / Đổi tên" onclick="openEditCategoryModal('cat-row-2', '🔥 Hot Trend', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Di chuyển lên" onclick="moveCategoryRowUp(this)">⬆️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Di chuyển xuống" onclick="moveCategoryRowDown(this)">⬇️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" title="Xóa" onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 3 -->
+                  <tr id="cat-row-3" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)" ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)" ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell">
+                        <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
+                        <strong class="cat-order-num" style="color: #fff;">#3</strong>
+                      </div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-3">❤️ Ngôn Tình</strong></td>
+                    <td>
+                      <button class="btn btn-secondary" style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;" onclick="openListDramasByCategory('❤️ Ngôn Tình', 'ngon-tinh')" title="Bấm để xem danh sách 45 bộ phim thuộc Ngôn Tình">
+                        <span>🎬 <strong>45 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch" title="Bật/Tắt hiển thị Category trên App & Web">
+                          <input type="checkbox" checked onchange="toggleCategoryDisplay(this, 'Ngôn Tình')">
+                          <span class="cat-toggle-slider"></span>
+                        </label>
+                        <span class="badge badge-published cat-status-badge" style="font-size: 11px;">🟢 Hiển thị</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Xem danh sách phim thuộc Ngôn Tình" onclick="openListDramasByCategory('❤️ Ngôn Tình', 'ngon-tinh')">👁️ Phim</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Chỉnh sửa / Đổi tên" onclick="openEditCategoryModal('cat-row-3', '❤️ Ngôn Tình', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Di chuyển lên" onclick="moveCategoryRowUp(this)">⬆️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Di chuyển xuống" onclick="moveCategoryRowDown(this)">⬇️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" title="Xóa" onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
                       </div>
                     </td>
                   </tr>
@@ -2375,24 +2580,23 @@
 
       <div class="modal-body">
         <div style="margin-bottom: 16px;">
-          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN CATEGORY TAB (HIỂN THỊ TRÊN APP)</label>
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN CATEGORY (HIỂN THỊ TRÊN APP & WEB)</label>
           <input type="text" id="new-category-name" placeholder="Ví dụ: Kinh Dị, Hài Hước, Võ Thuật..." value="Kinh Dị Siêu Nhất" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
         </div>
 
         <div style="margin-bottom: 16px;">
-          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">VỊ TRÍ HIỂN THỊ (ORDER INDEX)</label>
-          <select style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-            <option>▼ Vị trí #4 (Sau Ngôn Tình)</option>
-            <option>▼ Vị trí #2 (Sau Cho Bạn)</option>
-            <option>▼ Vị trí Cuối cùng</option>
-          </select>
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">SỐ THỨ TỰ HIỂN THỊ (ORDER NUMBER / STT)</label>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <input type="number" id="new-category-order" min="2" max="99" value="4" style="width: 90px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: var(--accent-gold); font-size: 14px; font-weight: 800; text-align: center;">
+            <span style="font-size: 12px; color: var(--text-muted);">Nhập số thứ tự vị trí (Ví dụ: #2, #3, #4...). Sau khi tạo, bạn có thể kéo thả ⠿ trực tiếp trên bảng để đổi thứ tự.</span>
+          </div>
         </div>
 
         <div style="margin-bottom: 16px;">
-          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TRẠNG THÁI TRÊN APP</label>
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TRẠNG THÁI TRÊN APP & WEB</label>
           <div style="display: flex; gap: 20px;">
-            <label style="font-size: 13px; color: #fff; cursor: pointer;"><input type="radio" name="cat_app_status" checked> 🟢 Hiển thị ngay trên App</label>
-            <label style="font-size: 13px; color: #fff; cursor: pointer;"><input type="radio" name="cat_app_status"> 🔴 Ẩn (Lưu nháp)</label>
+            <label style="font-size: 13px; color: #fff; cursor: pointer;"><input type="radio" name="cat_app_status" id="cat-status-active" value="active" checked> 🟢 Hiển thị</label>
+            <label style="font-size: 13px; color: #fff; cursor: pointer;"><input type="radio" name="cat_app_status" id="cat-status-inactive" value="inactive"> 🔴 Đang Ẩn</label>
           </div>
         </div>
       </div>
@@ -2405,69 +2609,244 @@
   </div>
 
 
-  <!-- MODAL 2: CREATE DRAMA DIRECT FORM -->
-  <div id="modal-create-drama" class="modal-overlay">
-    <div class="modal-content" style="width: 680px;">
+  <!-- MODAL 1.5: CHỈNH SỬA / ĐỔI TÊN CATEGORY -->
+  <div id="modal-edit-category" class="modal-overlay">
+    <div class="modal-content" style="width: 580px;">
       <div class="modal-header">
+        <div class="modal-title" id="edit-cat-modal-title">✏️ Chỉnh Sửa / Đổi Tên Category</div>
+        <button class="close-modal-btn" onclick="closeModal('modal-edit-category')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="edit-cat-target-row-id">
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN CATEGORY (HIỂN THỊ TRÊN APP & WEB)</label>
+          <input type="text" id="edit-cat-name-input" placeholder="Ví dụ: Đề Xuất, Dành Riêng Cho Bạn, Hot Nhất..." style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-weight: 700;">
+        </div>
+
+        <div id="edit-cat-note-system" style="display: none; margin-bottom: 16px; background: rgba(255, 184, 0, 0.08); border: 1px solid rgba(255, 184, 0, 0.25); border-radius: 10px; padding: 12px 14px; font-size: 12px; color: var(--accent-gold); line-height: 1.5;">
+          💡 <strong>Lưu ý nghiệp vụ Vận hành:</strong> Đây là Tab Mặc định ban đầu (#1) của hệ thống. Bạn có thể tự do đổi tên hiển thị bất cứ lúc nào (ví dụ: <em>"✨ Đề Xuất Hot", "🌟 Dành Cho Bạn", "🔥 Khám Phá"</em>). Logic lấy phim tự động (Random/Gợi ý) vẫn sẽ được duy trì ổn định.
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-edit-category')">Hủy Bỏ</button>
+        <button class="btn btn-primary" onclick="saveEditCategoryAction()">💾 LƯU THAY ĐỔI</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 1.6: DANH SÁCH BỘ PHIM THUỘC CATEGORY -->
+  <div id="modal-category-dramas" class="modal-overlay">
+    <div class="modal-content" style="width: 920px; max-height: 85vh; display: flex; flex-direction: column;">
+      <div class="modal-header" style="flex-shrink: 0;">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 20px;">🎬</span>
+          <span style="font-size: 24px;">🎬</span>
           <div>
-            <div class="modal-title">➕ Tạo Mới Bộ Phim</div>
-            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Điền thông tin và dán đường link URL phim để tạo và phát hành ngay</div>
+            <div class="modal-title" style="display: flex; align-items: center; gap: 8px;">
+              <span>Danh Sách Phim Thuộc Category:</span>
+              <span id="modal-cat-dramas-title" style="color: var(--accent-gold); font-weight: 800;">🔥 Hot Trend</span>
+              <span class="badge badge-published" id="modal-cat-dramas-count">28 Phim</span>
+            </div>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Tất cả các bộ phim đang được gán và hiển thị trong Tab thể loại này trên App & Web</div>
+          </div>
+        </div>
+        <button class="close-modal-btn" onclick="closeModal('modal-category-dramas')">✕</button>
+      </div>
+
+      <div class="modal-body" style="overflow-y: auto; padding: 16px 20px; flex-grow: 1;">
+        <!-- Filter and Action Bar inside Modal -->
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; background: var(--bg-main); padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border-color);">
+          <input type="text" id="search-cat-dramas-input" placeholder="🔍 Tìm kiếm nhanh tên bộ phim trong Category này..." onkeyup="filterCatDramasModal(this.value)" style="flex: 1; background: transparent; border: none; color: #fff; font-size: 13px; outline: none;">
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-primary" style="font-size: 11.5px; padding: 6px 12px;" onclick="closeModal('modal-category-dramas'); switchView('view-dramas', document.querySelectorAll('.menu-item')[1]);">🎬 Mở Module Quản Lý Phim</button>
+          </div>
+        </div>
+
+        <!-- Table of Dramas in this Category -->
+        <div class="data-table-wrapper" style="border-radius: 10px; border: 1px solid var(--border-color); max-height: 420px; overflow-y: auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 50px; text-align: center;">STT</th>
+                <th style="min-width: 260px;">Thông Tin Bộ Phim</th>
+                <th style="width: 90px; text-align: center; white-space: nowrap;">Số Tập</th>
+                <th style="width: 150px; white-space: nowrap;">Nguồn Cấp Phim</th>
+                <th style="width: 130px; text-align: center; white-space: nowrap;">Trạng Thái</th>
+                <th style="width: 150px; text-align: right; white-space: nowrap;">Hành Động</th>
+              </tr>
+            </thead>
+            <tbody id="modal-cat-dramas-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="flex-shrink: 0; justify-content: space-between;">
+        <span style="font-size: 12px; color: var(--text-muted);">💡 Gán thêm hoặc gỡ phim khỏi Category linh hoạt bằng Multi-select Dropdown trong Quản Lý Phim</span>
+        <button class="btn btn-secondary" onclick="closeModal('modal-category-dramas')">Đóng Cửa Sổ</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 2: CREATE / EDIT DRAMA & MULTI-SEASON EPISODES MANAGER -->
+  <div id="modal-create-drama" class="modal-overlay">
+    <div class="modal-content" style="width: 950px; max-height: 90vh; display: flex; flex-direction: column;">
+      <div class="modal-header" style="flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">🎬</span>
+          <div>
+            <div class="modal-title" id="drama-modal-title">➕ Tạo Mới / Chỉnh Sửa Bộ Phim & Quản Lý Tập</div>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Cấu hình Đa Phần (Multi-Seasons), nạp link hàng loạt và quản lý chi tiết từng tập stream</div>
           </div>
         </div>
         <button class="close-modal-btn" onclick="closeModal('modal-create-drama')">✕</button>
       </div>
 
-      <div class="modal-body">
-        <div style="margin-bottom: 14px;">
-          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN BỘ PHIM <span style="color: var(--primary);">*</span></label>
-          <input type="text" id="input-drama-title" placeholder="Nhập tên bộ phim..." value="Cô Vợ Sát Thủ & Tổng Tài Bá Đạo" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-        </div>
-
-        <div style="margin-bottom: 14px;">
-          <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">LINK URL NGUỒN PHIM / M3U8 PLAYLIST <span style="color: var(--primary);">*</span></label>
-          <input type="text" id="input-drama-url" placeholder="https://cdn.partner-stream.com/series/tong-tai-ba-dao/master.m3u8" value="https://cdn.shortdrama-partner.tv/series/tong-tai-ba-dao-co-vo-sat-thu-80eps/master.m3u8" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace;">
-        </div>
-
-        <!-- MULTI-SELECT CATEGORY DROPDOWN -->
-        <div style="margin-bottom: 14px;">
-          <div style="margin-bottom: 8px;">
-            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700;">GÁN THỂ LOẠI PHIM (MULTI-SELECT DROPDOWN):</label>
+      <div class="modal-body" style="overflow-y: auto; padding: 18px 24px; flex-grow: 1;">
+        <!-- SECTION 1: THÔNG TIN BỘ PHIM -->
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 18px;">
+          <div style="font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>🏷️ 1. THÔNG TIN BỘ PHIM & THỂ LOẠI</span>
           </div>
 
-          <div class="multi-select-container" id="category-multi-select-container">
-            <!-- Box hiển thị các Chip Tag đã chọn -->
-            <div class="multi-select-display-box" id="category-display-box" onclick="toggleCategoryDropdown(event)">
-              <div id="selected-chips-container" style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
-                <!-- Rendered dynamically -->
-              </div>
-              <span style="color: var(--text-muted); font-size: 12px; margin-left: auto;">▼</span>
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">TÊN BỘ PHIM <span style="color: var(--primary);">*</span></label>
+              <input type="text" id="input-drama-title" placeholder="Nhập tên bộ phim..." value="Cô Vợ Sát Thủ & Tổng Tài Bá Đạo" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-weight: 700;">
             </div>
-
-            <!-- Popover Dropdown Danh Sách & Tìm Kiếm -->
-            <div class="multi-select-popover" id="category-popover">
-              <div class="multi-select-search-bar">
-                <input type="text" id="cat-search-input" placeholder="🔍 Gõ từ khóa tìm thể loại (ví dụ: Ngôn tình, Kinh dị...)" oninput="filterCategoryList(this.value)" onclick="event.stopPropagation()">
-              </div>
-              <div class="multi-select-items-list" id="category-dropdown-items-list">
-                <!-- Dropdown items will be populated by JS -->
+            <div>
+              <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">LOẠI HÌNH PHIM</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <label id="drama-type-series-card" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,42,95,0.12); border: 1px solid var(--primary); border-radius: 8px; padding: 8px 10px; cursor: pointer;">
+                  <input type="radio" name="drama_format" id="drama-type-series" value="series" checked onchange="toggleDramaFormat('series')" style="accent-color: var(--primary);">
+                  <strong style="color: #fff; font-size: 12px;">Phim Bộ</strong>
+                </label>
+                <label id="drama-type-single-card" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 10px; cursor: pointer;">
+                  <input type="radio" name="drama_format" id="drama-type-single" value="single" onchange="toggleDramaFormat('single')" style="accent-color: var(--accent-blue);">
+                  <strong style="color: #fff; font-size: 12px;">Phim Lẻ</strong>
+                </label>
               </div>
             </div>
           </div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">
-            💡 Click vào ô trên để mở danh sách chọn nhiều thể loại, hoặc bấm <code>✕</code> trên từng tag để xóa nhanh.
+
+          <!-- MULTI-SELECT CATEGORY DROPDOWN -->
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">GÁN THỂ LOẠI PHIM (MULTI-SELECT DROPDOWN):</label>
+            <div class="multi-select-container" id="category-multi-select-container">
+              <div class="multi-select-display-box" id="category-display-box" onclick="toggleCategoryDropdown(event)">
+                <div id="selected-chips-container" style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;"></div>
+                <span style="color: var(--text-muted); font-size: 12px; margin-left: auto;">▼</span>
+              </div>
+              <div class="multi-select-popover" id="category-popover">
+                <div class="multi-select-search-bar">
+                  <input type="text" id="cat-search-input" placeholder="🔍 Gõ từ khóa tìm thể loại (Ngôn tình, Kinh dị...)" oninput="filterCategoryList(this.value)" onclick="event.stopPropagation()">
+                </div>
+                <div class="multi-select-items-list" id="category-dropdown-items-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2A: DÀNH CHO PHIM LẺ (CHỈ CẦN DÁN DUY NHẤT 1 LINK URL) -->
+        <div id="section-single-movie-manager" style="display: none; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; margin-bottom: 18px;">
+          <div style="font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>🎟️ 2. ĐƯỜNG LINK URL STREAM PHIM LẺ (1 TẬP TRỌN VẸN)</span>
+          </div>
+          
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">LINK URL NGUỒN PHIM / M3U8 STREAM <span style="color: var(--primary);">*</span></label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <input type="text" id="input-single-drama-url" placeholder="https://cdn.partner-stream.com/movies/phim-le-dac-biet/master.m3u8" value="https://cdn.shortdrama-partner.tv/movies/co-vo-sat-thu-single-movie/master.m3u8" style="flex: 1; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace;">
+              <button class="btn btn-secondary" style="padding: 10px 16px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35); flex-shrink: 0;" onclick="testPlaySingleMovie()">▶️ Phát Thử</button>
+            </div>
+          </div>
+
+          <div style="background: rgba(41, 182, 246, 0.08); border: 1px solid rgba(41, 182, 246, 0.25); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: var(--accent-blue); line-height: 1.5;">
+            🎟️ <strong>Phim Lẻ Tinh Gọn:</strong> Đối với phim lẻ, bạn chỉ cần dán <strong>duy nhất 1 đường link URL stream</strong> (định dạng <code>.m3u8</code> hoặc <code>.mp4</code>). Người dùng trên App & Web sẽ thưởng thức trọn vẹn 1 tập duy nhất mà không cần chia tập hay chia phần.
+          </div>
+        </div>
+
+        <!-- SECTION 2: QUẢN LÝ ĐA PHẦN (MULTI-SEASONS) VÀ DANH SÁCH LINK TẬP PHIM (CHO PHIM BỘ) -->
+        <div id="section-seasons-manager" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+            <div style="font-size: 13px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px;">
+              <span>🎬 2. QUẢN LÝ CÁC PHẦN (SEASONS) & LINK TẬP PHIM</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-secondary" style="font-size: 11px; padding: 5px 10px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);" onclick="addNewSeasonPrompt()">➕ Thêm Phần Mới (Season)</button>
+              <button class="btn btn-secondary" style="font-size: 11px; padding: 5px 10px; color: #ff4d6d; border-color: rgba(255,77,109,0.35);" onclick="deleteCurrentSeason()" title="Xóa phần đang chọn">🗑️ Xóa Phần Này</button>
+            </div>
+          </div>
+
+          <!-- SEASON TABS SELECTOR -->
+          <div id="season-tabs-container" style="display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px;">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- BULK URL IMPORTER FOR ACTIVE SEASON -->
+          <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <label style="font-size: 12.5px; color: var(--accent-gold); font-weight: 700; display: block;">📋 NHẬP LINK URLs HÀNG LOẠT CHO <span id="label-active-season-name" style="text-decoration: underline; color: #fff;">Phần 1</span>:</label>
+                <span style="font-size: 11px; color: var(--text-muted);">Gán tuần tự từ trên xuống dưới: Dòng 1 ➔ Tập 1 (hoặc tập bắt đầu), Dòng 2 ➔ Tập 2...</span>
+              </div>
+              
+              <!-- CẤU HÌNH TẬP BẮT ĐẦU -->
+              <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+                <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 600;">Bắt đầu từ tập số:</span>
+                <input type="number" id="bulk-start-ep" value="1" min="1" max="500" style="width: 55px; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--accent-gold); font-weight: 800; padding: 3px 6px; border-radius: 6px; text-align: center; font-size: 12px;" title="Số thứ tự tập cho dòng link đầu tiên">
+              </div>
+            </div>
+
+            <textarea id="bulk-urls-textarea" rows="4" placeholder="Dán danh sách các link stream bất kỳ tại đây (mỗi dòng 1 link). Ví dụ link hash/CDN ngẫu nhiên không có chữ ep:&#10;https://cdn.partner-stream.com/video/a8f921bc_raw.m3u8&#10;https://cdn.partner-stream.com/video/77d90e44_raw.m3u8&#10;https://cdn.partner-stream.com/video/f019ab99_raw.m3u8" style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-family: monospace; font-size: 12px; padding: 10px 12px; resize: vertical; line-height: 1.5;"></textarea>
+
+            <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 10px;">
+              <button class="btn btn-primary" style="font-size: 12px; padding: 7px 18px; font-weight: 700;" onclick="parseBulkUrls()">⚡ Gán Tuần Tự Theo Thứ Tự Dòng & Nạp Tập</button>
+            </div>
+          </div>
+
+          <!-- EPISODES LIST TABLE FOR ACTIVE SEASON -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="font-size: 12px; font-weight: 700; color: #fff;">
+              DANH SÁCH CHI TIẾT TỪNG TẬP PHIM (<span id="active-season-ep-count" style="color: var(--accent-gold);">5 Tập</span>):
+            </div>
+            <button class="btn btn-secondary" style="font-size: 11px; padding: 4px 10px; color: var(--accent-green); border-color: rgba(0,230,118,0.35);" onclick="addNewSingleEpisode()">➕ Thêm 1 Tập Mới</button>
+          </div>
+
+          <div class="data-table-wrapper" style="border-radius: 10px; border: 1px solid var(--border-color); max-height: 250px; overflow-y: auto;">
+            <table class="data-table" style="font-size: 12px;">
+              <thead>
+                <tr>
+                  <th style="width: 75px; text-align: center;">Thứ Tự</th>
+                  <th style="width: 170px;">Tên Tập Phim</th>
+                  <th>Đường Link URL Stream (.m3u8 / .mp4)</th>
+                  <th style="width: 100px; text-align: center;">Trạng Thái</th>
+                  <th style="width: 145px; text-align: right;">Hành Động</th>
+                </tr>
+              </thead>
+              <tbody id="modal-drama-episodes-tbody">
+                <!-- Dynamically populated by JS with Drag & Drop -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('modal-create-drama')">Hủy Bỏ</button>
-        <button class="btn btn-primary" onclick="executeCreateDramaDirect()">
-          💾 LƯU & TẠO PHIM NGAY
-        </button>
+      <div class="modal-footer" style="flex-shrink: 0; justify-content: space-between;">
+        <span style="font-size: 12px; color: var(--text-muted);">💡 Khi đổi hoặc thêm phần mới, hệ thống tự động lưu trữ độc lập dữ liệu các tập của từng phần.</span>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-secondary" onclick="closeModal('modal-create-drama')">Hủy Bỏ</button>
+          <button class="btn btn-primary" onclick="executeCreateDramaDirect()">
+            💾 LƯU BỘ PHIM & TẤT CẢ CÁC TẬP
+          </button>
+        </div>
       </div>
     </div>
+  </div>
   </div>
 
 
@@ -2987,18 +3366,402 @@
       }
     }
 
+    /* ==========================================
+       MULTI-SEASON & EPISODE STREAMS MANAGER STATE
+       ========================================== */
+    let currentDramaSeasons = {
+      'Phần 1': [
+        { ep: 1, name: 'Tập 1: Định Mệnh Gặp Gỡ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep1.m3u8', status: 'online' },
+        { ep: 2, name: 'Tập 2: Thân Phận Bị Lộ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep2.m3u8', status: 'online' },
+        { ep: 3, name: 'Tập 3: Cạm Bẫy Hào Môn', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep3_broken.m3u8', status: 'broken' },
+        { ep: 4, name: 'Tập 4: Phản Kích Bất Ngờ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep4.m3u8', status: 'online' },
+        { ep: 5, name: 'Tập 5: Bí Mật Năm Xưa', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep5.m3u8', status: 'online' }
+      ],
+      'Phần 2': [
+        { ep: 1, name: 'Tập 1: Trở Lại Báo Thù', url: 'https://cdn.shortdrama-partner.tv/series/v2/ep1.m3u8', status: 'online' },
+        { ep: 2, name: 'Tập 2: Đại Gia Tộc Rung Chuyển', url: 'https://cdn.shortdrama-partner.tv/series/v2/ep2.m3u8', status: 'online' }
+      ]
+    };
+    let activeSeasonKey = 'Phần 1';
+
+    function renderSeasonTabs() {
+      const container = document.getElementById('season-tabs-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const seasons = Object.keys(currentDramaSeasons);
+      if (seasons.length === 0) {
+        currentDramaSeasons['Phần 1'] = [];
+        activeSeasonKey = 'Phần 1';
+      } else if (!currentDramaSeasons[activeSeasonKey]) {
+        activeSeasonKey = seasons[0];
+      }
+
+      Object.keys(currentDramaSeasons).forEach((sName) => {
+        const epCount = currentDramaSeasons[sName].length;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `season-tab-btn ${sName === activeSeasonKey ? 'active' : ''}`;
+        btn.innerHTML = `🎬 ${sName} <span class="badge ${sName === activeSeasonKey ? 'badge-published' : 'badge-draft'}" style="font-size: 10px; margin-left: 4px; padding: 2px 6px;">${epCount} Tập</span>`;
+        btn.onclick = () => switchActiveSeason(sName);
+        container.appendChild(btn);
+      });
+
+      const labelEl = document.getElementById('label-active-season-name');
+      if (labelEl) labelEl.innerText = activeSeasonKey;
+
+      renderEpisodeList();
+    }
+
+    function switchActiveSeason(seasonKey) {
+      activeSeasonKey = seasonKey;
+      renderSeasonTabs();
+    }
+
+    function addNewSeasonPrompt() {
+      const currentCount = Object.keys(currentDramaSeasons).length;
+      const defaultName = `Phần ${currentCount + 1}`;
+      const name = prompt('Nhập tên Phần Phim mới (Ví dụ: Phần 2, Phần 3, Ngoại Truyện...):', defaultName);
+      if (name && name.trim()) {
+        const cleanName = name.trim();
+        if (!currentDramaSeasons[cleanName]) {
+          currentDramaSeasons[cleanName] = [];
+        }
+        activeSeasonKey = cleanName;
+        renderSeasonTabs();
+        alert(`✅ Đã tạo thành công "${cleanName}"! Bạn có thể dán link hàng loạt hoặc thêm từng tập cho phần này.`);
+      }
+    }
+
+    function deleteCurrentSeason() {
+      const keys = Object.keys(currentDramaSeasons);
+      if (keys.length <= 1) {
+        alert('⚠️ Không thể xóa! Bộ phim cần có ít nhất 1 phần.');
+        return;
+      }
+      if (confirm(`Bạn có chắc chắn muốn xóa "${activeSeasonKey}" và toàn bộ link các tập thuộc phần này không?`)) {
+        delete currentDramaSeasons[activeSeasonKey];
+        activeSeasonKey = Object.keys(currentDramaSeasons)[0];
+        renderSeasonTabs();
+      }
+    }
+
+    /* EPISODES DRAG & DROP AND REORDERING HANDLERS */
+    let draggedEpIndex = null;
+
+    function handleEpDragStart(e, index) {
+      draggedEpIndex = index;
+      e.currentTarget.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', index);
+    }
+
+    function handleEpDragOver(e, row) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      row.classList.add('drag-over-top');
+    }
+
+    function handleEpDragLeave(e, row) {
+      row.classList.remove('drag-over-top', 'drag-over-bottom');
+    }
+
+    function handleEpDrop(e, targetIndex) {
+      e.preventDefault();
+      if (draggedEpIndex === null || draggedEpIndex === targetIndex) return;
+
+      const eps = currentDramaSeasons[activeSeasonKey];
+      if (!eps) return;
+
+      const movedItem = eps.splice(draggedEpIndex, 1)[0];
+      eps.splice(targetIndex, 0, movedItem);
+
+      // Re-index lại thứ tự tuần tự
+      eps.forEach((item, i) => {
+        item.ep = i + 1;
+      });
+
+      draggedEpIndex = null;
+      renderEpisodeList();
+    }
+
+    function handleEpDragEnd(e, row) {
+      document.querySelectorAll('#modal-drama-episodes-tbody tr').forEach(r => {
+        r.classList.remove('dragging', 'drag-over-top', 'drag-over-bottom');
+      });
+      draggedEpIndex = null;
+    }
+
+    function moveEpisodeUp(index) {
+      if (index <= 0) return;
+      const eps = currentDramaSeasons[activeSeasonKey];
+      const temp = eps[index];
+      eps[index] = eps[index - 1];
+      eps[index - 1] = temp;
+      eps.forEach((item, i) => { item.ep = i + 1; });
+      renderEpisodeList();
+    }
+
+    function moveEpisodeDown(index) {
+      const eps = currentDramaSeasons[activeSeasonKey];
+      if (index >= eps.length - 1) return;
+      const temp = eps[index];
+      eps[index] = eps[index + 1];
+      eps[index + 1] = temp;
+      eps.forEach((item, i) => { item.ep = i + 1; });
+      renderEpisodeList();
+    }
+
+    function renderEpisodeList() {
+      const tbody = document.getElementById('modal-drama-episodes-tbody');
+      const countEl = document.getElementById('active-season-ep-count');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const episodes = currentDramaSeasons[activeSeasonKey] || [];
+      if (countEl) countEl.innerText = `${episodes.length} Tập`;
+
+      if (episodes.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">
+              Chưa có tập phim nào trong <strong>${activeSeasonKey}</strong>. Hãy dán link hàng loạt ở trên hoặc bấm "+ Thêm 1 Tập Mới".
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      episodes.forEach((item, index) => {
+        const isBroken = item.status === 'broken';
+        const statusBadge = isBroken
+          ? '<span class="badge badge-draft" style="background: rgba(255,77,109,0.15); color: #ff4d6d; border: 1px solid rgba(255,77,109,0.3); font-size: 10.5px;">🔴 Lỗi / Cần thay</span>'
+          : '<span class="badge badge-published" style="font-size: 10.5px;">🟢 Online</span>';
+
+        const row = document.createElement('tr');
+        row.className = 'cat-drag-row';
+        row.draggable = true;
+        row.ondragstart = (e) => handleEpDragStart(e, index);
+        row.ondragover = (e) => handleEpDragOver(e, row);
+        row.ondragleave = (e) => handleEpDragLeave(e, row);
+        row.ondrop = (e) => handleEpDrop(e, index);
+        row.ondragend = (e) => handleEpDragEnd(e, row);
+
+        row.innerHTML = `
+          <td>
+            <div class="stt-cell" style="justify-content: center;">
+              <span class="drag-handle" title="Giữ và kéo thả chuột để sắp xếp vị trí tập này">⠿</span>
+              <strong style="color: var(--accent-gold); font-size: 12px;">#${item.ep}</strong>
+            </div>
+          </td>
+          <td>
+            <input type="text" class="ep-row-input" value="${item.name}" onchange="currentDramaSeasons['${activeSeasonKey}'][${index}].name = this.value" placeholder="Tên tập...">
+          </td>
+          <td>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <input type="text" id="ep-url-input-${index}" class="ep-row-input" value="${item.url}" onchange="updateEpisodeUrl(${index}, this.value)" placeholder="https://..." style="${isBroken ? 'border-color: #ff4d6d; color: #ff8598;' : ''}">
+              ${isBroken ? '<span style="color: #ff4d6d; font-size: 14px;" title="Link này bị lỗi hoặc không stream được! Hãy thay link mới.">⚠️</span>' : ''}
+            </div>
+          </td>
+          <td style="text-align: center;">${statusBadge}</td>
+          <td style="text-align: right; white-space: nowrap;">
+            <div style="display: inline-flex; align-items: center; justify-content: flex-end; gap: 4px;">
+              <button class="btn btn-secondary" style="padding: 4px 6px; font-size: 11px; line-height: 1; border-radius: 6px;" onclick="moveEpisodeUp(${index})" title="Di chuyển lên">⬆️</button>
+              <button class="btn btn-secondary" style="padding: 4px 6px; font-size: 11px; line-height: 1; border-radius: 6px;" onclick="moveEpisodeDown(${index})" title="Di chuyển xuống">⬇️</button>
+              <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; line-height: 1; border-radius: 6px; display: inline-flex; align-items: center; gap: 3px;" onclick="testPlayEpisode(${index})" title="Phát thử video tập này">▶️ Test</button>
+              <button class="btn btn-secondary" style="padding: 4px 6px; font-size: 11px; line-height: 1; border-radius: 6px; color: #ff4d6d; border-color: rgba(255,77,109,0.3);" onclick="removeEpisode(${index})" title="Xóa tập này">🗑️</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function parseBulkUrls() {
+      const textarea = document.getElementById('bulk-urls-textarea');
+      const startEpInput = document.getElementById('bulk-start-ep');
+      let startEp = startEpInput ? parseInt(startEpInput.value, 10) : 1;
+      if (isNaN(startEp) || startEp < 1) startEp = 1;
+
+      if (!textarea) return;
+      const text = textarea.value.trim();
+      if (!text) {
+        alert('⚠️ Vui lòng dán danh sách URL vào ô văn bản trước!');
+        return;
+      }
+
+      const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+      if (lines.length === 0) {
+        alert('⚠️ Không tìm thấy đường link URL hợp lệ nào!');
+        return;
+      }
+
+      if (!currentDramaSeasons[activeSeasonKey]) {
+        currentDramaSeasons[activeSeasonKey] = [];
+      }
+
+      lines.forEach((url, i) => {
+        const epNum = startEp + i;
+        currentDramaSeasons[activeSeasonKey].push({
+          ep: epNum,
+          name: `Tập ${epNum}`,
+          url: url,
+          status: 'online'
+        });
+      });
+
+      // Sắp xếp lại theo số thứ tự tập
+      currentDramaSeasons[activeSeasonKey].sort((a, b) => a.ep - b.ep);
+
+      textarea.value = '';
+      if (startEpInput) {
+        startEpInput.value = currentDramaSeasons[activeSeasonKey].length + 1;
+      }
+      renderSeasonTabs();
+      alert(`🎉 ĐÃ GÁN & NẠP THÀNH CÔNG ${lines.length} TẬP!\n\nĐã tự động đánh số tuần tự từ Tập ${startEp} đến Tập ${startEp + lines.length - 1} theo đúng thứ tự dòng dán cho "${activeSeasonKey}" (bất kể định dạng link raw/hash).`);
+    }
+
+    function addNewSingleEpisode() {
+      if (!currentDramaSeasons[activeSeasonKey]) {
+        currentDramaSeasons[activeSeasonKey] = [];
+      }
+      const nextEp = currentDramaSeasons[activeSeasonKey].length + 1;
+      currentDramaSeasons[activeSeasonKey].push({
+        ep: nextEp,
+        name: `Tập ${nextEp}`,
+        url: `https://cdn.shortdrama-partner.tv/series/v1/ep${nextEp}.m3u8`,
+        status: 'online'
+      });
+      renderSeasonTabs();
+    }
+
+    function updateEpisodeUrl(index, newUrl) {
+      if (currentDramaSeasons[activeSeasonKey] && currentDramaSeasons[activeSeasonKey][index]) {
+        currentDramaSeasons[activeSeasonKey][index].url = newUrl.trim();
+        currentDramaSeasons[activeSeasonKey][index].status = 'online';
+        renderEpisodeList();
+      }
+    }
+
+    function quickEditEpisodeUrl(index) {
+      const currentUrl = currentDramaSeasons[activeSeasonKey][index].url;
+      const newUrl = prompt(`✏️ Thay thế link URL cho Tập ${currentDramaSeasons[activeSeasonKey][index].ep}:`, currentUrl);
+      if (newUrl && newUrl.trim() && newUrl.trim() !== currentUrl) {
+        updateEpisodeUrl(index, newUrl.trim());
+        alert(`✅ Đã cập nhật link mới cho Tập ${currentDramaSeasons[activeSeasonKey][index].ep}! Trạng thái chuyển sang 🟢 Online.`);
+      }
+    }
+
+    function testPlayEpisode(index) {
+      const item = currentDramaSeasons[activeSeasonKey][index];
+      if (item.status === 'broken') {
+        alert(`⚠️ [CẢNH BÁO TẬP ${item.ep}]\n\nLink: "${item.url}" đang báo lỗi (404/CORS/Broken Stream).\nVui lòng bấm icon ✏️ để thay thế bằng đường link hoạt động!`);
+      } else {
+        alert(`▶️ [TEST PLAY STREAM THÀNH CÔNG]\n\nPhim: "${document.getElementById('input-drama-title').value}"\nPhần: "${activeSeasonKey}" - Tập: ${item.ep} (${item.name})\nStream URL: ${item.url}\nResolution: 1080p FHD HLS (Tín hiệu phát mượt mà ✅)`);
+      }
+    }
+
+    function removeEpisode(index) {
+      if (confirm(`Bạn có chắc muốn xóa Tập ${currentDramaSeasons[activeSeasonKey][index].ep} không?`)) {
+        currentDramaSeasons[activeSeasonKey].splice(index, 1);
+        // Re-index
+        currentDramaSeasons[activeSeasonKey].forEach((ep, i) => {
+          ep.ep = i + 1;
+        });
+        renderSeasonTabs();
+      }
+    }
+
+    function openEditDramaModal(dramaId, dramaTitle, categories) {
+      document.getElementById('drama-modal-title').innerHTML = `✏️ Chỉnh Sửa Bộ Phim: <span style="color: var(--accent-gold);">${dramaTitle}</span> (${dramaId})`;
+      document.getElementById('input-drama-title').value = dramaTitle;
+      
+      if (categories && Array.isArray(categories)) {
+        selectedCategories = [...categories];
+      }
+      renderSelectedChips();
+
+      // Setup seasons data for this drama
+      activeSeasonKey = 'Phần 1';
+      renderSeasonTabs();
+
+      openModal('modal-create-drama');
+    }
+
+    function testPlaySingleMovie() {
+      const url = document.getElementById('input-single-drama-url').value.trim();
+      const title = document.getElementById('input-drama-title').value.trim() || 'Bộ phim lẻ';
+      if (!url) {
+        alert('⚠️ Vui lòng nhập link URL stream phim lẻ trước!');
+        return;
+      }
+      alert(`▶️ [TEST PLAY PHIM LẺ THÀNH CÔNG]\n\nPhim: "${title}" (Phim Lẻ - 1 Tập)\nStream URL: ${url}\nResolution: 1080p FHD HLS (Tín hiệu phát trực tiếp mượt mà ✅)`);
+    }
+
+    function toggleDramaFormat(format) {
+      const seriesCard = document.getElementById('drama-type-series-card');
+      const singleCard = document.getElementById('drama-type-single-card');
+      const seasonsManager = document.getElementById('section-seasons-manager');
+      const singleMovieManager = document.getElementById('section-single-movie-manager');
+
+      if (format === 'series') {
+        if (seriesCard) {
+          seriesCard.style.background = 'rgba(255,42,95,0.12)';
+          seriesCard.style.borderColor = 'var(--primary)';
+        }
+        if (singleCard) {
+          singleCard.style.background = 'var(--bg-main)';
+          singleCard.style.borderColor = 'var(--border-color)';
+        }
+        if (seasonsManager) seasonsManager.style.display = 'block';
+        if (singleMovieManager) singleMovieManager.style.display = 'none';
+      } else {
+        if (singleCard) {
+          singleCard.style.background = 'rgba(41,182,246,0.12)';
+          singleCard.style.borderColor = 'var(--accent-blue)';
+        }
+        if (seriesCard) {
+          seriesCard.style.background = 'var(--bg-main)';
+          seriesCard.style.borderColor = 'var(--border-color)';
+        }
+        if (seasonsManager) seasonsManager.style.display = 'none';
+        if (singleMovieManager) singleMovieManager.style.display = 'block';
+      }
+    }
+
     function executeCreateDramaDirect() {
       const title = document.getElementById('input-drama-title').value.trim() || 'Cô Vợ Sát Thủ & Tổng Tài Bá Đạo';
-      const url = document.getElementById('input-drama-url').value.trim();
-      const eps = '80'; // Tự động bóc tách từ Playlist M3U8
-      const tbody = document.querySelector('#view-dramas tbody');
+      const isSeriesRadio = document.getElementById('drama-type-series');
+      const isSeries = isSeriesRadio ? isSeriesRadio.checked : true;
+      
+      let formatBadgeText = '';
+      let epsText = '';
+      let seasonsCount = 1;
+      let totalEpisodes = 1;
 
-      const statusBadge = '<span class="badge badge-published">🟢 Published</span>';
+      if (isSeries) {
+        seasonsCount = Object.keys(currentDramaSeasons).length;
+        totalEpisodes = 0;
+        Object.keys(currentDramaSeasons).forEach(k => {
+          totalEpisodes += currentDramaSeasons[k].length;
+        });
+        if (totalEpisodes === 0) totalEpisodes = 80;
+        formatBadgeText = `🎬 ${seasonsCount} Phần (${totalEpisodes} Tập)`;
+        epsText = `${totalEpisodes}/${totalEpisodes} Tập`;
+      } else {
+        const singleUrl = document.getElementById('input-single-drama-url').value.trim();
+        formatBadgeText = '🎟️ Phim Lẻ (1 Tập)';
+        epsText = '1 Tập (Phim Lẻ)';
+      }
+      
+      const tbody = document.querySelector('#view-dramas tbody');
+      const statusBadge = '<span class="badge badge-published">🟢 Đã Publish</span>';
 
       const tagBadgesHtml = selectedCategories.length > 0
         ? selectedCategories.map(c => `<span class="badge badge-category">${c}</span>`).join(' ')
         : '<span class="badge badge-unmapped">🟡 Chưa gán</span>';
 
+      const newRowId = `DRAMA-${Math.floor(1000 + Math.random() * 9000)}`;
       const newRow = document.createElement('tr');
       newRow.style.background = 'rgba(255, 42, 95, 0.08)';
       newRow.innerHTML = `
@@ -3007,29 +3770,30 @@
         <td><div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">URL</div></td>
         <td>
           <strong style="color: #fff;">${title}</strong>
-          <div style="font-size: 11px; color: var(--accent-green);">ID: DRAMA-${Math.floor(1000 + Math.random() * 9000)} • URL Link Direct</div>
+          <div style="font-size: 11px; color: var(--accent-green); margin-top: 2px;">ID: ${newRowId} • <span style="color: var(--accent-gold); font-weight: 700;">${formatBadgeText}</span></div>
         </td>
         <td><span class="badge badge-published" style="background: rgba(0,230,118,0.15); color: var(--accent-green);">🔗 URL Direct</span></td>
         <td>
           ${tagBadgesHtml}
         </td>
-        <td><strong style="color: var(--accent-gold);">${eps}/${eps} Tập</strong></td>
+        <td><strong style="color: var(--accent-gold);">${epsText}</strong></td>
         <td>${statusBadge}</td>
         <td>
           <div class="action-btn-group">
-            <button class="icon-action-btn" title="Chỉnh sửa" onclick="openModal('modal-create-drama')">✏️</button>
+            <button class="icon-action-btn" title="Chỉnh sửa chi tiết phim & các tập" onclick="openEditDramaModal('${newRowId}', '${title}', selectedCategories)">✏️</button>
             <button class="icon-action-btn" title="Xóa phim" onclick="this.closest('tr').remove(); updateBulkBar();">🗑️</button>
           </div>
         </td>
       `;
 
       tbody.insertBefore(newRow, tbody.firstChild);
-      alert(`🎉 THÀNH CÔNG RỰC RỠ!\n\nĐã tạo bộ phim "${title}" (${eps} Tập) thành công!\nThể loại đã gán: ${selectedCategories.join(', ') || 'Chưa gán'}\nLink nguồn URL: ${url ? url.substring(0, 45) + '...' : 'Đã cấu hình'}`);
+      alert(`🎉 THÀNH CÔNG RỰC RỠ!\n\nĐã lưu bộ phim "${title}" thành công!\nĐịnh dạng: ${isSeries ? `Phim Bộ (${seasonsCount} Phần - ${totalEpisodes} Tập)` : 'Phim Lẻ (1 Tập Trọn Vẹn)'}\nThể loại: ${selectedCategories.join(', ') || 'Chưa gán'}`);
       closeModal('modal-create-drama');
     }
 
     function executeCreateCategoryAction() {
       const catName = document.getElementById('new-category-name').value.trim() || 'Kinh Dị Siêu Nhất';
+      const orderVal = parseInt(document.getElementById('new-category-order').value) || 4;
       const tbody = document.getElementById('category-table-body');
 
       const formattedName = catName.startsWith('✨') || catName.startsWith('👻') ? catName : `✨ ${catName}`;
@@ -3039,26 +3803,290 @@
         renderSelectedChips();
       }
 
-      const newRow = document.createElement('tr');
+      const newRowId = `cat-row-${Date.now()}`;
+      newRow.id = newRowId;
+      newRow.setAttribute('ondragstart', 'handleCatDragStart(event, this)');
+      newRow.setAttribute('ondragover', 'handleCatDragOver(event, this)');
+      newRow.setAttribute('ondragleave', 'handleCatDragLeave(event, this)');
+      newRow.setAttribute('ondrop', 'handleCatDrop(event, this)');
+      newRow.setAttribute('ondragend', 'handleCatDragEnd(event, this)');
+
+      const isStatusActive = document.querySelector('input[name="cat_app_status"]:checked')?.value !== 'inactive';
+      const statusToggleChecked = isStatusActive ? 'checked' : '';
+      const statusBadgeClass = isStatusActive ? 'badge-published' : 'badge-draft';
+      const statusBadgeText = isStatusActive ? '🟢 Hiển thị' : '🔴 Đang Ẩn';
+
       newRow.innerHTML = `
-        <td>#4</td>
-        <td><strong style="color: #fff;">${formattedName}</strong></td>
-        <td><span class="badge badge-category">Thể loại Mới</span></td>
-        <td>0 Phim</td>
-        <td><span class="badge badge-published">🟢 Hiển thị</span></td>
+        <td>
+          <div class="stt-cell">
+            <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
+            <strong class="cat-order-num" style="color: #fff;">#${orderVal}</strong>
+          </div>
+        </td>
+        <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-${newRowId}">${formattedName}</strong></td>
+        <td>
+          <button class="btn btn-secondary" style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;" onclick="openListDramasByCategory('${formattedName}', 'new')" title="Bấm để xem danh sách phim">
+            <span>🎬 <strong>0 Phim</strong></span>
+            <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+          </button>
+        </td>
+        <td>
+          <div class="cat-toggle-wrap">
+            <label class="cat-toggle-switch" title="Bật/Tắt hiển thị Category trên App & Web">
+              <input type="checkbox" ${statusToggleChecked} onchange="toggleCategoryDisplay(this, '${formattedName}')">
+              <span class="cat-toggle-slider"></span>
+            </label>
+            <span class="badge ${statusBadgeClass} cat-status-badge" style="font-size: 11px;">${statusBadgeText}</span>
+          </div>
+        </td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬆️</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">⬇️</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" onclick="this.closest('tr').remove();">🗑️</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Xem danh sách phim" onclick="openListDramasByCategory('${formattedName}', 'new')">👁️ Phim</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Chỉnh sửa / Đổi tên" onclick="openEditCategoryModal('${newRowId}', '${formattedName}', false)">✏️</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Di chuyển lên" onclick="moveCategoryRowUp(this)">⬆️</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" title="Di chuyển xuống" onclick="moveCategoryRowDown(this)">⬇️</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;" title="Xóa" onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
           </div>
         </td>
       `;
 
       tbody.appendChild(newRow);
+      reindexCategoryRows();
 
-      alert(`🎉 Đã tạo thành công Category Tab mới: "${formattedName}"!\n• Đã hiển thị trên bảng Quản lý Category.\n• Tự động đồng bộ nạp vào Dropdown Chọn Thể loại trong Modal Tạo Phim!`);
+      alert(`🎉 Đã tạo thành công Category Tab mới: "${formattedName}"!\n• Vị trí Số Thứ Tự: #${orderVal}\n• Trạng thái: ${statusBadgeText}\n• Hỗ trợ kéo thả ⠿ để sắp xếp vị trí linh hoạt trên bảng.`);
       closeModal('modal-create-category');
+    }
+
+    /* EDIT CATEGORY MODAL ACTIONS */
+    function openEditCategoryModal(rowId, currentName, isSystemTab) {
+      document.getElementById('edit-cat-target-row-id').value = rowId;
+      const cleanName = currentName.replace(/^[✨🔥❤️👻🎬\s]+/, '').replace(/\s*\(For You\)$/, '').trim();
+      document.getElementById('edit-cat-name-input').value = currentName;
+      
+      const titleEl = document.getElementById('edit-cat-modal-title');
+      const noteEl = document.getElementById('edit-cat-note-system');
+      
+      if (isSystemTab) {
+        titleEl.innerHTML = '✏️ Đổi Tên Tab Mặc Định Hệ Thống (#1)';
+        noteEl.style.display = 'block';
+      } else {
+        titleEl.innerHTML = '✏️ Chỉnh Sửa / Đổi Tên Category';
+        noteEl.style.display = 'none';
+      }
+      
+      openModal('modal-edit-category');
+    }
+
+    function saveEditCategoryAction() {
+      const rowId = document.getElementById('edit-cat-target-row-id').value;
+      const newName = document.getElementById('edit-cat-name-input').value.trim();
+      
+      if (!newName) {
+        alert('⚠️ Tên Category không được để trống!');
+        return;
+      }
+
+      const row = document.getElementById(rowId);
+      if (row) {
+        const nameLabel = row.querySelector('.cat-name-label') || row.querySelector('td:nth-child(2) strong');
+        if (nameLabel) {
+          nameLabel.innerText = newName;
+        }
+      }
+
+      alert(`🎉 ĐÃ ĐỔI TÊN THÀNH CÔNG!\n\nTên Category mới: "${newName}" đã được lưu và cập nhật ngay trên App & Web!`);
+      closeModal('modal-edit-category');
+    }
+
+    /* POPULATE AND VIEW DRAMAS LIST BY CATEGORY MODAL */
+    const sampleCategoryDramasData = {
+      'hot-trend': [
+        { id: 'DRAMA-8842', title: 'Tiểu Thư Hắc Hóa Trở Về', eps: '80/80 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'TT' },
+        { id: 'DRAMA-9014', title: 'Đại Tướng Quân Trọng Sinh Chi Vương', eps: '60/60 Tập', source: '🔗 URL Direct', status: '🟢 Đã Publish', posterText: 'ĐTQ' },
+        { id: 'DRAMA-7112', title: 'Hôn Lễ Bạc Tỷ Của Thiếu Gia Mù', eps: '45/45 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'HL' },
+        { id: 'DRAMA-5521', title: 'Tổng Tài Thần Báo Lật Kèo Báo Thù', eps: '50/50 Tập', source: '⚡ Partner B (API)', status: '🔴 Tạm ẩn', posterText: 'TTTB' },
+        { id: 'DRAMA-4309', title: 'Chiến Thần Đô Thị Quyết Đấu', eps: '70/70 Tập', source: '🔗 URL Direct', status: '🟢 Đã Publish', posterText: 'CT' },
+        { id: 'DRAMA-1192', title: 'Thiên Kim Thật Sự Đã Trở Lại', eps: '85/85 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'TK' }
+      ],
+      'ngon-tinh': [
+        { id: 'DRAMA-8842', title: 'Tiểu Thư Hắc Hóa Trở Về', eps: '80/80 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'TT' },
+        { id: 'DRAMA-7112', title: 'Hôn Lễ Bạc Tỷ Của Thiếu Gia Mù', eps: '45/45 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'HL' },
+        { id: 'DRAMA-3310', title: 'Cô Vợ Thay Thế Của Mộ Tổng', eps: '55/55 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'CV' },
+        { id: 'DRAMA-6621', title: 'Vương Phi Bướng Bỉnh Chớ Chạy Mau', eps: '65/65 Tập', source: '🔗 URL Direct', status: '🟢 Đã Publish', posterText: 'VP' },
+        { id: 'DRAMA-2941', title: 'Gả Cho Tổng Tài Tàn Tật Sau Đêm Định Mệnh', eps: '90/90 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'GC' }
+      ],
+      'all': [
+        { id: 'DRAMA-8842', title: 'Tiểu Thư Hắc Hóa Trở Về', eps: '80/80 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'TT' },
+        { id: 'DRAMA-9014', title: 'Đại Tướng Quân Trọng Sinh Chi Vương', eps: '60/60 Tập', source: '🔗 URL Direct', status: '🟢 Đã Publish', posterText: 'ĐTQ' },
+        { id: 'DRAMA-7112', title: 'Hôn Lễ Bạc Tỷ Của Thiếu Gia Mù', eps: '45/45 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'HL' },
+        { id: 'DRAMA-5521', title: 'Tổng Tài Thần Báo Lật Kèo Báo Thù', eps: '50/50 Tập', source: '⚡ Partner B (API)', status: '🔴 Tạm ẩn', posterText: 'TTTB' },
+        { id: 'DRAMA-3310', title: 'Cô Vợ Thay Thế Của Mộ Tổng', eps: '55/55 Tập', source: '⚡ Partner A (API)', status: '🟢 Đã Publish', posterText: 'CV' },
+        { id: 'DRAMA-4309', title: 'Chiến Thần Đô Thị Quyết Đấu', eps: '70/70 Tập', source: '🔗 URL Direct', status: '🟢 Đã Publish', posterText: 'CT' }
+      ]
+    };
+
+    function openListDramasByCategory(categoryName, catKey) {
+      document.getElementById('modal-cat-dramas-title').innerText = categoryName;
+      const searchInput = document.getElementById('search-cat-dramas-input');
+      if (searchInput) searchInput.value = '';
+
+      const dramas = sampleCategoryDramasData[catKey] || sampleCategoryDramasData['all'];
+      const totalCount = catKey === 'hot-trend' ? '28 Phim' : (catKey === 'ngon-tinh' ? '45 Phim' : (catKey === 'all' ? 'Toàn Bộ Kho Phim' : `${dramas.length} Phim`));
+      
+      document.getElementById('modal-cat-dramas-count').innerText = totalCount;
+
+      const tbody = document.getElementById('modal-cat-dramas-tbody');
+      tbody.innerHTML = '';
+
+      dramas.forEach((drama, index) => {
+        const row = document.createElement('tr');
+        row.className = 'modal-cat-drama-row';
+        const isDraft = drama.status.includes('Tạm ẩn');
+        const badgeClass = isDraft ? 'badge-draft' : 'badge-published';
+        row.innerHTML = `
+          <td style="text-align: center;"><strong style="color: var(--text-muted);">#${index + 1}</strong></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; width: 36px; height: 48px; border-radius: 6px; flex-shrink: 0;">${drama.posterText}</div>
+              <div>
+                <strong style="color: #fff; font-size: 13px; display: block;">${drama.title}</strong>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">ID: ${drama.id}</div>
+              </div>
+            </div>
+          </td>
+          <td style="text-align: center; white-space: nowrap;"><strong style="color: var(--accent-gold); font-size: 12px;">${drama.eps}</strong></td>
+          <td style="white-space: nowrap;"><span class="badge badge-api" style="font-size: 11px;">${drama.source}</span></td>
+          <td style="text-align: center; white-space: nowrap;"><span class="badge ${badgeClass}" style="font-size: 11.5px; padding: 4px 10px; white-space: nowrap;">${drama.status}</span></td>
+          <td style="text-align: right; white-space: nowrap;">
+            <button class="btn btn-secondary" style="padding: 5px 10px; font-size: 11px; color: #ff4d6d; border-color: rgba(255,77,109,0.35); background: rgba(255,77,109,0.08); white-space: nowrap;" onclick="removeDramaFromCurrentCategory(this, '${drama.title}')" title="Gỡ phim này khỏi Category">❌ Gỡ khỏi Category</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      openModal('modal-category-dramas');
+    }
+
+    function filterCatDramasModal(keyword) {
+      const term = keyword.toLowerCase().trim();
+      const rows = document.querySelectorAll('.modal-cat-drama-row');
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        r.style.display = text.includes(term) ? '' : 'none';
+      });
+    }
+
+    function removeDramaFromCurrentCategory(btn, dramaTitle) {
+      if (confirm(`Bạn có chắc muốn gỡ bộ phim "${dramaTitle}" ra khỏi Category này không?`)) {
+        btn.closest('tr').remove();
+        alert(`✅ Đã gỡ thành công bộ phim "${dramaTitle}" khỏi Category này!`);
+      }
+    }
+
+    /* DRAG AND DROP HANDLERS FOR CATEGORY ROWS */
+    let draggedCatRow = null;
+
+    function handleCatDragStart(e, row) {
+      draggedCatRow = row;
+      row.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', '');
+    }
+
+    function handleCatDragOver(e, row) {
+      e.preventDefault();
+      if (!draggedCatRow || draggedCatRow === row || row.classList.contains('cat-fixed-row')) return;
+      e.dataTransfer.dropEffect = 'move';
+      const rect = row.getBoundingClientRect();
+      const midY = rect.top + rect.height / 2;
+      if (e.clientY < midY) {
+        row.classList.add('drag-over-top');
+        row.classList.remove('drag-over-bottom');
+      } else {
+        row.classList.add('drag-over-bottom');
+        row.classList.remove('drag-over-top');
+      }
+    }
+
+    function handleCatDragLeave(e, row) {
+      row.classList.remove('drag-over-top', 'drag-over-bottom');
+    }
+
+    function handleCatDrop(e, row) {
+      e.preventDefault();
+      row.classList.remove('drag-over-top', 'drag-over-bottom');
+      if (!draggedCatRow || draggedCatRow === row || row.classList.contains('cat-fixed-row')) return;
+      
+      const tbody = document.getElementById('category-table-body');
+      const rect = row.getBoundingClientRect();
+      const midY = rect.top + rect.height / 2;
+      
+      if (e.clientY < midY) {
+        tbody.insertBefore(draggedCatRow, row);
+      } else {
+        tbody.insertBefore(draggedCatRow, row.nextSibling);
+      }
+      reindexCategoryRows();
+      alert('⚡ [Kéo Thả Thành Công] Đã cập nhật và lưu thứ tự Category mới trên App!');
+    }
+
+    function handleCatDragEnd(e, row) {
+      row.classList.remove('dragging');
+      document.querySelectorAll('.cat-drag-row').forEach(r => r.classList.remove('drag-over-top', 'drag-over-bottom'));
+      draggedCatRow = null;
+    }
+
+    function moveCategoryRowUp(btn) {
+      const row = btn.closest('tr');
+      const prev = row.previousElementSibling;
+      if (prev && !prev.classList.contains('cat-fixed-row')) {
+        row.parentNode.insertBefore(row, prev);
+        reindexCategoryRows();
+      } else {
+        alert('⚠️ Không thể di chuyển vượt qua Tab Mặc Định #1 của Hệ Thống!');
+      }
+    }
+
+    function moveCategoryRowDown(btn) {
+      const row = btn.closest('tr');
+      const next = row.nextElementSibling;
+      if (next) {
+        row.parentNode.insertBefore(next, row);
+        reindexCategoryRows();
+      }
+    }
+
+    function reindexCategoryRows() {
+      const tbody = document.getElementById('category-table-body');
+      const rows = tbody.querySelectorAll('tr');
+      let order = 1;
+      rows.forEach((r) => {
+        const orderEl = r.querySelector('.cat-order-num');
+        if (orderEl) {
+          orderEl.innerText = `#${order}`;
+        }
+        order++;
+      });
+      const badge = document.getElementById('category-count-badge');
+      if (badge) badge.innerText = `${rows.length} Categories Active`;
+    }
+
+    function toggleCategoryDisplay(checkbox, catName) {
+      const wrap = checkbox.closest('.cat-toggle-wrap');
+      const badge = wrap ? wrap.querySelector('.cat-status-badge') : null;
+      if (checkbox.checked) {
+        if (badge) {
+          badge.className = 'badge badge-published cat-status-badge';
+          badge.innerText = '🟢 Hiển thị';
+        }
+        alert(`🟢 [Trạng thái hiển thị]\\nĐã BẬT hiển thị Category Tab "${catName}" trên App & Web!`);
+      } else {
+        if (badge) {
+          badge.className = 'badge badge-draft cat-status-badge';
+          badge.innerText = '🔴 Đang Ẩn';
+        }
+        alert(`🔴 [Trạng thái hiển thị]\\nĐã TẮT hiển thị (Ẩn) Category Tab "${catName}" khỏi App & Web!`);
+      }
     }
 
     function quickTagRow(rowNum, tagName) {
