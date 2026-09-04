@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PineDrama - Ứng Dụng Phim Ngắn Đỉnh Cao | Tải Miễn Phí</title>
+  <meta name="description" content="Xem hàng ngàn bộ phim ngắn kịch tính, định dạng 9:16 sắc nét. Tải app PineDrama ngay trên iOS và Android để nhận 100 Xu miễn phí!">
+  
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- QRCode.js CDN for live QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0f;
+      --bg-card: rgba(22, 22, 30, 0.85);
+      --bg-store-apple: #000000;
+      --bg-store-google: #1f1f1f;
+      --primary: #ff3366;
+      --primary-gradient: linear-gradient(135deg, #ff3366 0%, #ff6b3d 100%);
+      --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+      --apple-blue: #0071e3;
+      --google-green: #01875f;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --border-glow: rgba(255, 51, 102, 0.25);
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Ambient Glow Background */
+    .ambient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      background: #ff3366;
+      top: -100px;
+      left: -100px;
+    }
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: #3b82f6;
+      bottom: 10%;
+      right: -150px;
+      animation-delay: -5s;
+    }
+    .orb-3 {
+      width: 350px;
+      height: 350px;
+      background: #8b5cf6;
+      top: 40%;
+      left: 30%;
+      animation-delay: -8s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 30px) scale(1.1); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(10, 10, 15, 0.75);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+    }
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo-badge {
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(255, 51, 102, 0.2);
+      color: #ff3366;
+      border: 1px solid rgba(255, 51, 102, 0.3);
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-link:hover {
+      color: #fff;
+    }
+    .btn-header-cta {
+      background: var(--primary-gradient);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(255, 51, 102, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-header-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 51, 102, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-tag span.dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 10px #10b981;
+    }
+    .hero-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ff3366 0%, #ff9966 50%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+
+    /* Fast Download CTA Group */
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .store-badge-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #15151c;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 24px;
+      border-radius: 16px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      min-width: 200px;
+      text-align: left;
+    }
+    .store-badge-btn:hover {
+      background: #20202c;
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    .store-badge-btn i {
+      font-size: 28px;
+    }
+    .store-badge-btn .subtext {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .store-badge-btn .maintext {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* Live QR & Benefits Mini Box */
+    .hero-perks {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+    .hero-perks span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-perks svg {
+      color: #ff3366;
+    }
+
+    /* STORE PAGE MOCKUP SECTION */
+    .store-section {
+      padding: 40px 0 80px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* Store Switcher Tabs */
+    .store-tabs-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .store-tabs {
+      display: inline-flex;
+      background: #15151c;
+      padding: 6px;
+      border-radius: 40px;
+      border: 1px solid var(--border-color);
+    }
+    .store-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      border-radius: 30px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .store-tab-btn.active {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+    .store-tab-btn.active.google-active {
+      background: #01875f;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(1, 135, 95, 0.4);
+    }
+
+    /* STORE CONTAINER SIMULATION */
+    .store-mockup-card {
+      background: #111116;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 51, 102, 0.1);
+      position: relative;
+    }
+
+    /* Mockup Header Bar */
+    .store-topbar {
+      background: #1a1a24;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .store-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .store-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+    .store-address {
+      font-size: 12px;
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px 16px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* App Store / Google Play Inner Layout */
+    .store-content {
+      padding: 32px;
+      background: #0d0d12;
+      transition: all 0.3s ease;
+    }
+
+    /* App Info Header */
+    .app-header {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .app-icon {
+      width: 110px;
+      height: 110px;
+      border-radius: 24px;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(255, 51, 102, 0.35);
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .app-icon-inner {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-icon-inner span {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .app-meta {
+      flex: 1;
+    }
+    .app-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .app-developer {
+      font-size: 14px;
+      color: #38bdf8;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .app-genre {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* CTA Buttons in Store */
+    .store-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-store-install {
+      background: var(--apple-blue);
+      color: #fff;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 24px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-store-install:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+    .btn-store-install.google-btn {
+      background: var(--google-green);
+      border-radius: 8px;
+    }
+    .btn-qr-scan {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-qr-scan:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Store Stats Row */
+    .store-stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .stat-item {
+      flex: 1;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .stat-item:last-child {
+      border-right: none;
+    }
+    .stat-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Screenshots Carousel Mockup */
+    .store-screenshots-wrap {
+      margin-bottom: 28px;
+    }
+    .screenshots-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #e2e8f0;
+    }
+    .screenshots-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    }
+    .screenshots-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .screenshots-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+    .screenshot-card {
+      flex: 0 0 170px;
+      height: 340px;
+      border-radius: 18px;
+      background: #1c1c24;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      position: relative;
+      scroll-snap-align: start;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+    }
+    .screenshot-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 12px;
+      position: relative;
+    }
+    .screenshot-badge {
+      align-self: flex-start;
+      background: rgba(255, 51, 102, 0.85);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+    .screenshot-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 10px 12px;
+    }
+    .screenshot-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .screenshot-sub {
+      font-size: 10px;
+      color: #cbd5e1;
+    }
+
+    /* What's New & Description */
+    .store-text-block {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
+    .store-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .store-p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* Ratings & Reviews Breakdown */
+    .store-reviews-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .user-review-card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+    }
+    .user-review-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .user-name { font-weight: 700; color: #f1f5f9; }
+    .review-stars { color: #f59e0b; font-size: 12px; }
+    .review-comment { font-size: 12px; color: #94a3b8; }
+
+    /* HƯỚNG DẪN CÀI ĐẶT */
+    .install-guide-section {
+      padding: 60px 0 80px;
+      background: linear-gradient(180deg, transparent 0%, rgba(255, 51, 102, 0.03) 50%, transparent 100%);
+    }
+    .guide-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .guide-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #161622;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .guide-tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(255, 51, 102, 0.35);
+    }
+
+    .guide-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+    .guide-card {
+      background: #14141d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 28px 24px;
+      position: relative;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .guide-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 51, 102, 0.3);
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 51, 102, 0.15);
+      color: #ff3366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .guide-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .guide-card-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .guide-tip {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 3px solid #ff3366;
+      padding: 8px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    /* KHO PHIM HOT PREVIEW */
+    .drama-preview-section {
+      padding: 40px 0 80px;
+    }
+    .drama-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .drama-item {
+      background: #14141e;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+    .drama-item:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 51, 102, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    .drama-thumb {
+      height: 280px;
+      width: 100%;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px;
+    }
+    .drama-thumb-1 { background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%), #4a044e; }
+    .drama-thumb-2 { background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%), #1e1b4b; }
+    .drama-thumb-3 { background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%), #701a75; }
+    .drama-thumb-4 { background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%), #064e3b; }
+
+    .episodes-badge {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 8px;
+      align-self: flex-start;
+      color: #fbbf24;
+    }
+    .play-btn-circle {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      box-shadow: 0 4px 15px rgba(255, 51, 102, 0.5);
+      transition: transform 0.2s;
+    }
+    .drama-item:hover .play-btn-circle {
+      transform: scale(1.15);
+    }
+    .drama-info {
+      padding: 14px;
+    }
+    .drama-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .drama-tags {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Modal QR */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-card {
+      background: #161622;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 420px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-qr-box {
+      width: 190px;
+      height: 190px;
+      background: #fff;
+      padding: 12px;
+      border-radius: 16px;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-qr-box img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Mobile Sticky CTA */
+    .mobile-sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 15, 22, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 12px 20px;
+      z-index: 99;
+      box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+    }
+    .mobile-sticky-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sticky-app-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sticky-app-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sticky-btn {
+      background: var(--primary-gradient);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 50px 0 80px;
+      background: #08080c;
+      color: var(--text-dim);
+      font-size: 13px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-sticky-cta { display: block; }
+      .app-header { flex-direction: column; align-items: center; text-align: center; }
+      .store-actions { justify-content: center; width: 100%; }
+      .btn-store-install { width: 100%; justify-content: center; }
+      .btn-qr-scan { width: 100%; justify-content: center; }
+      .store-content { padding: 20px 16px; }
+      .store-stats-row { padding: 14px 0; }
+      .stat-val { font-size: 15px; }
+      .stat-label { font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Background -->
+  <div class="ambient-bg">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="logo-box">
+          <div class="logo-icon">
+            <i data-lucide="play" style="fill: white; stroke: white; width: 20px; height: 20px;"></i>
+          </div>
+          <div>
+            <span class="logo-text">PineDrama</span>
+            <span class="logo-badge">MỚI RA MẮT</span>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#store-preview" class="nav-link">Giao Diện Tải</a>
+          <a href="#install-guide" class="nav-link">Hướng Dẫn Cài</a>
+          <a href="#hot-dramas" class="nav-link">Phim Thịnh Hành</a>
+          <a href="#reviews" class="nav-link">Đánh Giá</a>
+        </nav>
+
+        <a href="#store-preview" class="btn-header-cta" onclick="openQrModal('PineDrama - Cài đặt ngay')">
+          <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+          <span>Tải App Ngay</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        <span>🎉 Ra Mắt Phiên Bản 1.0.0 - Tặng 100 Xu Tân Thủ</span>
+      </div>
+
+      <h1 class="hero-title">
+        Thế Giới Phim Ngắn Đỉnh Cao<br>
+        <span class="gradient-text">Cuốn Hút Trong Từng Giây</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Trải nghiệm kho phim dọc chuẩn 9:16 kịch tính: Tổng tài, Trọng sinh, Ngôn tình, Gia đấu... 
+        Mỗi tập chỉ 1 - 2 phút, xem mượt mà mọi lúc mọi nơi!
+      </p>
+
+      <!-- Fast Store Buttons -->
+      <div class="hero-cta-group">
+        <a href="#store-preview" class="store-badge-btn" onclick="switchStoreMode('apple')">
+          <i data-lucide="apple" style="width: 32px; height: 32px;"></i>
+          <div>
+            <div class="subtext">Tải trên</div>
+            <div class="maintext">App Store</div>
+          </div>
+        </a>
+
+        <a href="#store-preview" class="store-badge-btn" onclick="switchStoreMode('google')">
+          <i data-lucide="play" style="width: 30px; height: 30px; color: #22c55e;"></i>
+          <div>
+            <div class="subtext">Tải trên</div>
+            <div class="maintext">Google Play</div>
+          </div>
+        </a>
+
+        <button class="store-badge-btn" onclick="openQrModal('Quét mã QR để tải trực tiếp trên điện thoại')">
+          <i data-lucide="qr-code" style="width: 30px; height: 30px; color: #ff3366;"></i>
+          <div>
+            <div class="subtext">Cài Nhanh</div>
+            <div class="maintext">Quét Mã QR</div>
+          </div>
+        </button>
+      </div>
+
+      <div class="hero-perks">
+        <span><i data-lucide="check-circle" style="width: 16px; height: 16px;"></i> Miễn phí 100% khi tải</span>
+        <span><i data-lucide="zap" style="width: 16px; height: 16px;"></i> Full HD 1080p 60fps</span>
+        <span><i data-lucide="shield-check" style="width: 16px; height: 16px;"></i> An toàn & Không virus</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE MOCKUP SECTION -->
+  <section class="store-section" id="store-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Trải Nghiệm Trang Tải Chuẩn Store</h2>
+        <p class="section-desc">Giao diện tải ứng dụng trực quan mô phỏng App Store (iOS) & Google Play Store (Android)</p>
+      </div>
+
+      <!-- Switch Tabs -->
+      <div class="store-tabs-wrapper">
+        <div class="store-tabs">
+          <button class="store-tab-btn active" id="tab-apple" onclick="switchStoreMode('apple')">
+            <i data-lucide="apple" style="width: 18px; height: 18px;"></i>
+            <span>Apple App Store (iOS)</span>
+          </button>
+          <button class="store-tab-btn" id="tab-google" onclick="switchStoreMode('google')">
+            <i data-lucide="smartphone" style="width: 18px; height: 18px;"></i>
+            <span>Google Play Store (Android)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mockup Card -->
+      <div class="store-mockup-card">
+        <!-- Top Bar -->
+        <div class="store-topbar">
+          <div class="store-dots">
+            <div class="store-dot dot-red"></div>
+            <div class="store-dot dot-yellow"></div>
+            <div class="store-dot dot-green"></div>
+          </div>
+          <div class="store-address" id="store-url-display">
+            <i data-lucide="lock" style="width: 12px; height: 12px;"></i>
+            <span id="store-url-text">apps.apple.com/app/pinedrama-short-drama</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted);" id="store-type-badge">iOS App Store</div>
+        </div>
+
+        <!-- Store Body -->
+        <div class="store-content">
+          <!-- App Header -->
+          <div class="app-header">
+            <div class="app-icon">
+              <div class="app-icon-inner">
+                <i data-lucide="play-circle" style="width: 48px; height: 48px;"></i>
+                <span>PineDrama</span>
+              </div>
+            </div>
+
+            <div class="app-meta">
+              <h3 class="app-title" id="store-app-title">PineDrama: Phim Ngắn Kịch Tính</h3>
+              <div class="app-developer" id="store-app-dev">Pine Studio Entertainment JSC</div>
+              <div class="app-genre" id="store-app-genre">#1 trong mục Giải Trí • Chứa giao dịch trong ứng dụng</div>
+
+              <div class="store-actions">
+                <button class="btn-store-install" id="btn-main-install" onclick="triggerInstallAction()">
+                  <i data-lucide="download-cloud" style="width: 18px; height: 18px;"></i>
+                  <span id="install-btn-text">NHẬN (GET)</span>
+                </button>
+
+                <button class="btn-qr-scan" onclick="openQrModal('Quét mã để tải ngay trên máy của bạn')">
+                  <i data-lucide="qr-code" style="width: 16px; height: 16px;"></i>
+                  <span>Quét mã QR</span>
+                </button>
+
+                <button class="btn-qr-scan" onclick="shareApp()">
+                  <i data-lucide="share-2" style="width: 16px; height: 16px;"></i>
+                  <span>Chia sẻ</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="store-stats-row">
+            <div class="stat-item">
+              <div class="stat-val">
+                <span>4.9</span>
+                <i data-lucide="star" style="width: 16px; height: 16px; fill: #f59e0b; stroke: #f59e0b;"></i>
+              </div>
+              <div class="stat-label">28.4K Đánh giá</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-val">#1 Top</div>
+              <div class="stat-label">Phim ngắn 2026</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-val">12+</div>
+              <div class="stat-label">Độ tuổi phù hợp</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-val">38 MB</div>
+              <div class="stat-label">Dung lượng nhẹ</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-val">100K+</div>
+              <div class="stat-label">Lượt cài đặt</div>
+            </div>
+          </div>
+
+          <!-- Screenshots Carousel -->
+          <div class="store-screenshots-wrap">
+            <div class="screenshots-title">Ảnh chụp màn hình (Screenshots)</div>
+            <div class="screenshots-scroll">
+              <!-- Screenshot 1 -->
+              <div class="screenshot-card">
+                <div class="screenshot-poster" style="background: linear-gradient(180deg, #380d23 0%, #150611 100%);">
+                  <div class="screenshot-badge">TẬP MỚI</div>
+                  <div class="screenshot-overlay">
+                    <div class="screenshot-title">👑 Tổng Tài Bạc Tỷ</div>
+                    <div class="screenshot-sub">Tập 45/80 • Cực cuốn</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screenshot 2 -->
+              <div class="screenshot-card">
+                <div class="screenshot-poster" style="background: linear-gradient(180deg, #111d4a 0%, #060919 100%);">
+                  <div class="screenshot-badge" style="background: #2563eb;">FULL HD</div>
+                  <div class="screenshot-overlay">
+                    <div class="screenshot-title">🔥 Trọng Sinh Trả Thù</div>
+                    <div class="screenshot-sub">Top 1 Thịnh Hành Tuần</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screenshot 3 -->
+              <div class="screenshot-card">
+                <div class="screenshot-poster" style="background: linear-gradient(180deg, #4c0519 0%, #1c0209 100%);">
+                  <div class="screenshot-badge" style="background: #e11d48;">HOT 18+</div>
+                  <div class="screenshot-overlay">
+                    <div class="screenshot-title">🌹 Hợp Đồng Hôn Nhân</div>
+                    <div class="screenshot-sub">12.5M Lượt Xem</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screenshot 4 -->
+              <div class="screenshot-card">
+                <div class="screenshot-poster" style="background: linear-gradient(180deg, #064e3b 0%, #022018 100%);">
+                  <div class="screenshot-badge" style="background: #059669;">MÃN NHÃN</div>
+                  <div class="screenshot-overlay">
+                    <div class="screenshot-title">⚔️ Chiến Thần Xuất Thế</div>
+                    <div class="screenshot-sub">Âm thanh sống động 3D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screenshot 5 -->
+              <div class="screenshot-card">
+                <div class="screenshot-poster" style="background: linear-gradient(180deg, #581c87 0%, #1e0533 100%);">
+                  <div class="screenshot-badge" style="background: #9333ea;">QUÀ TẶNG</div>
+                  <div class="screenshot-overlay">
+                    <div class="screenshot-title">🎁 Điểm Danh Nhận Xu</div>
+                    <div class="screenshot-sub">Xem phim thả ga không lo phí</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- What's New Block -->
+          <div class="store-text-block">
+            <div class="store-heading">Có gì mới ở phiên bản 1.0.0</div>
+            <p class="store-p">
+              • Ra mắt chính thức ứng dụng xem phim ngắn PineDrama.<br>
+              • Tối ưu tốc độ tải video, xem mượt kể cả với mạng 3G/4G yếu.<br>
+              • Tặng ngay gói 100 Xu trải nghiệm mở khóa tập VIP cho người dùng mới đăng ký.<br>
+              • Hỗ trợ tính năng phụ đề tiếng Việt & âm thanh vòm sống động.
+            </p>
+          </div>
+
+          <!-- Ratings and Reviews Section -->
+          <div class="store-reviews-box" id="reviews">
+            <div class="reviews-header">
+              <div class="store-heading" style="margin-bottom: 0;">Xếp hạng & Nhận xét</div>
+              <span style="font-size: 13px; color: #38bdf8; cursor: pointer;">Xem tất cả (2.4k)</span>
+            </div>
+
+            <!-- Review 1 -->
+            <div class="user-review-card">
+              <div class="user-review-top">
+                <span class="user-name">Minh Hoàng (iPhone 15 Pro Max)</span>
+                <span class="review-stars">★★★★★</span>
+              </div>
+              <p class="review-comment">"App load cực nhanh, phim tổng tài kịch bản cuốn dã man! Vừa tải được tặng ngay xu mở tập xem liền tù tì 30 tập luôn."</p>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="user-review-card">
+              <div class="user-review-top">
+                <span class="user-name">Thu Trang (Samsung S24 Ultra)</span>
+                <span class="review-stars">★★★★★</span>
+              </div>
+              <p class="review-comment">"Giao diện lướt như TikTok nhưng phim liền mạch và kịch tính hơn nhiều. Rất tiện xem lúc rảnh rỗi hoặc giờ nghỉ trưa."</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HƯỚNG DẪN CÀI ĐẶT CHI TIẾT -->
+  <section class="install-guide-section" id="install-guide">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Hướng Dẫn Cài Đặt Chi Tiết</h2>
+        <p class="section-desc">Cực kỳ đơn giản chỉ trong 3 bước - Xem phim ngay sau 30 giây</p>
+      </div>
+
+      <div class="guide-tabs">
+        <button class="guide-tab-btn active" id="gtab-ios" onclick="switchGuide('ios')">
+          <i data-lucide="apple" style="width: 18px; height: 18px;"></i>
+          <span>Dành cho iOS (iPhone / iPad)</span>
+        </button>
+        <button class="guide-tab-btn" id="gtab-android" onclick="switchGuide('android')">
+          <i data-lucide="smartphone" style="width: 18px; height: 18px;"></i>
+          <span>Dành cho Android (Samsung, Oppo, Xiaomi...)</span>
+        </button>
+      </div>
+
+      <!-- iOS Guide Cards -->
+      <div class="guide-cards-grid" id="guide-ios-content">
+        <div class="guide-card">
+          <div class="step-number">1</div>
+          <h3 class="guide-card-title">Mở App Store</h3>
+          <p class="guide-card-text">Nhấn vào nút "Tải trên App Store" trên trang này hoặc mở ứng dụng App Store trên iPhone của bạn.</p>
+          <div class="guide-tip">💡 Mẹo: Quét mã QR bằng Camera iPhone để mở trang Store tức thì.</div>
+        </div>
+
+        <div class="guide-card">
+          <div class="step-number">2</div>
+          <h3 class="guide-card-title">Nhấn "NHẬN" / "GET"</h3>
+          <p class="guide-card-text">Xác thực bằng FaceID hoặc vân tay TouchID để hệ thống tự động tải và cài đặt ứng dụng về màn hình chính.</p>
+          <div class="guide-tip">⚡ Dung lượng chỉ ~38MB, tải xong trong 5 giây.</div>
+        </div>
+
+        <div class="guide-card">
+          <div class="step-number">3</div>
+          <h3 class="guide-card-title">Mở App & Nhận Xu</h3>
+          <p class="guide-card-text">Mở ứng dụng PineDrama, đăng nhập nhanh bằng Apple ID hoặc SĐT để nhận ngay 100 Xu xem phim VIP miễn phí!</p>
+          <div class="guide-tip">🎁 Tự động kích hoạt gói quà tân thủ khi mở app lần đầu.</div>
+        </div>
+      </div>
+
+      <!-- Android Guide Cards -->
+      <div class="guide-cards-grid" id="guide-android-content" style="display: none;">
+        <div class="guide-card">
+          <div class="step-number">1</div>
+          <h3 class="guide-card-title">Mở CH Play / Tải APK</h3>
+          <p class="guide-card-text">Nhấn "Cài Đặt trên Google Play" hoặc chọn tải file APK trực tiếp nếu muốn cài siêu tốc mà không cần tài khoản.</p>
+          <div class="guide-tip">💡 Hỗ trợ mọi phiên bản Android từ 8.0 trở lên.</div>
+        </div>
+
+        <div class="guide-card">
+          <div class="step-number">2</div>
+          <h3 class="guide-card-title">Bấm Cài Đặt (Install)</h3>
+          <p class="guide-card-text">Nếu cài qua file APK, nhấn "Cho phép cài đặt từ nguồn này" khi được điện thoại hỏi cấp quyền bảo mật.</p>
+          <div class="guide-tip">🔒 File APK được chứng thực bảo mật, an toàn tuyệt đối.</div>
+        </div>
+
+        <div class="guide-card">
+          <div class="step-number">3</div>
+          <h3 class="guide-card-title">Thưởng Thức Phim Hot</h3>
+          <p class="guide-card-text">Khởi động app PineDrama, tận hưởng kho phim siêu ngắn chất lượng Full HD không giật lag!</p>
+          <div class="guide-tip">🎬 Trải nghiệm vuốt chuyển tập mượt mà như TikTok.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KHO PHIM THỊNH HÀNH SECTION -->
+  <section class="drama-preview-section" id="hot-dramas">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Top Phim Hot Đang Chiếu</h2>
+        <p class="section-desc">Hơn 500+ bộ phim độc quyền được cập nhật tập mới mỗi ngày</p>
+      </div>
+
+      <div class="drama-grid">
+        <!-- Film 1 -->
+        <div class="drama-item" onclick="openQrModal('Tải app để xem trọn bộ: Tổng Tài Giấu Nghề')">
+          <div class="drama-thumb drama-thumb-1">
+            <span class="episodes-badge">85 Tập • Đã Hoàn Thành</span>
+            <div class="play-btn-circle">
+              <i data-lucide="play" style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
+            </div>
+            <div style="font-size: 11px; color: #e2e8f0;">🔥 18.2M Lượt xem</div>
+          </div>
+          <div class="drama-info">
+            <div class="drama-title">Tổng Tài Giấu Nghề Làm Rể</div>
+            <div class="drama-tags">Đô Thị • Trọng Sinh • Hài Hước</div>
+          </div>
+        </div>
+
+        <!-- Film 2 -->
+        <div class="drama-item" onclick="openQrModal('Tải app để xem trọn bộ: Đại Nữ Chủ Báo Thù')">
+          <div class="drama-thumb drama-thumb-2">
+            <span class="episodes-badge">60 Tập • Đang Chiếu</span>
+            <div class="play-btn-circle">
+              <i data-lucide="play" style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
+            </div>
+            <div style="font-size: 11px; color: #e2e8f0;">🔥 14.5M Lượt xem</div>
+          </div>
+          <div class="drama-info">
+            <div class="drama-title">Đại Nữ Chủ Báo Thù Hào Môn</div>
+            <div class="drama-tags">Ngôn Tình • Gia Đấu • Kịch Tính</div>
+          </div>
+        </div>
+
+        <!-- Film 3 -->
+        <div class="drama-item" onclick="openQrModal('Tải app để xem trọn bộ: Cô Vợ Thay Thế Của Lãnh Hàn')">
+          <div class="drama-thumb drama-thumb-3">
+            <span class="episodes-badge">92 Tập • Hoàn Tất</span>
+            <div class="play-btn-circle">
+              <i data-lucide="play" style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
+            </div>
+            <div style="font-size: 11px; color: #e2e8f0;">🔥 22.8M Lượt xem</div>
+          </div>
+          <div class="drama-info">
+            <div class="drama-title">Cô Vợ Thay Thế Của Lãnh Hàn</div>
+            <div class="drama-tags">Tình Cảm • Ngọt Ngào • Sủng Ái</div>
+          </div>
+        </div>
+
+        <!-- Film 4 -->
+        <div class="drama-item" onclick="openQrModal('Tải app để xem trọn bộ: Long Thần Xuất Sơn')">
+          <div class="drama-thumb drama-thumb-4">
+            <span class="episodes-badge">100 Tập • Hot Nhất</span>
+            <div class="play-btn-circle">
+              <i data-lucide="play" style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
+            </div>
+            <div style="font-size: 11px; color: #e2e8f0;">🔥 30.1M Lượt xem</div>
+          </div>
+          <div class="drama-info">
+            <div class="drama-title">Long Thần Xuất Sơn Vô Địch</div>
+            <div class="drama-tags">Võ Thuật • Huyền Huyễn • Siêu Năng</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sticky Mobile Bar -->
+  <div class="mobile-sticky-cta">
+    <div class="mobile-sticky-inner">
+      <div class="sticky-app-info">
+        <div class="sticky-app-icon">
+          <i data-lucide="play" style="width: 18px; height: 18px; fill: white; stroke: white;"></i>
+        </div>
+        <div>
+          <div style="font-size: 14px; font-weight: 800;">PineDrama</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Tặng ngay 100 Xu</div>
+        </div>
+      </div>
+      <a href="#store-preview" class="sticky-btn" onclick="triggerInstallAction()">
+        <i data-lucide="download" style="width: 14px; height: 14px;"></i>
+        <span>Tải App</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- QR Modal Popup -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeQrModal()">
+        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+      </button>
+
+      <div style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;" id="modal-title">
+        Quét Mã Tải Ứng Dụng
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted);" id="modal-desc">
+        Sử dụng Camera trên điện thoại để quét mã và cài đặt PineDrama
+      </p>
+
+      <div class="modal-qr-box" id="qrcode-container"></div>
+
+      <div style="display: flex; justify-content: center; gap: 8px; font-size: 12px; color: #10b981; font-weight: 600;">
+        <i data-lucide="shield-check" style="width: 16px; height: 16px;"></i>
+        <span>Liên kết bảo mật chính thức</span>
+      </div>
+
+      <div style="margin-top: 16px;">
+        <button class="btn-store-install" style="width: 100%; justify-content: center; font-size: 14px;" onclick="simulateDirectDownload()">
+          <i data-lucide="arrow-down-circle" style="width: 16px; height: 16px;"></i>
+          <span>Tải file cài đặt trực tiếp (.APK / iOS Link)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Về PineDrama</a>
+        <a href="#">Chính sách bảo mật</a>
+        <a href="#">Điều khoản sử dụng</a>
+        <a href="#">Hỗ trợ & CSKH 24/7</a>
+        <a href="#">Hợp tác sản xuất phim</a>
+      </div>
+      <p>© 2026 PineDrama Inc. Bản quyền thuộc về Pine Studio. All rights reserved.</p>
+      <p style="margin-top: 6px; font-size: 11px;">Mọi video ngắn đều được cấp phép bản quyền phát hành độc quyền.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Store state switch
+    let currentStore = 'apple';
+
+    function switchStoreMode(store) {
+      currentStore = store;
+      const tabApple = document.getElementById('tab-apple');
+      const tabGoogle = document.getElementById('tab-google');
+      const urlText = document.getElementById('store-url-text');
+      const typeBadge = document.getElementById('store-type-badge');
+      const appTitle = document.getElementById('store-app-title');
+      const appDev = document.getElementById('store-app-dev');
+      const appGenre = document.getElementById('store-app-genre');
+      const btnInstall = document.getElementById('btn-main-install');
+      const installText = document.getElementById('install-btn-text');
+
+      if (store === 'apple') {
+        tabApple.className = 'store-tab-btn active';
+        tabGoogle.className = 'store-tab-btn';
+        urlText.innerText = 'apps.apple.com/app/pinedrama-short-drama/id99482103';
+        typeBadge.innerText = 'iOS App Store';
+        typeBadge.style.color = '#38bdf8';
+        appTitle.innerText = 'PineDrama: Phim Ngắn Kịch Tính';
+        appDev.innerText = 'Pine Studio Entertainment JSC';
+        appGenre.innerText = '#1 trong mục Giải Trí • Chứa giao dịch trong ứng dụng';
+        btnInstall.className = 'btn-store-install';
+        installText.innerText = 'NHẬN (GET)';
+      } else {
+        tabApple.className = 'store-tab-btn';
+        tabGoogle.className = 'store-tab-btn active google-active';
+        urlText.innerText = 'play.google.com/store/apps/details?id=com.pinestudio.pinedrama';
+        typeBadge.innerText = 'Google Play Store';
+        typeBadge.style.color = '#22c55e';
+        appTitle.innerText = 'PineDrama - Xem Phim Ngắn Độc Quyen';
+        appDev.innerText = 'Pine Studio Dev';
+        appGenre.innerText = 'Chứa quảng cáo • Mua hàng trong ứng dụng';
+        btnInstall.className = 'btn-store-install google-btn';
+        installText.innerText = 'CÀI ĐẶT (INSTALL)';
+      }
+      lucide.createIcons();
+    }
+
+    // Guide Tab Switch
+    function switchGuide(type) {
+      const gtabIos = document.getElementById('gtab-ios');
+      const gtabAndroid = document.getElementById('gtab-android');
+      const guideIos = document.getElementById('guide-ios-content');
+      const guideAndroid = document.getElementById('guide-android-content');
+
+      if (type === 'ios') {
+        gtabIos.classList.add('active');
+        gtabAndroid.classList.remove('active');
+        guideIos.style.display = 'grid';
+        guideAndroid.style.display = 'none';
+      } else {
+        gtabAndroid.classList.add('active');
+        gtabIos.classList.remove('active');
+        guideIos.style.display = 'none';
+        guideAndroid.style.display = 'grid';
+      }
+      lucide.createIcons();
+    }
+
+    // QR Code Generator & Modal
+    let qrGenerated = false;
+    function openQrModal(titleText = 'Quét Mã Tải Ứng Dụng') {
+      const modal = document.getElementById('qrModal');
+      const modalTitle = document.getElementById('modal-title');
+      if (modalTitle && titleText) modalTitle.innerText = titleText;
+
+      const qrContainer = document.getElementById('qrcode-container');
+      if (!qrGenerated) {
+        qrContainer.innerHTML = '';
+        new QRCode(qrContainer, {
+          text: window.location.href || 'https://pinedrama.app/download',
+          width: 166,
+          height: 166,
+          colorDark : "#0f172a",
+          colorLight : "#ffffff",
+          correctLevel : QRCode.CorrectLevel.H
+        });
+        qrGenerated = true;
+      }
+      modal.classList.add('active');
+    }
+
+    function closeQrModal() {
+      document.getElementById('qrModal').classList.remove('active');
+    }
+
+    // Trigger Install Simulation
+    function triggerInstallAction() {
+      const btn = document.getElementById('btn-main-install');
+      const span = document.getElementById('install-btn-text');
+      
+      span.innerText = 'Đang tải xuống... 100%';
+      btn.style.opacity = '0.7';
+
+      setTimeout(() => {
+        span.innerText = 'ĐÃ CÀI ĐẶT (MỞ)';
+        btn.style.opacity = '1';
+        btn.style.background = '#10b981';
+        openQrModal('Quét mã trên điện thoại để hoàn tất cài đặt PineDrama!');
+      }, 900);
+    }
+
+    function simulateDirectDownload() {
+      alert('Bắt đầu tải gói cài đặt PineDrama phiên bản mới nhất (v1.0.0). Vui lòng kiểm tra thanh thông báo!');
+      closeQrModal();
+    }
+
+    function shareApp() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'PineDrama - App Phim Ngắn Đỉnh Cao',
+          text: 'Tải ngay app PineDrama để xem hàng trăm bộ phim ngắn kịch tính và nhận 100 Xu miễn phí!',
+          url: window.location.href,
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Đã sao chép liên kết tải app vào bộ nhớ tạm!');
+      }
+    }
+
+    // Close modal on outside click
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('qrModal');
+      if (e.target === modal) {
+        closeQrModal();
+      }
+    });
+  </script>
+</body>
+</html>

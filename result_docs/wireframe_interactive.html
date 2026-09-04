@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe Prototype - App Phim Ngắn (100% Free - PineDrama Clone)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0a0c;
+      --card-bg: #16161e;
+      --card-border: #232330;
+      --primary: #ff2a5f;
+      --primary-gradient: linear-gradient(135deg, #ff2a5f 0%, #ff5e3a 100%);
+      --accent-gold: #ffb800;
+      --text-main: #ffffff;
+      --text-muted: #8e8e9e;
+      --phone-width: 390px;
+      --phone-height: 820px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* Header Bar */
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff2a5f, #ffb800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Controller Panel */
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--primary-gradient);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(255, 42, 95, 0.4);
+    }
+
+    /* Phone Shell Frame */
+    .phone-container {
+      position: relative;
+      width: var(--phone-width);
+      height: var(--phone-height);
+      background: #000;
+      border-radius: 48px;
+      border: 10px solid #22222a;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Dynamic Island Notch */
+    .dynamic-island {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 28px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+
+    .camera-dot {
+      width: 10px;
+      height: 10px;
+      background: #111;
+      border-radius: 50%;
+      box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.2);
+    }
+
+    /* App Screens Viewport */
+    .screen-viewport {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: #0d0d12;
+    }
+
+    .screen-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screen {
+      display: none;
+      width: 100%;
+      min-height: 100%;
+      padding-bottom: 70px;
+    }
+
+    .screen.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Bottom App Tab Navigation Bar */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 65px;
+      background: rgba(18, 18, 24, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 900;
+    }
+
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .tab-item svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .tab-item.active {
+      color: var(--primary);
+    }
+
+    /* -------------------------------------------------------------
+       SCREEN 1: VERTICAL PLAYER
+    ------------------------------------------------------------- */
+    #screen-player {
+      background: #000;
+      height: 100%;
+      position: relative;
+    }
+
+    .player-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.8) 100%),
+        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop') center/cover;
+    }
+
+    .player-top-overlay {
+      position: relative;
+      z-index: 10;
+      padding: 50px 16px 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    }
+
+    .player-title-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .player-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .player-ep-num {
+      font-size: 11px;
+      color: #2ecc71;
+      font-weight: 700;
+    }
+
+    .player-actions-right {
+      position: absolute;
+      right: 10px;
+      bottom: 120px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .action-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .action-item:hover {
+      transform: scale(1.1);
+    }
+
+    .action-item:active {
+      transform: scale(0.92);
+    }
+
+    .action-circle {
+      width: 42px;
+      height: 42px;
+      background: rgba(20, 20, 30, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 19px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .action-label {
+      font-size: 10px;
+      color: #ffffff;
+      font-weight: 600;
+      margin-top: 3px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    .player-bottom-overlay {
+      position: absolute;
+      bottom: 70px;
+      left: 0;
+      width: 100%;
+      padding: 12px 64px 14px 14px;
+      z-index: 10;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 30%, rgba(0, 0, 0, 0.4) 75%, transparent);
+      box-sizing: border-box;
+    }
+
+    .subtitle-floating {
+      position: absolute;
+      bottom: 230px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      text-align: center;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 15;
+      pointer-events: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .player-drama-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 2px;
+      cursor: pointer;
+      display: inline-block;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+      transition: color 0.2s;
+    }
+    .player-drama-title:hover {
+      color: var(--primary);
+    }
+
+    .player-drama-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      margin-bottom: 8px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+
+    .player-drama-ep-badge {
+      display: none;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+    }
+
+    /* KHI VÀO XEM PHIM TỪ TRANG CHI TIẾT PHIM (CHẾ ĐỘ HÌNH 2 GỌN ĐẸP) */
+    #screen-player.mode-from-detail .all-episodes-btn,
+    #screen-player.mode-from-detail .player-drama-sub {
+      display: none !important;
+    }
+
+    #screen-player.mode-from-detail .player-drama-ep-badge {
+      display: block;
+    }
+
+    #screen-player.mode-from-detail .player-drama-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .all-episodes-btn {
+      width: 100%;
+      padding: 9px 12px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .all-episodes-btn:hover {
+      background: var(--primary);
+      border-color: transparent;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .progress-fill {
+      width: 45%;
+      height: 100%;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .player-nav-btns {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .p-btn {
+      flex: 1;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* -------------------------------------------------------------
+       COMMENTS BOTTOM SHEET MODAL
+    ------------------------------------------------------------- */
+    .comments-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1200;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .comments-modal.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .comments-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .comments-sheet {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 72%;
+      background: #161622;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.8);
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-sizing: border-box;
+      z-index: 1201;
+    }
+    .comments-modal.active .comments-sheet {
+      transform: translateY(0);
+    }
+
+    .comments-header {
+      position: relative;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .comments-drag-handle {
+      position: absolute;
+      top: 6px;
+      width: 36px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 2px;
+    }
+    .comments-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 4px;
+    }
+    .comments-close-btn {
+      position: absolute;
+      right: 14px;
+      top: 12px;
+      font-size: 16px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .comments-close-btn:hover {
+      color: #ffffff;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .comments-list::-webkit-scrollbar {
+      width: 4px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+    }
+
+    .comment-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--primary);
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 11px;
+      color: #fff;
+    }
+
+    .comment-content {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 12px;
+      border-radius: 12px;
+    }
+
+    .comment-author {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .comment-time {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .comment-text {
+      font-size: 12px;
+      color: #e0e0e0;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .comment-actions {
+      display: flex;
+      gap: 14px;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .comment-like-btn {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .comment-like-btn:hover {
+      color: var(--primary);
+    }
+    .comment-reply-btn {
+      cursor: pointer;
+    }
+
+    .comments-input-bar {
+      padding: 10px 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #12121c;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .user-mini-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .comment-input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 8px 14px;
+      font-size: 11px;
+      color: #ffffff;
+      outline: none;
+    }
+    .comment-input::placeholder {
+      color: var(--text-muted);
+    }
+    .comment-input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .comment-send-btn {
+      background: var(--primary-gradient);
+      border: none;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .comment-send-btn:active {
+      transform: scale(0.94);
+    }
+
+    .p-btn.highlight {
+      background: var(--primary-gradient);
+      border-color: transparent;
+    }
+
+    /* -------------------------------------------------------------
+       SCREEN 2: HOME DISCOVER
+    ------------------------------------------------------------- */
+    #screen-home {
+      padding: 50px 16px 20px 16px;
+    }
+
+    .home-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .logo-badge {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .free-chip {
+      background: rgba(46, 204, 113, 0.15);
+      border: 1px solid #2ecc71;
+      color: #2ecc71;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .search-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .categories-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      padding-bottom: 4px;
+    }
+
+    .categories-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-pill {
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 16px;
+      background: var(--card-bg);
+    }
+
+    .cat-pill.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .hero-banner {
+      width: 100%;
+      height: 180px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.9) 100%),
+        url('https://images.unsplash.com/photo-1518676590629-3dcbd9c7a577?q=80&w=800&auto=format&fit=crop') center/cover;
+      position: relative;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .banner-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .banner-sub {
+      font-size: 11px;
+      color: #2ecc71;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .see-all {
+      font-size: 11px;
+      color: var(--primary);
+    }
+
+    .drama-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .drama-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+    }
+
+    .poster-box {
+      width: 100%;
+      height: 140px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .badge-tag {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: #2ecc71;
+      color: #000;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .drama-info {
+      padding: 8px;
+    }
+
+    .drama-name {
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drama-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* -------------------------------------------------------------
+       SCREEN 3: DRAMA DETAIL
+    ------------------------------------------------------------- */
+    #screen-detail {
+      padding-top: 40px;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      z-index: 20;
+      width: 34px;
+      height: 34px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-btn:hover {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      transform: scale(1.08);
+      box-shadow: 0 4px 15px rgba(255, 42, 95, 0.5);
+    }
+
+    .detail-backdrop {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(180deg, rgba(13, 13, 18, 0.2) 0%, rgba(13, 13, 18, 1) 100%),
+        url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop') center/cover;
+      position: relative;
+    }
+
+    .detail-header-content {
+      padding: 0 16px;
+      margin-top: -60px;
+      display: flex;
+      gap: 14px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .detail-poster {
+      width: 100px;
+      height: 140px;
+      border-radius: 12px;
+      background: url('https://images.unsplash.com/photo-1518676590629-3dcbd9c7a577?q=80&w=800&auto=format&fit=crop') center/cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      border: 2px solid var(--card-border);
+      flex-shrink: 0;
+    }
+
+    .detail-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .detail-title {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .detail-rating {
+      font-size: 11px;
+      color: var(--accent-gold);
+      margin: 4px 0;
+      font-weight: 700;
+    }
+
+    .detail-actions {
+      display: flex;
+      gap: 10px;
+      padding: 16px;
+    }
+
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      padding: 0 16px;
+      margin-bottom: 20px;
+    }
+
+    .ep-item {
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid rgba(46, 204, 113, 0.4);
+      border-radius: 8px;
+      padding: 10px 4px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #2ecc71;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ep-item:hover {
+      background: #2ecc71;
+      color: #000;
+    }
+
+    /* -------------------------------------------------------------
+       SCREEN 4: AUTHENTICATION (ĐĂNG NHẬP / ĐĂNG KÝ)
+    ------------------------------------------------------------- */
+    #screen-auth {
+      padding: 50px 18px 20px 18px;
+    }
+
+    .auth-tabs {
+      display: flex;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .auth-tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-input {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    /* -------------------------------------------------------------
+       SCREEN 5: LIBRARY & PROFILE
+    ------------------------------------------------------------- */
+    #screen-profile {
+      padding: 50px 16px 20px 16px;
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--card-bg);
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 20px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .history-item {
+      display: flex;
+      gap: 12px;
+      background: var(--card-bg);
+      padding: 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .history-thumb {
+      width: 50px;
+      height: 65px;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>WIRE-FRAME MÔ PHỎNG ỨNG DỤNG PHIM NGẮN (PINEDRAMA)</h1>
+    <p>⚡ GIAO DIỆN MÔ PHỎNG ỨNG DỤNG PHIM NGẮN CHUẨN PINEDRAMA ⚡</p>
+  </header>
+
+  <div class="controls">
+    <button class="nav-btn active" onclick="switchScreen('home', this)">🏠 1. Trang Chủ & Đề Xuất</button>
+    <button class="nav-btn" onclick="switchScreen('player', this)">🎬 2. Xem Phim (Trình Chiếu Dọc)</button>
+    <button class="nav-btn" onclick="switchScreen('detail', this)">📖 3. Chi Tiết Phim</button>
+    <button class="nav-btn" onclick="switchScreen('auth', this)">🔑 4. Đăng Nhập / Đăng Ký</button>
+    <button class="nav-btn" onclick="switchScreen('profile', this)">👤 5. Hồ Sơ & Phim Yêu Thích</button>
+  </div>
+
+  <div class="phone-container">
+    <div class="dynamic-island">
+      <div class="camera-dot"></div>
+    </div>
+
+    <div class="screen-viewport">
+
+      <!-- SCREEN 1: VERTICAL PLAYER -->
+      <div id="screen-player" class="screen">
+        <div class="player-bg"></div>
+
+        <div class="player-top-overlay">
+          <div id="player-back-btn" style="font-size:16px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:4px;" onclick="goBack()" title="Quay lại">‹ <span id="player-back-label"></span></div>
+          <div class="player-title-info">
+            <div class="player-title" onclick="goToDramaDetailFromPlayer()" style="cursor:pointer;" title="Bấm để vào Chi tiết phim">Vợ Cũ Lật Kèo <span style="font-size:12px; color:var(--primary);">›</span></div>
+            <div class="player-ep-num">Tập 12 / 80</div>
+          </div>
+          <div style="font-size:12px; background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:10px;">Sub: VI</div>
+        </div>
+
+        <div class="player-actions-right">
+          <div class="action-item" onclick="toggleFavoriteCurrentDrama(this)" title="Thêm vào Phim Yêu Thích">
+            <div class="action-circle" id="player-heart-circle">❤️</div>
+          </div>
+
+          <div class="action-item" onclick="openCommentsModal()" title="Xem bình luận">
+            <div class="action-circle">💬</div>
+            <div class="action-label" id="player-comment-label">1.8K</div>
+          </div>
+        </div>
+
+        <!-- SUBTITLE FLOATING (ĐẨY SUB LÊN CAO) -->
+        <div class="subtitle-floating">
+          "Anh nghĩ tôi còn là cô gái dễ bị gạt năm xưa sao?"
+        </div>
+
+        <!-- PLAYER BOTTOM OVERLAY -->
+        <div class="player-bottom-overlay">
+          <!-- TITLE PHIM (BẤM ĐƯỢC VÀO CHI TIẾT PHIM) -->
+          <div class="player-drama-title" onclick="goToDramaDetailFromPlayer()" title="Bấm để vào Chi tiết phim">
+            Vợ Cũ Lật Kèo
+          </div>
+
+          <!-- CHI TIẾT TẬP DẠNG TINH GIẢN HÌNH 2 (HIỂN THỊ KHI VÀO TỪ CHI TIẾT PHIM) -->
+          <div class="player-drama-ep-badge">
+            12
+          </div>
+
+          <!-- THÔNG TIN TẬP PHIM HÌNH 3 (HIỂN THỊ KHI LƯỚT NGẪU NHIÊN) -->
+          <div class="player-drama-sub">
+            Tập 12 | Vợ Cũ Lật Kèo - Tập 12
+          </div>
+
+          <!-- NÚT PHÁT TẤT CẢ HÌNH 3 (HIỂN THỊ KHI LƯỚT NGẪU NHIÊN) -->
+          <div class="all-episodes-btn" onclick="goToDramaDetailFromPlayer()" title="Bấm để xem danh sách trọn bộ">
+            Phát tất cả (80 tập)
+          </div>
+
+          <!-- THANH TIẾN TRÌNH -->
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+
+          <!-- CHUYỂN TẬP PREV/NEXT -->
+          <div class="player-nav-btns">
+            <div class="p-btn">‹ Tập 11</div>
+            <div class="p-btn highlight">Tập 13 (▶ Xem Tiếp)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: HOME DISCOVER -->
+      <div id="screen-home" class="screen active">
+        <div class="home-header">
+          <div class="logo-badge">🔥 PineDrama</div>
+        </div>
+
+        <div class="search-box">
+          🔍 Tìm kiếm tên phim...
+        </div>
+
+        <div class="categories-scroll">
+          <div class="cat-pill active">Cho Bạn</div>
+          <div class="cat-pill">Hot Trend</div>
+          <div class="cat-pill">Ngôn Tình</div>
+          <div class="cat-pill">Chủ Tịch</div>
+          <div class="cat-pill">Trả Thù</div>
+        </div>
+
+        <div class="hero-banner" onclick="switchScreen('detail', document.querySelectorAll('.nav-btn')[2])">
+          <div class="banner-title">Mẹ Chồng Siêu Cấp & Nàng Dâu Triệu Đô</div>
+          <div class="banner-sub">Trọn bộ 80 Tập • Thể loại Ngôn Tình</div>
+          <div class="p-btn highlight" style="width: 120px; font-size: 10px; padding: 6px;">▶ Xem Ngay</div>
+        </div>
+
+        <div class="section-header">
+          <div class="section-title">🔥 Phim Đang Thịnh Hành</div>
+          <div class="see-all">Xem tất cả</div>
+        </div>
+
+        <div class="drama-grid">
+          <div class="drama-card" onclick="switchScreen('detail', document.querySelectorAll('.nav-btn')[2])">
+            <div class="poster-box"
+              style="background-image: url('https://images.unsplash.com/photo-1518676590629-3dcbd9c7a577?q=80&w=800&auto=format&fit=crop');">
+            </div>
+            <div class="drama-info">
+              <div class="drama-name">Cô Vợ Sát Thủ</div>
+              <div class="drama-meta">80 Tập • ⭐ 4.9</div>
+            </div>
+          </div>
+
+          <div class="drama-card" onclick="switchScreen('detail', document.querySelectorAll('.nav-btn')[2])">
+            <div class="poster-box"
+              style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop');">
+            </div>
+            <div class="drama-info">
+              <div class="drama-name">Tổng Tài Bá Đạo</div>
+              <div class="drama-meta">65 Tập • ⭐ 4.8</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 3: DRAMA DETAIL -->
+      <div id="screen-detail" class="screen">
+        <div class="detail-backdrop">
+          <div class="back-btn" onclick="goBack()" title="Quay lại trang trước">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </div>
+        </div>
+        <div class="detail-header-content">
+          <div class="detail-poster"></div>
+          <div class="detail-text">
+            <div class="detail-title">Vợ Cũ Lật Kèo</div>
+            <div class="detail-rating" style="color:#f1c40f; font-weight:800; font-size:13px; margin:2px 0;">⭐ <span
+                id="rating-val">9.8</span> / 10 <span
+                style="font-size:10px; color:var(--text-muted); font-weight:normal;">(<span
+                  id="rating-count">14.2K</span> lượt)</span></div>
+            <div style="font-size: 10px; color: var(--text-muted); font-weight:600;">Trọn bộ 80/80 Tập</div>
+          </div>
+        </div>
+
+        <!-- KHUNG ĐÁNH GIÁ SAO USER TỰ ĐÁNH GIÁ -->
+        <div
+          style="background:var(--surface); border-radius:12px; padding:10px 14px; margin: 0 16px 12px 16px; border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:11px; font-weight:700;">Đánh giá phim này:</div>
+          <div class="star-rating-box" style="display:flex; gap:4px; font-size:16px; cursor:pointer;">
+            <span class="user-star" onclick="rateDrama(1)" title="1 sao">⭐</span>
+            <span class="user-star" onclick="rateDrama(2)" title="2 sao">⭐</span>
+            <span class="user-star" onclick="rateDrama(3)" title="3 sao">⭐</span>
+            <span class="user-star" onclick="rateDrama(4)" title="4 sao">⭐</span>
+            <span class="user-star" onclick="rateDrama(5)" title="5 sao">⭐</span>
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <div class="p-btn highlight" style="flex:2;"
+            onclick="playEpisodeFromDetail(1)">▶ Xem Từ Tập 1</div>
+          <div class="p-btn" id="btn-detail-fav" style="flex:1; background:rgba(255,255,255,0.1);"
+            onclick="toggleFavoriteCurrentDrama(this)">❤️ Yêu Thích</div>
+        </div>
+
+        <!-- KHUNG CHỌN PHẦN PHIM (SEASONS DROPDOWN SELECT) -->
+        <div
+          style="margin: 0 16px 12px 16px; display:flex; align-items:center; justify-content:space-between; background:var(--surface); padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.15);">
+          <div
+            style="font-size:11px; font-weight:800; color:var(--primary); display:flex; align-items:center; gap:4px;">
+            <span>🎞️ CHỌN PHẦN PHIM:</span>
+          </div>
+          <select id="season-dropdown-select"
+            style="background:rgba(255,255,255,0.1); color:white; border:1px solid var(--primary); border-radius:8px; padding:6px 10px; font-size:11px; font-weight:700; outline:none; cursor:pointer;"
+            onchange="switchSeason(parseInt(this.value))">
+            <option value="1" style="background:#1a1a2e; color:white;">Phần 1: Vợ Cũ Lật Kèo (80 Tập)</option>
+            <option value="2" style="background:#1a1a2e; color:white;">Phần 2: Hào Môn Duyên Nợ (40 Tập)</option>
+            <option value="3" style="background:#1a1a2e; color:white;">Phần 3: Ngoại Truyện Đặc Biệt</option>
+          </select>
+        </div>
+
+        <div style="padding: 0 16px; margin-bottom: 14px;">
+          <div class="section-title" style="margin-bottom: 4px;" id="ep-list-title">🎬 Danh Sách Tập - Phần 1 (80 Tập)
+          </div>
+          <div style="font-size:11px; color: var(--text-muted); font-weight:600;" id="ep-list-sub">Cập nhật đầy đủ trọn
+            bộ Phần 1</div>
+        </div>
+
+        <div class="episodes-grid">
+          <div class="ep-item" onclick="playEpisodeFromDetail(1)">Tập 1</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(2)">Tập 2</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(3)">Tập 3</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(4)">Tập 4</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(5)">Tập 5</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(6)">Tập 6</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(7)">Tập 7</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(8)">Tập 8</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(9)">Tập 9</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(10)">Tập 10</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(11)">Tập 11</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(12)">Tập 12</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(13)">Tập 13</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(14)">Tập 14</div>
+          <div class="ep-item" onclick="playEpisodeFromDetail(15)">Tập 15</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 4: AUTHENTICATION (ĐĂNG NHẬP / ĐĂNG KÝ) -->
+      <div id="screen-auth" class="screen">
+        <div style="text-align:center; margin-bottom: 16px;">
+          <div style="font-size:24px; font-weight:800; color:var(--primary); margin-bottom:4px;">🔥 PINE DRAMA</div>
+          <div style="font-size:12px; color:var(--text-muted);">Đăng nhập / Đăng ký để lưu tủ phim & đồng bộ lịch sử xem
+          </div>
+        </div>
+
+        <div class="auth-tabs">
+          <div class="auth-tab-btn active" onclick="toggleAuthTab(this, 'login')">Đăng Nhập</div>
+          <div class="auth-tab-btn" onclick="toggleAuthTab(this, 'register')">Đăng Ký</div>
+        </div>
+
+        <!-- FORM ĐĂNG NHẬP -->
+        <div class="auth-form" id="form-login">
+          <div class="input-group">
+            <div class="input-label">Số điện thoại / Email</div>
+            <input type="text" class="form-input" placeholder="0988xxxxxx hoặc email@domain.com">
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Mật khẩu</div>
+            <input type="password" class="form-input" placeholder="Nhập mật khẩu...">
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; font-size:11px; color:var(--primary); font-weight:600;">
+            <span>Quên mật khẩu?</span>
+          </div>
+
+          <div class="p-btn highlight" style="margin-top:12px;" onclick="simulateLogin()">⚡ ĐĂNG NHẬP NGAY</div>
+        </div>
+
+        <!-- FORM ĐĂNG KÝ (REBUILT TAB ĐĂNG KÝ) -->
+        <div class="auth-form" id="form-register" style="display:none;">
+          <div class="input-group">
+            <div class="input-label">Họ và tên</div>
+            <input type="text" class="form-input" placeholder="Nhập họ và tên...">
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Số điện thoại / Email</div>
+            <input type="text" class="form-input" placeholder="0988xxxxxx hoặc email@domain.com">
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Mật khẩu mới</div>
+            <input type="password" class="form-input" placeholder="Tối thiểu 6 ký tự...">
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Xác nhận mật khẩu</div>
+            <input type="password" class="form-input" placeholder="Nhập lại mật khẩu...">
+          </div>
+
+          <div
+            style="font-size:10px; color:var(--text-muted); margin: 6px 0 10px 0; display:flex; align-items:center; gap:6px;">
+            <input type="checkbox" id="agree-terms" checked>
+            <label for="agree-terms">Tôi đồng ý với <span style="color:var(--primary);">Điều khoản & Chính
+                sách</span></label>
+          </div>
+
+          <div class="p-btn highlight" style="margin-top:8px;" onclick="simulateRegister()">🚀 ĐĂNG KÝ TÀI KHOẢN</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 5: PROFILE -->
+      <div id="screen-profile" class="screen">
+        <div class="profile-card" id="profile-card-content" style="position:relative;">
+          <div class="avatar" id="user-avatar-display"
+            style="position:relative; cursor:pointer; background-size:cover; background-position:center;"
+            onclick="toggleEditProfile()" title="Bấm để đổi Avatar">
+            <span id="user-avatar-text">HN</span>
+            <span
+              style="position:absolute; bottom:-2px; right:-2px; background:var(--primary); width:18px; height:18px; border-radius:50%; font-size:10px; display:flex; align-items:center; justify-content:center; border:2px solid var(--surface);">📷</span>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight: 800; font-size: 15px;" id="user-name-display">Hoàng Nguyễn</div>
+            <div style="font-size: 11px; color: #2ecc71; font-weight: 700;">✨ THÀNH VIÊN PINEDRAMA</div>
+            <div style="font-size: 10px; color: var(--text-muted);" id="user-info-display">ID: 889210 • SĐT: 098****888
+            </div>
+          </div>
+          <button
+            style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:white; border-radius:8px; padding:4px 8px; font-size:10px; font-weight:700; cursor:pointer;"
+            onclick="toggleEditProfile()">✏️ Sửa</button>
+        </div>
+
+        <!-- KHUNG CHỈNH SỬA PROFILE (INLINE / POPUP PANEL) -->
+        <div id="profile-edit-panel"
+          style="display:none; background:var(--surface); border-radius:12px; padding:12px; margin-bottom:14px; border:1px solid var(--primary);">
+          <div style="font-weight:800; font-size:12px; color:var(--primary); margin-bottom:10px;">✏️ CHỈNH SỬA HỒ SƠ &
+            AVATAR</div>
+
+          <div class="input-group">
+            <div class="input-label">🖼️ Chọn Avatar Ảnh mẫu hoặc Tải ảnh lên:</div>
+
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+              <div class="avatar-opt active" id="avt-opt-text"
+                style="width:36px; height:36px; border-radius:50%; background:#8e44ad; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:11px; cursor:pointer; border:2px solid var(--primary);"
+                onclick="selectPresetAvatar('text', 'HN')">HN</div>
+              <div class="avatar-opt" id="avt-opt-img1"
+                style="width:36px; height:36px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop'); background-size:cover; cursor:pointer; border:2px solid transparent;"
+                onclick="selectPresetAvatar('img', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop')">
+              </div>
+              <div class="avatar-opt" id="avt-opt-img2"
+                style="width:36px; height:36px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'); background-size:cover; cursor:pointer; border:2px solid transparent;"
+                onclick="selectPresetAvatar('img', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop')">
+              </div>
+              <div class="avatar-opt" id="avt-opt-img3"
+                style="width:36px; height:36px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'); background-size:cover; cursor:pointer; border:2px solid transparent;"
+                onclick="selectPresetAvatar('img', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop')">
+              </div>
+              <div class="avatar-opt" id="avt-opt-img4"
+                style="width:36px; height:36px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop'); background-size:cover; cursor:pointer; border:2px solid transparent;"
+                onclick="selectPresetAvatar('img', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop')">
+              </div>
+            </div>
+
+            <input type="file" id="avatar-file-input" accept="image/*" style="display:none;"
+              onchange="handleAvatarFileSelect(this)">
+            <button type="button"
+              style="background:rgba(255,255,255,0.08); color:white; border:1px dashed var(--primary); border-radius:8px; padding:6px; font-size:10px; font-weight:700; cursor:pointer; width:100%; text-align:center; margin-bottom:8px;"
+              onclick="document.getElementById('avatar-file-input').click()">📷 Tải Ảnh Từ Thiết Bị (Upload
+              Photo)</button>
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Hoặc nhập chữ viết tắt (Initials 2 chữ):</div>
+            <input type="text" id="edit-avatar-input" class="form-input" value="HN" maxlength="2"
+              oninput="if(this.value){ selectPresetAvatar('text', this.value); }">
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Tên hiển thị:</div>
+            <input type="text" id="edit-name-input" class="form-input" value="Hoàng Nguyễn">
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Số điện thoại / Email:</div>
+            <input type="text" id="edit-phone-input" class="form-input" value="098****888">
+          </div>
+
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <button
+              style="flex:1; background:var(--primary); color:white; border:none; border-radius:8px; padding:6px; font-size:11px; font-weight:700; cursor:pointer;"
+              onclick="saveProfile()">💾 Lưu Thay Đổi</button>
+            <button
+              style="background:#555; color:white; border:none; border-radius:8px; padding:6px 12px; font-size:11px; cursor:pointer;"
+              onclick="toggleEditProfile()">Hủy</button>
+          </div>
+        </div>
+
+        <!-- PROFILE TABS (LỊCH SỬ XEM & PHIM YÊU THÍCH) -->
+        <div
+          style="display:flex; gap:8px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px; margin-bottom:12px;">
+          <div class="profile-subtab active" id="tab-btn-history"
+            style="font-size:11px; font-weight:800; padding:6px 10px; border-radius:8px; background:var(--primary); color:white; cursor:pointer;"
+            onclick="switchProfileTab('history')">⏯️ Lịch Sử Xem (2)</div>
+          <div class="profile-subtab" id="tab-btn-favorites"
+            style="font-size:11px; font-weight:800; padding:6px 10px; border-radius:8px; background:rgba(255,255,255,0.08); color:var(--text-muted); cursor:pointer;"
+            onclick="switchProfileTab('favorites')">❤️ Phim Yêu Thích (3)</div>
+        </div>
+
+        <!-- NỘI DUNG TAB 1: LỊCH SỬ PHIM ĐÃ XEM -->
+        <div id="profile-tab-history">
+          <div class="history-item">
+            <div class="history-thumb"
+              style="background-image: url('https://images.unsplash.com/photo-1518676590629-3dcbd9c7a577?q=80&w=800&auto=format&fit=crop');">
+            </div>
+            <div style="flex:1;">
+              <div style="font-size: 12px; font-weight: 700;">Vợ Cũ Lật Kèo</div>
+              <div style="font-size: 10px; color: var(--text-muted); margin: 2px 0 6px 0;">Đã xem Tập 12/80</div>
+              <div class="p-btn highlight" style="font-size: 9px; padding: 4px 8px; width: 100px;"
+                onclick="switchScreen('player', document.querySelectorAll('.nav-btn')[0])">▶ Xem Tiếp</div>
+            </div>
+          </div>
+
+          <div class="history-item">
+            <div class="history-thumb"
+              style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop');">
+            </div>
+            <div style="flex:1;">
+              <div style="font-size: 12px; font-weight: 700;">Cô Vợ Sát Thủ</div>
+              <div style="font-size: 10px; color: var(--text-muted); margin: 2px 0 6px 0;">Đã xem Tập 4/80</div>
+              <div class="p-btn highlight" style="font-size: 9px; padding: 4px 8px; width: 100px;"
+                onclick="switchScreen('player', document.querySelectorAll('.nav-btn')[0])">▶ Xem Tiếp</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NỘI DUNG TAB 2: PHIM YÊU THÍCH -->
+        <div id="profile-tab-favorites" style="display:none;">
+          <div class="history-item">
+            <div class="history-thumb"
+              style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800&auto=format&fit=crop');">
+            </div>
+            <div style="flex:1;">
+              <div style="font-size: 12px; font-weight: 700;">Tổng Tài Bá Đạo</div>
+              <div style="font-size: 10px; color: #f1c40f; margin: 2px 0 6px 0;">⭐ 4.9/5.0 • Trọn bộ 80 Tập</div>
+              <div class="p-btn highlight" style="font-size: 9px; padding: 4px 8px; width: 100px;"
+                onclick="switchScreen('player', document.querySelectorAll('.nav-btn')[0])">▶ Xem Phim</div>
+            </div>
+          </div>
+
+          <div class="history-item">
+            <div class="history-thumb"
+              style="background-image: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=800&auto=format&fit=crop');">
+            </div>
+            <div style="flex:1;">
+              <div style="font-size: 12px; font-weight: 700;">Mẹ Chồng Siêu Cấp</div>
+              <div style="font-size: 10px; color: #f1c40f; margin: 2px 0 6px 0;">⭐ 4.8/5.0 • Trọn bộ 65 Tập</div>
+              <div class="p-btn highlight" style="font-size: 9px; padding: 4px 8px; width: 100px;"
+                onclick="switchScreen('player', document.querySelectorAll('.nav-btn')[0])">▶ Xem Phim</div>
+            </div>
+          </div>
+
+          <div class="history-item">
+            <div class="history-thumb"
+              style="background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=800&auto=format&fit=crop');">
+            </div>
+            <div style="flex:1;">
+              <div style="font-size: 12px; font-weight: 700;">Cậu Út Nhà Tỷ Phú</div>
+              <div style="font-size: 10px; color: #f1c40f; margin: 2px 0 6px 0;">⭐ 4.9/5.0 • Trọn bộ 90 Tập</div>
+              <div class="p-btn highlight" style="font-size: 9px; padding: 4px 8px; width: 100px;"
+                onclick="switchScreen('player', document.querySelectorAll('.nav-btn')[0])">▶ Xem Phim</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-btn" style="margin-top:16px; background:#e74c3c;" onclick="simulateLogout()">🚪 Đăng Xuất Tài
+          Khoản</div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Gộp Tài Khoản / Tôi theo Trạng thái Đăng nhập) -->
+    <div class="bottom-nav">
+      <div class="tab-item active" onclick="switchScreen('home', document.querySelectorAll('.nav-btn')[0])">
+        <svg viewBox="0 0 24 24">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </svg>
+        Trang Chủ
+      </div>
+      <div class="tab-item" onclick="switchScreen('player', document.querySelectorAll('.nav-btn')[1])">
+        <svg viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        Xem Phim
+      </div>
+      <div class="tab-item" id="nav-tab-user" onclick="handleAccountTab()">
+        <span id="nav-tab-icon"><svg viewBox="0 0 24 24">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+          </svg></span>
+        <span id="nav-tab-label">Tài Khoản</span>
+      </div>
+    </div>
+
+    <!-- COMMENTS BOTTOM SHEET MODAL -->
+    <div id="comments-modal" class="comments-modal">
+      <div class="comments-backdrop" onclick="closeCommentsModal()"></div>
+      <div class="comments-sheet">
+        <div class="comments-header">
+          <div class="comments-drag-handle"></div>
+          <div class="comments-title">💬 Bình luận (<span id="comments-count-header">1,842</span>)</div>
+          <div class="comments-close-btn" onclick="closeCommentsModal()">✕</div>
+        </div>
+
+        <div class="comments-list" id="comments-list-container">
+          <div class="comment-item">
+            <div class="comment-avatar" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop');"></div>
+            <div class="comment-content">
+              <div class="comment-author">Nguyễn Minh Anh <span class="comment-time">• 15 phút trước</span></div>
+              <div class="comment-text">Phim cuốn quá ad ơi! Nữ chính ngầu vãi, tập sau lật kèo tổng tài hối hận không kịp đâu 🔥</div>
+              <div class="comment-actions">
+                <span class="comment-like-btn" onclick="toggleCommentLike(this)">❤️ 142</span>
+                <span class="comment-reply-btn">Trả lời</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-item">
+            <div class="comment-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop');"></div>
+            <div class="comment-content">
+              <div class="comment-author">Trần Tuấn Nam <span class="comment-time">• 1 giờ trước</span></div>
+              <div class="comment-text">Khi nào ra Tập 13 vậy shop? Đang hóng đoạn trả thù gia đình nhà chồng quá! 🎬</div>
+              <div class="comment-actions">
+                <span class="comment-like-btn" onclick="toggleCommentLike(this)">❤️ 89</span>
+                <span class="comment-reply-btn">Trả lời</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-item">
+            <div class="comment-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop');"></div>
+            <div class="comment-content">
+              <div class="comment-author">Lê Thu Hà <span class="comment-time">• 3 giờ trước</span></div>
+              <div class="comment-text">Xem đoạn này nổi cả da gà, nhạc phim cũng đỉnh nữa 👍</div>
+              <div class="comment-actions">
+                <span class="comment-like-btn" onclick="toggleCommentLike(this)">❤️ 56</span>
+                <span class="comment-reply-btn">Trả lời</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comments-input-bar">
+          <div class="user-mini-avatar" id="comment-user-avatar">HN</div>
+          <input type="text" id="comment-input-field" class="comment-input" placeholder="Viết bình luận của bạn..." onfocus="checkLoginToComment()" onkeypress="handleCommentKeyPress(event)" />
+          <button class="comment-send-btn" onclick="submitNewComment()">Gửi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentScreen = 'home';
+    let previousScreen = 'player';
+    let isLoggedIn = false;
+
+    function switchScreen(screenId, btnEl, modeSource) {
+      if (currentScreen !== screenId) {
+        previousScreen = currentScreen;
+        currentScreen = screenId;
+      }
+
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+
+      const playerEl = document.getElementById('screen-player');
+      if (screenId === 'player') {
+        if (modeSource === 'detail' || previousScreen === 'detail') {
+          playerEl.classList.add('mode-from-detail');
+        } else {
+          playerEl.classList.remove('mode-from-detail');
+          const backLabel = document.getElementById('player-back-label');
+          if (backLabel) backLabel.textContent = '';
+        }
+      }
+
+      const target = document.getElementById('screen-' + screenId);
+      if (target) target.classList.add('active');
+
+      if (btnEl) btnEl.classList.add('active');
+
+      // Update bottom nav active state (3 tabs: 0: Home, 1: Player, 2: Account/Profile)
+      const tabMap = { 'home': 0, 'player': 1, 'auth': 2, 'profile': 2 };
+      if (tabMap[screenId] !== undefined) {
+        const tabBtns = document.querySelectorAll('.tab-item');
+        if (tabBtns[tabMap[screenId]]) {
+          tabBtns[tabMap[screenId]].classList.add('active');
+        }
+      }
+    }
+
+    function playEpisodeFromDetail(epNum) {
+      const backLabel = document.getElementById('player-back-label');
+      if (backLabel) backLabel.textContent = 'Tập ' + epNum;
+
+      const playerEpNum = document.querySelector('.player-ep-num');
+      if (playerEpNum) playerEpNum.textContent = 'Tập ' + epNum + ' / 80';
+
+      const epBadge = document.querySelector('.player-drama-ep-badge');
+      if (epBadge) epBadge.textContent = epNum < 10 ? '0' + epNum : '' + epNum;
+
+      switchScreen('player', document.querySelectorAll('.nav-btn')[1], 'detail');
+    }
+
+    function showToast(message) {
+      let toast = document.getElementById('toast-notification');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notification';
+        toast.style.cssText = `
+          position: absolute;
+          top: 60px;
+          left: 50%;
+          transform: translateX(-50%) translateY(-10px);
+          background: rgba(20, 20, 35, 0.92);
+          color: #fff;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 11px;
+          font-weight: 600;
+          z-index: 999;
+          border: 1px solid rgba(255,255,255,0.25);
+          backdrop-filter: blur(12px);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+          opacity: 0;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          pointer-events: none;
+          white-space: nowrap;
+        `;
+        document.querySelector('.phone-container').appendChild(toast);
+      }
+      toast.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(-10px)';
+      }, 2200);
+    }
+
+    function handleAccountTab() {
+      if (isLoggedIn) {
+        switchScreen('profile', document.querySelectorAll('.nav-btn')[4]);
+      } else {
+        switchScreen('auth', document.querySelectorAll('.nav-btn')[3]);
+      }
+    }
+
+    function updateAccountTabUI() {
+      const iconContainer = document.getElementById('nav-tab-icon');
+      const labelContainer = document.getElementById('nav-tab-label');
+      if (isLoggedIn) {
+        labelContainer.textContent = 'Tôi';
+        iconContainer.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+      } else {
+        labelContainer.textContent = 'Tài Khoản';
+        iconContainer.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
+      }
+    }
+
+    let currentAvatarMode = 'text'; // 'text' or 'img'
+    let currentAvatarValue = 'HN';
+    let isCurrentDramaFavorited = false;
+
+    function showToast(message) {
+      let toast = document.getElementById('toast-notification');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notification';
+        toast.style.cssText = `
+          position: absolute;
+          top: 60px;
+          left: 50%;
+          transform: translateX(-50%) translateY(-10px);
+          background: rgba(20, 20, 35, 0.92);
+          color: #fff;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 11px;
+          font-weight: 600;
+          z-index: 999;
+          border: 1px solid rgba(255,255,255,0.25);
+          backdrop-filter: blur(12px);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+          opacity: 0;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          pointer-events: none;
+          white-space: nowrap;
+        `;
+        document.querySelector('.phone-container').appendChild(toast);
+      }
+      toast.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(-10px)';
+      }, 2200);
+    }
+
+    function checkLoginToComment() {
+      return true;
+    }
+
+    function openCommentsModal() {
+      const modal = document.getElementById('comments-modal');
+      if (modal) {
+        modal.classList.add('active');
+        const userAvt = document.getElementById('comment-user-avatar');
+        if (userAvt) {
+          userAvt.textContent = (currentAvatarValue || 'HN').substring(0, 2).toUpperCase();
+        }
+      }
+    }
+
+    function closeCommentsModal() {
+      const modal = document.getElementById('comments-modal');
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    }
+
+    let totalCommentsCount = 1842;
+
+    function handleCommentKeyPress(e) {
+      if (e.key === 'Enter') {
+        submitNewComment();
+      }
+    }
+
+    function submitNewComment() {
+      const input = document.getElementById('comment-input-field');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) return;
+
+      totalCommentsCount += 1;
+      const headerCount = document.getElementById('comments-count-header');
+      if (headerCount) headerCount.textContent = totalCommentsCount.toLocaleString();
+      const commentLabel = document.getElementById('player-comment-label');
+      if (commentLabel) commentLabel.textContent = (totalCommentsCount / 1000).toFixed(1) + 'K';
+
+      const container = document.getElementById('comments-list-container');
+      const authorName = isLoggedIn ? (document.getElementById('user-name-display')?.textContent || 'Hoàng Nguyễn') : 'Khách Demo';
+      const initials = isLoggedIn ? (currentAvatarValue || 'HN').toUpperCase() : 'KD';
+
+      const newCommentHTML = `
+        <div class="comment-item" style="animation: fadeIn 0.3s ease;">
+          <div class="comment-avatar">${initials}</div>
+          <div class="comment-content" style="border-color: rgba(231, 76, 60, 0.4);">
+            <div class="comment-author">${authorName} <span class="comment-time">• Vừa xong</span></div>
+            <div class="comment-text">${escapeHTML(text)}</div>
+            <div class="comment-actions">
+              <span class="comment-like-btn" onclick="toggleCommentLike(this)">❤️ 0</span>
+              <span class="comment-reply-btn">Trả lời</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.insertAdjacentHTML('afterbegin', newCommentHTML);
+      input.value = '';
+      showToast('✨ Bình luận của bạn đã được gửi!');
+    }
+
+    function toggleCommentLike(btn) {
+      if (btn.classList.contains('liked')) {
+        btn.classList.remove('liked');
+        btn.style.color = 'var(--text-muted)';
+      } else {
+        btn.classList.add('liked');
+        btn.style.color = '#e74c3c';
+        btn.style.fontWeight = '700';
+      }
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    function toggleFavoriteCurrentDrama(el) {
+      if (!isLoggedIn) {
+        switchScreen('auth', document.querySelectorAll('.nav-btn')[3]);
+        showToast('🔑 Vui lòng đăng nhập để lưu phim yêu thích!');
+        return;
+      }
+
+      isCurrentDramaFavorited = !isCurrentDramaFavorited;
+      const detailFavBtn = document.getElementById('btn-detail-fav');
+      const playerHeartCircle = document.getElementById('player-heart-circle');
+
+      if (isCurrentDramaFavorited) {
+        if (detailFavBtn) {
+          detailFavBtn.innerHTML = '❤️ Đã Yêu Thích';
+          detailFavBtn.style.background = 'var(--primary)';
+        }
+        if (playerHeartCircle) {
+          playerHeartCircle.style.transform = 'scale(1.25)';
+          playerHeartCircle.style.background = 'rgba(231, 76, 60, 0.4)';
+        }
+        showToast('❤️ Đã thêm vào Phim Yêu Thích!');
+      } else {
+        if (detailFavBtn) {
+          detailFavBtn.innerHTML = '❤️ Yêu Thích';
+          detailFavBtn.style.background = 'rgba(255,255,255,0.1)';
+        }
+        if (playerHeartCircle) {
+          playerHeartCircle.style.transform = 'scale(1)';
+          playerHeartCircle.style.background = 'rgba(0,0,0,0.5)';
+        }
+        showToast('💔 Đã bỏ khỏi Phim Yêu Thích');
+      }
+    }
+
+    let userRatingScore = 0;
+
+    function rateDrama(stars) {
+      if (!isLoggedIn) {
+        switchScreen('auth', document.querySelectorAll('.nav-btn')[3]);
+        return;
+      }
+
+      userRatingScore = stars;
+      const ratingValEl = document.getElementById('rating-val');
+      const ratingCountEl = document.getElementById('rating-count');
+
+      // Convert 5 stars to 10-point scale display (e.g. 5 stars -> 9.8 / 10)
+      const newScore = (8.5 + (stars * 0.3)).toFixed(1);
+      if (ratingValEl) ratingValEl.textContent = newScore > 10 ? '10.0' : newScore;
+      if (ratingCountEl) ratingCountEl.textContent = '14.2K+1';
+
+      // Highlight selected stars
+      const starsEls = document.querySelectorAll('.user-star');
+      starsEls.forEach((star, idx) => {
+        if (idx < stars) {
+          star.style.opacity = '1';
+          star.style.transform = 'scale(1.25)';
+        } else {
+          star.style.opacity = '0.35';
+          star.style.transform = 'scale(1)';
+        }
+      });
+    }
+
+    function switchSeason(seasonNum) {
+      const dropdown = document.getElementById('season-dropdown-select');
+      if (dropdown) dropdown.value = seasonNum;
+
+      const epTitleEl = document.getElementById('ep-list-title');
+      const epSubEl = document.getElementById('ep-list-sub');
+
+      if (seasonNum === 1) {
+        if (epTitleEl) epTitleEl.textContent = '🎬 Danh Sách Tập - Phần 1 (80 Tập)';
+        if (epSubEl) epSubEl.textContent = 'Cập nhật đầy đủ trọn bộ Phần 1';
+      } else if (seasonNum === 2) {
+        if (epTitleEl) epTitleEl.textContent = '🎬 Danh Sách Tập - Phần 2 (40 Tập)';
+        if (epSubEl) epSubEl.textContent = 'Cập nhật đầy đủ trọn bộ Phần 2 mới phát hành';
+      } else if (seasonNum === 3) {
+        if (epTitleEl) epTitleEl.textContent = '🎬 Danh Sách Tập - Phần 3 (Ngoại Truyện)';
+        if (epSubEl) epSubEl.textContent = 'Phân cảnh ngoại truyện đặc biệt';
+      }
+    }
+
+    function selectPresetAvatar(mode, val) {
+      currentAvatarMode = mode;
+      currentAvatarValue = val;
+
+      document.querySelectorAll('.avatar-opt').forEach(opt => opt.style.borderColor = 'transparent');
+
+      if (mode === 'text') {
+        const textOpt = document.getElementById('avt-opt-text');
+        if (textOpt) {
+          textOpt.style.borderColor = 'var(--primary)';
+          textOpt.textContent = val.toUpperCase().substring(0, 2);
+        }
+      } else {
+        const selectedOpt = Array.from(document.querySelectorAll('.avatar-opt')).find(el => el.style.backgroundImage.includes(val));
+        if (selectedOpt) selectedOpt.style.borderColor = 'var(--primary)';
+      }
+    }
+
+    function handleAvatarFileSelect(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          selectPresetAvatar('img', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function toggleEditProfile() {
+      const panel = document.getElementById('profile-edit-panel');
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function saveProfile() {
+      const newName = document.getElementById('edit-name-input').value || 'Hoàng Nguyễn';
+      const newPhone = document.getElementById('edit-phone-input').value || '098****888';
+      const avatarEl = document.getElementById('user-avatar-display');
+      const avatarTextEl = document.getElementById('user-avatar-text');
+
+      if (currentAvatarMode === 'img') {
+        avatarEl.style.backgroundImage = `url('${currentAvatarValue}')`;
+        avatarTextEl.textContent = '';
+      } else {
+        const initials = (document.getElementById('edit-avatar-input').value || currentAvatarValue || 'HN').toUpperCase();
+        avatarEl.style.backgroundImage = 'none';
+        avatarTextEl.textContent = initials;
+      }
+
+      document.getElementById('user-name-display').textContent = newName;
+      document.getElementById('user-info-display').textContent = 'ID: 889210 • SĐT: ' + newPhone;
+
+      toggleEditProfile();
+    }
+
+    function switchProfileTab(tabType) {
+      const btnHist = document.getElementById('tab-btn-history');
+      const btnFav = document.getElementById('tab-btn-favorites');
+      const contentHist = document.getElementById('profile-tab-history');
+      const contentFav = document.getElementById('profile-tab-favorites');
+
+      if (tabType === 'history') {
+        btnHist.style.background = 'var(--primary)';
+        btnHist.style.color = 'white';
+        btnFav.style.background = 'rgba(255,255,255,0.08)';
+        btnFav.style.color = 'var(--text-muted)';
+        contentHist.style.display = 'block';
+        contentFav.style.display = 'none';
+      } else {
+        btnFav.style.background = 'var(--primary)';
+        btnFav.style.color = 'white';
+        btnHist.style.background = 'rgba(255,255,255,0.08)';
+        btnHist.style.color = 'var(--text-muted)';
+        contentFav.style.display = 'block';
+        contentHist.style.display = 'none';
+      }
+    }
+
+    function goToDramaDetailFromPlayer() {
+      switchScreen('detail', document.querySelectorAll('.nav-btn')[2]);
+    }
+
+    function goBack() {
+      const targetScreen = previousScreen || 'home';
+      const btnMap = {
+        'home': document.querySelectorAll('.nav-btn')[0],
+        'player': document.querySelectorAll('.nav-btn')[1],
+        'detail': document.querySelectorAll('.nav-btn')[2],
+        'auth': document.querySelectorAll('.nav-btn')[3],
+        'profile': document.querySelectorAll('.nav-btn')[4]
+      };
+      switchScreen(targetScreen, btnMap[targetScreen]);
+    }
+
+    function toggleAuthTab(el, type) {
+      document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      if (type === 'login') {
+        document.getElementById('form-login').style.display = 'block';
+        document.getElementById('form-register').style.display = 'none';
+      } else {
+        document.getElementById('form-login').style.display = 'none';
+        document.getElementById('form-register').style.display = 'block';
+      }
+    }
+
+    function simulateLogin() {
+      isLoggedIn = true;
+      updateAccountTabUI();
+      switchScreen('profile', document.querySelectorAll('.nav-btn')[4]);
+    }
+
+    function simulateRegister() {
+      isLoggedIn = true;
+      updateAccountTabUI();
+      switchScreen('profile', document.querySelectorAll('.nav-btn')[4]);
+    }
+
+    function simulateLogout() {
+      isLoggedIn = false;
+      updateAccountTabUI();
+      switchScreen('auth', document.querySelectorAll('.nav-btn')[3]);
+    }
+  </script>
+</body>
+
+</html>

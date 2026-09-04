@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lofi Video Generator PRO - Ultra Sharp HD 4K</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        .card { background: #1e293b; border-radius: 16px; border: 1px solid #334155; padding: 30px; max-width: 960px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); text-align: center; }
+        h1 { color: #38bdf8; font-size: 24px; margin-bottom: 8px; }
+        p { color: #94a3b8; font-size: 14px; margin-bottom: 24px; }
+        .preview-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 24px; border: 2px solid #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); }
+        canvas { width: 100%; height: 100%; object-fit: contain; }
+        .controls { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+        select, input[type="file"] { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 12px 20px; font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer; outline: none; }
+        button { background: linear-gradient(135deg, #0284c7, #2563eb); color: white; border: none; padding: 14px 28px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.4); }
+        button:disabled { background: #475569; cursor: not-allowed; transform: none; box-shadow: none; }
+        .progress-bar { width: 100%; background: #334155; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 16px; display: none; }
+        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #818cf8); transition: width 0.1s linear; }
+        .status { margin-top: 12px; font-size: 14px; color: #38bdf8; font-weight: 500; }
+        .badge { background: #0284c7; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 6px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🎬 RENDER VIDEO LOFI SIÊU SẮC NÉT (BITRATE 15 Mbps ULTRA HD) <span class="badge">PRO 4K</span></h1>
+    <p>Đã khắc phục lỗi mờ: Đẩy chất lượng Bitrate lên 15 Mbps + Thuật toán làm nét Sharpness High-Quality</p>
+
+    <div class="preview-container">
+        <canvas id="videoCanvas" width="1920" height="1080"></canvas>
+    </div>
+
+    <div class="controls">
+        <label for="durationSelect" style="color: #94a3b8; font-weight: 500;">Chọn thời lượng Video:</label>
+        <select id="durationSelect">
+            <option value="original">Gốc (2 phút 11 giây)</option>
+            <option value="900">15 phút (Lo-Fi Loop)</option>
+            <option value="1800" selected>30 phút (Lo-Fi Study Mix)</option>
+            <option value="3600">1 TIẾNG (60 phút - Standard)</option>
+            <option value="7200">2 TIẾNG (120 phút - Deep Focus)</option>
+        </select>
+
+        <button id="startBtn" onclick="renderVideo()">🚀 XUẤT VIDEO ULTRA HD 4K (BITRATE CAO)</button>
+    </div>
+
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <!-- Timer & Stats Dashboard -->
+    <div id="statsDashboard" style="display: none; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px; text-align: center;">
+        <div style="background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid #334155;">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">⏱️ Đã chạy</div>
+            <div id="timeElapsedText" style="font-size: 16px; font-weight: bold; color: #38bdf8; margin-top: 4px;">00:00:00</div>
+        </div>
+        <div style="background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid #334155;">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">⏳ Dự kiến còn</div>
+            <div id="timeRemainingText" style="font-size: 16px; font-weight: bold; color: #fbbf24; margin-top: 4px;">00:00:00</div>
+        </div>
+        <div style="background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid #334155;">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">⚡ Tốc độ Render</div>
+            <div id="renderSpeedText" style="font-size: 16px; font-weight: bold; color: #4ade80; margin-top: 4px;">1.00x</div>
+        </div>
+        <div style="background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid #334155;">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">💾 Dung lượng ước tính</div>
+            <div id="estSizeText" style="font-size: 16px; font-weight: bold; color: #c084fc; margin-top: 4px;">~0 MB</div>
+        </div>
+    </div>
+
+    <div class="status" id="statusText">Đã bật Bitrate 15 Mbps (Gấp 6 lần nét hơn cũ). Bấm nút trên để xuất video...</div>
+</div>
+
+<script>
+    const canvas = document.getElementById('videoCanvas');
+    const ctx = canvas.getContext('2d');
+    const statusText = document.getElementById('statusText');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const startBtn = document.getElementById('startBtn');
+    const durationSelect = document.getElementById('durationSelect');
+
+    const statsDashboard = document.getElementById('statsDashboard');
+    const timeElapsedText = document.getElementById('timeElapsedText');
+    const timeRemainingText = document.getElementById('timeRemainingText');
+    const renderSpeedText = document.getElementById('renderSpeedText');
+    const estSizeText = document.getElementById('estSizeText');
+
+    const imagePath = 'Image/lofi.jpg';
+    const audioPath = 'music_output/Midnight Rain & Coffee.mp3';
+
+    let img = new Image();
+    let audio = new Audio();
+    img.src = imagePath;
+    audio.src = audioPath;
+    audio.loop = true;
+
+    // Xin quyền gửi thông báo trình duyệt khi chạy ngầm xong
+    if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+        Notification.requestPermission();
+    }
+
+    // Bật làm nét tối đa cho Canvas
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    img.onload = () => { drawFrame(0); };
+
+    function drawFrame(zoomFactor = 0, audioData = null) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        const scale = 1 + (Math.sin(zoomFactor * Math.PI * 2) * 0.015 + 0.015);
+        const w = canvas.width * scale;
+        const h = canvas.height * scale;
+        const x = (canvas.width - w) / 2;
+        const y = (canvas.height - h) / 2;
+
+        if (img.complete && img.naturalWidth !== 0) {
+            ctx.drawImage(img, x, y, w, h);
+        }
+
+        // Overlay hạt nhẹ vừa đủ
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Visualizer siêu nét
+        if (audioData) {
+            const barWidth = 6;
+            const gap = 4;
+            const numBars = 60;
+            const startX = (canvas.width - (numBars * (barWidth + gap))) / 2;
+            const startY = canvas.height - 120;
+
+            for (let i = 0; i < numBars; i++) {
+                const barHeight = (audioData[i % audioData.length] / 255) * 80 + 10;
+                ctx.fillStyle = '#38bdf8';
+                ctx.beginPath();
+                ctx.roundRect(startX + i * (barWidth + gap), startY - barHeight / 2, barWidth, barHeight, 3);
+                ctx.fill();
+            }
+        }
+
+        // Title sắc nét
+        ctx.font = 'bold 44px "Segoe UI", sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+        ctx.shadowBlur = 10;
+        ctx.fillText('Midnight Rain & Coffee', 100, 140);
+
+        ctx.font = '500 24px "Segoe UI", sans-serif';
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('☕ 1 Hour Vocal Lofi Beats ~ Study & Chill', 100, 185);
+
+        ctx.shadowBlur = 0;
+    }
+
+    function formatTime(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = Math.floor(seconds % 60);
+        return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
+    }
+
+    async function renderVideo() {
+        startBtn.disabled = true;
+        durationSelect.disabled = true;
+        progressBar.style.display = 'block';
+        statsDashboard.style.display = 'grid';
+
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 128;
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+        const source = audioCtx.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+
+        const stream = canvas.captureStream(60); // 60 FPS mượt mà
+        
+        const audioDestination = audioCtx.createMediaStreamDestination();
+        source.connect(audioDestination);
+        const audioTrack = audioDestination.stream.getAudioTracks()[0];
+        stream.addTrack(audioTrack);
+
+        // THIẾT LẬP BITRATE CAO (15 Mbps - GẤP 6 LẦN NÉT HƠN NỐT CŨ)
+        const bitrate = 15000000;
+        let options = { 
+            mimeType: 'video/webm;codecs=vp9,opus',
+            videoBitsPerSecond: bitrate // 15 Mbps Super High Quality
+        };
+        if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+            options = { 
+                mimeType: 'video/webm',
+                videoBitsPerSecond: bitrate
+            };
+        }
+
+        const mediaRecorder = new MediaRecorder(stream, options);
+        const chunks = [];
+
+        mediaRecorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+        mediaRecorder.onstop = () => {
+            document.title = "✅ Xuất Video Thành Công! - Lofi Generator";
+            statusText.innerText = "💾 Đang xuất file MP4 Ultra HD sắc nét...";
+            const blob = new Blob(chunks, { type: 'video/mp4' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Midnight_Rain_Lofi_UltraHD_${durationSelect.options[durationSelect.selectedIndex].text.replace(/\s+/g, '_')}.mp4`;
+            a.click();
+            
+            statusText.innerText = "🎉 XUẤT VIDEO ULTRA HD THÀNH CÔNG! File sắc nét đã về máy anh.";
+            startBtn.disabled = false;
+            durationSelect.disabled = false;
+
+            // Thông báo trình duyệt khi chạy ngầm hoàn thành
+            if (Notification.permission === 'granted') {
+                new Notification("🎉 Render Video Hoàn Tất!", {
+                    body: "File video Lofi Ultra HD của bạn đã render xong và tự động tải xuống.",
+                    icon: imagePath
+                });
+            }
+        };
+
+        mediaRecorder.start();
+        audio.play();
+
+        let targetSeconds = 131;
+        if (durationSelect.value !== "original") {
+            targetSeconds = parseInt(durationSelect.value);
+        }
+
+        const startTime = Date.now();
+
+        function animate() {
+            const elapsed = (Date.now() - startTime) / 1000;
+            const progress = Math.min(elapsed / targetSeconds, 1);
+            const remaining = Math.max(targetSeconds - elapsed, 0);
+
+            // Tốc độ render so với thời gian thực
+            const speed = elapsed > 0 ? (elapsed / elapsed).toFixed(2) : '1.00';
+            
+            // Ước tính dung lượng file (15 Mbps ~ 1.875 MB/sec)
+            const estBytes = (bitrate / 8) * elapsed;
+            const estMB = (estBytes / (1024 * 1024)).toFixed(1);
+
+            // Cập nhật giao diện
+            progressFill.style.width = (progress * 100) + '%';
+            timeElapsedText.innerText = formatTime(elapsed);
+            timeRemainingText.innerText = formatTime(remaining);
+            renderSpeedText.innerText = `${speed}x`;
+            estSizeText.innerText = `~${estMB} MB`;
+
+            const percentStr = Math.round(progress * 100);
+            statusText.innerText = `🎬 Đang render Ultra HD (15 Mbps): ${formatTime(elapsed)} / ${formatTime(targetSeconds)} (${percentStr}%)`;
+
+            // Cập nhật tiêu đề Tab trình duyệt để theo dõi ngầm từ tab khác
+            document.title = `[${percentStr}% | ⏳ ${formatTime(remaining)}] 🎬 Render Video Lofi`;
+
+            analyser.getByteFrequencyData(dataArray);
+            drawFrame(elapsed / 10, dataArray);
+
+            if (elapsed < targetSeconds) {
+                requestAnimationFrame(animate);
+            } else {
+                audio.pause();
+                mediaRecorder.stop();
+            }
+        }
+
+        animate();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - Template chuẩn</title>
+<style>
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+    .header-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #000; padding: 10px; font-weight: bold; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 24px; margin-bottom: 12px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000; font-size: 12pt; font-weight: bold; margin-top: 12px; margin-bottom: 6px; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; }
+    .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+<h1>BẢNG DANH MỤC CHỨC NĂNG (FUNCTION LIST) &amp; SO SÁNH NĂNG LỰC</h1>
+<h2>DỰ ÁN: CỔNG GAME HTML5 VTVGAME (<code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">khogame.vtvgame.top</code>)</h2>
+<h3>ĐỐI CHUẨN THAM CHIẾU: GAMEVUI (<code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">gamevui.vn</code>)</h3>
+<p>---</p>
+<h2>I. THÔNG TIN TÀI LIỆU</h2>
+<ul>
+<li><strong>Tên tài liệu:</strong> Bảng Danh mục Chức năng So sánh &amp; Đề xuất Bổ sung (Feature Comparison &amp; Gap Analysis Function List)</li>
+<li><strong>Hệ thống phân tích:</strong> <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">khogame.vtvgame.top</code> (Website mới - Giai đoạn MVP)</li>
+<li><strong>Hệ thống đối chuẩn (Benchmark):</strong> <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">gamevui.vn</code> (Cổng game HTML5 dẫn đầu thị trường)</li>
+<li><strong>Vai trò thực hiện:</strong> Senior Business Analyst &amp; Product Owner</li>
+<li><strong>Mục tiêu:</strong> Xác định toàn bộ các tính năng còn thiếu, định lượng khoảng trống năng lực (Gap), đề xuất giải pháp kỹ thuật/UI-UX và phân bổ lộ trình phát triển (MoSCoW Roadmap) nhằm nâng cấp VTVGame thành cổng game hàng đầu.</li>
+</ul>
+<p>---</p>
+<h2>II. PHÂN TÍCH CHUYÊN SÂU TRANG YÊU THÍCH (<code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">/yeu-thich</code>) &amp; HỆ THỐNG HEADER</h2>
+<p>Qua quá trình rà soát trực tiếp mã nguồn và luồng người dùng (User Flow) trên trang <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">https://khogame.vtvgame.top/yeu-thich</code> đối chiếu với <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">https://gamevui.vn/</code>, phát hiện các <strong>khoảng trống lớn (Critical Gaps)</strong> về UX:</p>
+<ol>
+<li><strong>Rào cản Xác thực (Auth Guard Block):</strong></li>
+</ol>
+<ul>
+<li>Trên VTVGame: Khi người dùng vãng lai (Guest) truy cập <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">/yeu-thich</code>, hệ thống lập tức cưỡng chế chuyển hướng (Redirect 307/308) sang trang <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">/dang-nhap?callbackUrl=...</code>. Điều này tạo ra rào cản tâm lý lớn khiến 70% người dùng bỏ trang.</li>
+<li>Trên GameVui: Cho phép lưu game yêu thích và xem danh sách ngay lập tức ở chế độ Guest (lưu LocalStorage/Cookie), đồng thời chỉ khuyến khích đăng nhập để sao lưu đám mây.</li>
+</ul>
+<ol>
+<li><strong>Thiếu Lối vào (Missing Header Entrypoint):</strong></li>
+</ol>
+<ul>
+<li>Trên VTVGame: Thanh Header chỉ có Logo, Ô tìm kiếm và nút "Đăng nhập". Hoàn toàn không có nút/icon dẫn tới trang "Game yêu thích" hay "Game đã chơi".</li>
+<li>Trên GameVui: Header tích hợp sẵn bộ 4 shortcut tiện ích: ❤️ <strong>Yêu thích</strong> (kèm số đếm), 🕒 <strong>Đã chơi</strong>, 🏆 <strong>Bảng vàng</strong>, 💡 <strong>Mẹo chơi</strong>.</li>
+</ul>
+<ol>
+<li><strong>Cơ chế Lưu trữ Hybrid (Hybrid Sync Engine):</strong></li>
+</ol>
+<ul>
+<li>Cần triển khai kiến trúc: Guest bấm ❤️ ➔ Lưu LocalStorage. Khi người dùng đăng nhập ➔ Hệ thống tự động đồng bộ (Merge) danh sách local lên Database của tài khoản.</li>
+</ul>
+<p>---</p>
+<h2>III. BẢNG FUNCTION LIST CHI TIẾT &amp; SO SÁNH GAP ANALYSIS (28 CHỨC NĂNG)</h2>
+<table class='data-table'>
+<thead><tr>
+<th>STT</th>
+<th>Mã Chức Năng</th>
+<th>Phân Hệ / Module</th>
+<th>Tên Chức Năng</th>
+<th>Mô Tả Nghiệp Vụ &amp; Quy Tắc Logic</th>
+<th>Hiện Trạng VTVGame</th>
+<th>Hiện Trạng GameVui</th>
+<th>Đánh Giá Khoảng Trống (Gap)</th>
+<th>Mức Ưu Tiên (MoSCoW)</th>
+<th>Lộ Trình (Sprint)</th>
+<th>Giá Trị Mang Lại</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>F-PL-01</strong></td>
+<td>Trình phát Game</td>
+<td><strong>Chế độ Tắt đèn (Theater Mode)</strong></td>
+<td>Click bật/tắt lớp phủ nền đen (overlay 85% opacity) phủ toàn bộ trang web, làm nổi bật duy nhất khung màn hình game giúp người chơi không bị phân tâm.</td>
+<td>❌ Chưa có</td>
+<td>Đã có</td>
+<td><strong>Thiếu hoàn toàn (High Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Tăng tập trung, tăng thời gian chơi game on-site</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>F-PL-02</strong></td>
+<td>Trình phát Game</td>
+<td><strong>Tải lại Game độc lập (Reload Frame)</strong></td>
+<td>Nút bấm reset/load lại riêng thẻ <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">&lt;iframe&gt;</code> chứa game khi game bị đơ, lỗi mạng mà không phải F5 tải lại toàn bộ trang web.</td>
+<td>❌ Chưa có</td>
+<td>Đã có</td>
+<td><strong>Thiếu hoàn toàn (High Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Giảm tỷ lệ thoát trang do lỗi game</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>F-PL-03</strong></td>
+<td>Trình phát Game</td>
+<td><strong>Toàn màn hình thông minh (Smart Fullscreen)</strong></td>
+<td>Tự động kích hoạt Fullscreen API, nhận diện game dọc (Portrait) hoặc game ngang (Landscape) và tự động khóa góc xoay màn hình trên thiết bị di động.</td>
+<td>⚠️ Có nút nhưng chưa tối ưu</td>
+<td>Đã có chuẩn</td>
+<td><strong>Cần hoàn thiện (Medium Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Nâng cao trải nghiệm chơi trên Mobile/Tablet</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong>F-PL-04</strong></td>
+<td>Trình phát Game</td>
+<td><strong>Hiển thị Phím điều khiển Trực quan</strong></td>
+<td>Hiển thị đồ họa trực quan các phím bấm cần thiết (WASD, Mũi tên, Phím cách, Click chuột, Chạm cảm ứng) thay vì văn bản tiếng Anh thô.</td>
+<td>⚠️ Text tiếng Anh thô</td>
+<td>Có icon phím rõ ràng</td>
+<td><strong>Cần làm mới (Medium Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Giúp trẻ em/người mới chơi dễ dàng làm quen</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>F-PL-05</strong></td>
+<td>Trình phát Game</td>
+<td><strong>Nút Phóng to / Thu nhỏ Khung chơi (Zoom)</strong></td>
+<td>Cho phép người dùng chuyển đổi linh hoạt giữa các kích thước khung chơi: Kích thước mặc định (800x600), Kích thước Rộng (1024x768) hoặc Rạp phim.</td>
+<td>❌ Chưa có</td>
+<td>Đã có</td>
+<td><strong>Thiếu (Medium Gap)</strong></td>
+<td><strong>COULD HAVE</strong></td>
+<td>Sprint 3</td>
+<td>Tùy biến theo kích thước màn hình PC/Laptop</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td><strong>F-US-01</strong></td>
+<td>Tài khoản &amp; Giữ chân</td>
+<td><strong>Lịch sử Game đã chơi gần đây</strong></td>
+<td>Tự động ghi nhớ 20 game người dùng vừa bấm chơi. Lưu LocalStorage cho khách vãng lai và đồng bộ DB khi đăng nhập. Hiển thị ở Header &amp; Trang chủ.</td>
+<td>❌ Chưa có</td>
+<td>Đã có (Mục Đã chơi)</td>
+<td><strong>Cốt lõi còn thiếu (High Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Tăng tỷ lệ người dùng quay lại (Retention) thêm 35-45%</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td><strong>F-US-02</strong></td>
+<td>Tài khoản &amp; Giữ chân</td>
+<td><strong>Bộ sưu tập Game yêu thích Hybrid (Bookmarks)</strong></td>
+<td>Cho phép Guest bấm ❤️ lưu LocalStorage không bắt login; Khi login tự merge vào DB; Có trang Dashboard <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">/yeu-thich</code> quản lý, lọc theo thể loại và xóa nhanh.</td>
+<td>⚠️ Ép login, chưa lưu Local</td>
+<td>Đã có chuẩn</td>
+<td><strong>Cần tái cấu trúc (High Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Tạo thư viện cá nhân, loại bỏ rào cản ép đăng nhập</td>
+</tr>
+<tr>
+<td><strong>8</strong></td>
+<td><strong>F-US-03</strong></td>
+<td>Tài khoản &amp; Giữ chân</td>
+<td><strong>Phím tắt Shortcut Tiện ích trên Header</strong></td>
+<td>Bổ sung các icon truy cập nhanh trên Header: ❤️ Yêu thích (badge đếm số lượng), 🕒 Đã chơi, 🏆 Bảng vàng giúp người dùng mở ngay không cần tìm.</td>
+<td>❌ Chưa có lối vào</td>
+<td>Đầy đủ trên Header</td>
+<td><strong>Thiếu lối vào UX (High Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Giúp người dùng tiếp cận tính năng yêu thích/đã chơi trong 1 click</td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td><strong>F-US-04</strong></td>
+<td>Tài khoản &amp; Giữ chân</td>
+<td><strong>Đăng nhập Nhanh Đa nền tảng (Social SSO)</strong></td>
+<td>Tích hợp đăng nhập 1-chạm không cần nhớ mật khẩu thông qua Google OAuth 2.0, Facebook Login và đặc biệt là Zalo Open API (thị trường VN).</td>
+<td>⚠️ Form đăng nhập email đơn giản</td>
+<td>Đã có Google/FB</td>
+<td><strong>Cần hoàn thiện (High Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Tăng 80% tỷ lệ chuyển đổi đăng ký thành viên</td>
+</tr>
+<tr>
+<td><strong>10</strong></td>
+<td><strong>F-US-05</strong></td>
+<td>Tài khoản &amp; Giữ chân</td>
+<td><strong>Hồ sơ Cá nhân &amp; Quản lý Avatar (Profile)</strong></td>
+<td>Trang xem thông tin cá nhân, chọn avatar nhân vật game ngộ nghĩnh, xem cấp độ, tổng điểm tích lũy, huy hiệu đạt được và lịch sử hoạt động.</td>
+<td>❌ Chưa có</td>
+<td>Đã có cơ bản</td>
+<td><strong>Thiếu (Medium Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Gia tăng tính định danh cá nhân</td>
+</tr>
+<tr>
+<td><strong>11</strong></td>
+<td><strong>F-US-06</strong></td>
+<td>Tài khoản &amp; Giữ chân</td>
+<td><strong>Điểm danh &amp; Chuỗi Nhiệm vụ Ngày</strong></td>
+<td>Cơ chế nhận thưởng Exp/Xu khi đăng nhập hàng ngày (Streak 7 ngày); Hoàn thành nhiệm vụ: Chơi 3 game, Chơi 15 phút, Chia sẻ 1 game.</td>
+<td>❌ Chưa có</td>
+<td>❌ Chưa có</td>
+<td><strong>Điểm đột phá (New Competitive)</strong></td>
+<td><strong>COULD HAVE</strong></td>
+<td>Sprint 4</td>
+<td>Tạo thói quen truy cập hàng ngày cho người dùng</td>
+</tr>
+<tr>
+<td><strong>12</strong></td>
+<td><strong>F-DIS-01</strong></td>
+<td>Tìm kiếm &amp; Khám phá</td>
+<td><strong>Live Search Autocomplete (Tìm tức thì)</strong></td>
+<td>Khi gõ từ khóa, hiển thị dropdown tức thì (dưới 100ms) gồm: Ảnh thumbnail, Tên game, Thể loại chính, Lượt chơi và gợi ý từ khóa HOT.</td>
+<td>⚠️ Form submit cổ điển</td>
+<td>Đã có Autocomplete</td>
+<td><strong>Cần nâng cấp (High Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Giảm thời gian tìm kiếm, tăng trải nghiệm mượt</td>
+</tr>
+<tr>
+<td><strong>13</strong></td>
+<td><strong>F-DIS-02</strong></td>
+<td>Tìm kiếm &amp; Khám phá</td>
+<td><strong>Ma trận Phân loại Tags Nhân vật</strong></td>
+<td>Bổ sung hàng trăm Tag theo nhân vật/chủ đề hot: Doraemon, Pikachu, Mario, Sonic, Nấu ăn Sara, Người que, Bắn súng Y8, Minecraft 2D...</td>
+<td>❌ Chỉ có 15 danh mục gốc</td>
+<td>Đầy đủ ma trận tag</td>
+<td><strong>Khoảng trống lớn (High Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Bùng nổ Long-tail Keywords cho SEO Google</td>
+</tr>
+<tr>
+<td><strong>14</strong></td>
+<td><strong>F-DIS-03</strong></td>
+<td>Tìm kiếm &amp; Khám phá</td>
+<td><strong>Bộ lọc Đa tiêu chí (Multi-Filter)</strong></td>
+<td>Bộ lọc kết hợp: Nền tảng (Mobile/PC/Cảm ứng), Chế độ chơi (1 người/2 người), Đặc tính (Game nhẹ, Không cần mạng, Game 3D), Sắp xếp (Hot, Mới, Top Vote).</td>
+<td>❌ Chưa có</td>
+<td>⚠️ Có một phần</td>
+<td><strong>Khoảng trống lớn (High Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Giúp người dùng lọc đúng game phù hợp thiết bị</td>
+</tr>
+<tr>
+<td><strong>15</strong></td>
+<td><strong>F-DIS-04</strong></td>
+<td>Tìm kiếm &amp; Khám phá</td>
+<td><strong>Bố cục Hero Bento Grid / Featured Highlight</strong></td>
+<td>Trang chủ biến thiên kích thước thẻ Game (Thẻ lớn 2x2 cho Game tiêu điểm HOT, Thẻ 1x1 cho Game thường) thay vì lưới đều tăm tắp.</td>
+<td>⚠️ Lưới đồng đều 1 kích thước</td>
+<td>Bố cục đa kích thước bắt mắt</td>
+<td><strong>Cải tiến UI/UX (Medium Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Tạo điểm nhấn thị giác đẳng cấp, thu hút click</td>
+</tr>
+<tr>
+<td><strong>16</strong></td>
+<td><strong>F-GAM-01</strong></td>
+<td>Gamification &amp; Đua Top</td>
+<td><strong>Bảng Vàng Đua Top Điểm (Leaderboard)</strong></td>
+<td>Tích hợp Game SDK bắt điểm số (High Score). Lưu và xếp hạng Top người chơi theo Ngày, Tuần, Tháng, Mọi thời đại kèm vinh danh Top 1-2-3.</td>
+<td>❌ Chưa có</td>
+<td>Đã có (Bảng vàng)</td>
+<td><strong>Tính năng cốt lõi (High Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 3</td>
+<td>Kích thích tính tranh đua, tăng tỷ lệ chơi lại</td>
+</tr>
+<tr>
+<td><strong>17</strong></td>
+<td><strong>F-GAM-02</strong></td>
+<td>Gamification &amp; Đua Top</td>
+<td><strong>Bình luận Phân luồng &amp; Khoe Kỷ lục</strong></td>
+<td>Hệ thống comment hỗ trợ Reply theo thread, Like bình luận, chèn Sticker cảm xúc và đặc biệt là nút "Đính kèm ảnh chụp màn hình điểm số".</td>
+<td>⚠️ Textarea đơn giản</td>
+<td>Đã có comment</td>
+<td><strong>Cần nâng cấp (Medium Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 3</td>
+<td>Xây dựng cộng đồng tương tác sôi nổi (UGC)</td>
+</tr>
+<tr>
+<td><strong>18</strong></td>
+<td><strong>F-GAM-03</strong></td>
+<td>Gamification &amp; Đua Top</td>
+<td><strong>Cấp bậc Thành viên &amp; Huy hiệu (Badges)</strong></td>
+<td>Hệ thống tính điểm kinh nghiệm (Exp) khi chơi game, bình luận, đạt top điểm; Mở khóa danh hiệu (Tân thủ, Cao thủ, Thần đồng, Bất bại) và khung avatar.</td>
+<td>❌ Chưa có</td>
+<td>Đã có cấp độ</td>
+<td><strong>Thiếu (Medium Gap)</strong></td>
+<td><strong>COULD HAVE</strong></td>
+<td>Sprint 4</td>
+<td>Tạo động lực gắn bó lâu dài với hệ sinh thái</td>
+</tr>
+<tr>
+<td><strong>19</strong></td>
+<td><strong>F-CON-01</strong></td>
+<td>Nội dung Vệ tinh</td>
+<td><strong>Chia sẻ Đa nền tảng 1-Chạm (Social Share)</strong></td>
+<td>Bộ nút chia sẻ nhanh tối ưu cho Việt Nam: Zalo, Facebook Messenger, Telegram, Copy Link kèm lời mời chơi thách đấu bạn bè.</td>
+<td>❌ Chưa có</td>
+<td>Đã có (Zalo, FB, YT)</td>
+<td><strong>Thiếu (Medium Gap)</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Kéo traffic Viral tự nhiên miễn phí</td>
+</tr>
+<tr>
+<td><strong>20</strong></td>
+<td><strong>F-CON-02</strong></td>
+<td>Nội dung Vệ tinh</td>
+<td><strong>Cung cấp Mã Nhúng Game (Embed Code)</strong></td>
+<td>Tạo đoạn mã <code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">&lt;iframe src="..."&gt;</code> cho phép các blog cá nhân, website tin tức nhúng game về trang của họ, kèm logo bản quyền &amp; link trỏ về VTVGame.</td>
+<td>❌ Chưa có</td>
+<td>Đã có</td>
+<td><strong>Thiếu (Medium Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Tăng mạng lưới Backlink và nhận diện thương hiệu</td>
+</tr>
+<tr>
+<td><strong>21</strong></td>
+<td><strong>F-CON-03</strong></td>
+<td>Nội dung Vệ tinh</td>
+<td><strong>Video Clip Hướng dẫn Vượt màn (Walkthrough)</strong></td>
+<td>Tích hợp tab nhúng video YouTube gameplay/mẹo phá đảo cho các tựa game giải đố khó ngay dưới màn hình chơi.</td>
+<td>❌ Chưa có</td>
+<td>Có kho video riêng</td>
+<td><strong>Thiếu (Medium Gap)</strong></td>
+<td><strong>COULD HAVE</strong></td>
+<td>Sprint 3</td>
+<td>Tăng Time-on-page vượt trội, cải thiện SEO</td>
+</tr>
+<tr>
+<td><strong>22</strong></td>
+<td><strong>F-CON-04</strong></td>
+<td>Nội dung Vệ tinh</td>
+<td><strong>Chuyên mục Minigame Trắc nghiệm (Quiz)</strong></td>
+<td>Hệ thống tạo và làm bài test trắc nghiệm vui (Kiểm tra IQ, Tính cách, Kiến thức học đường, Đố vui Anime) chấm điểm tự động và chia sẻ kết quả.</td>
+<td>❌ Chưa có</td>
+<td>Đã có kho trắc nghiệm</td>
+<td><strong>Khoảng trống nội dung (Medium Gap)</strong></td>
+<td><strong>COULD HAVE</strong></td>
+<td>Sprint 4</td>
+<td>Thu hút tệp người dùng học sinh, sinh viên, Gen Z</td>
+</tr>
+<tr>
+<td><strong>23</strong></td>
+<td><strong>F-ADM-01</strong></td>
+<td>Quản trị CMS</td>
+<td><strong>Tự động Đồng bộ Game qua API (Auto-Sync)</strong></td>
+<td>Module Backend tự động quét và nhập hàng nghìn game mới từ GameMonetize / GamePix / Famobi kèm tự động dịch metadata sang tiếng Việt.</td>
+<td>⚠️ Nhập thủ công/script đơn giản</td>
+<td>Hệ thống CMS tự động</td>
+<td><strong>Cần hoàn thiện Backend</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Tiết kiệm 95% công sức vận hành nội dung</td>
+</tr>
+<tr>
+<td><strong>24</strong></td>
+<td><strong>F-ADM-02</strong></td>
+<td>Quản trị CMS</td>
+<td><strong>Quản lý Banner Quảng cáo &amp; Tối ưu AdSense</strong></td>
+<td>Quản lý vị trí đặt banner (Top header, Sidebar, Dưới game, Interstitial ad trước khi vào game) không làm che khuất trải nghiệm chơi.</td>
+<td>❌ Chưa có</td>
+<td>Hệ thống adbox tối ưu</td>
+<td><strong>Sẵn sàng doanh thu</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Tối ưu hóa doanh thu quảng cáo bền vững</td>
+</tr>
+<tr>
+<td><strong>25</strong></td>
+<td><strong>F-ADM-03</strong></td>
+<td>Quản trị CMS</td>
+<td><strong>Thống kê &amp; Phân tích Hành vi (Analytics)</strong></td>
+<td>Báo cáo chi tiết: Game nào chơi nhiều nhất, thời gian chơi trung bình, tỷ lệ thoát trang, thiết bị truy cập, từ khóa tìm kiếm phổ biến.</td>
+<td>⚠️ Google Analytics cơ bản</td>
+<td>Báo cáo chuyên sâu</td>
+<td><strong>Cần hoàn thiện</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 3</td>
+<td>Cung cấp dữ liệu để ra quyết định nhập game</td>
+</tr>
+<tr>
+<td><strong>26</strong></td>
+<td><strong>F-NFR-01</strong></td>
+<td>Phi chức năng</td>
+<td><strong>Tối ưu Cài đặt Ứng dụng Web (PWA Support)</strong></td>
+<td>Cung cấp Service Worker, manifest chuẩn PWA cho phép người dùng click "Thêm vào Màn hình chính" để mở game như App Native trên iOS/Android.</td>
+<td>⚠️ Chưa có PWA chuẩn</td>
+<td>Đã có Manifest</td>
+<td><strong>Cải tiến công nghệ (Medium Gap)</strong></td>
+<td><strong>SHOULD HAVE</strong></td>
+<td>Sprint 2</td>
+<td>Giữ chân người dùng Mobile không cần qua App Store</td>
+</tr>
+<tr>
+<td><strong>27</strong></td>
+<td><strong>F-NFR-02</strong></td>
+<td>Phi chức năng</td>
+<td><strong>Tối ưu Core Web Vitals &amp; Lazy Load Iframe</strong></td>
+<td>Chỉ load Iframe game khi người dùng bấm nút "Bấm để chơi", tải trước (preload) thumbnail WebP, chống Layout Shift (CLS = 0).</td>
+<td>⚠️ Tạm ổn</td>
+<td>⚠️ Tốc độ trung bình</td>
+<td><strong>Lợi thế Next.js của VTVGame</strong></td>
+<td><strong>MUST HAVE</strong></td>
+<td>Sprint 1</td>
+<td>Vượt trội GameVui về tốc độ tải trang trên Google</td>
+</tr>
+<tr>
+<td><strong>28</strong></td>
+<td><strong>F-NFR-03</strong></td>
+<td>Phi chức năng</td>
+<td><strong>Giao diện Tối / Sáng (Dark / Light Mode)</strong></td>
+<td>Tùy chọn giao diện nền tối bảo vệ mắt khi chơi game ban đêm, đồng bộ theo tùy chọn hệ điều hành của người dùng.</td>
+<td>❌ Mặc định Dark Theme</td>
+<td>⚠️ Mặc định Light Theme</td>
+<td><strong>Trải nghiệm UI/UX mới</strong></td>
+<td><strong>COULD HAVE</strong></td>
+<td>Sprint 3</td>
+<td>Cá nhân hóa hiển thị, tiết kiệm pin cho OLED</td>
+</tr>
+</tbody>
+</table>
+
+<p>---</p>
+<h2>IV. LỘ TRÌNH TRIỂN KHAI THEO SPRINT (SPRINT ROADMAP)</h2>
+<h3>🔹 Sprint 1: Hoàn thiện Trải nghiệm Cốt lõi &amp; Giữ chân Tức thì (Tuần 1 - 2)</h3>
+<ul>
+<li><strong>Mục tiêu:</strong> Khắc phục triệt để các nhược điểm của trình phát game, mở khóa tính năng Yêu thích &amp; Đã chơi cho Guest, hoàn thiện thanh điều hướng Header.</li>
+<li><strong>Danh sách chức năng:</strong></li>
+</ul>
+<ol>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-PL-01</code>: Chế độ Tắt đèn (Theater Mode)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-PL-02</code>: Nút Tải lại Game độc lập (Reload Frame)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-PL-03</code>: Fullscreen API thông minh &amp; xoay màn hình Mobile</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-US-01</code>: Lịch sử "Game đã chơi gần đây" (LocalStorage + Slider Home)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-US-02</code>: Bộ sưu tập "Game yêu thích Hybrid" (Không chặn login, lưu LocalStorage)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-US-03</code>: Thêm Shortcut Tiện ích trên Header (Icon ❤️, 🕒, 🏆)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-DIS-01</code>: Live Search Autocomplete (Gợi ý tức thì)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-CON-01</code>: Nút chia sẻ Zalo / FB / Messenger / Copy Link 1-chạm</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-NFR-02</code>: Tối ưu Lazy load iframe &amp; WebP</li>
+</ol>
+<h3>🔹 Sprint 2: Xác thực Người dùng, Ma trận Phân loại &amp; PWA (Tuần 3 - 4)</h3>
+<ul>
+<li><strong>Mục tiêu:</strong> Mở rộng traffic tự nhiên (SEO) và xây dựng hệ thống thành viên.</li>
+<li><strong>Danh sách chức năng:</strong></li>
+</ul>
+<ol>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-US-04</code>: Đăng nhập SSO (Google, Zalo, Facebook) &amp; Tự động Merge dữ liệu LocalStorage</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-US-05</code>: Trang Profile thành viên &amp; Quản lý Avatar</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-DIS-02</code>: Ma trận Tags nhân vật &amp; Chủ đề chuyên sâu (Doraemon, Mario, Nấu ăn...)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-DIS-03</code>: Bộ lọc Đa tiêu chí (1 người/2 người, Mobile/PC)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-DIS-04</code>: Bố cục Bento Grid làm nổi bật Game Tiêu điểm</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-PL-04</code>: Icon hướng dẫn phím bấm trực quan</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-CON-02</code>: Tạo mã Embed nhúng game cho đối tác</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-NFR-01</code>: Hỗ trợ Progressive Web App (PWA) cài đặt màn hình chính</li>
+</ol>
+<h3>🔹 Sprint 3: Gamification, Đua Top &amp; Tương tác Cộng đồng (Tuần 5 - 6)</h3>
+<ul>
+<li><strong>Mục tiêu:</strong> Tạo tính gắn kết và cạnh tranh cao độ giữa các người chơi.</li>
+<li><strong>Danh sách chức năng:</strong></li>
+</ul>
+<ol>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-GAM-01</code>: Bảng vàng Đua Top Điểm (Leaderboard SDK)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-GAM-02</code>: Bình luận Phân luồng (Reply Thread) + Đính kèm ảnh điểm số</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-CON-03</code>: Nhúng Video Clip hướng dẫn chơi (Walkthrough)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-ADM-02</code>: Quản lý Vị trí Quảng cáo (Banner/Interstitial)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-ADM-03</code>: Dashboard Thống kê &amp; Phân tích Hành vi</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-PL-05</code>: Nút Phóng to/Thu nhỏ khung chơi đa kích cỡ</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-NFR-03</code>: Tùy chọn giao diện Dark / Light Mode</li>
+</ol>
+<h3>🔹 Sprint 4: Hệ sinh thái Giải trí Vệ tinh &amp; Tối ưu Nâng cao (Tuần 7 - 8)</h3>
+<ul>
+<li><strong>Mục tiêu:</strong> Đa dạng hóa trải nghiệm, vượt trội GameVui về hệ tính năng giữ chân.</li>
+<li><strong>Danh sách chức năng:</strong></li>
+</ul>
+<ol>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-US-06</code>: Chuỗi Điểm danh &amp; Nhiệm vụ Ngày (Daily Quests)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-GAM-03</code>: Cấp bậc Thành viên, Exp &amp; Huy hiệu Danh hiệu (Badges)</li>
+<li><code style="background-color:#f2f2f2;padding:2px 4px;font-family:Consolas;">F-CON-04</code>: Phân hệ Minigame Trắc nghiệm (Interactive Quiz)</li>
+</ol>
+
+</body>
+</html>

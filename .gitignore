@@ -1,0 +1,27 @@
+# Media & Large Files
+*.mp4
+*.mp3
+*.wav
+*.mov
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+venv/
+.venv/
+
+# Automation profiles & temporary browser data
+suno_automation/chrome_profile/
+suno_automation/*_profile/
+suno_automation/render_temp/
+suno_automation/*.mp4
+suno_automation/*.mp3
+
+# Analyst Docs media
+analyst_docs/*.mp4
+
+# OS / Editor temporary files
+.DS_Store
+Thumbs.db
