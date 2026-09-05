@@ -348,9 +348,10 @@
       margin-bottom: 2px;
       cursor: pointer;
       display: inline-block;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
       transition: color 0.2s;
     }
+
     .player-drama-title:hover {
       color: var(--primary);
     }
@@ -360,7 +361,7 @@
       color: rgba(255, 255, 255, 0.85);
       font-weight: 500;
       margin-bottom: 8px;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     }
 
     .player-drama-ep-badge {
@@ -369,7 +370,7 @@
       color: rgba(255, 255, 255, 0.9);
       font-weight: 600;
       margin-bottom: 8px;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
     }
 
     /* KHI VÀO XEM PHIM TỪ TRANG CHI TIẾT PHIM (CHẾ ĐỘ HÌNH 2 GỌN ĐẸP) */
@@ -406,6 +407,7 @@
       transition: all 0.2s ease;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
+
     .all-episodes-btn:hover {
       background: var(--primary);
       border-color: transparent;
@@ -461,6 +463,7 @@
       opacity: 0;
       transition: opacity 0.25s ease;
     }
+
     .comments-modal.active {
       display: block;
       opacity: 1;
@@ -495,6 +498,7 @@
       box-sizing: border-box;
       z-index: 1201;
     }
+
     .comments-modal.active .comments-sheet {
       transform: translateY(0);
     }
@@ -507,6 +511,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .comments-drag-handle {
       position: absolute;
       top: 6px;
@@ -515,12 +520,14 @@
       background: rgba(255, 255, 255, 0.25);
       border-radius: 2px;
     }
+
     .comments-title {
       font-size: 13px;
       font-weight: 700;
       color: #ffffff;
       margin-top: 4px;
     }
+
     .comments-close-btn {
       position: absolute;
       right: 14px;
@@ -531,6 +538,7 @@
       padding: 4px;
       transition: color 0.2s;
     }
+
     .comments-close-btn:hover {
       color: #ffffff;
     }
@@ -543,9 +551,11 @@
       flex-direction: column;
       gap: 14px;
     }
+
     .comments-list::-webkit-scrollbar {
       width: 4px;
     }
+
     .comments-list::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 2px;
@@ -588,6 +598,7 @@
       color: #ffffff;
       margin-bottom: 2px;
     }
+
     .comment-time {
       font-size: 10px;
       color: var(--text-muted);
@@ -607,13 +618,16 @@
       font-size: 10px;
       color: var(--text-muted);
     }
+
     .comment-like-btn {
       cursor: pointer;
       transition: color 0.2s;
     }
+
     .comment-like-btn:hover {
       color: var(--primary);
     }
+
     .comment-reply-btn {
       cursor: pointer;
     }
@@ -653,9 +667,11 @@
       color: #ffffff;
       outline: none;
     }
+
     .comment-input::placeholder {
       color: var(--text-muted);
     }
+
     .comment-input:focus {
       border-color: var(--primary);
       background: rgba(255, 255, 255, 0.12);
@@ -672,6 +688,7 @@
       cursor: pointer;
       transition: transform 0.15s ease;
     }
+
     .comment-send-btn:active {
       transform: scale(0.94);
     }
@@ -1118,9 +1135,13 @@
         <div class="player-bg"></div>
 
         <div class="player-top-overlay">
-          <div id="player-back-btn" style="font-size:16px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:4px;" onclick="goBack()" title="Quay lại">‹ <span id="player-back-label"></span></div>
+          <div id="player-back-btn"
+            style="font-size:16px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:4px;"
+            onclick="goBack()" title="Quay lại">‹ <span id="player-back-label"></span></div>
           <div class="player-title-info">
-            <div class="player-title" onclick="goToDramaDetailFromPlayer()" style="cursor:pointer;" title="Bấm để vào Chi tiết phim">Vợ Cũ Lật Kèo <span style="font-size:12px; color:var(--primary);">›</span></div>
+            <div class="player-title" onclick="goToDramaDetailFromPlayer()" style="cursor:pointer;"
+              title="Bấm để vào Chi tiết phim">Vợ Cũ Lật Kèo <span
+                style="font-size:12px; color:var(--primary);">›</span></div>
             <div class="player-ep-num">Tập 12 / 80</div>
           </div>
           <div style="font-size:12px; background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:10px;">Sub: VI</div>
@@ -1265,8 +1286,7 @@
         </div>
 
         <div class="detail-actions">
-          <div class="p-btn highlight" style="flex:2;"
-            onclick="playEpisodeFromDetail(1)">▶ Xem Từ Tập 1</div>
+          <div class="p-btn highlight" style="flex:2;" onclick="playEpisodeFromDetail(1)">▶ Xem Từ Tập 1</div>
           <div class="p-btn" id="btn-detail-fav" style="flex:1; background:rgba(255,255,255,0.1);"
             onclick="toggleFavoriteCurrentDrama(this)">❤️ Yêu Thích</div>
         </div>
@@ -1353,8 +1373,8 @@
           </div>
 
           <div class="input-group">
-            <div class="input-label">Số điện thoại / Email</div>
-            <input type="text" class="form-input" placeholder="0988xxxxxx hoặc email@domain.com">
+            <div class="input-label">Email</div>
+            <input type="text" class="form-input" placeholder="email@domain.com">
           </div>
 
           <div class="input-group">
@@ -1582,10 +1602,13 @@
 
         <div class="comments-list" id="comments-list-container">
           <div class="comment-item">
-            <div class="comment-avatar" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop');"></div>
+            <div class="comment-avatar"
+              style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop');">
+            </div>
             <div class="comment-content">
               <div class="comment-author">Nguyễn Minh Anh <span class="comment-time">• 15 phút trước</span></div>
-              <div class="comment-text">Phim cuốn quá ad ơi! Nữ chính ngầu vãi, tập sau lật kèo tổng tài hối hận không kịp đâu 🔥</div>
+              <div class="comment-text">Phim cuốn quá ad ơi! Nữ chính ngầu vãi, tập sau lật kèo tổng tài hối hận không
+                kịp đâu 🔥</div>
               <div class="comment-actions">
                 <span class="comment-like-btn" onclick="toggleCommentLike(this)">❤️ 142</span>
                 <span class="comment-reply-btn">Trả lời</span>
@@ -1594,10 +1617,13 @@
           </div>
 
           <div class="comment-item">
-            <div class="comment-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop');"></div>
+            <div class="comment-avatar"
+              style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop');">
+            </div>
             <div class="comment-content">
               <div class="comment-author">Trần Tuấn Nam <span class="comment-time">• 1 giờ trước</span></div>
-              <div class="comment-text">Khi nào ra Tập 13 vậy shop? Đang hóng đoạn trả thù gia đình nhà chồng quá! 🎬</div>
+              <div class="comment-text">Khi nào ra Tập 13 vậy shop? Đang hóng đoạn trả thù gia đình nhà chồng quá! 🎬
+              </div>
               <div class="comment-actions">
                 <span class="comment-like-btn" onclick="toggleCommentLike(this)">❤️ 89</span>
                 <span class="comment-reply-btn">Trả lời</span>
@@ -1606,7 +1632,9 @@
           </div>
 
           <div class="comment-item">
-            <div class="comment-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop');"></div>
+            <div class="comment-avatar"
+              style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop');">
+            </div>
             <div class="comment-content">
               <div class="comment-author">Lê Thu Hà <span class="comment-time">• 3 giờ trước</span></div>
               <div class="comment-text">Xem đoạn này nổi cả da gà, nhạc phim cũng đỉnh nữa 👍</div>
@@ -1620,7 +1648,8 @@
 
         <div class="comments-input-bar">
           <div class="user-mini-avatar" id="comment-user-avatar">HN</div>
-          <input type="text" id="comment-input-field" class="comment-input" placeholder="Viết bình luận của bạn..." onfocus="checkLoginToComment()" onkeypress="handleCommentKeyPress(event)" />
+          <input type="text" id="comment-input-field" class="comment-input" placeholder="Viết bình luận của bạn..."
+            onfocus="checkLoginToComment()" onkeypress="handleCommentKeyPress(event)" />
           <button class="comment-send-btn" onclick="submitNewComment()">Gửi</button>
         </div>
       </div>
@@ -1856,7 +1885,7 @@
     }
 
     function escapeHTML(str) {
-      return str.replace(/[&<>'"]/g, 
+      return str.replace(/[&<>'"]/g,
         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
       );
     }
