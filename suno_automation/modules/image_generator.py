@@ -15,31 +15,27 @@ class ImageGenerator:
         """
         print(f"🎨 Đang tự động tạo hình nền AI cho prompt: '{prompt}'...")
         
-        # Tự động tối ưu hóa prompt cho phong cách Lofi Aesthetic 8K Masterpiece
-        enhanced_prompt = f"Masterpiece anime lofi aesthetic wallpaper, {prompt}, cozy room at rainy night, glowing amber desk lamp, steam from coffee cup, rain drops on window glass with blurred city bokeh lights, 8k resolution, ultra detailed, studio ghibli vibe, rich vibrant colors"
+        # Tối ưu hóa prompt nghệ thuật chuẩn YouTube Lo-Fi Masterpiece
+        enhanced_prompt = f"Masterpiece anime lofi aesthetic wallpaper, {prompt}, cute anime girl wearing headphones chilling at cozy wooden desk, rainy night window with city bokeh lights, warm glowing amber desk lamp, steaming coffee mug, cozy aesthetic bedroom, studio ghibli art style, 8k resolution, highly detailed, soft warm atmospheric lighting, cinematic composition"
         encoded_prompt = urllib.parse.quote(enhanced_prompt)
         
-        # URL dịch vụ Pollinations AI dùng Model FLUX (Ultra Quality 1920x1080)
-        image_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1920&height=1080&model=flux&nologo=true&enhance=true"
+        # URL FLUX AI (Độ phân giải 1920x1080 chuẩn 16:9 sắc nét)
+        image_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1920&height=1080&model=flux&nologo=true&seed={datetime.now().microsecond}"
         
         output_path = os.path.join(self.output_dir, filename)
         
         try:
-            # Kiểm tra nếu có bức ảnh Masterpiece Ultra HD 4K (lofi_4k_ultra) thì dùng cố định
-            masterpiece_img = os.path.join(self.output_dir, "lofi_4k_ultra_1788172511456.jpg")
-            if os.path.exists(masterpiece_img):
-                import shutil
-                shutil.copy(masterpiece_img, output_path)
-                print(f"✅ Đã sử dụng ảnh Masterpiece Ultra HD 4K cố định: {output_path}")
-                return output_path
-            
-            response = requests.get(image_url, timeout=30)
-            if response.status_code == 200:
+            print(f"🎨 Đang gọi FLUX AI Model để vẽ Artwork 16:9 sắc nét cho: '{prompt}'...")
+            response = requests.get(image_url, timeout=60)
+            if response.status_code == 200 and len(response.content) > 10000:
                 with open(output_path, "wb") as f:
                     f.write(response.content)
-                print(f"✅ Đã tạo & tải ảnh nền AI thành công: {output_path}")
+                size_kb = round(len(response.content) / 1024, 1)
+                print(f"✅ ĐÃ TẠO XONG ẢNH NỀN AI THÀNH CÔNG! ({size_kb} KB)")
+                print(f"📁 Lưu tại: {output_path}")
                 return output_path
             else:
+                print(f"⚠️ Không nhận được ảnh từ server (status: {response.status_code})")
                 return output_path
         except Exception as e:
             print(f"❌ Lỗi khi tạo ảnh AI: {e}")

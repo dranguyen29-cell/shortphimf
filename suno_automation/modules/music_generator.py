@@ -24,20 +24,20 @@ class SunoMusicGenerator:
         try:
             from playwright.sync_api import sync_playwright
 
-            user_data_dir = os.path.expanduser("~\\AppData\\Local\\Google\\Chrome\\User Data")
+            user_data_dir = os.path.abspath("chrome_profile")
 
             with sync_playwright() as p:
-                print("🌐 Đang kết nối Chrome Profile 'Long Nguyen' (Duy trì Session Suno AI 100%)...")
+                print("🌐 Đang kết nối Chrome Profile dự án (Duy trì Session Suno AI 100%)...")
                 
                 browser_context = None
                 try:
                     # Thử kết nối qua Chrome CDP Port 9222 nếu Chrome đang mở sẵn
                     browser = p.chromium.connect_over_cdp("http://localhost:9222", timeout=5000)
                     browser_context = browser.contexts[0]
-                    print("⚡ Đã kết nối thành công Chrome Port 9222 (Profile Long Nguyen)!")
+                    print("⚡ Đã kết nối thành công Chrome Port 9222!")
                 except Exception:
-                    # Nếu chưa mở Port 9222, chạy Chrome Persistent Context với Profile người dùng
-                    print("🌐 Khởi động Chrome Persistent Context với Profile máy...")
+                    # Chạy Chrome Persistent Context với Profile dự án đã lưu session
+                    print("🌐 Khởi động Chrome Persistent Context với Profile dự án...")
                     browser_context = p.chromium.launch_persistent_context(
                         user_data_dir=user_data_dir,
                         channel="chrome",
@@ -108,28 +108,52 @@ Tắm mát tâm hồn... Trôi theo tiếng mưa đêm...
                 else:
                     print("📌 Đã điền sẵn Lời & Phong cách trên cửa sổ Suno AI!")
 
-                # Quét file MP3 mới trong folder hoặc network
-                print("📥 Đang kiểm tra bài hát mới gen trong thư mục music_output...")
-                time.sleep(10)
+                # Đợi bài hát hoàn tất sáng tác và tự động tải về
+                print("⏳ Đang chờ Suno hoàn thiện bài hát...")
+                time.sleep(5)
 
-            print(f"✅ Đã tải file bài hát về: {output_file}")
-            return {
-                "title": safe_title.title(),
-                "file_path": output_file,
-                "prompt": prompt,
-                "style": style
-            }
+                downloaded_file = None
+                try:
+                    print("🎯 Đang mở menu bài hát mới nhất để tải file MP3...")
+                    more_btn = page.locator('button[aria-label="More options"][data-context-menu-trigger="true"]').first
+                    if more_btn.is_visible(timeout=10000):
+                        more_btn.click()
+                        time.sleep(1)
 
-        except Exception as e:
-            print(f"⚠️ Thông báo kết nối Playwright: {e}")
-            # Trả về kết quả fallback nếu có sẵn nhạc mẫu
-            existing_files = [f for f in os.listdir(self.output_dir) if f.endswith(".mp3")]
-            if existing_files:
-                selected_file = os.path.join(self.output_dir, existing_files[0])
-                print(f"🎵 Sử dụng bài hát có sẵn trong folder: {selected_file}")
+                        download_item = page.locator('div, span, button').filter(has_text="Download").last
+                        download_item.click()
+                        time.sleep(1.5)
+
+                        with page.expect_download(timeout=30000) as download_info:
+                            unlock_btn = page.locator('button:has-text("Unlock & Download"), button:has-text("Download")').last
+                            unlock_btn.click()
+                            
+                            download = download_info.value
+                            downloaded_filename = download.suggested_filename
+                            final_path = os.path.join(self.output_dir, downloaded_filename)
+                            download.save_as(final_path)
+                            downloaded_file = final_path
+                            print(f"🎉🎉🎉 ĐÃ TỰ ĐỘNG TẢI THÀNH CÔNG BÀI HÁT TỪ SUNO: {final_path}")
+                except Exception as dl_err:
+                    print(f"⚠️ Lỗi tự động tải bài hát: {dl_err}")
+
+            if downloaded_file and os.path.exists(downloaded_file):
                 return {
-                    "title": "Midnight Rain & Coffee",
-                    "file_path": selected_file,
+                    "title": os.path.splitext(os.path.basename(downloaded_file))[0],
+                    "file_path": downloaded_file,
+                    "prompt": prompt,
+                    "style": style
+                }
+
+            # Fallback nếu đã có file trong music_output
+            existing_files = [os.path.join(self.output_dir, f) for f in os.listdir(self.output_dir) if f.endswith(".mp3")]
+            if existing_files:
+                existing_files.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+                latest_mp3 = existing_files[0]
+                print(f"🎵 Sử dụng bản thu mới nhất: {latest_mp3}")
+                return {
+                    "title": os.path.splitext(os.path.basename(latest_mp3))[0],
+                    "file_path": latest_mp3,
                     "prompt": prompt,
                     "style": style
                 }
