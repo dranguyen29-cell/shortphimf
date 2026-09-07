@@ -14,8 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- QRCode.js CDN for live QR -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <style>
     :root {
@@ -1263,14 +1261,6 @@
             <div class="maintext">Tải File APK</div>
           </div>
         </button>
-
-        <button class="store-badge-btn" onclick="openQrModal('Quét mã QR để tải trực tiếp trên điện thoại Android')">
-          <i data-lucide="qr-code" style="width: 30px; height: 30px; color: #ff3366;"></i>
-          <div>
-            <div class="subtext">Quét Mã</div>
-            <div class="maintext">Cài Bằng QR</div>
-          </div>
-        </button>
       </div>
 
       <div class="hero-perks">
@@ -1344,13 +1334,7 @@
                   <span>Tải File .APK (38MB)</span>
                 </button>
 
-                <button class="btn-qr-scan"
-                  onclick="openQrModal('Quét mã để tải app ngay trên điện thoại Android của bạn')">
-                  <i data-lucide="qr-code" style="width: 16px; height: 16px;"></i>
-                  <span>Mã QR</span>
-                </button>
-
-                <button class="btn-qr-scan" onclick="shareApp()">
+                <button class="btn-apk-download" onclick="shareApp()">
                   <i data-lucide="share-2" style="width: 16px; height: 16px;"></i>
                   <span>Chia sẻ</span>
                 </button>
@@ -1527,8 +1511,7 @@
         <div class="guide-card">
           <div class="step-number">1</div>
           <h3 class="guide-card-title">Mở Trang Google Play</h3>
-          <p class="guide-card-text">Nhấn nút "Cài Đặt (Google Play)" trên website này hoặc quét mã QR bằng camera điện
-            thoại của bạn.</p>
+          <p class="guide-card-text">Nhấn nút "Cài Đặt (Google Play)" trên website này để mở trang tải chính thức trên điện thoại Android của bạn.</p>
           <div class="guide-tip">💡 Mẹo: Ứng dụng sẽ tự động chuyển hướng đến kho ứng dụng CH Play chính thống.</div>
         </div>
 
@@ -1589,7 +1572,7 @@
 
       <div class="drama-grid">
         <!-- Film 1 -->
-        <div class="drama-item" onclick="openQrModal('Tải app Android để xem trọn bộ: Tổng Tài Giấu Nghề')">
+        <div class="drama-item" onclick="simulateDirectDownload()">
           <div class="drama-thumb drama-thumb-1">
             <span class="episodes-badge">85 Tập • Đã Hoàn Thành</span>
             <div class="play-btn-circle">
@@ -1605,7 +1588,7 @@
         </div>
 
         <!-- Film 2 -->
-        <div class="drama-item" onclick="openQrModal('Tải app Android để xem trọn bộ: Đại Nữ Chủ Báo Thù')">
+        <div class="drama-item" onclick="simulateDirectDownload()">
           <div class="drama-thumb drama-thumb-2">
             <span class="episodes-badge">60 Tập • Đang Chiếu</span>
             <div class="play-btn-circle">
@@ -1621,7 +1604,7 @@
         </div>
 
         <!-- Film 3 -->
-        <div class="drama-item" onclick="openQrModal('Tải app Android để xem trọn bộ: Cô Vợ Thay Thế Của Lãnh Hàn')">
+        <div class="drama-item" onclick="simulateDirectDownload()">
           <div class="drama-thumb drama-thumb-3">
             <span class="episodes-badge">92 Tập • Hoàn Tất</span>
             <div class="play-btn-circle">
@@ -1637,7 +1620,7 @@
         </div>
 
         <!-- Film 4 -->
-        <div class="drama-item" onclick="openQrModal('Tải app Android để xem trọn bộ: Long Thần Xuất Sơn')">
+        <div class="drama-item" onclick="simulateDirectDownload()">
           <div class="drama-thumb drama-thumb-4">
             <span class="episodes-badge">100 Tập • Hot Nhất</span>
             <div class="play-btn-circle">
@@ -1675,41 +1658,9 @@
     </div>
   </div>
 
-  <!-- QR Modal Popup -->
-  <div class="modal-overlay" id="qrModal">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeQrModal()">
-        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
-      </button>
-
-      <div style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;" id="modal-title">
-        Quét Mã Tải Bản Android
-      </div>
-      <p style="font-size: 13px; color: var(--text-muted);" id="modal-desc">
-        Sử dụng Camera hoặc Zalo trên điện thoại Android để quét mã tải ngay
-      </p>
-
-      <div class="modal-qr-box" id="qrcode-container"></div>
-
-      <div style="display: flex; justify-content: center; gap: 8px; font-size: 12px; color: #10b981; font-weight: 600;">
-        <i data-lucide="shield-check" style="width: 16px; height: 16px;"></i>
-        <span>Bảo mật Play Protect chính thức</span>
-      </div>
-
-      <div style="margin-top: 16px;">
-        <button class="btn-store-install" style="width: 100%; justify-content: center; font-size: 14px;"
-          onclick="simulateDirectDownload()">
-          <i data-lucide="arrow-down-circle" style="width: 16px; height: 16px;"></i>
-          <span>Tải file cài đặt trực tiếp (.APK Android)</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer>
     <div class="container">
-
       <p>© 2026 PineDrama Inc. Bản quyền thuộc về Pine Studio. All rights reserved.</p>
       <p style="margin-top: 6px; font-size: 11px;">Mọi video ngắn đều được cấp phép bản quyền phát hành độc quyền trên
         hệ thống Android.</p>
@@ -1742,52 +1693,24 @@
       lucide.createIcons();
     }
 
-    // QR Code Generator & Modal
-    let qrGenerated = false;
-    function openQrModal(titleText = 'Quét Mã Tải Bản Android') {
-      const modal = document.getElementById('qrModal');
-      const modalTitle = document.getElementById('modal-title');
-      if (modalTitle && titleText) modalTitle.innerText = titleText;
-
-      const qrContainer = document.getElementById('qrcode-container');
-      if (!qrGenerated) {
-        qrContainer.innerHTML = '';
-        new QRCode(qrContainer, {
-          text: window.location.href || 'https://play.google.com/store/apps/details?id=com.pinestudio.pinedrama',
-          width: 166,
-          height: 166,
-          colorDark: "#0f172a",
-          colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.H
-        });
-        qrGenerated = true;
-      }
-      modal.classList.add('active');
-    }
-
-    function closeQrModal() {
-      document.getElementById('qrModal').classList.remove('active');
-    }
-
     // Trigger Install Simulation
     function triggerInstallAction() {
       const btn = document.getElementById('btn-main-install');
       const span = document.getElementById('install-btn-text');
 
-      span.innerText = 'Đang tải xuống... 100%';
+      span.innerText = 'Đang kết nối Google Play...';
       btn.style.opacity = '0.7';
 
       setTimeout(() => {
-        span.innerText = 'ĐÃ CÀI ĐẶT (MỞ)';
+        span.innerText = 'ĐÃ BẮT ĐẦU CÀI ĐẶT';
         btn.style.opacity = '1';
         btn.style.background = '#00a86b';
-        openQrModal('Quét mã trên điện thoại Android để bắt đầu trải nghiệm PineDrama!');
-      }, 900);
+        simulateDirectDownload();
+      }, 700);
     }
 
     function simulateDirectDownload() {
-      alert('Bắt đầu tải file cài đặt PineDrama_v1.0.0_beta.apk! Vui lòng kiểm tra thông báo tải về trên thiết bị Android của bạn.');
-      closeQrModal();
+      alert('Đang bắt đầu tải gói cài đặt PineDrama_v1.0.0_beta.apk! Vui lòng kiểm tra thanh thông báo tải xuống trên thiết bị Android của bạn.');
     }
 
     function shareApp() {
@@ -1802,14 +1725,6 @@
         alert('Đã sao chép liên kết tải app Android vào bộ nhớ tạm!');
       }
     }
-
-    // Close modal on outside click
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('qrModal');
-      if (e.target === modal) {
-        closeQrModal();
-      }
-    });
   </script>
 </body>
 
