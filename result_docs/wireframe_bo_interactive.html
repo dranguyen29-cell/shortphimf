@@ -468,6 +468,20 @@
       color: #000;
     }
 
+    .btn-draft {
+      background: rgba(255, 184, 0, 0.12);
+      color: var(--accent-gold);
+      border: 1px solid rgba(255, 184, 0, 0.35);
+      font-weight: 700;
+    }
+
+    .btn-draft:hover {
+      background: rgba(255, 184, 0, 0.22);
+      border-color: var(--accent-gold);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
     .btn-api {
       background: linear-gradient(135deg, #29b6f6, #6366f1);
       color: #fff;
@@ -1659,7 +1673,7 @@
         <div class="menu-group-title">Quản Lý Người Dùng</div>
         <a class="menu-item" onclick="switchView('view-user-management', this)">
           <span class="icon">👥</span>
-          <span>Quản Lý User & Cấm Chat</span>
+          <span>Quản Lý Người Dùng</span>
         </a>
 
         <div class="menu-group-title">Quản Trị Hệ Thống</div>
@@ -2539,14 +2553,12 @@
         <section id="view-user-management" class="view-section">
           <div class="page-header" style="align-items: flex-start;">
             <div>
-              <h1 class="page-title">👥 Quản Lý Người Dùng & Trung Tâm Cấm Chat / Khóa Account</h1>
-              <p class="page-subtitle">Quản lý tệp người dùng, xem trạng thái hoạt động, áp dụng Cấm Chat (Mute), Khóa
-                Tài Khoản (Ban) hoặc Mở Khóa (Unban / Unmute)</p>
+              <h1 class="page-title">👥 Quản Lý Người Dùng & Khóa Tài Khoản</h1>
+              <p class="page-subtitle">Quản lý tệp người dùng, xem trạng thái hoạt động, áp dụng Khóa Tài Khoản (Ban) hoặc Mở Khóa (Unban)</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-secondary"
-                onclick="alert('📥 Đã xuất danh sách User vi phạm (Cấm chat / Banned) thành công!')">📥 Xuất DS Vi
-                Phạm</button>
+                onclick="alert('📥 Đã xuất danh sách User bị khóa tài khoản thành công!')">📥 Xuất DS Bị Khóa</button>
             </div>
           </div>
 
@@ -2585,7 +2597,7 @@
                 </thead>
                 <tbody id="user-table-body">
                   <!-- USER 1: ACTIVE -->
-                  <tr id="user-row-1" data-status="active" data-chat="normal">
+                  <tr id="user-row-1" data-status="active">
                     <td>01</td>
                     <td>
                       <strong style="color: #fff;">Minh Anh</strong>
@@ -2597,15 +2609,13 @@
                     <td id="user-status-cell-1"><span class="badge badge-published">🟢 Hoạt Động</span></td>
                     <td id="user-action-cell-1">
                       <div class="user-action-group">
-                        <button class="user-action-btn mute" onclick="toggleMuteUser(1, 'Minh Anh')">🔇 Cấm
-                          Chat</button>
                         <button class="user-action-btn ban" onclick="toggleBanUser(1, 'Minh Anh')">🔒 Khóa Acc</button>
                       </div>
                     </td>
                   </tr>
 
-                  <!-- USER 2: MUTED (VẪN LÀ ACTIVE NHƯNG ĐANG BỊ MUTE CHAT) -->
-                  <tr id="user-row-2" data-status="active" data-chat="muted">
+                  <!-- USER 2: ACTIVE -->
+                  <tr id="user-row-2" data-status="active">
                     <td>02</td>
                     <td>
                       <strong style="color: #fff;">Tuấn Kiệt</strong>
@@ -2617,15 +2627,13 @@
                     <td id="user-status-cell-2"><span class="badge badge-published">🟢 Hoạt Động</span></td>
                     <td id="user-action-cell-2">
                       <div class="user-action-group">
-                        <button class="user-action-btn unmute" onclick="toggleMuteUser(2, 'Tuấn Kiệt')">🔊 Mở
-                          Chat</button>
                         <button class="user-action-btn ban" onclick="toggleBanUser(2, 'Tuấn Kiệt')">🔒 Khóa Acc</button>
                       </div>
                     </td>
                   </tr>
 
                   <!-- USER 3: INACTIVE (BANNED) -->
-                  <tr id="user-row-3" data-status="inactive" data-chat="banned">
+                  <tr id="user-row-3" data-status="inactive">
                     <td>03</td>
                     <td>
                       <strong style="color: #fff;">Spam_Bot_999</strong>
@@ -2645,7 +2653,7 @@
                   </tr>
 
                   <!-- USER 4: ACTIVE -->
-                  <tr id="user-row-4" data-status="active" data-chat="normal">
+                  <tr id="user-row-4" data-status="active">
                     <td>04</td>
                     <td>
                       <strong style="color: #fff;">Phương Linh</strong>
@@ -2657,8 +2665,6 @@
                     <td id="user-status-cell-4"><span class="badge badge-published">🟢 Hoạt Động</span></td>
                     <td id="user-action-cell-4">
                       <div class="user-action-group">
-                        <button class="user-action-btn mute" onclick="toggleMuteUser(4, 'Phương Linh')">🔇 Cấm
-                          Chat</button>
                         <button class="user-action-btn ban" onclick="toggleBanUser(4, 'Phương Linh')">🔒 Khóa
                           Acc</button>
                       </div>
@@ -2780,7 +2786,7 @@
                       </div>
                     </td>
                     <td><span class="badge badge-role-mod">🛡️ User Moderator</span></td>
-                    <td><span style="font-size: 12px; color: var(--text-sub);">Quản Lý Người Dùng, Cấm Chat</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Quản Lý Người Dùng, Khóa Acc</span></td>
                     <td><span class="badge badge-published" id="status-admin-3">🟢 Hoạt Động</span></td>
                     <td>2 giờ trước</td>
                     <td>
@@ -3197,7 +3203,10 @@
         <span style="font-size: 12px; color: var(--text-muted);"></span>
         <div style="display: flex; gap: 8px;">
           <button class="btn btn-secondary" onclick="closeModal('modal-create-drama')">Hủy Bỏ</button>
-          <button class="btn btn-primary" onclick="executeCreateDramaDirect()">
+          <button class="btn btn-draft" onclick="executeCreateDramaDirect(false)" title="Lưu phim ở trạng thái Tạm Ẩn (Chưa phát hành)">
+            ⏸️ TẠM ẨN
+          </button>
+          <button class="btn btn-primary" onclick="executeCreateDramaDirect(true)" title="Lưu và Phát hành ngay lên App & Web">
             💾 XUẤT BẢN
           </button>
         </div>
@@ -3362,7 +3371,7 @@
             <select id="new-admin-role"
               style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
               <option value="content">🎬 Content Manager (Danh Sách Phim & Tag)</option>
-              <option value="mod">🛡️ User Moderator (Quản lý User & Cấm Chat)</option>
+              <option value="mod">🛡️ User Moderator (Quản lý User & Khóa Acc)</option>
               <option value="analyst">📊 Data Analyst (Báo cáo & Thống kê)</option>
               <option value="super">👑 Super Admin (Toàn quyền hệ thống)</option>
             </select>
@@ -3389,7 +3398,7 @@
             </label>
             <label
               style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
-              <input type="checkbox"> <span>Quản lý User & Cấm Chat</span>
+              <input type="checkbox"> <span>Quản lý User & Khóa Acc</span>
             </label>
             <label
               style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
@@ -3535,7 +3544,7 @@
 
       if (roleVal === 'mod') {
         roleBadge = '<span class="badge badge-role-mod">🛡️ User Moderator</span>';
-        permText = 'Quản Lý Người Dùng, Cấm Chat';
+        permText = 'Quản Lý Người Dùng, Khóa Acc';
       } else if (roleVal === 'analyst') {
         roleBadge = '<span class="badge badge-role-analyst">📊 Data Analyst</span>';
         permText = 'Xem Dashboard & Xuất Báo Cáo';
@@ -4248,7 +4257,7 @@
       }
     }
 
-    function executeCreateDramaDirect() {
+    function executeCreateDramaDirect(isPublished = true) {
       const title = document.getElementById('input-drama-title').value.trim() || 'Cô Vợ Sát Thủ & Tổng Tài Bá Đạo';
       const isSeriesRadio = document.getElementById('drama-type-series');
       const isSeries = isSeriesRadio ? isSeriesRadio.checked : true;
@@ -4274,13 +4283,21 @@
       }
 
       const tbody = document.querySelector('#view-dramas tbody');
-      const statusBadge = `
+      const statusBadge = isPublished ? `
         <div class="cat-toggle-wrap">
           <label class="cat-toggle-switch" title="Bật: Đã Xuất Bản / Tắt: Tạm Ẩn">
             <input type="checkbox" checked onchange="toggleDramaStatus(this)">
             <span class="cat-toggle-slider"></span>
           </label>
           <span class="badge badge-published">🟢 Đã Xuất Bản</span>
+        </div>
+      ` : `
+        <div class="cat-toggle-wrap">
+          <label class="cat-toggle-switch" title="Bật: Đã Xuất Bản / Tắt: Tạm Ẩn">
+            <input type="checkbox" onchange="toggleDramaStatus(this)">
+            <span class="cat-toggle-slider"></span>
+          </label>
+          <span class="badge badge-draft">🔴 Tạm ẩn</span>
         </div>
       `;
 
@@ -4290,10 +4307,10 @@
 
       const newRowId = `DRAMA-${Math.floor(1000 + Math.random() * 9000)}`;
       const newRow = document.createElement('tr');
-      newRow.style.background = 'rgba(255, 42, 95, 0.08)';
+      newRow.style.background = isPublished ? 'rgba(255, 42, 95, 0.08)' : 'rgba(255, 184, 0, 0.08)';
       newRow.innerHTML = `
         <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
-        <td><strong style="color: var(--accent-green);">MỚI</strong></td>
+        <td><strong style="color: ${isPublished ? 'var(--accent-green)' : 'var(--accent-gold)'};">${isPublished ? 'MỚI' : 'TẠM ẨN'}</strong></td>
         <td><div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">URL</div></td>
         <td>
           <strong style="color: #fff;">${title}</strong>
@@ -4313,7 +4330,11 @@
       `;
 
       tbody.insertBefore(newRow, tbody.firstChild);
-      alert(`🎉 THÀNH CÔNG RỰC RỠ!\n\nĐã lưu bộ phim "${title}" thành công!\nĐịnh dạng: ${isSeries ? `Phim Bộ (${seasonsCount} Phần - ${totalEpisodes} Tập)` : 'Phim Lẻ (1 Tập Trọn Vẹn)'}\nThể loại: ${selectedCategories.join(', ') || 'Chưa gán'}`);
+      if (isPublished) {
+        alert(`🎉 THÀNH CÔNG RỰC RỠ!\n\nĐã lưu & XUẤT BẢN bộ phim "${title}" thành công!\nĐịnh dạng: ${isSeries ? `Phim Bộ (${seasonsCount} Phần - ${totalEpisodes} Tập)` : 'Phim Lẻ (1 Tập Trọn Vẹn)'}\nThể loại: ${selectedCategories.join(', ') || 'Chưa gán'}\nTrạng thái: 🟢 Đã Xuất Bản (Đang hiển thị trên App & Web)`);
+      } else {
+        alert(`📁 ĐÃ LƯU TẠM ẨN THÀNH CÔNG!\n\nĐã lưu bộ phim "${title}" ở trạng thái TẠM ẨN!\nĐịnh dạng: ${isSeries ? `Phim Bộ (${seasonsCount} Phần - ${totalEpisodes} Tập)` : 'Phim Lẻ (1 Tập Trọn Vẹn)'}\nThể loại: ${selectedCategories.join(', ') || 'Chưa gán'}\nTrạng thái: 🔴 Tạm ẩn (Ẩn khỏi App & Web, có thể xuất bản sau)`);
+      }
       closeModal('modal-create-drama');
     }
 
@@ -5063,37 +5084,8 @@
     }
 
     // ==========================================
-    // USER MANAGEMENT INTERACTIVE (MUTE / UNMUTE & BAN / UNBAN)
+    // USER MANAGEMENT INTERACTIVE (BAN / UNBAN ACCOUNT)
     // ==========================================
-    function toggleMuteUser(rowId, userName) {
-      const actionCell = document.getElementById(`user-action-cell-${rowId}`);
-      const row = document.getElementById(`user-row-${rowId}`);
-
-      const isCurrentlyMuted = row.getAttribute('data-chat') === 'muted';
-
-      if (isCurrentlyMuted) {
-        // Unmute
-        row.setAttribute('data-chat', 'normal');
-        actionCell.innerHTML = `
-          <div class="user-action-group">
-            <button class="user-action-btn mute" onclick="toggleMuteUser(${rowId}, '${userName}')">🔇 Cấm Chat</button>
-            <button class="user-action-btn ban" onclick="toggleBanUser(${rowId}, '${userName}')">🔒 Khóa Acc</button>
-          </div>
-        `;
-        alert(`🔊 ĐÃ MỞ CẤM CHAT (UNMUTE) THÀNH CÔNG!\n\nNgười dùng "${userName}" đã được khôi phục quyền bình luận và tương tác trong phòng xem phim.`);
-      } else {
-        // Mute
-        row.setAttribute('data-chat', 'muted');
-        actionCell.innerHTML = `
-          <div class="user-action-group">
-            <button class="user-action-btn unmute" onclick="toggleMuteUser(${rowId}, '${userName}')">🔊 Mở Chat</button>
-            <button class="user-action-btn ban" onclick="toggleBanUser(${rowId}, '${userName}')">🔒 Khóa Acc</button>
-          </div>
-        `;
-        alert(`🔇 ĐÃ ÁP DỤNG CẤM CHAT (MUTE) THÀNH CÔNG!\n\nNgười dùng "${userName}" đã bị khóa quyền bình luận / spam trong phòng xem phim.`);
-      }
-    }
-
     function toggleBanUser(rowId, userName) {
       const statusCell = document.getElementById(`user-status-cell-${rowId}`);
       const actionCell = document.getElementById(`user-action-cell-${rowId}`);
@@ -5107,7 +5099,6 @@
         statusCell.innerHTML = '<span class="badge badge-published">🟢 Hoạt Động</span>';
         actionCell.innerHTML = `
           <div class="user-action-group">
-            <button class="user-action-btn mute" onclick="toggleMuteUser(${rowId}, '${userName}')">🔇 Cấm Chat</button>
             <button class="user-action-btn ban" onclick="toggleBanUser(${rowId}, '${userName}')">🔒 Khóa Acc</button>
           </div>
         `;
@@ -5118,7 +5109,7 @@
         statusCell.innerHTML = '<span class="badge badge-category" style="background: rgba(255,42,95,0.2); color: #ff4d6d; border-color: rgba(255,42,95,0.4);">🔴 Bị Khóa</span>';
         actionCell.innerHTML = `
           <div class="user-action-group">
-            <button class="user-action-btn unban" style="min-width: 120px;" onclick="toggleBanUser(${rowId}, '${userName}')">🔓 Mở Khóa Acc</button>
+            <button class="user-action-btn unban" onclick="toggleBanUser(${rowId}, '${userName}')">🔓 Mở Khóa Acc</button>
           </div>
         `;
         alert(`🔒 ĐÃ KHÓA TÀI KHOẢN (BAN ACCOUNT) THÀNH CÔNG!\n\nTrạng thái người dùng "${userName}" đã được chuyển sang Bị Khóa (không thể đăng nhập).`);
