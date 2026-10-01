@@ -2291,13 +2291,9 @@
                 <option value="Tổng Tài">👑 Tổng Tài</option>
               </select>
 
-              <!-- Search Drama -->
-              <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim..."
-                style="flex: 1; min-width: 160px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; color: #fff; font-size: 12.5px;">
-
               <!-- Apply Button -->
               <button class="btn btn-primary" onclick="applyReportFilter()"
-                style="padding: 8px 16px; font-size: 12.5px;">🔍 Áp Dụng Lọc</button>
+                style="padding: 8px 18px; font-size: 12.5px;">🔍 Áp Dụng Lọc</button>
             </div>
           </div>
 
@@ -2306,7 +2302,7 @@
             <div class="stat-card">
               <div class="stat-title">TỔNG LƯỢT XEM TRONG KỲ</div>
               <div class="stat-value" id="rep-kpi-views">1,482,900</div>
-              <div class="stat-change up" id="rep-kpi-views-sub">▲ 100% phim mở xem miễn phí</div>
+              <div class="stat-change up" id="rep-kpi-views-sub">▲ +18.4% so với kỳ trước</div>
             </div>
             <div class="stat-card gold">
               <div class="stat-title">PHIM XEM NHIỀU NHẤT</div>
@@ -2344,10 +2340,12 @@
           <!-- SUB-VIEW 1: BÁO CÁO HIỆU SUẤT TỪNG BỘ PHIM -->
           <div id="rep-tab-dramas" class="report-subview active">
             <div class="panel-card">
-              <div class="panel-title">
+              <div class="panel-title"
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                 <span>🎬 Danh Sách Số Liệu Chi Tiết Từng Bộ Phim (Dữ Liệu Khai Thác Theo Kỳ Lọc)</span>
-                <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;"
-                  onclick="alert('Đã sắp xếp theo lượt xem cao nhất!')">⚡ Xếp theo Lượt xem cao nhất</button>
+                <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim trong bảng..."
+                  oninput="filterReportDramaTable(this.value)"
+                  style="width: 240px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 7px 12px; border-radius: 8px; color: #fff; font-size: 12px;">
               </div>
 
               <div class="data-table-wrapper">
@@ -2451,9 +2449,10 @@
           <!-- SUB-VIEW 2: BÁO CÁO HÀNH VI & USER -->
           <div id="rep-tab-users" class="report-subview">
             <div class="panel-card">
-              <div class="panel-title">
+              <div class="panel-title"
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <span>👥 Chỉ Số Giữ Chân Người Dùng & Thời Lượng Tương Tác (User Retention Cohort)</span>
-                <span class="badge badge-published">Tính toán dựa trên lịch sử xem phim</span>
+                <span class="badge badge-published" id="rep-user-cohort-badge">Kỳ lọc: D-1 (10/08/2026)</span>
               </div>
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; font-size: 13px;">
                 <div
@@ -2461,12 +2460,12 @@
                   <div
                     style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
                     <span>D1 Retention (Quay lại sau 1 ngày):</span>
-                    <strong style="color: var(--accent-green); font-size: 14px;">58.4% (Tốt)</strong>
+                    <strong style="color: var(--accent-green); font-size: 14px;" id="rep-user-d1">58.4% (Tốt)</strong>
                   </div>
                   <div
                     style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
                     <span>D7 Retention (Quay lại sau 7 ngày):</span>
-                    <strong style="color: var(--accent-green); font-size: 14px;">34.8%</strong>
+                    <strong style="color: var(--accent-green); font-size: 14px;" id="rep-user-d7">34.8%</strong>
                   </div>
                 </div>
 
@@ -2475,12 +2474,13 @@
                   <div
                     style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
                     <span>D30 Retention (Quay lại sau 30 ngày):</span>
-                    <strong style="color: var(--accent-gold); font-size: 14px;">21.2%</strong>
+                    <strong style="color: var(--accent-gold); font-size: 14px;" id="rep-user-d30">21.2%</strong>
                   </div>
                   <div
                     style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
                     <span>Thời gian xem trung bình mỗi User:</span>
-                    <strong style="color: var(--accent-blue); font-size: 14px;">48.5 Phút / Ngày</strong>
+                    <strong style="color: var(--accent-blue); font-size: 14px;" id="rep-user-watchtime">48.5 Phút /
+                      Ngày</strong>
                   </div>
                 </div>
               </div>
@@ -2549,7 +2549,8 @@
           <div class="page-header" style="align-items: flex-start;">
             <div>
               <h1 class="page-title">👥 Quản Lý Người Dùng & Khóa Tài Khoản</h1>
-              <p class="page-subtitle">Quản lý tệp người dùng, xem trạng thái hoạt động, áp dụng Khóa Tài Khoản (Ban) hoặc Mở Khóa (Unban)</p>
+              <p class="page-subtitle">Quản lý tệp người dùng, xem trạng thái hoạt động, áp dụng Khóa Tài Khoản (Ban)
+                hoặc Mở Khóa (Unban)</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-secondary"
@@ -3198,10 +3199,12 @@
         <span style="font-size: 12px; color: var(--text-muted);"></span>
         <div style="display: flex; gap: 8px;">
           <button class="btn btn-secondary" onclick="closeModal('modal-create-drama')">Hủy Bỏ</button>
-          <button class="btn btn-draft" onclick="executeCreateDramaDirect(false)" title="Lưu phim ở trạng thái Tạm Ẩn (Chưa phát hành)">
+          <button class="btn btn-draft" onclick="executeCreateDramaDirect(false)"
+            title="Lưu phim ở trạng thái Tạm Ẩn (Chưa phát hành)">
             ⏸️ TẠM ẨN
           </button>
-          <button class="btn btn-primary" onclick="executeCreateDramaDirect(true)" title="Lưu và Phát hành ngay lên App & Web">
+          <button class="btn btn-primary" onclick="executeCreateDramaDirect(true)"
+            title="Lưu và Phát hành ngay lên App & Web">
             💾 XUẤT BẢN
           </button>
         </div>
@@ -5037,39 +5040,103 @@
       const repKpiTopFav = document.getElementById('rep-kpi-top-fav');
       const repKpiTopLikes = document.getElementById('rep-kpi-top-likes');
       const repKpiUsers = document.getElementById('rep-kpi-users');
+      const repKpiViewsSub = document.getElementById('rep-kpi-views-sub');
+      const categoryVal = document.getElementById('report-category-filter').value;
+
+      // Tab 2 Elements
+      const userBadge = document.getElementById('rep-user-cohort-badge');
+      const userD1 = document.getElementById('rep-user-d1');
+      const userD7 = document.getElementById('rep-user-d7');
+      const userD30 = document.getElementById('rep-user-d30');
+      const userWatch = document.getElementById('rep-user-watchtime');
+
+      let periodLabel = '';
 
       if (currentReportTimeMode === 'day') {
         const fromDate = document.getElementById('report-from-date').value || '10/08/2026';
         const toDate = document.getElementById('report-to-date').value || '10/08/2026';
-        if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: Ngày ${fromDate} -> ${toDate}`;
+        periodLabel = fromDate === toDate ? `D-1 (${fromDate})` : `Ngày ${fromDate} -> ${toDate}`;
+        if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: ${periodLabel}`;
 
-        if (repKpiViews) repKpiViews.innerText = '1,482,900';
+        const isMultiDay = fromDate !== toDate;
+        if (repKpiViews) repKpiViews.innerText = isMultiDay ? '4,980,500' : '1,482,900';
+        if (repKpiViewsSub) repKpiViewsSub.innerText = isMultiDay ? '▲ +21.5% so với kỳ trước' : '▲ +18.4% so với kỳ trước';
         if (repKpiTopDrama) repKpiTopDrama.innerText = 'Vợ Cũ Lật Kèo';
-        if (repKpiTopViews) repKpiTopViews.innerText = '🔥 342,000 Lượt xem';
+        if (repKpiTopViews) repKpiTopViews.innerText = isMultiDay ? '🔥 1.25M Lượt xem' : '🔥 342,000 Lượt xem';
         if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
-        if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 36,500 Lượt thích (98.2%)';
-        if (repKpiUsers) repKpiUsers.innerText = '124,800';
+        if (repKpiTopLikes) repKpiTopLikes.innerText = isMultiDay ? '❤️ 112,000 Lượt thích (97.8%)' : '❤️ 36,500 Lượt thích (98.2%)';
+        if (repKpiUsers) repKpiUsers.innerText = isMultiDay ? '385,200' : '124,800';
+
+        // Update Tab 2 (User Retention Cohort) dynamically
+        if (userBadge) userBadge.innerText = `Kỳ lọc: ${periodLabel}`;
+        if (userD1) userD1.innerText = isMultiDay ? '56.2% (Tốt)' : '58.4% (Tốt)';
+        if (userD7) userD7.innerText = isMultiDay ? '33.1%' : '34.8%';
+        if (userD30) userD30.innerText = isMultiDay ? '20.4%' : '21.2%';
+        if (userWatch) userWatch.innerText = isMultiDay ? '51.2 Phút / Ngày' : '48.5 Phút / Ngày';
       } else {
         const monthSelect = document.getElementById('report-month-select');
         const monthText = monthSelect ? monthSelect.options[monthSelect.selectedIndex].text : 'Tháng 08/2026';
+        periodLabel = monthText;
         if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: ${monthText}`;
 
         if (repKpiViews) repKpiViews.innerText = '18,420,500';
+        if (repKpiViewsSub) repKpiViewsSub.innerText = '▲ +24.6% so với tháng trước';
         if (repKpiTopDrama) repKpiTopDrama.innerText = 'Vợ Cũ Lật Kèo';
         if (repKpiTopViews) repKpiTopViews.innerText = '🔥 4.8M Lượt xem';
         if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
         if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 452,000 Lượt thích (98.5%)';
         if (repKpiUsers) repKpiUsers.innerText = '860,500';
+
+        // Update Tab 2 (Month)
+        if (userBadge) userBadge.innerText = `Kỳ lọc: ${monthText}`;
+        if (userD1) userD1.innerText = '54.8% (Tốt)';
+        if (userD7) userD7.innerText = '31.9%';
+        if (userD30) userD30.innerText = '19.5%';
+        if (userWatch) userWatch.innerText = '53.8 Phút / Ngày';
       }
 
-      alert(`✅ ĐÃ LỌC BÁO CÁO THÀNH CÔNG!\n\n• Chế độ: ${currentReportTimeMode === 'day' ? 'Theo Ngày' : 'Theo Tháng'}\n• Thể loại: ${document.getElementById('report-category-filter').value}\n• Đã cập nhật lại toàn bộ bảng số liệu chi tiết từng bộ phim & User.`);
+      // Filter Tab 1 table by category
+      const dramaRows = document.querySelectorAll('#report-drama-table-body tr');
+      dramaRows.forEach(r => {
+        if (categoryVal === 'all') {
+          r.style.display = '';
+        } else {
+          const text = r.innerText;
+          r.style.display = text.includes(categoryVal) ? '' : 'none';
+        }
+      });
+
+      alert(`✅ ĐÃ LỌC BÁO CÁO TOÀN TRANG THÀNH CÔNG!\n\n• Kỳ lọc: ${periodLabel}\n• Thể loại: ${categoryVal === 'all' ? 'Tất cả thể loại' : categoryVal}\n• Đã cập nhật đồng bộ: 4 Thẻ KPI, Bảng Danh Sách Phim (Tab 1), Chỉ Số Giữ Chân User (Tab 2) và Tỷ Trọng Thể Loại (Tab 3).`);
+    }
+
+    function filterReportDramaTable(keyword) {
+      const term = keyword.toLowerCase().trim();
+      const rows = document.querySelectorAll('#report-drama-table-body tr');
+      rows.forEach(r => {
+        const titleEl = r.querySelector('td:nth-child(3)');
+        const titleText = titleEl ? titleEl.innerText.toLowerCase() : r.innerText.toLowerCase();
+        r.style.display = titleText.includes(term) ? '' : 'none';
+      });
+    }
+
+    function sortReportDramaTable(type) {
+      const tbody = document.getElementById('report-drama-table-body');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        const valA = parseInt(a.querySelector('td:nth-child(5)')?.innerText.replace(/\D/g, '') || '0', 10);
+        const valB = parseInt(b.querySelector('td:nth-child(5)')?.innerText.replace(/\D/g, '') || '0', 10);
+        return valB - valA;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      alert('⚡ Đã sắp xếp danh sách theo Lượt xem từ cao xuống thấp!');
     }
 
     function resetReportFilter() {
       document.getElementById('report-from-date').value = '2026-08-10';
       document.getElementById('report-to-date').value = '2026-08-10';
       document.getElementById('report-category-filter').value = 'all';
-      document.getElementById('report-search-drama').value = '';
+      const searchInput = document.getElementById('report-search-drama');
+      if (searchInput) searchInput.value = '';
       setReportTimeMode('day');
     }
 
