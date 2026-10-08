@@ -1,30 +1,30 @@
 STT	Vị trí hiển thị trên màn hình	Tên trường thông tin (Field Name)	Ví dụ hiển thị thực tế trên giao diện	Ý nghĩa của trường (Nghiệp vụ & Người dùng)	Công thức tính toán (Thuật ngữ người dùng / Logic nghiệp vụ)	Quy tắc nghiệp vụ & Điều kiện áp dụng (Business Rules)
 1	Thẻ thứ 1 (Bên trái) - Khối Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng (Tab 2)	TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG (Retention Rate)	58.4% (▲ +4.2% so với kỳ trước)	Đo lường năng lực giữ chân khán giả của PineDrama trong kỳ báo cáo: Thể hiện tỷ lệ phần trăm người xem phim có hành vi quay trở lại mở ứng dụng và tiếp tục xem phim trong các ngày tiếp theo của kỳ lọc đã chọn. Phản ánh trực tiếp độ hấp dẫn của nội dung và hiệu quả giữ chân người xem.	"1. CÔNG THỨC CHỈ SỐ CHÍNH (%):
 Tỷ lệ giữ chân người dùng (%) = (Số lượng người dùng quay lại / Tổng số người dùng Active trong kỳ) × 100%
-• Mẫu số: Số Unique Users có ít nhất 1 phiên xem phim trong kỳ lọc.
-• Tử số: Số Unique Users có phát sinh xem phim ở ít nhất 2 ngày khác nhau trở lên trong kỳ lọc đã chọn.
 
-► VÍ DỤ 1: KHI LỌC KHOẢNG NGÀY (VD: Kỳ lọc 11 ngày từ 10/08 đến 20/08):
+► TRƯỜNG HỢP 1: KHI LỌC 1 NGÀY (VD: Lọc ngày 10/08):
+Áp dụng chuẩn D1 Retention (Đo lường năng lực kéo người dùng hôm qua quay lại hôm nay):
+• Mẫu số: Tổng số người dùng mới cài app & xem phim vào ngày hôm trước (Ngày 09/08).
+• Tử số: Số người dùng mới của ngày 09/08 có quay lại mở app xem tiếp vào chính ngày đang lọc (Ngày 10/08).
+
+Ví dụ minh họa:
+- Ngày hôm trước (09/08): Hệ thống đón 10,000 người dùng mới (Mẫu số = 10,000).
+- Ngày đang lọc (10/08): Trong 10,000 người đó, có 5,840 người quay lại mở app xem tiếp (Tử số = 5,840).
+➔ Tỷ lệ D1 ngày 10/08 = (5,840 / 10,000) × 100% = 58.4%.
+* Ưu điểm: Số liệu chốt ngay trong ngày 10/08, người xem filter ngày 10/08 là có ngay số liệu thực tế mà không cần đợi sang ngày 11/08!
+
+► TRƯỜNG HỢP 2: KHI LỌC KHOẢNG NGÀY (VD: Kỳ lọc 11 ngày từ 10/08 đến 20/08):
+Tỷ lệ giữ chân cả kỳ (%) = (Số Unique Users quay lại / Tổng Unique Users Active trong kỳ) × 100%
 - Mẫu số: Toàn bộ 11 ngày có 100,000 khán giả duy nhất (Unique Users) có mở xem phim.
-- Tử số: Trong 100,000 khán giả đó, có 58,400 người có xem phim ở từ 2 ngày khác nhau trở lên trong kỳ (VD: xem ngày 10/08 và quay lại xem tiếp ngày 12/08...).
+- Tử số: Trong 100,000 khán giả đó, có 58,400 người có xem phim ở từ 2 ngày khác nhau trở lên trong kỳ (VD: xem ngày 10/08 và xem tiếp ngày 12/08...).
 ➔ Tỷ lệ giữ chân = (58,400 / 100,000) × 100% = 58.4%.
-(41,600 người còn lại chỉ vào xem 1 ngày duy nhất rồi chưa quay lại).
-
-► VÍ DỤ 2: KHI LỌC 1 NGÀY (D-1 mặc định, VD: Ngày 10/08):
-Tự động áp dụng chuẩn D1 Retention Cohort (Giữ chân sau 24h):
-Tỷ lệ D1 (%) = (Số User mới ngày D0 mở lại app ngày D+1 / Tổng User mới ngày D0) × 100%
-- Mẫu số: Ngày 10/08 (D0) có 10,000 người dùng mới cài app & xem phim lần đầu.
-- Tử số: Sang ngày 11/08 (D+1), có 5,840 người trong nhóm đó quay lại mở app xem tiếp.
-➔ Tỷ lệ D1 = (5,840 / 10,000) × 100% = 58.4%.
 
 2. CÔNG THỨC BIẾN ĐỘNG SO VỚI KỲ TRƯỚC:
 Biến động (%) = Tỷ lệ giữ chân kỳ này (%) - Tỷ lệ giữ chân kỳ trước liền kề (%)
-► VÍ DỤ 3: TÍNH BIẾN ĐỘNG:
-- Kỳ này (10/08 - 20/08: 11 ngày): Đạt 58.4%.
-- Kỳ trước liền kề (30/07 - 09/08: cùng 11 ngày): Đạt 54.2%.
+- Kỳ này (10/08 - 20/08: 11 ngày) đạt 58.4%; kỳ trước liền kề (30/07 - 09/08: cùng 11 ngày) đạt 54.2%.
 ➔ Biến động = 58.4% - 54.2% = +4.2% (Hiển thị icon ▲ +4.2% so với kỳ trước)."	"• Quy tắc màu sắc: Tỷ lệ ≥ 50% hiển thị màu xanh lá neon #00e676 (Mức Tốt / Xuất sắc); 40% ≤ Tỷ lệ < 50% hiển thị màu vàng/cam (Trung bình); Tỷ lệ < 40% hiển thị màu đỏ (Cảnh báo).
 • Quy tắc biến động: Tăng hiển thị icon ▲ dấu + màu xanh lá; Giảm hiển thị icon ▼ dấu - màu đỏ.
-• Điều kiện: Chốt số liệu sau khi kết thúc 23:59:59 của ngày cuối cùng trong kỳ. Làm tròn 1 chữ số thập phân (58.4%)."
+• Điều kiện chốt số liệu: Khi lọc 1 ngày (10/08), số liệu D1 được chốt hoàn tất vào cuối ngày 10/08 (23:59:59). Khi lọc khoảng ngày, chốt sau ngày cuối kỳ lọc. Làm tròn 1 chữ số thập phân (58.4%)."
 2	Thẻ thứ 2 (Bên phải) - Khối Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng (Tab 2)	THỜI GIAN XEM TRUNG BÌNH (Average Daily Watch Time)	48.5 Phút / Ngày (▲ +6.5 phút so với kỳ trước)	Khắc họa mức độ nghiện phim và tiêu thụ nội dung hàng ngày của khán giả: Trung bình mỗi ngày một khán giả xem phim dành ra bao nhiêu phút trên PineDrama. Chỉ số này càng cao chứng tỏ khán giả có thói quen xem liên tục nhiều tập phim (cày phim - Binge-watching).	"1. CÔNG THỨC CHỈ SỐ CHÍNH (Phút/Ngày):
 Thời gian xem TB (Phút/Ngày) = (Tổng số phút xem video của tất cả người dùng trong kỳ) / (Tổng số lượt User-Day hoạt động trong kỳ)
 • Tổng số phút xem: Tổng thời lượng phát video thực tế của tất cả khán giả trong kỳ (phút).
