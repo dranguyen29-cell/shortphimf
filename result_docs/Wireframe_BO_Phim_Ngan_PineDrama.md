@@ -119,7 +119,7 @@ flowchart TD
 | │  ⠿ #5    [Tập 5: Bí Mật Năm Xư] [https://.../ep5.m3u8]     [ [O] 🟢 Xuất bản ]       [▶️] [🗑️] │ |
 | └───────────────────────────────────────────────────────────────────────────────────────────────┘ |
 +---------------------------------------------------------------------------------------------------+
-|                                                                    [HỦY BỎ]   [💾 XUẤT BẢN / LƯU] |
+|                                                        [HỦY BỎ]   [⏸️ TẠM ẨN]   [💾 XUẤT BẢN] |
 +---------------------------------------------------------------------------------------------------+
 ```
 
@@ -171,24 +171,24 @@ flowchart TD
 | STT  ADMIN & EMAIL              VAI TRÒ (ROLE)        QUYỀN HẠN               TRẠNG THÁI  HÀNH ĐỘNG |
 | 01   Hoàng Bách (hoangbach@)    👑 Super Admin        ★ Full Quyền Hệ Thống    🟢 Active   [🔑] [✏️] |
 | 02   Thu Trang (thutrang.c@)    🎬 Content Manager    Kéo API, Đăng Phim, Tag 🟢 Active   [🔑][🔒][🗑️]|
-| 03   Hoàng Nam (nam.mod@)       🛡️ User Moderator     Quản Lý Người Dùng, Chat 🟢 Active  [🔑][🔒][🗑️]|
+| 03   Hoàng Nam (nam.mod@)       🛡️ User Moderator     Quản Lý Người Dùng, Khóa 🟢 Active   [🔑][🔒][🗑️]|
 | 04   Bảo Trâm (tram.analyst@)   📊 Data Analyst       Xem Dashboard & Báo Cáo 🟢 Active   [🔑][🔒][🗑️]|
 +---------------------------------------------------------------------------------------------------+
 ```
 
 ---
 
-### MÀN HÌNH 4B: QUẢN LÝ NGƯỜI DÙNG & TRUNG TÂM CẤM CHAT / KHÓA ACCOUNT
+### MÀN HÌNH 4B: QUẢN LÝ NGƯỜI DÙNG & KHÓA ACCOUNT
 ```
 +---------------------------------------------------------------------------------------------------+
-| 👥 QUẢN LÝ NGƯỜI DÙNG & TRUNG TÂM CẤM CHAT / KHÓA ACCOUNT                   [📥 Xuất DS Vi Phạm]  |
+| 👥 QUẢN LÝ NGƯỜI DÙNG & KHÓA ACCOUNT                                      [📥 Xuất DS Bị Khóa]    |
 +---------------------------------------------------------------------------------------------------+
 | 🎯 BỘ LỌC: [ ▼ Tất cả trạng thái (Active / Inactive) ] [ 🔍 Tìm User ID, Tên... ] Tổng cộng: 4 Users|
 | STT  USER ID / TÊN HIỂN THỊ     ĐĂNG NHẬP     NGÀY THAM GIA   TRẠNG THÁI        THAO TÁC QUẢN TRỊ |
-| 01   Minh Anh (USR-9921)        Google        10/05/2026      🟢 Active         [🔇 Mute] [🔒 Ban]|
-| 02   Tuấn Kiệt (USR-8812)       Google        02/06/2026      🟢 Active         [🔊 Unmute][🔒Ban]|
+| 01   Minh Anh (USR-9921)        Google        10/05/2026      🟢 Active         [🔒 Khóa Acc]     |
+| 02   Tuấn Kiệt (USR-8812)       Google        02/06/2026      🟢 Active         [🔒 Khóa Acc]     |
 | 03   Spam_Bot_999 (USR-4402)    Google        15/07/2026      🔴 Inactive       [🔓 Mở Khóa Acc]  |
-| 04   Phương Linh (USR-7731)     Google        22/07/2026      🟢 Active         [🔇 Mute] [🔒 Ban]|
+| 04   Phương Linh (USR-7731)     Google        22/07/2026      🟢 Active         [🔒 Khóa Acc]     |
 +---------------------------------------------------------------------------------------------------+
 ```
 
@@ -263,8 +263,12 @@ flowchart TD
 ### 6.1 Các Báo Cáo Chuyên Sâu Tích Hợp (BA & PO Feature Scope):
 1. **Báo Cáo Hiệu Suất Từng Phim (Drama Granular Metrics):**
    * Cho phép lọc và sắp xếp theo: Tổng lượt xem, Lượng yêu thích (Likes/Favorites).
-2. **Báo Cáo Hành Vi & User Retention:**
-   * Tỷ lệ quay lại của người dùng theo chu kỳ Cohort (D1 Retention: 58.4%, D7: 34.8%, D30: 21.2%) và thời gian xem phim trung bình/ngày.
+2. **Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng:**
+   * **Bố cục Panel & Badge thời gian:** Badge dải ngày (`📅 Kỳ Lọc: 10/08/2026 ➔ 20/08/2026`) được đặt tập trung trên thanh tiêu đề Panel chính, tránh lặp lại thừa thãi trong từng thẻ.
+   * **Thiết kế thẻ tinh gọn tối đa (Executive KPI Minimal):** Loại bỏ toàn bộ thanh tiến độ và mục tiêu chuẩn rườm rà dưới chân thẻ để giao diện thông thoáng, tập trung vào con số thực tế:
+     * **TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG:** `58.4%` (▲ +4.2% so với kỳ trước) — Khán giả quay lại mở ứng dụng xem tiếp trong kỳ lọc đã chọn.
+     * **THỜI GIAN XEM TRUNG BÌNH:** `48.5 Phút / Ngày` (▲ +6.5 phút so với kỳ trước) — Thời lượng bình quân mỗi khán giả xem mỗi ngày trong kỳ.
+     * **NGƯỜI DÙNG ACTIVE:** `124,800 Người` (▲ +12.8% so với kỳ trước) — Tổng số khán giả thực tế có xem phim trong kỳ lọc đã chọn.
 3. **Báo Cáo Tỷ Trọng Thể Loại (Category Breakdown):**
    * Tỉ lệ lượt xem giữa các thể loại (Ngôn Tình 45.2%, Trả Thù 26.8%, Gia Đình 16.5%, Tổng Tài 11.5%).
 

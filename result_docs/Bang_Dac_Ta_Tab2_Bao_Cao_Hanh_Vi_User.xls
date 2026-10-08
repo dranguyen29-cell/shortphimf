@@ -1,0 +1,168 @@
+﻿<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--[if gte mso 9]>
+<xml>
+ <x:ExcelWorkbook>
+  <x:ExcelWorksheets>
+   <x:ExcelWorksheet>
+    <x:Name>Báo Cáo Hành Vi &amp; Người Dùng</x:Name>
+    <x:WorksheetOptions>
+     <x:DisplayGridlines/>
+     <x:Print>
+      <x:ValidPrinterInfo/>
+      <x:Orientation>Landscape</x:Orientation>
+     </x:Print>
+     <x:Selected/>
+    </x:WorksheetOptions>
+   </x:ExcelWorksheet>
+  </x:ExcelWorksheets>
+ </x:ExcelWorkbook>
+</xml>
+<![endif]-->
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 10.5pt;
+    color: #1e293b;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+  }
+  th {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0.5pt solid #0f172a;
+    padding: 10px 8px;
+    font-size: 10.5pt;
+    height: 40px;
+  }
+  td {
+    border: 0.5pt solid #cbd5e1;
+    padding: 8px 10px;
+    vertical-align: top;
+    font-size: 10pt;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.45;
+  }
+  .center {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .row-odd {
+    background-color: #ffffff;
+  }
+  .row-even {
+    background-color: #f8fafc;
+  }
+  .color-green {
+    color: #16a34a;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .color-gold {
+    color: #d97706;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .color-blue {
+    color: #2563eb;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<table border="1" cellspacing="0" cellpadding="0">
+  <colgroup>
+    <col width="50">
+    <col width="170">
+    <col width="200">
+    <col width="110">
+    <col width="280">
+    <col width="380">
+    <col width="340">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Vị trí hiển thị trên màn hình</th>
+      <th>Tên trường thông tin (Field Name)</th>
+      <th>Ví dụ hiển thị thực tế trên giao diện</th>
+      <th>Ý nghĩa của trường (Nghiệp vụ &amp; Người dùng)</th>
+      <th>Công thức tính toán (Thuật ngữ người dùng / Logic nghiệp vụ)</th>
+      <th>Quy tắc nghiệp vụ &amp; Điều kiện áp dụng (Business Rules)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row-odd">
+      <td class="center bold">1</td>
+      <td>Khối thẻ góc trái trên (Tab 2)</td>
+      <td class="bold">D1 (Quay lại sau 1 ngày)</td>
+      <td class="color-green">58.4%</td>
+      <td>Đo lường tỷ lệ người dùng mới thích thú với app và quyết định quay lại mở app xem tiếp ngay vào ngày hôm sau.</td>
+      <td>1. Khi lọc 1 ngày (ví dụ ngày 10/08):
+Tỷ lệ D1 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 11/08 / Tổng số người dùng mới ngày 10/08) × 100%
+
+2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
+Tỷ lệ D1 (%) = (Tổng số người dùng mở lại app vào ngày hôm sau của các ngày trong đợt / Tổng số người dùng mới của cả đợt 10/08 đến 20/08) × 100%</td>
+      <td>• Quy tắc màu sắc: ≥ 50% hiển thị màu xanh lá (Tốt); &lt; 40% cảnh báo cam/đỏ.
+• Điều kiện ngày cuối (ngày 20/08): Phải qua hết ngày 21/08 mới chốt được số liệu D1. Nếu ngày kết thúc là hôm nay thì hệ thống chỉ tính lũy kế đến ngày hôm qua.</td>
+    </tr>
+    <tr class="row-even">
+      <td class="center bold">2</td>
+      <td>Khối thẻ góc trái dưới (Tab 2)</td>
+      <td class="bold">D7 (Quay lại sau 7 ngày)</td>
+      <td class="color-green">34.8%</td>
+      <td>Đo lường thói quen xem phim hàng tuần của khán giả mới sau 1 tuần trải nghiệm ứng dụng.</td>
+      <td>1. Khi lọc 1 ngày (ví dụ ngày 10/08):
+Tỷ lệ D7 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 17/08 / Tổng số người dùng mới ngày 10/08) × 100%
+
+2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
+Tỷ lệ D7 (%) = (Tổng số người dùng mở lại app vào ngày thứ 7 của các ngày trong đợt / Tổng số người dùng mới của các ngày đã đủ 7 ngày tuổi) × 100%</td>
+      <td>• Chuẩn ngành: Đạt từ 30% đến 40% là Tốt.
+• Quy tắc ngày chưa đủ hạn: Chỉ tính trên những ngày người dùng đã đủ 7 ngày tuổi (tính đến hôm nay). Những ngày mới đăng ký chưa đủ 7 ngày sẽ không đưa vào mẫu số để không làm giảm sai lệch tỷ lệ.</td>
+    </tr>
+    <tr class="row-odd">
+      <td class="center bold">3</td>
+      <td>Khối thẻ góc phải trên (Tab 2)</td>
+      <td class="bold">D30 (Quay lại sau 30 ngày)</td>
+      <td class="color-gold">21.2%</td>
+      <td>Đo lường tỷ lệ khán giả trung thành cốt lõi còn gắn bó với ứng dụng sau 1 tháng trải nghiệm.</td>
+      <td>1. Khi lọc 1 ngày (ví dụ ngày 10/08):
+Tỷ lệ D30 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 09/09 / Tổng số người dùng mới ngày 10/08) × 100%
+
+2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
+Tỷ lệ D30 (%) = (Tổng số người dùng mở lại app vào ngày thứ 30 của các ngày trong đợt / Tổng số người dùng mới của các ngày đã đủ 30 ngày tuổi) × 100%</td>
+      <td>• Chuẩn ngành: ≥ 20% là mức xuất sắc cho ứng dụng phim ngắn.
+• Quy tắc ngày chưa đủ hạn: Tương tự D7, chỉ tính trên các ngày người dùng đã đăng ký đủ 30 ngày để đảm bảo chu kỳ theo dõi đã hoàn tất.</td>
+    </tr>
+    <tr class="row-even">
+      <td class="center bold">4</td>
+      <td>Khối thẻ góc phải dưới (Tab 2)</td>
+      <td class="bold">Thời gian xem trung bình mỗi người dùng</td>
+      <td class="color-blue">48.5 Phút / Ngày</td>
+      <td>Đo lường mức độ nghiện phim của khán giả: Trung bình mỗi ngày một khán giả dành bao nhiêu phút để xem phim.</td>
+      <td>Thời gian xem TB = (Tổng số phút xem video của tất cả người dùng trong kỳ) / (Tổng số người dùng có mở xem phim trong kỳ)</td>
+      <td>• Chuẩn ngành: &gt; 40 phút/ngày thể hiện khán giả có thói quen xem liên tục nhiều tập phim (cày phim).</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

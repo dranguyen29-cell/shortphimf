@@ -30,6 +30,7 @@
 - **Tuyệt đối không viết lại code cũ:** Chỉ sửa đổi đúng (surgical edit) các dòng code cần thiết cho yêu cầu mới. Không được thay thế/ghi đè/hoàn tác toàn bộ hàm hay file nếu không liên quan.
 - **Không phục hồi các đoạn code cũ** khi người dùng không yêu cầu.
 - **Tối ưu hóa dung lượng truyền tải:** Hạn chế đọc/ghi các file quá lớn mà không có lý do cụ thể, chỉ thao tác trên phạm vi thay đổi hẹp nhất có thể.
+- **Tối ưu tốc độ thực thi (Chống Over-tooling):** Định vị nhanh khối code mục tiêu, gom các thay đổi và thực thi dứt điểm trong 1 lần duy nhất (`replace_file_content`). Tuyệt đối không gọi tool vụn vặt nhiều vòng lặp và không gọi lệnh kiểm tra thừa thãi sau khi sửa để phản hồi ngay lập tức với tốc độ nhanh nhất.
 
 ## Tránh lỗi Encoding & Vỡ Layout (Quan trọng)
 1. **Tránh sử dụng PowerShell để đọc/ghi/chỉnh sửa file**: Bắt buộc sử dụng trực tiếp các công cụ chuyên dụng của IDE (`replace_file_content`, `multi_replace_file_content`, `write_to_file`) để sửa đổi code nhanh nhất và tránh hoàn toàn lỗi encoding font tiếng Việt (Mojibake). Luôn bảo toàn định dạng UTF-8 không BOM.

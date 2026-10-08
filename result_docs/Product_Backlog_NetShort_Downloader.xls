@@ -1,0 +1,317 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--[if gte mso 9]>
+<xml>
+ <x:ExcelWorkbook>
+  <x:ExcelWorksheets>
+   <x:ExcelWorksheet>
+    <x:Name>Product Backlog</x:Name>
+    <x:WorksheetOptions>
+     <x:DisplayGridlines/>
+     <x:Print>
+      <x:ValidPrinterInfo/>
+      <x:Orientation>Landscape</x:Orientation>
+     </x:Print>
+     <x:Selected/>
+     <x:Panes>
+      <x:Pane>
+       <x:Number>3</x:Number>
+       <x:ActiveRow>4</x:ActiveRow>
+       <x:ActiveCol>0</x:ActiveCol>
+      </x:Pane>
+     </x:Panes>
+    </x:WorksheetOptions>
+   </x:ExcelWorksheet>
+  </x:ExcelWorksheets>
+ </x:ExcelWorkbook>
+</xml>
+<![endif]-->
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    color: #333333;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+  }
+  th, td {
+    border: 0.5pt solid #D9D9D9;
+    padding: 8px 10px;
+    vertical-align: top;
+    mso-number-format: "\@";
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  .title-main {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #1F4E78;
+    text-align: left;
+    border: none;
+    padding-bottom: 4px;
+  }
+  .title-sub {
+    font-size: 10.5pt;
+    color: #595959;
+    font-style: italic;
+    border: none;
+    padding-bottom: 12px;
+  }
+  .th-header {
+    background-color: #1F4E78;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0.5pt solid #16365C;
+    height: 38px;
+    font-size: 11pt;
+  }
+  .center {
+    text-align: center;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .badge-p0 {
+    background-color: #FCE4D6;
+    color: #C00000;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .badge-p1 {
+    background-color: #FFF2CC;
+    color: #B25900;
+    font-weight: bold;
+    text-align: center;
+  }
+  .badge-p2 {
+    background-color: #EDF2F8;
+    color: #2E75B6;
+    font-weight: bold;
+    text-align: center;
+  }
+  .badge-status {
+    background-color: #E2EFDA;
+    color: #375623;
+    font-weight: bold;
+    text-align: center;
+  }
+  .row-even {
+    background-color: #F9FAFB;
+  }
+  .row-odd {
+    background-color: #FFFFFF;
+  }
+  .code-text {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.5pt;
+    color: #2F5597;
+  }
+</style>
+</head>
+<body>
+
+<table>
+  <!-- TITLE ROWS -->
+  <tr>
+    <td colspan="11" class="title-main">DANH SÁCH PRODUCT BACKLOG: DỰ ÁN TOOL NETSHORT DOWNLOADER</td>
+  </tr>
+  <tr>
+    <td colspan="11" class="title-sub">
+      Mục tiêu: Tối ưu hóa tìm kiếm & Tự động hóa Pipeline dán Subtitle Tiếng Việt vào Video ngắn (9:16) | Người lập: Senior BA / Product Owner | Ngày: 15/09/2026 | Phiên bản: 1.0
+    </td>
+  </tr>
+
+  <!-- HEADER ROW -->
+  <tr style="height: 40px;">
+    <th class="th-header" style="width: 45px;">STT</th>
+    <th class="th-header" style="width: 85px;">Mã PBI</th>
+    <th class="th-header" style="width: 110px;">Phân hệ / Màn hình</th>
+    <th class="th-header" style="width: 170px;">Tên tính năng</th>
+    <th class="th-header" style="width: 320px;">User Story (Chuẩn INVEST)</th>
+    <th class="th-header" style="width: 380px;">Tiêu chí nghiệm thu (Acceptance Criteria - Gherkin)</th>
+    <th class="th-header" style="width: 95px;">Mức ưu tiên</th>
+    <th class="th-header" style="width: 75px;">Story Points</th>
+    <th class="th-header" style="width: 85px;">Sprint</th>
+    <th class="th-header" style="width: 260px;">Giải pháp Kỹ thuật & Ghi chú (Technical Notes)</th>
+    <th class="th-header" style="width: 100px;">Trạng thái</th>
+  </tr>
+
+  <!-- ITEM 1 -->
+  <tr class="row-odd">
+    <td class="center bold">1</td>
+    <td class="center bold code-text">PBI-01<br>(US-01)</td>
+    <td>Màn hình chính (Crawler / Downloader)</td>
+    <td class="bold">Tìm kiếm phim theo Tên & Movie ID</td>
+    <td>
+      <b>As a:</b> Chuyên viên Vận hành nội dung<br>
+      <b>I want to:</b> Tìm kiếm phim theo tên tiếng Việt/tiếng Anh hoặc Movie ID ngay trên toolbar chính<br>
+      <b>So that:</b> Tôi tìm đúng bộ phim cần tải trong vài giây mà không cần lật tìm thủ công qua từng trang.
+    </td>
+    <td>
+      <b>AC1 (Happy path):</b> Gõ từ khóa tên phim (có dấu hoặc không dấu) -> Danh sách card phim lọc tức thì theo từ khóa.<br>
+      <b>AC2 (ID match):</b> Nhập chính xác Movie ID (VD: 2098678126826008577) -> Hiển thị đúng card phim.<br>
+      <b>AC3 (Empty result):</b> Không có kết quả -> Hiển thị "Không tìm thấy phim phù hợp" kèm nút làm mới.<br>
+      <b>AC4 (Clear search):</b> Bấm nút [X] trong ô search -> Xóa từ khóa và khôi phục toàn bộ danh sách ban đầu.
+    </td>
+    <td class="badge-p0">P0 (Must)</td>
+    <td class="center bold">3</td>
+    <td class="center">Sprint 1</td>
+    <td>
+      - Đặt ô search giữa dropdown danh mục và nút 'Tải danh sách phim'.<br>
+      - Debounce input 300ms hoặc kích hoạt khi nhấn phím Enter.<br>
+      - Lọc client-side trên list hiện có hoặc gọi API search backend nếu có hỗ trợ.
+    </td>
+    <td class="badge-status">Ready for Dev</td>
+  </tr>
+
+  <!-- ITEM 2 -->
+  <tr class="row-even">
+    <td class="center bold">2</td>
+    <td class="center bold code-text">PBI-02<br>(US-02)</td>
+    <td>Video Processing Engine (Backend / Local)</td>
+    <td class="bold">Tự động ghép Sub cứng vào MP4 (Auto Hardsub)</td>
+    <td>
+      <b>As a:</b> Chuyên viên Vận hành nội dung<br>
+      <b>I want to:</b> Hệ thống tự động ghép phụ đề chết vào video MP4 ngay khi tải xong<br>
+      <b>So that:</b> Tôi nhận được ngay 1 file video MP4 hoàn chỉnh có sẵn sub tiếng Việt, không phải mở CapCut/Premiere dán sub thủ công từng tập.
+    </td>
+    <td>
+      <b>AC1 (Auto burn):</b> Khi checkbox "Tự động ghép Sub cứng" được bật -> Tải video + sub về và tự động gọi FFmpeg burn sub ngầm.<br>
+      <b>AC2 (Single output):</b> Thư mục Downloads xuất ra 1 file .mp4 duy nhất đã có sub dán chết.<br>
+      <b>AC3 (Safe Margin):</b> Phụ đề được căn MarginV=50px cách đáy màn hình 9:16, đảm bảo không bị nút tương tác/thanh tua video che khuất.<br>
+      <b>AC4 (Fallback):</b> Nếu lỗi sub/FFmpeg -> Giữ lại 2 file rời (.mp4 gốc + .vtt) và báo cảnh báo.
+    </td>
+    <td class="badge-p0">P0 (Must)</td>
+    <td class="center bold">8</td>
+    <td class="center">Sprint 1</td>
+    <td>
+      - Đóng gói sẵn binary `ffmpeg.exe` vào tool.<br>
+      - Tự động convert .vtt -> .srt.<br>
+      - Lệnh FFmpeg: <br>
+      <code>ffmpeg -i in.mp4 -vf "subtitles=sub.srt:force_style='FontSize=18,Outline=1.5,MarginV=50'" -c:a copy -preset ultrafast out.mp4</code><br>
+      - Thời gian xử lý: 5-10s/tập.
+    </td>
+    <td class="badge-status">Ready for Dev</td>
+  </tr>
+
+  <!-- ITEM 3 -->
+  <tr class="row-odd">
+    <td class="center bold">3</td>
+    <td class="center bold code-text">PBI-03<br>(US-03)</td>
+    <td>Translation Service (Dịch thuật Phụ đề)</td>
+    <td class="bold">Tự động dịch phụ đề sang Tiếng Việt</td>
+    <td>
+      <b>As a:</b> Chuyên viên Vận hành nội dung<br>
+      <b>I want to:</b> Tự động phát hiện và dịch phụ đề gốc tiếng Anh sang tiếng Việt mượt mà<br>
+      <b>So that:</b> Toàn bộ phim tải về đều có phụ đề tiếng Việt chuẩn nghĩa mà không cần gửi ra dịch ngoài.
+    </td>
+    <td>
+      <b>AC1 (Prioritize VI):</b> Nếu nguồn phim đã có sẵn track Tiếng Việt -> Tải trực tiếp track tiếng Việt, bỏ qua bước dịch.<br>
+      <b>AC2 (Auto translate EN->VI):</b> Nếu nguồn chỉ có tiếng Anh -> Tự động gọi API dịch thuật (Google Translate / DeepL / OpenAI) để dịch nội dung text.<br>
+      <b>AC3 (Timestamp integrity):</b> Giữ nguyên 100% các mốc thời gian timestamp của file sub gốc, không làm lệch đồng bộ khẩu hình.
+    </td>
+    <td class="badge-p1">P1 (Should)</td>
+    <td class="center bold">5</td>
+    <td class="center">Sprint 1 / 2</td>
+    <td>
+      - Tích hợp Google Translate Free endpoint hoặc OpenAI GPT-4o-mini với prompt chuyên dịch ngữ cảnh phim ngắn dramatics.<br>
+      - Lưu cache các đoạn sub đã dịch để tiết kiệm chi phí/token API.
+    </td>
+    <td class="badge-status">Ready for Dev</td>
+  </tr>
+
+  <!-- ITEM 4 -->
+  <tr class="row-even">
+    <td class="center bold">4</td>
+    <td class="center bold code-text">PBI-04<br>(US-04)</td>
+    <td>Cài đặt Hệ thống (Settings)</td>
+    <td class="bold">Cấu hình Style Subtitle (Font, Size, Viền, Vị trí)</td>
+    <td>
+      <b>As a:</b> Quản trị viên Tool (Admin/Lead)<br>
+      <b>I want to:</b> Tùy chỉnh thông số hiển thị của Sub (Font, Cỡ chữ, Màu sắc, Viền chống lóa, Vị trí lề dưới)<br>
+      <b>So that:</b> Toàn bộ các bộ phim xuất ra có kiểu chữ phụ đề đồng nhất, thẩm mỹ cao và chuẩn nhận diện thương hiệu.
+    </td>
+    <td>
+      <b>AC1 (Custom style):</b> Cho phép chọn font (Arial, Montserrat, Roboto), kích thước (16-22pt), màu chữ (Trắng/Vàng), màu viền (Đen).<br>
+      <b>AC2 (Save presets):</b> Lưu cấu hình mặc định vào file config.json của tool.<br>
+      <b>AC3 (Apply real-time):</b> Các lần tải tiếp theo tự động áp dụng style này vào tham số `force_style` của lệnh FFmpeg.
+    </td>
+    <td class="badge-p2">P2 (Could)</td>
+    <td class="center bold">3</td>
+    <td class="center">Sprint 2</td>
+    <td>
+      - Cấu hình file `sub_style_config.json`.<br>
+      - Tham số FFmpeg ASS style: `FontName, FontSize, PrimaryColour, OutlineColour, Outline, MarginV`.
+    </td>
+    <td class="badge-status">Backlog</td>
+  </tr>
+
+  <!-- ITEM 5 -->
+  <tr class="row-odd">
+    <td class="center bold">5</td>
+    <td class="center bold code-text">PBI-05<br>(US-05)</td>
+    <td>Màn hình chính (Crawler / Downloader)</td>
+    <td class="bold">Bộ lọc Phim theo Thể loại & Trạng thái tải</td>
+    <td>
+      <b>As a:</b> Chuyên viên Vận hành nội dung<br>
+      <b>I want to:</b> Lọc phim theo các danh mục phụ (Đô thị, Tổng tài, Xuyên không, Ngược luyến) và trạng thái (Đã tải / Chưa tải)<br>
+      <b>So that:</b> Tôi dễ dàng lên kế hoạch tải và không bị tải trùng lặp các bộ phim đã xử lý.
+    </td>
+    <td>
+      <b>AC1:</b> Dropdown lọc theo tag thể loại kết hợp cùng từ khóa tìm kiếm.<br>
+      <b>AC2:</b> Đánh dấu badge xanh "ĐÃ TẢI" trên card phim đối với những phim đã có trong thư mục lưu trữ.<br>
+      <b>AC3:</b> Tùy chọn lọc: "Chỉ hiện phim chưa tải".
+    </td>
+    <td class="badge-p2">P2 (Could)</td>
+    <td class="center bold">3</td>
+    <td class="center">Sprint 2</td>
+    <td>
+      - Đọc lịch sử download từ SQLite local hoặc file `download_history.json`.
+    </td>
+    <td class="badge-status">Backlog</td>
+  </tr>
+
+  <!-- ITEM 6 -->
+  <tr class="row-even">
+    <td class="center bold">6</td>
+    <td class="center bold code-text">PBI-06<br>(US-06)</td>
+    <td>Quản lý Tải (Download Queue)</td>
+    <td class="bold">Tải hàng loạt (Batch Download) & Hàng đợi Render</td>
+    <td>
+      <b>As a:</b> Chuyên viên Vận hành nội dung<br>
+      <b>I want to:</b> Chọn tải trọn bộ (VD: từ tập 1 đến tập 80) bằng 1 click và hệ thống tự động xử lý tuần tự<br>
+      <b>So that:</b> Tôi có thể treo máy để tool tự tải và dán sub hàng loạt mà không cần bấm từng tập một.
+    </td>
+    <td>
+      <b>AC1:</b> Nút "Tải toàn bộ tập phim (Download All)" hoặc chọn khoảng tập (From Episode X to Y).<br>
+      <b>AC2:</b> Bảng hiển thị tiến độ (Progress Bar): % tải video, % dịch sub, % render FFmpeg.<br>
+      <b>AC3:</b> Có thông báo âm thanh hoặc popup khi hoàn thành toàn bộ danh sách.
+    </td>
+    <td class="badge-p1">P1 (Should)</td>
+    <td class="center bold">5</td>
+    <td class="center">Sprint 2</td>
+    <td>
+      - Sử dụng queue worker (multi-threading / async task) để vừa tải tập tiếp theo vừa render tập trước đó, tiết kiệm 50% tổng thời gian chờ.
+    </td>
+    <td class="badge-status">Backlog</td>
+  </tr>
+
+  <!-- SUMMARY ROW -->
+  <tr style="height: 30px; background-color: #EAECEE;">
+    <td colspan="7" class="bold" style="text-align: right; padding-right: 15px;">TỔNG CỘNG STORY POINTS (ESTIMATE):</td>
+    <td class="center bold" style="color: #C00000; font-size: 12pt;">27</td>
+    <td colspan="3" class="bold" style="color: #1F4E78;">6 User Stories / 2 Sprints</td>
+  </tr>
+</table>
+
+</body>
+</html>

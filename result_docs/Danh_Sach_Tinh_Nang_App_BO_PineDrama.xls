@@ -1,0 +1,945 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--[if gte mso 9]>
+<xml>
+ <x:ExcelWorkbook>
+  <x:ExcelWorksheets>
+   <x:ExcelWorksheet>
+    <x:Name>Danh Sách Tính Năng App & BO</x:Name>
+    <x:WorksheetOptions>
+     <x:DisplayGridlines/>
+     <x:Print>
+      <x:ValidPrinterInfo/>
+      <x:Orientation>Landscape</x:Orientation>
+     </x:Print>
+     <x:Selected/>
+     <x:Panes>
+      <x:Pane>
+       <x:Number>3</x:Number>
+       <x:ActiveRow>4</x:ActiveRow>
+       <x:ActiveCol>0</x:ActiveCol>
+       <x:FreezePanes/>
+       <x:FrozenNoSplit/>
+       <x:SplitRow>4</x:SplitRow>
+      </x:Pane>
+     </x:Panes>
+    </x:WorksheetOptions>
+   </x:ExcelWorksheet>
+  </x:ExcelWorksheets>
+ </x:ExcelWorkbook>
+</xml>
+<![endif]-->
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 10pt;
+    color: #222222;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+  }
+  th, td {
+    border: 0.5pt solid #D9D9D9;
+    padding: 7px 9px;
+    vertical-align: top;
+    mso-number-format: "\@";
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  .title-main {
+    font-size: 15pt;
+    font-weight: bold;
+    color: #1F4E78;
+    text-align: left;
+    border: none;
+    padding: 6px 0 2px 0;
+  }
+  .title-sub {
+    font-size: 10pt;
+    color: #595959;
+    font-style: italic;
+    border: none;
+    padding-bottom: 10px;
+  }
+  .th-header {
+    background-color: #1F4E78;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0.5pt solid #16365C;
+    height: 36px;
+    font-size: 10pt;
+  }
+  .group-header-app {
+    background-color: #EBF1F5;
+    color: #1F4E78;
+    font-weight: bold;
+    font-size: 11pt;
+    padding: 8px 10px;
+    border: 0.5pt solid #B8CCE4;
+  }
+  .group-header-bo {
+    background-color: #FDF2E9;
+    color: #B95319;
+    font-weight: bold;
+    font-size: 11pt;
+    padding: 8px 10px;
+    border: 0.5pt solid #F5CBA7;
+  }
+  .center {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .row-even {
+    background-color: #F9FAFB;
+  }
+  .row-odd {
+    background-color: #FFFFFF;
+  }
+  .tag-app {
+    background-color: #E8F4F8;
+    color: #1A5276;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 3px;
+  }
+  .tag-bo {
+    background-color: #FEF5E7;
+    color: #BA4A00;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 3px;
+  }
+  .code-text {
+    font-family: 'Consolas', monospace;
+    font-size: 9pt;
+    color: #1A5276;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<table>
+  <colgroup>
+    <col width="45">   <!-- STT -->
+    <col width="110">  <!-- Phân Hệ -->
+    <col width="90">   <!-- Mã Module -->
+    <col width="170">  <!-- Màn Hình / Nhóm -->
+    <col width="190">  <!-- Tên Tính Năng -->
+    <col width="460">  <!-- Diễn Giải Chức Năng Hiện Có -->
+    <col width="140">  <!-- Đối Tượng Sử Dụng -->
+    <col width="110">  <!-- Trạng Thái UI -->
+  </colgroup>
+
+  <!-- DÒNG TIÊU ĐỀ BẢNG TÍNH -->
+  <tr>
+    <td colspan="8" class="title-main">BẢNG DANH SÁCH & DIỄN GIẢI CHỨC NĂNG HIỆN CÓ CỦA HỆ THỐNG PHIM NGẮN PINEDRAMA</td>
+  </tr>
+  <tr>
+    <td colspan="8" class="title-sub">Tham chiếu giao diện thực tế: wireframe_interactive.html (Client App) & wireframe_bo_interactive.html (Back Office CMS) | Ngày hoàn thiện: 16/09/2026</td>
+  </tr>
+
+  <!-- TIÊU ĐỀ CÁC CỘT (HEADER) -->
+  <tr style="height: 36px;">
+    <th class="th-header">STT</th>
+    <th class="th-header">Phân Hệ</th>
+    <th class="th-header">Mã Chức Năng</th>
+    <th class="th-header">Màn Hình / Nhóm Chức Năng</th>
+    <th class="th-header">Tên Tính Năng</th>
+    <th class="th-header">Diễn Giải Chi Tiết Chức Năng Hiện Có Trên Giao Diện</th>
+    <th class="th-header">Đối Tượng Sử Dụng</th>
+    <th class="th-header">Trạng Thái UI</th>
+  </tr>
+
+  <!-- ==================== PHẦN 1: CLIENT APP ==================== -->
+  <tr>
+    <td colspan="8" class="group-header-app">📱 PHÂN HỆ 1: ỨNG DỤNG NGƯỜI DÙNG (MOBILE APP / RESPONSIVE CLIENT WEB)</td>
+  </tr>
+
+  <!-- Module APP-01: Trang Chủ & Khám Phá -->
+  <tr class="row-odd">
+    <td class="center">01</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-01.1</td>
+    <td>Trang Chủ & Khám Phá</td>
+    <td class="bold">Header Thương Hiệu & Huy Hiệu 100% Free</td>
+    <td>Hiển thị logo nhận diện "🔥 PineDrama" cùng thông tin định vị nền tảng phim ngắn hoàn toàn miễn phí cho người xem. Căn lề trên chuẩn di động 50px padding.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">02</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-01.2</td>
+    <td>Trang Chủ & Khám Phá</td>
+    <td class="bold">Tìm Kiếm Phim Nhanh</td>
+    <td>Thanh tìm kiếm (Search Box) cho phép người dùng nhập từ khóa tên phim hoặc diễn viên để tìm kiếm tức thì bộ phim mong muốn.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">03</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-01.3</td>
+    <td>Trang Chủ & Khám Phá</td>
+    <td class="bold">Thanh Cuộn Thể Loại Ngang</td>
+    <td>Thanh cuộn danh mục cảm ứng mượt mà: Cho Bạn, Hot Trend, Ngôn Tình, Chủ Tịch, Trả Thù... Bấm vào tab nào sẽ kích hoạt highlight và lọc phim theo thể loại đó.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">04</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-01.4</td>
+    <td>Trang Chủ & Khám Phá</td>
+    <td class="bold">Hero Banner Phim Nổi Bật</td>
+    <td>Khung banner lớn đầu trang giới thiệu phim hot nhất, phủ gradient mờ, thể hiện Tên phim, Thể loại, Số tập và nút CTA "▶ Xem Ngay" bấm mở xem tức thì.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">05</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-01.5</td>
+    <td>Trang Chủ & Khám Phá</td>
+    <td class="bold">Lưới Phim Thịnh Hành (Trending Grid)</td>
+    <td>Danh sách phim 2 cột hiển thị poster dọc sắc nét, tên phim, số lượng tập và điểm đánh giá sao ⭐ (VD: 80 Tập • ⭐ 4.9), kèm nút "Xem tất cả".</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module APP-02: Trình Chiếu Phim Dọc -->
+  <tr class="row-even">
+    <td class="center">06</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.1</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Trình Chiếu Video Khung Dọc 9:16</td>
+    <td>Phát video toàn màn hình theo khung dọc tối ưu cho điện thoại (Reels/TikTok). Nền tối sang trọng, chuyển cảnh mượt mà giữa các tập.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">07</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.2</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Thanh Điều Hướng Nhanh Trên Đầu (Top Bar)</td>
+    <td>Gồm nút Quay lại (‹), Tên bộ phim có thể click để vào trang Chi tiết phim, Số thứ tự tập hiện tại (Tập 12/80) và Nhãn hiển thị phụ đề (Sub: VI).</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">08</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.3</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Phụ Đề Nổi Thông Minh (Floating Subtitle)</td>
+    <td>Hiển thị dòng phụ đề tiếng Việt ở vị trí cao trên video, đảm bảo không bị che khuất bởi thanh tiến trình phát hay cụm nút bấm chuyển tập dưới đáy.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">09</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.4</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Nút Thả Tim Yêu Thích (❤️)</td>
+    <td>Nút bấm tương tác nổi bên phải. Bấm thả tim sẽ đổi sang tim đỏ, đồng thời hệ thống tự động lưu phim này vào danh sách Phim Yêu Thích cá nhân.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">10</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.5</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Nút Mở Bảng Bình Luận (💬)</td>
+    <td>Hiển thị số lượng bình luận (VD: 1.8K). Chạm vào icon sẽ trượt mở Bottom Sheet danh sách bình luận thảo luận theo thời gian thực.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">11</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.6</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Khung Thông Tin Tập Dưới Đáy & Phát Tất Cả</td>
+    <td>Hiển thị tên tập, badge số tập tinh giản và nút "Phát tất cả (80 tập)" khi khán giả lướt ngẫu nhiên để mở danh sách trọn bộ tập phim.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">12</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.7</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Thanh Tiến Trình & Cụm Nút Chuyển Tập</td>
+    <td>Thanh line màu cam đỏ biểu thị thời gian phát. Cụm nút chuyển tập: "‹ Tập Trước" và nút highlight "Tập Sau (▶ Xem Tiếp)" chuyển tập tức thì chỉ với 1 chạm.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">13</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-02.8</td>
+    <td>Xem Phim Dọc (Player)</td>
+    <td class="bold">Tự Động Lưu Tiến Trình Xem Phim</td>
+    <td>Ghi nhớ chính xác bộ phim, số thứ tự tập và thời lượng giây đang xem dở vào bộ nhớ/tài khoản để khán giả vào lại xem tiếp không bị mất dấu.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module APP-03: Chi Tiết Phim & Đa Phần -->
+  <tr class="row-even">
+    <td class="center">14</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-03.1</td>
+    <td>Chi Tiết Phim (Detail)</td>
+    <td class="bold">Backdrop Kính Mờ & Nút Back Tròn</td>
+    <td>Ảnh nền mờ nghệ thuật phía sau poster tạo chiều sâu thị giác, kèm nút Back tròn kính mờ góc trên trái để quay lại trang trước.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">15</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-03.2</td>
+    <td>Chi Tiết Phim (Detail)</td>
+    <td class="bold">Thông Tin Phim & Điểm Đánh Giá Rating</td>
+    <td>Hiển thị Poster dọc, Tên bộ phim, Thể loại, Tổng số tập và Điểm đánh giá sao vàng ⭐ 9.8 / 10 kèm số lượng vote (14.2K lượt).</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">16</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-03.3</td>
+    <td>Chi Tiết Phim (Detail)</td>
+    <td class="bold">Khung Tự Đánh Giá 5 Sao (Interactive Rating)</td>
+    <td>Khung 5 ngôi sao cho phép khán giả tự chạm chọn số sao (1 đến 5 sao) để chấm điểm chất lượng cho bộ phim.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">17</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-03.4</td>
+    <td>Chi Tiết Phim (Detail)</td>
+    <td class="bold">Cụm Nút CTA: "Xem Từ Tập 1" & "Yêu Thích"</td>
+    <td>Nút "▶ Xem Từ Tập 1" màu cam đỏ nổi bật để phát phim ngay; nút "❤️ Yêu Thích" lưu phim vào tủ phim cá nhân.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">18</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-03.5</td>
+    <td>Chi Tiết Phim (Detail)</td>
+    <td class="bold">Bộ Chọn Phần Phim (Multi-Seasons Dropdown)</td>
+    <td>Dropdown dành cho phim dài tập chia nhiều mùa (Phần 1, Phần 2, Ngoại truyện...). Chọn phần nào thì danh sách tập bên dưới lập tức đổi theo phần đó.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">19</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-03.6</td>
+    <td>Chi Tiết Phim (Detail)</td>
+    <td class="bold">Lưới Danh Sách Toàn Bộ Tập Phim</td>
+    <td>Lưới hiển thị từng ô tập (Tập 1 -> Tập 80). Bấm vào bất kỳ ô tập nào sẽ mở Player và phát chính xác tập phim đó.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module APP-04: Bình Luận & Tương Tác -->
+  <tr class="row-even">
+    <td class="center">20</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-04.1</td>
+    <td>Bình Luận (Comments)</td>
+    <td class="bold">Bảng Trượt Bình Luận (Bottom Sheet Modal)</td>
+    <td>Bảng trượt vuốt từ đáy màn hình lên, có thanh kéo drag-handle và nút đóng (✕), không làm ngắt video đang phát ở nền dưới.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">21</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-04.2</td>
+    <td>Bình Luận (Comments)</td>
+    <td class="bold">Danh Sách Bình Luận Thời Gian Thực</td>
+    <td>Hiển thị Avatar người bình luận, Họ tên, Thời gian đăng bài (VD: 15 phút trước) và Nội dung bình luận, hiển thị tổng số lượt bình luận trên header.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">22</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-04.3</td>
+    <td>Bình Luận (Comments)</td>
+    <td class="bold">Thả Tim Bình Luận & Trả Lời (Reply)</td>
+    <td>Bấm thả tim để tăng lượt thích cho bình luận; bấm "Trả lời" sẽ tự động điền tag `@Tên_User` vào khung soạn thảo bình luận.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">23</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-04.4</td>
+    <td>Bình Luận (Comments)</td>
+    <td class="bold">Khung Nhập & Gửi Bình Luận Mới</td>
+    <td>Gồm avatar người dùng hiện tại, ô nhập nội dung và nút "Gửi" màu cam đỏ. Gửi bình luận sẽ xuất hiện ngay lập tức trên đầu danh sách.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module APP-05: Xác Thực & Đăng Nhập -->
+  <tr class="row-even">
+    <td class="center">24</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-05.1</td>
+    <td>Xác Thực (Auth)</td>
+    <td class="bold">Tab Chuyển Đổi [Đăng Nhập] & [Đăng Ký]</td>
+    <td>Tab chuyển đổi nhanh trên cùng giao diện, cho phép chuyển qua lại giữa form Đăng Nhập và Đăng Ký mượt mà không phải tải lại trang.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">25</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-05.2</td>
+    <td>Xác Thực (Auth)</td>
+    <td class="bold">Biểu Mẫu Đăng Nhập Tài Khoản</td>
+    <td>Nhập Số điện thoại/Email + Mật khẩu, có liên kết "Quên mật khẩu" và nút "⚡ ĐĂNG NHẬP NGAY" để vào xem phim và đồng bộ lịch sử.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">26</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-05.3</td>
+    <td>Xác Thực (Auth)</td>
+    <td class="bold">Biểu Mẫu Đăng Ký Thành Viên Mới</td>
+    <td>Nhập Họ tên, Email, Mật khẩu, Xác nhận lại mật khẩu và Checkbox cam kết đồng ý với Điều khoản & Chính sách nền tảng.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">27</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-05.4</td>
+    <td>Xác Thực (Auth)</td>
+    <td class="bold">Đăng Nhập Nhanh Bằng Tài Khoản Google</td>
+    <td>Nút liên kết Google Account 1 chạm giúp khán giả đăng nhập nhanh chóng, tự động lấy tên và email mà không cần tạo mật khẩu rườm rà.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module APP-06: Hồ Sơ Cá Nhân & Tủ Phim -->
+  <tr class="row-even">
+    <td class="center">28</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-06.1</td>
+    <td>Hồ Sơ & Thư Viện</td>
+    <td class="bold">Thẻ Thông Tin Hồ Sơ Người Dùng (Profile Card)</td>
+    <td>Hiển thị Avatar, Tên người dùng, Huy hiệu thành viên PineDrama, Mã ID người dùng và SĐT/Email, kèm nút "✏️ Sửa" mở khung chỉnh sửa.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">29</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-06.2</td>
+    <td>Hồ Sơ & Thư Viện</td>
+    <td class="bold">Bảng Chỉnh Sửa Hồ Sơ & Đổi Avatar</td>
+    <td>Cho phép chọn ảnh đại diện mẫu, tải ảnh từ thiết bị lên, nhập 2 chữ viết tắt (Initials), sửa Tên hiển thị và SĐT/Email kèm nút Lưu.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">30</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-06.3</td>
+    <td>Hồ Sơ & Thư Viện</td>
+    <td class="bold">Tab "Lịch Sử Xem" (Watch History)</td>
+    <td>Lưu danh sách toàn bộ các bộ phim đang xem dở kèm tiến trình tập (VD: Đã xem Tập 12/80) và nút "▶ Xem Tiếp" để tiếp tục xem ngay.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">31</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-06.4</td>
+    <td>Hồ Sơ & Thư Viện</td>
+    <td class="bold">Tab "Phim Yêu Thích" (Favorites)</td>
+    <td>Lưu các bộ phim khán giả đã bấm thả tim ❤️ để theo dõi dài ngày, hiển thị ảnh bìa, điểm đánh giá và nút "▶ Xem Phim".</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">32</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-06.5</td>
+    <td>Hồ Sơ & Thư Viện</td>
+    <td class="bold">Đăng Xuất Tài Khoản An Toàn</td>
+    <td>Nút màu đỏ "🚪 Đăng Xuất Tài Khoản" ở đáy trang cá nhân, xóa phiên đăng nhập và đưa thanh điều hướng về trạng thái chưa đăng nhập.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">33</td>
+    <td class="tag-app">Client App</td>
+    <td class="code-text">APP-06.6</td>
+    <td>Thanh Điều Hướng Đáy</td>
+    <td class="bold">Bottom Navigation Bar (3 Tab)</td>
+    <td>Thanh cố định đáy: [Trang Chủ], [Xem Phim], [Tài Khoản / Tôi]. Tự động nhận biết trạng thái đăng nhập để hiển thị nhãn và điều hướng chuẩn.</td>
+    <td>Khán giả</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+
+  <!-- ==================== PHẦN 2: BACK OFFICE CMS ==================== -->
+  <tr>
+    <td colspan="8" class="group-header-bo">💻 PHÂN HỆ 2: HỆ THỐNG VẬN HÀNH & QUẢN TRỊ BACK OFFICE (BO / CMS)</td>
+  </tr>
+
+  <!-- Module BO-00: Đăng Nhập Quản Trị -->
+  <tr class="row-even">
+    <td class="center">34</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-00.1</td>
+    <td>Cổng Đăng Nhập Admin</td>
+    <td class="bold">Giao Diện Đăng Nhập Quản Trị Fullscreen</td>
+    <td>Cổng đăng nhập quản trị riêng biệt, bảo mật cao, nhận diện PineDrama BO v3.0, căn giữa trên mọi màn hình PC/Laptop.</td>
+    <td>Ban Quản Trị</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">35</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-00.2</td>
+    <td>Cổng Đăng Nhập Admin</td>
+    <td class="bold">Ẩn/Hiện Mật Khẩu & Ghi Nhớ 30 Ngày</td>
+    <td>Input Email quản trị, Mật khẩu có icon mắt (👁️) để chuyển đổi giữa text/password tránh gõ sai, checkbox ghi nhớ phiên làm việc 30 ngày.</td>
+    <td>Ban Quản Trị</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">36</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-00.3</td>
+    <td>Cổng Đăng Nhập Admin</td>
+    <td class="bold">Đăng Nhập Nhanh 1-Click Theo Vai Trò Demo</td>
+    <td>3 nút thử nghiệm nhanh: 👑 Super Admin (Full Quyền), 🎬 Content Manager (Quản lý Phim & Danh mục), 🛡️ User Moderator (Quản lý User & Khóa Acc).</td>
+    <td>Quản Trị Viên</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">37</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-00.4</td>
+    <td>Cổng Đăng Nhập Admin</td>
+    <td class="bold">Menu Hồ Sơ Admin & Đăng Xuất (Dropup)</td>
+    <td>Cụm góc dưới sidebar hiển thị Avatar, Tên, Vai trò, nút Đổi tài khoản đăng nhập, nút chuyển vào Quản lý Admin và nút Đăng xuất (🚪).</td>
+    <td>Quản Trị Viên</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module BO-01: Dashboard Tổng Quan -->
+  <tr class="row-even">
+    <td class="center">38</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-01.1</td>
+    <td>Dashboard Vận Hành</td>
+    <td class="bold">Bộ Lọc Mốc Thời Gian Vận Hành</td>
+    <td>Chuyển đổi 3 chế độ xem: ⚡ Hôm Qua (D-1 đã chốt sổ - an toàn cho vận hành), 🔴 Hôm Nay (Live thời gian thực), 📅 Theo Tháng (Dropdown tháng).</td>
+    <td>Ban Lãnh Đạo / BA</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">39</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-01.2</td>
+    <td>Dashboard Vận Hành</td>
+    <td class="bold">4 Thẻ Chỉ Số Hiệu Suất Cốt Lõi (Core KPIs)</td>
+    <td>Thống kê: Tổng lượt xem (Views kèm % tăng trưởng), Thời lượng xem (Watch Time - Giờ), User hoạt động (DAU) và Tỷ lệ xem hết trọn bộ phim.</td>
+    <td>Ban Lãnh Đạo / BA</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">40</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-01.3</td>
+    <td>Dashboard Vận Hành</td>
+    <td class="bold">Biểu Đồ Lưu Lượng Theo 24 Giờ (Hourly Traffic)</td>
+    <td>Biểu đồ cột trực quan lưu lượng xem từ 00:00 đến 23:59, làm nổi bật khung giờ vàng cao điểm (Peak Hours: 19:00 - 22:00) với gradient phát sáng.</td>
+    <td>Data Analyst / BA</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">41</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-01.4</td>
+    <td>Dashboard Vận Hành</td>
+    <td class="bold">Bảng Xếp Hạng Top 5 Phim Hot Nhất</td>
+    <td>Thống kê 5 bộ phim có lượt xem cao nhất theo kỳ chốt số (D-1) kèm thông tin tên phim, thể loại, tổng số tập và số lượng view chốt.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">42</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-01.5</td>
+    <td>Dashboard Vận Hành</td>
+    <td class="bold">Xuất Báo Cáo Tổng Hợp Dashboard</td>
+    <td>Nút "📥 Xuất Báo Cáo" góc trên phải giúp kết xuất toàn bộ số liệu tổng quan của kỳ lọc đang xem phục vụ báo cáo giao ban vận hành.</td>
+    <td>Quản Trị Viên</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module BO-02: Quản Lý Phim & Tập Phim -->
+  <tr class="row-odd">
+    <td class="center">43</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.1</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Bộ Lọc & Tìm Kiếm Phim Đa Tiêu Chí</td>
+    <td>Tìm theo tên/ID phim, Lọc theo thể loại (Đã Gán / Chưa Gán), Lọc theo trạng thái phát hành (Đã Xuất Bản / Tạm Ẩn) kèm nút Tìm kiếm gradient.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">44</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.2</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Gán Thể Loại Nhanh Trên Từng Dòng Bảng [+]</td>
+    <td>Nút Quick Add [+] tại cột thể loại trên từng dòng bảng cho phép mở popover chọn thể loại gắn thêm trực tiếp mà không cần mở modal chỉnh sửa.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">45</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.3</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Công Tắc Bật/Tắt Trạng Thái (Toggle Switch)</td>
+    <td>Công tắc gạt trực tiếp trên bảng: 🟢 Bật (Đã Xuất Bản - hiện trên App) / 🔴 Tắt (Tạm Ẩn - giấu khỏi App), cập nhật tức thì trạng thái.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">46</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.4</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Thanh Thao Tác Hàng Loạt Nổi (Floating Bulk Bar)</td>
+    <td>Khi tích chọn nhiều phim, thanh công cụ nổi trượt lên ở đáy màn hình: Đếm số phim đã chọn, Gán thể loại đồng loạt, Xuất bản và Xóa hàng loạt.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">47</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.5</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Modal Gán Thể Loại Đồng Loạt (Bulk Category)</td>
+    <td>Modal cho phép tích chọn nhiều thể loại cùng lúc để gán áp dụng đồng loạt cho toàn bộ các bộ phim đang được tick chọn trên bảng.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">48</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.6</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Modal Tạo Mới & Chỉnh Sửa Phim Chi Tiết</td>
+    <td>Modal tổng hợp: Đổi tên phim, Chọn loại hình (Phim Bộ vs Phim Lẻ), Gán thể loại bằng Multi-select tag chips có ô gõ tìm kiếm thể loại.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">49</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.7</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Cấu Hình Poster Có Khung Xem Trước (Preview Box)</td>
+    <td>Dán link URL ảnh poster, khung preview bên cạnh hiển thị ảnh ngay lập tức; nếu link lỗi hiển thị thông báo chưa có poster.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">50</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.8</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Quản Lý Phim Lẻ (Single Movie) & Phát Thử</td>
+    <td>Khi chọn loại hình "Phim Lẻ": Tự động ẩn danh sách tập, chỉ hiện duy nhất 1 ô dán link video master (.m3u8/.mp4) kèm nút phát kiểm tra (▶️).</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">51</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-02.9</td>
+    <td>Quản Lý Phim</td>
+    <td class="bold">Quản Lý Đa Phần & Dán Hàng Loạt Link Tập Phim</td>
+    <td>Thêm/xóa Season; Ô Textarea dán danh sách link (mỗi dòng 1 link) kèm cấu hình tập bắt đầu, bấm "⚡ Gán Phim" tự động tạo danh sách tập; kéo thả đổi thứ tự tập.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module BO-03: Quản Lý Danh Mục Thể Loại -->
+  <tr class="row-even">
+    <td class="center">52</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-03.1</td>
+    <td>Quản Lý Danh Mục</td>
+    <td class="bold">Bảng Danh Mục & Huy Hiệu Tổng Số</td>
+    <td>Hiển thị danh sách thể loại: Thứ tự hiển thị, Tên danh mục, Số lượng phim thuộc danh mục, Trạng thái và Hành động, kèm badge tổng số danh mục.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">53</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-03.2</td>
+    <td>Quản Lý Danh Mục</td>
+    <td class="bold">Sắp Xếp Thứ Tự Bằng Kéo Thả Chuột (Drag & Drop)</td>
+    <td>Mỗi dòng có tay nắm `⠿`. Người quản trị giữ chuột kéo thả dòng lên/xuống để đổi thứ tự xuất hiện của Tab trên App, tự đánh lại số `#1, #2, #3...`.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">54</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-03.3</td>
+    <td>Quản Lý Danh Mục</td>
+    <td class="bold">Xem Popup Danh Sách Phim Thuộc Danh Mục</td>
+    <td>Bấm vào số lượng phim (VD: 🎬 28 Phim [Xem DS ↗️]) sẽ mở popup hiển thị toàn bộ các phim thuộc thể loại này kèm ô tìm kiếm nhanh và nút nhảy sang module phim.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">55</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-03.4</td>
+    <td>Quản Lý Danh Mục</td>
+    <td class="bold">Bật / Tắt Hiển Thị Danh Mục Lên App</td>
+    <td>Công tắc Toggle Switch ở cột trạng thái cho phép ẩn hoặc hiển thị tức thì một danh mục khỏi thanh cuộn ngang trên ứng dụng của người dùng.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">56</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-03.5</td>
+    <td>Quản Lý Danh Mục</td>
+    <td class="bold">Tạo Danh Mục Mới (Create Category Modal)</td>
+    <td>Nút "+ Tạo Danh Mục Mới" mở modal nhập Tên thể loại mới và chọn trạng thái hiển thị mặc định (Hiển thị / Đang ẩn).</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">57</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-03.6</td>
+    <td>Quản Lý Danh Mục</td>
+    <td class="bold">Chỉnh Sửa Đổi Tên & Xóa Danh Mục</td>
+    <td>Nút ✏️ để đổi tên danh mục hiển thị (Modal Edit Category) và nút 🗑️ xóa danh mục, tự động đánh lại số thứ tự cho các dòng còn lại.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module BO-04: Báo Cáo & Thống Kê -->
+  <tr class="row-even">
+    <td class="center">58</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-04.1</td>
+    <td>Báo Cáo & Thống Kê</td>
+    <td class="bold">Bộ Lọc Báo Cáo Nâng Cao Đa Chiều</td>
+    <td>Lọc theo khoảng ngày bất kỳ (Từ ngày ... Đến ngày ...), Lọc theo tháng, Lọc theo thể loại phim, Tìm kiếm theo tên/ID phim và nút Đặt lại mặc định.</td>
+    <td>Data Analyst / BA</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">59</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-04.2</td>
+    <td>Báo Cáo & Thống Kê</td>
+    <td class="bold">4 Thẻ Mini KPI Chốt Theo Kỳ Lọc</td>
+    <td>Tổng lượt xem trong kỳ lọc, Phim xem nhiều nhất, Phim yêu thích nhất (nhiều tim nhất - %) và Số User hoạt động kèm thời gian xem trung bình.</td>
+    <td>Data Analyst / BA</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">60</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-04.3</td>
+    <td>Báo Cáo & Thống Kê</td>
+    <td class="bold">Báo Cáo Hiệu Suất Từng Bộ Phim (Sub-tab 1)</td>
+    <td>Bảng chi tiết: Thứ hạng #1-#5, Poster, Tên phim & ID, Thể loại, Lượt xem chi tiết, Lượt thả tim kèm nút sắp xếp theo phim có lượt xem cao nhất.</td>
+    <td>Content Manager</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">61</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-04.4</td>
+    <td>Báo Cáo & Thống Kê</td>
+    <td class="bold">Báo Cáo Hành Vi & Duy Trì User (Sub-tab 2)</td>
+    <td>Bảng chỉ số Cohort Retention: Tỷ lệ quay lại sau 1 ngày (D1: 58.4%), sau 7 ngày (D7: 34.8%), sau 30 ngày (D30: 21.2%) và thời gian xem TB mỗi ngày.</td>
+    <td>Data Analyst / PO</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">62</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-04.5</td>
+    <td>Báo Cáo & Thống Kê</td>
+    <td class="bold">Báo Cáo Tỷ Trọng Thể Loại (Sub-tab 3)</td>
+    <td>Bảng thống kê tỷ trọng: Tỉ lệ % lượt xem, Tổng lượt xem, Số bộ phim của thể loại và Độ yêu thích % (VD: Ngôn tình chiếm 45.2%, Trả thù 26.8%).</td>
+    <td>Content / Marketing</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">63</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-04.6</td>
+    <td>Báo Cáo & Thống Kê</td>
+    <td class="bold">Xuất File Báo Cáo Định Dạng Excel / CSV</td>
+    <td>Nút "📥 Xuất File Báo Cáo Này (Excel/CSV)" trên thanh tiêu đề hỗ trợ tải bảng dữ liệu đang lọc ra file bảng tính để báo cáo tài chính/vận hành.</td>
+    <td>Quản Trị Viên</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module BO-05: Quản Lý Người Dùng -->
+  <tr class="row-even">
+    <td class="center">64</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-05.1</td>
+    <td>Quản Lý Người Dùng</td>
+    <td class="bold">Bộ Lọc Trạng Thái Tài Khoản Người Dùng</td>
+    <td>Dropdown lọc: Tất cả trạng thái, 🟢 Hoạt Động, 🔴 Bị Khóa, hiển thị tổng số lượng người dùng đang được quản lý trên hệ thống.</td>
+    <td>User Moderator</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">65</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-05.2</td>
+    <td>Quản Lý Người Dùng</td>
+    <td class="bold">Tìm Kiếm Người Dùng Nhanh Chóng</td>
+    <td>Ô tìm kiếm theo User ID, Tên hiển thị, Địa chỉ Email hoặc nội dung ghi chú vi phạm trực tiếp trên bảng.</td>
+    <td>User Moderator</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">66</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-05.3</td>
+    <td>Quản Lý Người Dùng</td>
+    <td class="bold">Bảng Thông Tin Người Dùng Toàn Diện</td>
+    <td>Hiển thị: STT, User ID, Tên hiển thị, Email, Hình thức đăng nhập (Google/SĐT), Ngày tham gia, Trạng thái tài khoản và Cột thao tác.</td>
+    <td>User Moderator</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">67</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-05.4</td>
+    <td>Quản Lý Người Dùng</td>
+    <td class="bold">Thao Tác Khóa Tài Khoản Vi Phạm (Ban Acc)</td>
+    <td>Nút "🔒 Khóa Acc" đổi ngay trạng thái user sang "🔴 Bị Khóa", tài khoản bị chặn đăng nhập và bị vô hiệu hóa quyền bình luận trên App ngay lập tức.</td>
+    <td>User Moderator</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">68</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-05.5</td>
+    <td>Quản Lý Người Dùng</td>
+    <td class="bold">Thao Tác Mở Khóa Tài Khoản (Unban Acc) & Xuất DS</td>
+    <td>Nút "🔓 Mở Khóa Acc" khôi phục quyền hoạt động cho người dùng; Nút "📥 Xuất DS Bị Khóa" xuất báo cáo các tài khoản vi phạm.</td>
+    <td>User Moderator</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+  <!-- Module BO-06: Quản Trị Hệ Thống & Admin -->
+  <tr class="row-odd">
+    <td class="center">69</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-06.1</td>
+    <td>Quản Trị Hệ Thống</td>
+    <td class="bold">Bảng Danh Sách Tài Khoản Quản Trị Viên</td>
+    <td>Hiển thị: STT, Avatar, Họ tên, Email công việc, Vai trò, Quyền hạn chính, Trạng thái (Hoạt động/Khóa), Thời gian và Địa chỉ IP đăng nhập cuối.</td>
+    <td>Super Admin</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">70</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-06.2</td>
+    <td>Quản Trị Hệ Thống</td>
+    <td class="bold">Hệ Thống Phân Cấp 4 Vai Trò Chuẩn (RBAC)</td>
+    <td>Phân quyền vai trò: 👑 Super Admin (Full quyền), 🎬 Content Manager (Quản lý Phim & Danh mục), 🛡️ User Moderator (Quản lý User), 📊 Data Analyst (Báo cáo).</td>
+    <td>Super Admin</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">71</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-06.3</td>
+    <td>Quản Trị Hệ Thống</td>
+    <td class="bold">Cấp Mới Admin Có Ma Trận Phân Quyền Chi Tiết</td>
+    <td>Modal cấp tài khoản: Nhập thông tin, Chọn Role, Tích chọn ma trận quyền hạn chi tiết (Dashboard, Phim, Danh mục, User, Admin khác), gửi email bảo mật.</td>
+    <td>Super Admin</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">72</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-06.4</td>
+    <td>Quản Trị Hệ Thống</td>
+    <td class="bold">Đổi Mật Khẩu Admin (Change Password Modal)</td>
+    <td>Nút icon 🔑 mở modal cập nhật mật khẩu mới cho bất kỳ quản trị viên nào trong danh sách.</td>
+    <td>Super Admin</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-odd">
+    <td class="center">73</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-06.5</td>
+    <td>Quản Trị Hệ Thống</td>
+    <td class="bold">Khóa / Mở Khóa Tài Khoản Quản Trị Viên</td>
+    <td>Nút icon 🔒 tạm ngưng hoặc mở lại quyền truy cập của một quản trị viên khi có nghi vấn bảo mật hoặc nhân sự thay đổi (Super Admin được bảo vệ).</td>
+    <td>Super Admin</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+  <tr class="row-even">
+    <td class="center">74</td>
+    <td class="tag-bo">Back Office</td>
+    <td class="code-text">BO-06.6</td>
+    <td>Quản Trị Hệ Thống</td>
+    <td class="bold">Xóa Tài Khoản Quản Trị Viên</td>
+    <td>Nút icon 🗑️ xóa vĩnh viễn tài khoản quản trị viên khỏi hệ thống sau khi có hộp thoại xác nhận an toàn (Bảo vệ tuyệt đối tài khoản Super Admin).</td>
+    <td>Super Admin</td>
+    <td class="center bold" style="color: #27AE60;">Đã có trên UI</td>
+  </tr>
+
+</table>
+
+</body>
+</html>

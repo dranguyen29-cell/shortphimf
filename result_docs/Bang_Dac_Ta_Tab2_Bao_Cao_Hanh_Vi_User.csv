@@ -1,0 +1,20 @@
+﻿STT	Vị trí hiển thị trên màn hình	Tên trường thông tin (Field Name)	Ví dụ hiển thị thực tế trên giao diện	Ý nghĩa của trường (Nghiệp vụ & Người dùng)	Công thức tính toán (Thuật ngữ người dùng / Logic nghiệp vụ)	Quy tắc nghiệp vụ & Điều kiện áp dụng (Business Rules)
+1	Khối thẻ góc trái trên (Tab 2)	D1 (Quay lại sau 1 ngày)	58.4%	Đo lường tỷ lệ người dùng mới thích thú với app và quyết định quay lại mở app xem tiếp ngay vào ngày hôm sau.	"1. Khi lọc 1 ngày (ví dụ ngày 10/08):
+Tỷ lệ D1 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 11/08 / Tổng số người dùng mới ngày 10/08) × 100%
+
+2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
+Tỷ lệ D1 (%) = (Tổng số người dùng mở lại app vào ngày hôm sau của các ngày trong đợt / Tổng số người dùng mới của cả đợt 10/08 đến 20/08) × 100%"	"• Quy tắc màu sắc: ≥ 50% hiển thị màu xanh lá (Tốt); < 40% cảnh báo cam/đỏ.
+• Điều kiện ngày cuối (ngày 20/08): Phải qua hết ngày 21/08 mới chốt được số liệu D1. Nếu ngày kết thúc là hôm nay thì hệ thống chỉ tính lũy kế đến ngày hôm qua."
+2	Khối thẻ góc trái dưới (Tab 2)	D7 (Quay lại sau 7 ngày)	34.8%	Đo lường thói quen xem phim hàng tuần của khán giả mới sau 1 tuần trải nghiệm ứng dụng.	"1. Khi lọc 1 ngày (ví dụ ngày 10/08):
+Tỷ lệ D7 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 17/08 / Tổng số người dùng mới ngày 10/08) × 100%
+
+2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
+Tỷ lệ D7 (%) = (Tổng số người dùng mở lại app vào ngày thứ 7 của các ngày trong đợt / Tổng số người dùng mới của các ngày đã đủ 7 ngày tuổi) × 100%"	"• Chuẩn ngành: Đạt từ 30% đến 40% là Tốt.
+• Quy tắc ngày chưa đủ hạn: Chỉ tính trên những ngày người dùng đã đủ 7 ngày tuổi (tính đến hôm nay). Những ngày mới đăng ký chưa đủ 7 ngày sẽ không đưa vào mẫu số để không làm giảm sai lệch tỷ lệ."
+3	Khối thẻ góc phải trên (Tab 2)	D30 (Quay lại sau 30 ngày)	21.2%	Đo lường tỷ lệ khán giả trung thành cốt lõi còn gắn bó với ứng dụng sau 1 tháng trải nghiệm.	"1. Khi lọc 1 ngày (ví dụ ngày 10/08):
+Tỷ lệ D30 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 09/09 / Tổng số người dùng mới ngày 10/08) × 100%
+
+2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
+Tỷ lệ D30 (%) = (Tổng số người dùng mở lại app vào ngày thứ 30 của các ngày trong đợt / Tổng số người dùng mới của các ngày đã đủ 30 ngày tuổi) × 100%"	"• Chuẩn ngành: ≥ 20% là mức xuất sắc cho ứng dụng phim ngắn.
+• Quy tắc ngày chưa đủ hạn: Tương tự D7, chỉ tính trên các ngày người dùng đã đăng ký đủ 30 ngày để đảm bảo chu kỳ theo dõi đã hoàn tất."
+4	Khối thẻ góc phải dưới (Tab 2)	Thời gian xem trung bình mỗi người dùng	48.5 Phút / Ngày	Đo lường mức độ nghiện phim của khán giả: Trung bình mỗi ngày một khán giả dành bao nhiêu phút để xem phim.	"Thời gian xem TB = (Tổng số phút xem video của tất cả người dùng trong kỳ) / (Tổng số người dùng có mở xem phim trong kỳ)"	• Chuẩn ngành: > 40 phút/ngày thể hiện khán giả có thói quen xem liên tục nhiều tập phim (cày phim).

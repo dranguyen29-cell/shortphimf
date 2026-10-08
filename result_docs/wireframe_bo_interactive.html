@@ -413,9 +413,7 @@
     }
 
     .page-subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
+      display: none !important;
     }
 
     .btn-group {
@@ -949,6 +947,84 @@
     .data-table-wrapper {
       width: 100%;
       overflow-x: auto;
+    }
+
+    /* Common Table Pagination Footer */
+    .table-pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pagination-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .page-size-select {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .page-size-select:focus,
+    .page-size-select:hover {
+      border-color: var(--primary);
+    }
+
+    .pagination-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pagination-btn {
+      min-width: 32px;
+      height: 32px;
+      padding: 0 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(255, 42, 95, 0.1);
+    }
+
+    .pagination-btn.active {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(255, 42, 95, 0.4);
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
 
     .data-table {
@@ -1726,11 +1802,10 @@
 
         <!-- VIEW 1: DASHBOARD -->
         <section id="view-dashboard" class="view-section active">
-          <div class="page-header" style="align-items: flex-start;">
+          <div class="page-header">
             <div>
               <h1 class="page-title">📊 Dashboard Tổng Quan Vận Hành</h1>
-              <p class="page-subtitle" id="dashboard-subtitle">Thống kê hiệu suất & chỉ số người dùng chốt sổ trọn vẹn
-                ngày <strong>D-1 (10/08/2026)</strong></p>
+              <span id="dashboard-subtitle" style="display: none;"></span>
             </div>
             <div class="dashboard-filter-bar">
               <!-- Mode Selection Pills -->
@@ -1871,7 +1946,7 @@
           <div class="panel-card">
             <!-- Filter Bar -->
             <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;">
-              <input type="text" placeholder="🔍 Tìm tên phim, ID phim..."
+              <input type="text" placeholder="🔍 Tìm tên phim..."
                 style="width: 260px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
 
               <select
@@ -2060,7 +2135,7 @@
                     </td>
                   </tr>
 
-                  <!-- ROW 4: UNMAPPED WITH INLINE QUICK TAG BUTTON -->
+                  <!-- ROW 4: UNMAPPED -->
                   <tr id="drama-row-4">
                     <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
                     <td>04</td>
@@ -2069,9 +2144,7 @@
                         style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
                         TTTB</div>
                     </td>
-                    <td>
-                      <strong style="color: #fff;">Tổng Tài Thần Báo Lật Kèo Báo Thù</strong>
-                    </td>
+                    <td><strong style="color: #fff;">Tổng Tài Thần Báo Lật Kèo Báo Thù</strong></td>
                     <td id="cat-tags-row-4">
                       <span id="cat-badges-row-4"><span class="badge badge-unmapped">🟡 Chưa gán</span></span>
                       <div class="row-cat-picker-wrap">
@@ -2104,8 +2177,190 @@
                       </div>
                     </td>
                   </tr>
+
+                  <!-- ROW 5 -->
+                  <tr id="drama-row-5">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>05</td>
+                    <td>
+                      <div class="table-poster"
+                        style="background: linear-gradient(135deg, #ab47bc, #ff2a5f); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                        HMTH</div>
+                    </td>
+                    <td><strong style="color: #fff;">Hào Môn Trả Thù: Vương Giả Trở Lại</strong></td>
+                    <td><span class="badge badge-category">Trả Thù</span> <span class="badge badge-category">Hành
+                        Động</span></td>
+                    <td><strong style="color: var(--accent-gold);">100/100 Tập</strong></td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleDramaStatus(this)"><span class="cat-toggle-slider"></span></label>
+                        <span class="badge badge-published">🟢 Đã Xuất Bản</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn" title="Chỉnh sửa">✏️</button><button
+                          class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 6 -->
+                  <tr id="drama-row-6">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>06</td>
+                    <td>
+                      <div class="table-poster"
+                        style="background: linear-gradient(135deg, #00e676, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                        TKTT</div>
+                    </td>
+                    <td><strong style="color: #fff;">Thiên Kim Thật Sự Trở Về</strong></td>
+                    <td><span class="badge badge-category">Gia Đình</span> <span class="badge badge-category">Trả
+                        Thù</span></td>
+                    <td><strong style="color: var(--accent-gold);">72/72 Tập</strong></td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleDramaStatus(this)"><span class="cat-toggle-slider"></span></label>
+                        <span class="badge badge-published">🟢 Đã Xuất Bản</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn" title="Chỉnh sửa">✏️</button><button
+                          class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 7 -->
+                  <tr id="drama-row-7">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>07</td>
+                    <td>
+                      <div class="table-poster"
+                        style="background: linear-gradient(135deg, #ffb800, #ff5e3a); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                        HDHN</div>
+                    </td>
+                    <td><strong style="color: #fff;">Bản Hợp Đồng Hôn Nhân Giả</strong></td>
+                    <td><span class="badge badge-category">Ngôn Tình</span> <span class="badge badge-category">Tổng
+                        Tài</span></td>
+                    <td><strong style="color: var(--accent-gold);">85/85 Tập</strong></td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleDramaStatus(this)"><span class="cat-toggle-slider"></span></label>
+                        <span class="badge badge-published">🟢 Đã Xuất Bản</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn" title="Chỉnh sửa">✏️</button><button
+                          class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 8 -->
+                  <tr id="drama-row-8">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>08</td>
+                    <td>
+                      <div class="table-poster"
+                        style="background: linear-gradient(135deg, #29b6f6, #ab47bc); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                        CTDT</div>
+                    </td>
+                    <td><strong style="color: #fff;">Chiến Thần Trở Lại Đô Thị</strong></td>
+                    <td><span class="badge badge-category">Hành Động</span> <span class="badge badge-category">Đô
+                        Thị</span></td>
+                    <td><strong style="color: var(--accent-gold);">60/60 Tập</strong></td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleDramaStatus(this)"><span class="cat-toggle-slider"></span></label>
+                        <span class="badge badge-published">🟢 Đã Xuất Bản</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn" title="Chỉnh sửa">✏️</button><button
+                          class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 9 -->
+                  <tr id="drama-row-9">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>09</td>
+                    <td>
+                      <div class="table-poster"
+                        style="background: linear-gradient(135deg, #ff2a5f, #ffb800); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                        YNTC</div>
+                    </td>
+                    <td><strong style="color: #fff;">Yêu Nhầm Bạn Thân Của Chồng Cũ</strong></td>
+                    <td><span class="badge badge-category">Ngôn Tình</span> <span
+                        class="badge badge-category">Drama</span></td>
+                    <td><strong style="color: var(--accent-gold);">90/90 Tập</strong></td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleDramaStatus(this)"><span class="cat-toggle-slider"></span></label>
+                        <span class="badge badge-published">🟢 Đã Xuất Bản</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn" title="Chỉnh sửa">✏️</button><button
+                          class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 10 -->
+                  <tr id="drama-row-10">
+                    <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
+                    <td>10</td>
+                    <td>
+                      <div class="table-poster"
+                        style="background: linear-gradient(135deg, #7928ca, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                        TTGM</div>
+                    </td>
+                    <td><strong style="color: #fff;">Tiểu Thư Giả Mạo & Thiếu Gia Mù</strong></td>
+                    <td><span class="badge badge-category">Ngôn Tình</span> <span class="badge badge-category">Tình
+                        Cảm</span></td>
+                    <td><strong style="color: var(--accent-gold);">75/75 Tập</strong></td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" onchange="toggleDramaStatus(this)"><span
+                            class="cat-toggle-slider"></span></label>
+                        <span class="badge badge-draft">🔴 Tạm ẩn</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn" title="Chỉnh sửa">✏️</button><button
+                          class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
+            </div>
+
+            <!-- Phân trang Danh Sách Phim (PageSize & PageIndex) -->
+            <div class="table-pagination">
+              <div class="pagination-info">
+                <span>Hiển thị</span>
+                <select class="page-size-select"
+                  onchange="alert(`⚡ Đã đổi kích thước trang sang: ${this.value} phim/trang`)">
+                  <option value="10" selected>10 / trang</option>
+                  <option value="20">20 / trang</option>
+                  <option value="50">50 / trang</option>
+                  <option value="100">100 / trang</option>
+                </select>
+                <span>• Tổng cộng: <strong style="color: #fff;">48 Bộ Phim</strong> (Trang 1 / 5)</span>
+              </div>
+              <div class="pagination-nav">
+                <button class="pagination-btn" disabled title="Về trang đầu">⏮</button>
+                <button class="pagination-btn" disabled title="Trang trước">◀</button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang Trang 2')">2</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang Trang 3')">3</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang Trang 4')">4</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang Trang 5')">5</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang Trang 2')" title="Trang tiếp">▶</button>
+                <button class="pagination-btn" onclick="alert('Đến trang cuối (Trang 5)')" title="Trang cuối">⏭</button>
+              </div>
             </div>
           </div>
         </section>
@@ -2116,7 +2371,6 @@
           <div class="page-header">
             <div>
               <h1 class="page-title">🏷️ Quản Lý Danh Mục</h1>
-              <p class="page-subtitle">Tạo mới, sắp xếp thứ tự và quản lý hiển thị các Thể loại phim trên App</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-primary" onclick="openModal('modal-create-category')">➕ Tạo Danh Mục Mới</button>
@@ -2127,7 +2381,40 @@
           <div class="panel-card">
             <div class="panel-title">
               <span>🏷️ Danh Sách Danh Mục</span>
-              <span class="badge badge-published" id="category-count-badge">6 Danh Mục Đang Hoạt Động</span>
+              <span class="badge badge-published" id="category-count-badge">5 Danh Mục Đang Hoạt Động</span>
+            </div>
+
+            <!-- Toolbar Tìm Kiếm & Lọc Trạng Thái Danh Mục -->
+            <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;">
+              <input type="text" id="cat-search-input" oninput="filterCategoryTable()"
+                placeholder="🔍 Tìm tên danh mục..."
+                style="width: 260px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
+
+              <select id="cat-status-filter" onchange="filterCategoryTable()"
+                style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; outline: none; cursor: pointer;">
+                <option value="all">▼ Tất cả trạng thái</option>
+                <option value="active">🟢 Đang hiển thị (Bật)</option>
+                <option value="inactive">🔴 Đang ẩn (Tắt)</option>
+              </select>
+
+              <button onclick="filterCategoryTable()" style="
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                  padding: 10px 20px;
+                  border-radius: 10px;
+                  border: none;
+                  background: linear-gradient(135deg, #7928ca, #ff2a5f);
+                  color: #fff;
+                  font-size: 13px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  white-space: nowrap;
+                  transition: opacity 0.2s, transform 0.15s;
+                  box-shadow: 0 4px 14px rgba(121,40,202,0.4);
+                ">
+                🔍 Tìm Kiếm
+              </button>
             </div>
 
             <div class="data-table-wrapper">
@@ -2142,6 +2429,46 @@
                   </tr>
                 </thead>
                 <tbody id="category-table-body">
+                  <!-- ROW 1 -->
+                  <tr id="cat-row-1" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
+                    ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
+                    ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell">
+                        <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
+                        <strong class="cat-order-num" style="color: #fff;">#1</strong>
+                      </div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-1">⚡ Đề Xuất
+                        Hot</strong></td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('⚡ Đề Xuất Hot', 'de-xuat-hot')"
+                        title="Bấm để xem danh sách 60 bộ phim thuộc Đề Xuất Hot">
+                        <span>🎬 <strong>60 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch" title="Bật/Tắt hiển thị Danh Mục trên App & Web">
+                          <input type="checkbox" checked onchange="toggleCategoryDisplay(this, 'Đề Xuất Hot')">
+                          <span class="cat-toggle-slider"></span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          title="Chỉnh sửa / Đổi tên"
+                          onclick="openEditCategoryModal('cat-row-1', '⚡ Đề Xuất Hot', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          title="Xóa" onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
                   <!-- ROW 2 -->
                   <tr id="cat-row-2" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
                     ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
@@ -2149,7 +2476,7 @@
                     <td>
                       <div class="stt-cell">
                         <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
-                        <strong class="cat-order-num" style="color: #fff;">#1</strong>
+                        <strong class="cat-order-num" style="color: #fff;">#2</strong>
                       </div>
                     </td>
                     <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-2">🔥 Hot
@@ -2189,7 +2516,7 @@
                     <td>
                       <div class="stt-cell">
                         <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
-                        <strong class="cat-order-num" style="color: #fff;">#2</strong>
+                        <strong class="cat-order-num" style="color: #fff;">#3</strong>
                       </div>
                     </td>
                     <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-3">❤️ Ngôn
@@ -2221,8 +2548,284 @@
                       </div>
                     </td>
                   </tr>
+
+                  <!-- ROW 4 -->
+                  <tr id="cat-row-4" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
+                    ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
+                    ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell">
+                        <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
+                        <strong class="cat-order-num" style="color: #fff;">#4</strong>
+                      </div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-4">👑 Tổng Tài</strong>
+                    </td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('👑 Tổng Tài', 'tong-tai')"
+                        title="Bấm để xem danh sách 32 bộ phim thuộc Tổng Tài">
+                        <span>🎬 <strong>32 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch" title="Bật/Tắt hiển thị Danh Mục trên App & Web">
+                          <input type="checkbox" checked onchange="toggleCategoryDisplay(this, 'Tổng Tài')">
+                          <span class="cat-toggle-slider"></span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          title="Chỉnh sửa / Đổi tên"
+                          onclick="openEditCategoryModal('cat-row-4', '👑 Tổng Tài', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          title="Xóa" onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 5 -->
+                  <tr id="cat-row-5" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
+                    ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
+                    ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell">
+                        <span class="drag-handle" title="Kéo thả chuột để sắp xếp vị trí Tab">⠿</span>
+                        <strong class="cat-order-num" style="color: #fff;">#5</strong>
+                      </div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-5">🎭 Cổ Trang Huyền
+                        Huyễn</strong></td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('🎭 Cổ Trang Huyền Huyễn', 'co-trang')"
+                        title="Bấm để xem danh sách 18 bộ phim thuộc Cổ Trang Huyền Huyễn">
+                        <span>🎬 <strong>18 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch" title="Bật/Tắt hiển thị Danh Mục trên App & Web">
+                          <input type="checkbox" checked onchange="toggleCategoryDisplay(this, 'Cổ Trang Huyền Huyễn')">
+                          <span class="cat-toggle-slider"></span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          title="Chỉnh sửa / Đổi tên"
+                          onclick="openEditCategoryModal('cat-row-5', '🎭 Cổ Trang Huyền Huyễn', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          title="Xóa" onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 6 (Đang Ẩn để kiểm thử bộ lọc trạng thái) -->
+                  <tr id="cat-row-6" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
+                    ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
+                    ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell"><span class="drag-handle">⠿</span><strong class="cat-order-num"
+                          style="color: #fff;">#6</strong></div>
+                    </td>
+                    <td><strong style="color: var(--text-muted);" class="cat-name-label" id="cat-name-cat-row-6">👻 Kinh
+                        Dị Kịch Tính</strong></td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('👻 Kinh Dị Kịch Tính', 'kinh-di')">
+                        <span>🎬 <strong>12 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox"
+                            onchange="toggleCategoryDisplay(this, 'Kinh Dị Kịch Tính')"><span
+                            class="cat-toggle-slider"></span></label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          onclick="openEditCategoryModal('cat-row-6', '👻 Kinh Dị Kịch Tính', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 7 -->
+                  <tr id="cat-row-7" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
+                    ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
+                    ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell"><span class="drag-handle">⠿</span><strong class="cat-order-num"
+                          style="color: #fff;">#7</strong></div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-7">⚔️ Kiếm Hiệp Võ
+                        Lâm</strong></td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('⚔️ Kiếm Hiệp Võ Lâm', 'kiem-hiep')">
+                        <span>🎬 <strong>25 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleCategoryDisplay(this, 'Kiếm Hiệp Võ Lâm')"><span
+                            class="cat-toggle-slider"></span></label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          onclick="openEditCategoryModal('cat-row-7', '⚔️ Kiếm Hiệp Võ Lâm', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 8 -->
+                  <tr id="cat-row-8" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
+                    ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
+                    ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell"><span class="drag-handle">⠿</span><strong class="cat-order-num"
+                          style="color: #fff;">#8</strong></div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-8">🏫 Thanh Xuân Vườn
+                        Trường</strong></td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('🏫 Thanh Xuân Vườn Trường', 'thanh-xuan')">
+                        <span>🎬 <strong>30 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleCategoryDisplay(this, 'Thanh Xuân Vườn Trường')"><span
+                            class="cat-toggle-slider"></span></label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          onclick="openEditCategoryModal('cat-row-8', '🏫 Thanh Xuân Vườn Trường', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 9 -->
+                  <tr id="cat-row-9" class="cat-drag-row" draggable="true" ondragstart="handleCatDragStart(event, this)"
+                    ondragover="handleCatDragOver(event, this)" ondragleave="handleCatDragLeave(event, this)"
+                    ondrop="handleCatDrop(event, this)" ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell"><span class="drag-handle">⠿</span><strong class="cat-order-num"
+                          style="color: #fff;">#9</strong></div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-9">💼 Nơi Công
+                        Sở</strong></td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('💼 Nơi Công Sở', 'cong-so')">
+                        <span>🎬 <strong>15 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleCategoryDisplay(this, 'Nơi Công Sở')"><span
+                            class="cat-toggle-slider"></span></label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          onclick="openEditCategoryModal('cat-row-9', '💼 Nơi Công Sở', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 10 -->
+                  <tr id="cat-row-10" class="cat-drag-row" draggable="true"
+                    ondragstart="handleCatDragStart(event, this)" ondragover="handleCatDragOver(event, this)"
+                    ondragleave="handleCatDragLeave(event, this)" ondrop="handleCatDrop(event, this)"
+                    ondragend="handleCatDragEnd(event, this)">
+                    <td>
+                      <div class="stt-cell"><span class="drag-handle">⠿</span><strong class="cat-order-num"
+                          style="color: #fff;">#10</strong></div>
+                    </td>
+                    <td><strong style="color: #fff;" class="cat-name-label" id="cat-name-cat-row-10">⚡ Xuyên Không Kỳ
+                        Ảo</strong></td>
+                    <td>
+                      <button class="btn btn-secondary"
+                        style="font-size: 11.5px; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; border-color: rgba(255,42,95,0.4); background: rgba(255,42,95,0.12); cursor: pointer;"
+                        onclick="openListDramasByCategory('⚡ Xuyên Không Kỳ Ảo', 'xuyen-khong')">
+                        <span>🎬 <strong>20 Phim</strong></span>
+                        <span style="font-size: 10.5px; color: var(--accent-gold); font-weight: 700;">[Xem DS ↗️]</span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="cat-toggle-wrap">
+                        <label class="cat-toggle-switch"><input type="checkbox" checked
+                            onchange="toggleCategoryDisplay(this, 'Xuyên Không Kỳ Ảo')"><span
+                            class="cat-toggle-slider"></span></label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;"
+                          onclick="openEditCategoryModal('cat-row-10', '⚡ Xuyên Không Kỳ Ảo', false)">✏️</button>
+                        <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px; color: #ff3b30;"
+                          onclick="this.closest('tr').remove(); reindexCategoryRows();">🗑️</button>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
+            </div>
+
+            <!-- Phân trang Quản Lý Danh Mục (PageSize & PageIndex) -->
+            <div class="table-pagination">
+              <div class="pagination-info">
+                <span>Hiển thị</span>
+                <select class="page-size-select"
+                  onchange="alert(`⚡ Đã đổi kích thước trang sang: ${this.value} danh mục/trang`)">
+                  <option value="10" selected>10 / trang</option>
+                  <option value="20">20 / trang</option>
+                  <option value="50">50 / trang</option>
+                </select>
+                <span>• Tổng cộng: <strong style="color: #fff;" id="cat-count-display">10 Danh Mục</strong> (Trang 1 /
+                  1)</span>
+              </div>
+              <div class="pagination-nav">
+                <button class="pagination-btn" disabled title="Trang trước">◀</button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn" disabled title="Trang tiếp">▶</button>
+              </div>
             </div>
           </div>
         </section>
@@ -2230,11 +2833,9 @@
 
         <!-- VIEW 3.5: DETAILED REPORTS & ANALYTICS -->
         <section id="view-reports" class="view-section">
-          <div class="page-header" style="align-items: flex-start;">
+          <div class="page-header">
             <div>
               <h1 class="page-title">📈 Quản Lý Báo Cáo & Thống Kê Chi Tiết</h1>
-              <p class="page-subtitle" id="report-page-subtitle">Khai thác sâu số liệu lượt xem, phim yêu thích, hành vi
-                người dùng và xuất file báo cáo theo ngày/tháng</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-primary" onclick="exportCustomReport('current')">📥 Xuất File Báo Cáo Này
@@ -2249,7 +2850,7 @@
               <div
                 style="font-size: 13px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px;">
                 <span>🎯 Bộ Lọc Báo Cáo Nâng Cao</span>
-                <span class="badge badge-published" id="report-filter-summary-badge">Kỳ lọc: D-1 (10/08/2026)</span>
+                <span class="badge badge-published" id="report-filter-summary-badge">Kỳ lọc: Ngày 10/08/2026 ➔ 20/08/2026</span>
               </div>
               <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;"
                 onclick="resetReportFilter()">🔄 Đặt lại mặc định</button>
@@ -2260,7 +2861,7 @@
               <!-- Mode Selection -->
               <div class="filter-time-group">
                 <button class="filter-time-btn active" id="btn-report-mode-day" onclick="setReportTimeMode('day')">⚡
-                  Theo Ngày (D-1)</button>
+                  Theo Ngày (Khoảng)</button>
                 <button class="filter-time-btn" id="btn-report-mode-month" onclick="setReportTimeMode('month')">📅 Theo
                   Tháng</button>
               </div>
@@ -2270,7 +2871,7 @@
                 <span style="font-size: 12px; color: var(--text-muted);">Từ ngày:</span>
                 <input type="date" class="report-input-date" id="report-from-date" value="2026-08-10">
                 <span style="font-size: 12px; color: var(--text-muted);">Đến:</span>
-                <input type="date" class="report-input-date" id="report-to-date" value="2026-08-10">
+                <input type="date" class="report-input-date" id="report-to-date" value="2026-08-20">
               </div>
 
               <!-- Month Select -->
@@ -2291,9 +2892,13 @@
                 <option value="Tổng Tài">👑 Tổng Tài</option>
               </select>
 
+              <!-- Search Drama -->
+              <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim, ID..."
+                style="flex: 1; min-width: 160px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; color: #fff; font-size: 12.5px;">
+
               <!-- Apply Button -->
               <button class="btn btn-primary" onclick="applyReportFilter()"
-                style="padding: 8px 18px; font-size: 12.5px;">🔍 Áp Dụng Lọc</button>
+                style="padding: 8px 16px; font-size: 12.5px;">🔍 Áp Dụng Lọc</button>
             </div>
           </div>
 
@@ -2302,7 +2907,7 @@
             <div class="stat-card">
               <div class="stat-title">TỔNG LƯỢT XEM TRONG KỲ</div>
               <div class="stat-value" id="rep-kpi-views">1,482,900</div>
-              <div class="stat-change up" id="rep-kpi-views-sub">▲ +18.4% so với kỳ trước</div>
+              <div class="stat-change up" id="rep-kpi-views-sub">▲ 100% phim mở xem miễn phí</div>
             </div>
             <div class="stat-card gold">
               <div class="stat-title">PHIM XEM NHIỀU NHẤT</div>
@@ -2340,12 +2945,10 @@
           <!-- SUB-VIEW 1: BÁO CÁO HIỆU SUẤT TỪNG BỘ PHIM -->
           <div id="rep-tab-dramas" class="report-subview active">
             <div class="panel-card">
-              <div class="panel-title"
-                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <div class="panel-title">
                 <span>🎬 Danh Sách Số Liệu Chi Tiết Từng Bộ Phim (Dữ Liệu Khai Thác Theo Kỳ Lọc)</span>
-                <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim trong bảng..."
-                  oninput="filterReportDramaTable(this.value)"
-                  style="width: 240px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 7px 12px; border-radius: 8px; color: #fff; font-size: 12px;">
+                <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;"
+                  onclick="alert('Đã sắp xếp theo lượt xem cao nhất!')">⚡ Xếp theo Lượt xem cao nhất</button>
               </div>
 
               <div class="data-table-wrapper">
@@ -2354,7 +2957,7 @@
                     <tr>
                       <th>STT</th>
                       <th>Poster</th>
-                      <th>Tên Bộ Phim</th>
+                      <th>Tên Bộ Phim & ID</th>
                       <th>Thể Loại</th>
                       <th>👁️ Lượt Xem</th>
                       <th>❤️ Yêu Thích</th>
@@ -2370,6 +2973,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Vợ Cũ Lật Kèo</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-8842 • 80 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Ngôn Tình</span> <span class="badge badge-category">Trả
                           Thù</span></td>
@@ -2386,6 +2990,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu Triệu Đô</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-7712 • 65 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Gia Đình</span> <span class="badge badge-category">Ngôn
                           Tình</span></td>
@@ -2402,6 +3007,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Hợp Đồng Hôn Nhân Với Tổng Tài</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-6621 • 92 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Tổng Tài</span> <span class="badge badge-category">Ngôn
                           Tình</span></td>
@@ -2418,6 +3024,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Hào Môn Trả Thù: Vương Giả Trở Lại</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-5521 • 100 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Trả Thù</span> <span class="badge badge-category">Hành
                           Động</span></td>
@@ -2435,70 +3042,197 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Cô Vợ Sát Thủ & Tổng Tài Bá Đạo</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-9901 • 80 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Ngôn Tình</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">165,000</strong></td>
                       <td><span class="metric-badge likes">❤️ 19,800</span></td>
                     </tr>
+
+                    <tr>
+                      <td>#6</td>
+                      <td>
+                        <div class="table-poster"
+                          style="background: linear-gradient(135deg, #ff2a5f, #ffb800); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                          TKTT</div>
+                      </td>
+                      <td>
+                        <strong style="color: #fff;">Thiên Kim Thật Sự Trở Về</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-6612 • 72 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Gia Đình</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">142,500</strong></td>
+                      <td><span class="metric-badge likes">❤️ 16,400</span></td>
+                    </tr>
+
+                    <tr>
+                      <td>#7</td>
+                      <td>
+                        <div class="table-poster"
+                          style="background: linear-gradient(135deg, #7928ca, #ff2a5f); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                          HDHN</div>
+                      </td>
+                      <td>
+                        <strong style="color: #fff;">Bản Hợp Đồng Hôn Nhân Giả</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-7703 • 85 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Tổng Tài</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">128,900</strong></td>
+                      <td><span class="metric-badge likes">❤️ 14,200</span></td>
+                    </tr>
+
+                    <tr>
+                      <td>#8</td>
+                      <td>
+                        <div class="table-poster"
+                          style="background: linear-gradient(135deg, #00e676, #ab47bc); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                          CTDT</div>
+                      </td>
+                      <td>
+                        <strong style="color: #fff;">Chiến Thần Trở Lại Đô Thị</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-4491 • 60 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Hành Động</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">115,000</strong></td>
+                      <td><span class="metric-badge likes">❤️ 12,800</span></td>
+                    </tr>
+
+                    <tr>
+                      <td>#9</td>
+                      <td>
+                        <div class="table-poster"
+                          style="background: linear-gradient(135deg, #ffb800, #ff2a5f); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                          YNTC</div>
+                      </td>
+                      <td>
+                        <strong style="color: #fff;">Yêu Nhầm Bạn Thân Của Chồng Cũ</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-3382 • 90 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Drama</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">98,400</strong></td>
+                      <td><span class="metric-badge likes">❤️ 10,500</span></td>
+                    </tr>
+
+                    <tr>
+                      <td>#10</td>
+                      <td>
+                        <div class="table-poster"
+                          style="background: linear-gradient(135deg, #29b6f6, #00e676); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">
+                          TTGM</div>
+                      </td>
+                      <td>
+                        <strong style="color: #fff;">Tiểu Thư Giả Mạo & Thiếu Gia Mù</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-2219 • 75 Tập</div>
+                      </td>
+                      <td><span class="badge badge-category">Tình Cảm</span></td>
+                      <td><strong style="color: var(--accent-blue); font-size: 14px;">86,200</strong></td>
+                      <td><span class="metric-badge likes">❤️ 9,100</span></td>
+                    </tr>
                   </tbody>
                 </table>
+              </div>
+
+              <!-- Phân trang Báo Cáo Số Liệu Phim (PageSize & PageIndex) -->
+              <div class="table-pagination">
+                <div class="pagination-info">
+                  <span>Hiển thị</span>
+                  <select class="page-size-select"
+                    onchange="alert(`⚡ Đã đổi kích thước trang sang: ${this.value} phim/trang`)">
+                    <option value="10" selected>10 / trang</option>
+                    <option value="25">25 / trang</option>
+                    <option value="50">50 / trang</option>
+                  </select>
+                  <span>• Tổng cộng: <strong style="color: #fff;">48 Bộ Phim</strong> (Trang 1 / 5)</span>
+                </div>
+                <div class="pagination-nav">
+                  <button class="pagination-btn" disabled title="Trang trước">◀</button>
+                  <button class="pagination-btn active">1</button>
+                  <button class="pagination-btn" onclick="alert('Chuyển sang trang 2')">2</button>
+                  <button class="pagination-btn" onclick="alert('Chuyển sang trang 3')">3</button>
+                  <button class="pagination-btn" onclick="alert('Chuyển sang trang 4')">4</button>
+                  <button class="pagination-btn" onclick="alert('Chuyển sang trang 5')">5</button>
+                  <button class="pagination-btn" onclick="alert('Chuyển sang trang 2')" title="Trang tiếp">▶</button>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- SUB-VIEW 2: BÁO CÁO HÀNH VI & USER -->
+          <!-- SUB-VIEW 2: BÁO CÁO HÀNH VI & THỜI LƯỢNG TƯƠNG TÁC -->
           <div id="rep-tab-users" class="report-subview">
             <div class="panel-card">
-              <div class="panel-title"
-                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                <span>👥 Chỉ Số Giữ Chân Người Dùng & Thời Lượng Tương Tác (User Retention Cohort)</span>
-                <span class="badge badge-published" id="rep-user-cohort-badge">Kỳ lọc: Ngày 10/08/2026 -> 30/08/2026</span>
+              <div class="panel-title" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <span>👥 Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng</span>
+                <span class="badge badge-published" id="rep-users-date-range-badge" style="font-size: 11px; padding: 4px 12px; font-weight: 700; background: rgba(0, 230, 118, 0.12); color: #00e676; border: 1px solid rgba(0, 230, 118, 0.3); border-radius: 6px; display: inline-flex; align-items: center; gap: 6px;">
+                  📅 Kỳ Lọc: 10/08/2026 ➔ 20/08/2026
+                </span>
               </div>
 
-              <!-- 4 THẺ TỔNG HỢP CHỈ SỐ RETENTION CỦA KỲ LỌC -->
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; font-size: 13px;">
-                <div
-                  style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
-                  <div
-                    style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-                    <span>D1 Retention (Tỷ lệ giữ chân sau 1 ngày):</span>
-                    <strong style="color: var(--accent-green); font-size: 14px;" id="rep-user-d1">56.8% (Tốt)</strong>
-                  </div>
-                  <div
-                    style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-                    <span>D7 Retention (Tỷ lệ giữ chân sau 7 ngày):</span>
-                    <strong style="color: var(--accent-green); font-size: 14px;" id="rep-user-d7">33.5%</strong>
-                  </div>
-                </div>
-
-                <div
-                  style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
-                  <div
-                    style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-                    <div>
-                      <span>D30 Retention (Tỷ lệ giữ chân sau 30 ngày):</span>
-                      <div id="rep-user-d30-sub" style="font-size: 10.5px; color: var(--text-muted); margin-top: 2px;">🟢 Đã chốt sổ đủ 30 ngày vắt sang tháng sau</div>
+              <!-- LƯỚI 3 THẺ CHỈ SỐ HÀNH VI TINH GỌN ĐỒNG NHẤT 100% -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; font-size: 13px;">
+                <!-- THẺ 1: TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG -->
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+                  <div>
+                    <div style="font-size: 12.5px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+                      TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG
                     </div>
-                    <strong style="color: var(--accent-gold); font-size: 14px;" id="rep-user-d30">20.8%</strong>
+                    <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+                      Khán giả quay lại mở ứng dụng xem tiếp trong kỳ lọc đã chọn
+                    </div>
                   </div>
-                  <div
-                    style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-                    <span>Thời gian xem trung bình mỗi User:</span>
-                    <strong style="color: var(--accent-blue); font-size: 14px;" id="rep-user-watchtime">51.2 Phút / Ngày</strong>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 8px;">
+                      <div style="color: var(--accent-green); font-size: 28px; font-weight: 800; white-space: nowrap; line-height: 1;" id="rep-user-retention-val">
+                        58.4%
+                      </div>
+                      <div style="font-size: 12px; color: var(--accent-green); white-space: nowrap; padding-bottom: 2px;">
+                        ▲ +4.2% so với kỳ trước
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- KHỐI QUY TẮC NGHIỆP VỤ & NÚT XEM THỬ 3 CASE HIỂN THỊ D30 -->
-              <div style="margin-top: 18px; padding: 12px 16px; background: rgba(255,255,255,0.02); border: 1px dashed var(--border-color); border-radius: 10px; font-size: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="color: var(--text-sub); line-height: 1.5;">
-                  💡 <strong>Quy tắc hiển thị:</strong> Nếu kỳ lọc chưa đủ 30 ngày vòng đời ($D_0 + 30$ ngày vắt sang tháng sau) ➔ Hiển thị <strong><code style="color: var(--accent-gold); font-size: 13px;">--</code></strong> <em>(Đang tích lũy, tuyệt đối không để 0% hay NaN)</em>.
+                <!-- THẺ 2: THỜI LƯỢNG XEM TRUNG BÌNH -->
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+                  <div>
+                    <div style="font-size: 12.5px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+                      THỜI GIAN XEM TRUNG BÌNH
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+                      Thời lượng bình quân mỗi khán giả xem mỗi ngày trong kỳ
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 8px;">
+                      <div style="color: var(--accent-blue); font-size: 28px; font-weight: 800; white-space: nowrap; line-height: 1;" id="rep-user-watchtime-val">
+                        48.5 <span style="font-size: 15px; font-weight: 600; color: #a0aec0;">Phút / Ngày</span>
+                      </div>
+                      <div style="font-size: 12px; color: var(--accent-blue); white-space: nowrap; padding-bottom: 2px;">
+                        ▲ +6.5 phút so với kỳ trước
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                  <span style="font-size: 11px; color: var(--text-muted);">Bấm xem thử Case:</span>
-                  <button type="button" onclick="setRetentionDemoCase('completed')" id="btn-case-completed" style="background: rgba(0,230,118,0.12); border: 1px solid rgba(0,230,118,0.3); color: #00e676; padding: 4px 10px; border-radius: 6px; font-size: 11.5px; cursor: pointer; font-weight: 600;">Case 1: Đủ 30 ngày (20.8%)</button>
-                  <button type="button" onclick="setRetentionDemoCase('pending')" id="btn-case-pending" style="background: rgba(255,184,0,0.12); border: 1px solid rgba(255,184,0,0.3); color: #ffb800; padding: 4px 10px; border-radius: 6px; font-size: 11.5px; cursor: pointer; font-weight: 600;">Case 2: Chưa đủ 30 ngày ('--')</button>
-                  <button type="button" onclick="setRetentionDemoCase('partial')" id="btn-case-partial" style="background: rgba(41,182,246,0.12); border: 1px solid rgba(41,182,246,0.3); color: #29b6f6; padding: 4px 10px; border-radius: 6px; font-size: 11.5px; cursor: pointer; font-weight: 600;">Case 3: Một phần đủ (20.8%*)</button>
+
+                <!-- THẺ 3: NGƯỜI DÙNG HOẠT ĐỘNG (ACTIVE USERS) -->
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+                  <div>
+                    <div style="font-size: 12.5px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+                      NGƯỜI DÙNG ACTIVE
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+                      Tổng số khán giả thực tế có xem phim trong kỳ lọc đã chọn
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 8px;">
+                      <div style="color: #fff; font-size: 28px; font-weight: 800; white-space: nowrap; line-height: 1;" id="rep-user-active-val">
+                        124,800 <span style="font-size: 15px; font-weight: 600; color: #a0aec0;">Người</span>
+                      </div>
+                      <div style="font-size: 12px; color: var(--accent-green); white-space: nowrap; padding-bottom: 2px;">
+                        ▲ +12.8% so với kỳ trước
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2563,11 +3297,9 @@
 
         <!-- VIEW 4: USER MANAGEMENT -->
         <section id="view-user-management" class="view-section">
-          <div class="page-header" style="align-items: flex-start;">
+          <div class="page-header">
             <div>
               <h1 class="page-title">👥 Quản Lý Người Dùng & Khóa Tài Khoản</h1>
-              <p class="page-subtitle">Quản lý tệp người dùng, xem trạng thái hoạt động, áp dụng Khóa Tài Khoản (Ban)
-                hoặc Mở Khóa (Unban)</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-secondary"
@@ -2588,11 +3320,8 @@
                 </select>
 
                 <input type="text" id="user-search-input" onkeyup="searchUserTable(this.value)"
-                  placeholder="🔍 Tìm theo User ID, Tên hiển thị..."
+                  placeholder="🔍 Tìm theo tên hiển thị..."
                   style="flex: 1; min-width: 240px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 9px 14px; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
-              </div>
-              <div style="font-size: 12.5px; color: var(--text-muted);">
-                Tổng cộng: <strong style="color: #fff;" id="user-count-display">4 Người Dùng</strong>
               </div>
             </div>
 
@@ -2601,8 +3330,7 @@
                 <thead>
                   <tr>
                     <th>STT</th>
-                    <th>User ID / Tên Hiển Thị</th>
-                    <th>Hình Thức Đăng Nhập</th>
+                    <th>Tên Hiển Thị</th>
                     <th>Ngày Tham Gia</th>
                     <th>Trạng Thái Tài Khoản</th>
                     <th>Thao Tác Quản Trị</th>
@@ -2614,10 +3342,7 @@
                     <td>01</td>
                     <td>
                       <strong style="color: #fff;">Minh Anh</strong>
-                      <div style="font-size: 11px; color: var(--text-muted);">ID: USR-9921 • minhanh.drama@gmail.com
-                      </div>
                     </td>
-                    <td><span class="badge badge-free">Google</span></td>
                     <td>10/05/2026</td>
                     <td id="user-status-cell-1"><span class="badge badge-published">🟢 Hoạt Động</span></td>
                     <td id="user-action-cell-1">
@@ -2632,10 +3357,7 @@
                     <td>02</td>
                     <td>
                       <strong style="color: #fff;">Tuấn Kiệt</strong>
-                      <div style="font-size: 11px; color: var(--text-muted);">ID: USR-8812 • tuankiet.drama@gmail.com
-                      </div>
                     </td>
-                    <td><span class="badge badge-free">Google</span></td>
                     <td>02/06/2026</td>
                     <td id="user-status-cell-2"><span class="badge badge-published">🟢 Hoạt Động</span></td>
                     <td id="user-action-cell-2">
@@ -2650,9 +3372,7 @@
                     <td>03</td>
                     <td>
                       <strong style="color: #fff;">Spam_Bot_999</strong>
-                      <div style="font-size: 11px; color: #ff4d6d;">ID: USR-4402 • Vi phạm spam link lừa đảo</div>
                     </td>
-                    <td><span class="badge badge-free">Google</span></td>
                     <td>15/07/2026</td>
                     <td id="user-status-cell-3"><span class="badge badge-category"
                         style="background: rgba(255,42,95,0.2); color: #ff4d6d; border-color: rgba(255,42,95,0.4);">🔴
@@ -2670,21 +3390,123 @@
                     <td>04</td>
                     <td>
                       <strong style="color: #fff;">Phương Linh</strong>
-                      <div style="font-size: 11px; color: var(--text-muted);">ID: USR-7731 • phuonglinh.vip@gmail.com
-                      </div>
                     </td>
-                    <td><span class="badge badge-free">Google</span></td>
                     <td>22/07/2026</td>
                     <td id="user-status-cell-4"><span class="badge badge-published">🟢 Hoạt Động</span></td>
                     <td id="user-action-cell-4">
-                      <div class="user-action-group">
-                        <button class="user-action-btn ban" onclick="toggleBanUser(4, 'Phương Linh')">🔒 Khóa
-                          Acc</button>
-                      </div>
+                      <div class="user-action-group"><button class="user-action-btn ban"
+                          onclick="toggleBanUser(4, 'Phương Linh')">🔒 Khóa Acc</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 5: ACTIVE -->
+                  <tr id="user-row-5" data-status="active">
+                    <td>05</td>
+                    <td>
+                      <strong style="color: #fff;">Quốc Bảo</strong>
+                    </td>
+                    <td>25/07/2026</td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>
+                      <div class="user-action-group"><button class="user-action-btn ban">🔒 Khóa Acc</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 6: ACTIVE -->
+                  <tr id="user-row-6" data-status="active">
+                    <td>06</td>
+                    <td>
+                      <strong style="color: #fff;">Hải Yến</strong>
+                    </td>
+                    <td>28/07/2026</td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>
+                      <div class="user-action-group"><button class="user-action-btn ban">🔒 Khóa Acc</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 7: ACTIVE -->
+                  <tr id="user-row-7" data-status="active">
+                    <td>07</td>
+                    <td>
+                      <strong style="color: #fff;">Thành Đạt</strong>
+                    </td>
+                    <td>01/08/2026</td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>
+                      <div class="user-action-group"><button class="user-action-btn ban">🔒 Khóa Acc</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 8: ACTIVE -->
+                  <tr id="user-row-8" data-status="active">
+                    <td>08</td>
+                    <td>
+                      <strong style="color: #fff;">Bích Ngọc</strong>
+                    </td>
+                    <td>03/08/2026</td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>
+                      <div class="user-action-group"><button class="user-action-btn ban">🔒 Khóa Acc</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 9: INACTIVE -->
+                  <tr id="user-row-9" data-status="inactive">
+                    <td>09</td>
+                    <td>
+                      <strong style="color: #fff;">Hacker_Spam_01</strong>
+                    </td>
+                    <td>05/08/2026</td>
+                    <td><span class="badge badge-category" style="background: rgba(255,42,95,0.2); color: #ff4d6d;">🔴
+                        Bị Khóa</span></td>
+                    <td>
+                      <div class="user-action-group"><button class="user-action-btn unban" style="min-width: 120px;">🔓
+                          Mở Khóa Acc</button></div>
+                    </td>
+                  </tr>
+
+                  <!-- USER 10: ACTIVE -->
+                  <tr id="user-row-10" data-status="active">
+                    <td>10</td>
+                    <td>
+                      <strong style="color: #fff;">Khánh Linh</strong>
+                    </td>
+                    <td>08/08/2026</td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>
+                      <div class="user-action-group"><button class="user-action-btn ban">🔒 Khóa Acc</button></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            <!-- Phân trang Quản Lý Người Dùng (PageSize & PageIndex) -->
+            <div class="table-pagination">
+              <div class="pagination-info">
+                <span>Hiển thị</span>
+                <select class="page-size-select"
+                  onchange="alert(`⚡ Đã đổi kích thước trang sang: ${this.value} người dùng/trang`)">
+                  <option value="10" selected>10 / trang</option>
+                  <option value="20">20 / trang</option>
+                  <option value="50">50 / trang</option>
+                  <option value="100">100 / trang</option>
+                </select>
+                <span>• Tổng cộng: <strong style="color: #fff;" id="user-count-display">124,800 Người Dùng</strong>
+                  (Trang 1 / 12,480)</span>
+              </div>
+              <div class="pagination-nav">
+                <button class="pagination-btn" disabled title="Trang đầu">⏮</button>
+                <button class="pagination-btn" disabled title="Trang trước">◀</button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang trang 2')">2</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang trang 3')">3</button>
+                <span style="color: var(--text-muted); padding: 0 4px;">...</span>
+                <button class="pagination-btn" onclick="alert('Chuyển sang trang cuối')">2496</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang trang 2')" title="Trang tiếp">▶</button>
+                <button class="pagination-btn" onclick="alert('Chuyển sang trang cuối')" title="Trang cuối">⏭</button>
+              </div>
             </div>
           </div>
         </section>
@@ -2695,7 +3517,6 @@
           <div class="page-header">
             <div>
               <h1 class="page-title">⚙️ Quản Lý Tài Khoản Admin</h1>
-              <p class="page-subtitle">Quản lý danh sách tài khoản quản trị viên và quyền hạn truy cập hệ thống</p>
             </div>
             <div class="btn-group">
               <button class="btn btn-primary" onclick="openModal('modal-create-admin')">➕ Cấp Tài Khoản Admin
@@ -2840,8 +3661,162 @@
                       </div>
                     </td>
                   </tr>
+
+                  <tr id="admin-row-5">
+                    <td>05</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                          style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #29b6f6, #ab47bc); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
+                          TT</div>
+                        <div><strong style="color: #fff;">Trần Tuấn</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">tuan.editor@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-content">🎬 Content Editor</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Biên tập video & gán Thể loại</span></td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>3 giờ trước</td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn">🔑</button><button
+                          class="icon-action-btn">🔒</button><button class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-6">
+                    <td>06</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                          style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #00e676, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
+                          MP</div>
+                        <div><strong style="color: #fff;">Mai Phương</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">phuong.cskh@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-mod">🎧 CSKH Supporter</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Hỗ trợ tài khoản người dùng</span></td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>5 giờ trước</td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn">🔑</button><button
+                          class="icon-action-btn">🔒</button><button class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-7">
+                    <td>07</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                          style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ff2a5f, #ffb800); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
+                          LP</div>
+                        <div><strong style="color: #fff;">Lê Phong</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">phong.dev@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-super">⚡ DevOps / Tech</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Vận hành hệ thống & Logs</span></td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>Vừa xong</td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn">🔑</button><button
+                          class="icon-action-btn">🔒</button><button class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-8">
+                    <td>08</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                          style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ab47bc, #00e676); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
+                          HG</div>
+                        <div><strong style="color: #fff;">Hương Giang</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">giang.mkt@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-analyst">📈 Marketing Lead</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Theo dõi chiến dịch & Báo cáo</span></td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>1 ngày trước</td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn">🔑</button><button
+                          class="icon-action-btn">🔒</button><button class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-9">
+                    <td>09</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                          style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #7928ca, #ff5e3a); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
+                          ĐT</div>
+                        <div><strong style="color: #fff;">Đức Trọng</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">trong.qc@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-content">🎬 Content QC</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Kiểm duyệt nội dung trước khi xuất
+                        bản</span></td>
+                    <td><span class="badge badge-published">🟢 Hoạt Động</span></td>
+                    <td>2 ngày trước</td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn">🔑</button><button
+                          class="icon-action-btn">🔒</button><button class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
+
+                  <tr id="admin-row-10">
+                    <td>10</td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                          style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ff2a5f, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
+                          MT</div>
+                        <div><strong style="color: #fff;">Minh Thư</strong>
+                          <div style="font-size: 11px; color: var(--text-muted);">thu.mod@pinedrama.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-role-mod">🛡️ User Moderator</span></td>
+                    <td><span style="font-size: 12px; color: var(--text-sub);">Xử lý vi phạm & Khóa tài khoản</span>
+                    </td>
+                    <td><span class="badge badge-category" style="background: rgba(255,42,95,0.2); color: #ff4d6d;">🔴
+                        Tạm Khóa</span></td>
+                    <td>5 ngày trước</td>
+                    <td>
+                      <div class="action-btn-group"><button class="icon-action-btn">🔑</button><button
+                          class="icon-action-btn">🔒</button><button class="icon-action-btn">🗑️</button></div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
+            </div>
+
+            <!-- Phân trang Quản Lý Admin (PageSize & PageIndex) -->
+            <div class="table-pagination">
+              <div class="pagination-info">
+                <span>Hiển thị</span>
+                <select class="page-size-select"
+                  onchange="alert(`⚡ Đã đổi kích thước trang sang: ${this.value} tài khoản/trang`)">
+                  <option value="10" selected>10 / trang</option>
+                  <option value="20">20 / trang</option>
+                  <option value="50">50 / trang</option>
+                </select>
+                <span>• Tổng cộng: <strong style="color: #fff;">10 Tài Khoản Admin</strong> (Trang 1 / 1)</span>
+              </div>
+              <div class="pagination-nav">
+                <button class="pagination-btn" disabled>◀</button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn" disabled>▶</button>
+              </div>
             </div>
           </div>
         </section>
@@ -4365,6 +5340,9 @@
         renderSelectedChips();
       }
 
+      const newRow = document.createElement('tr');
+      newRow.className = 'cat-drag-row';
+      newRow.setAttribute('draggable', 'true');
       const newRowId = `cat-row-${Date.now()}`;
       newRow.id = newRowId;
       newRow.setAttribute('ondragstart', 'handleCatDragStart(event, this)');
@@ -4409,6 +5387,7 @@
 
       tbody.appendChild(newRow);
       reindexCategoryRows();
+      if (typeof filterCategoryTable === 'function') filterCategoryTable();
 
       alert(`🎉 Đã tạo thành công Danh Mục mới: "${formattedName}"!\n• Vị trí Số Thứ Tự: #${orderVal}\n• Trạng thái: ${statusBadgeText}\n• Hỗ trợ kéo thả ⠿ để sắp xếp vị trí linh hoạt trên bảng.`);
       closeModal('modal-create-category');
@@ -4591,35 +5570,133 @@
 
     function reindexCategoryRows() {
       const tbody = document.getElementById('category-table-body');
-      const rows = tbody.querySelectorAll('tr');
+      if (!tbody) return;
+      const rows = tbody.querySelectorAll('tr.cat-drag-row');
       let order = 1;
+      let activeCount = 0;
       rows.forEach((r) => {
         const orderEl = r.querySelector('.cat-order-num');
         if (orderEl) {
           orderEl.innerText = `#${order}`;
         }
+        const chk = r.querySelector('input[type="checkbox"]');
+        if (chk && chk.checked) activeCount++;
         order++;
       });
       const badge = document.getElementById('category-count-badge');
-      if (badge) badge.innerText = `${rows.length} Danh Mục Đang Hoạt Động`;
+      if (badge) badge.innerText = `${activeCount} Danh Mục Đang Hoạt Động`;
+      const countDisplay = document.getElementById('cat-count-display');
+      if (countDisplay) countDisplay.innerText = `${rows.length} Danh Mục`;
+      if (typeof filterCategoryTable === 'function') filterCategoryTable();
     }
 
     function toggleCategoryDisplay(checkbox, catName) {
       const wrap = checkbox.closest('.cat-toggle-wrap');
       const badge = wrap ? wrap.querySelector('.cat-status-badge') : null;
+      const row = checkbox.closest('tr');
+      const label = row ? row.querySelector('.cat-name-label') : null;
+
       if (checkbox.checked) {
         if (badge) {
           badge.className = 'badge badge-published cat-status-badge';
           badge.innerText = '🟢 Hiển thị';
         }
+        if (label) label.style.color = '#fff';
         alert(`🟢 [Trạng thái hiển thị]\\nĐã BẬT hiển thị Danh Mục "${catName}" trên App & Web!`);
       } else {
         if (badge) {
           badge.className = 'badge badge-draft cat-status-badge';
           badge.innerText = '🔴 Đang Ẩn';
         }
+        if (label) label.style.color = 'var(--text-muted)';
         alert(`🔴 [Trạng thái hiển thị]\\nĐã TẮT hiển thị (Ẩn) Danh Mục "${catName}" khỏi App & Web!`);
       }
+      reindexCategoryRows();
+      if (typeof filterCategoryTable === 'function') {
+        filterCategoryTable();
+      }
+    }
+
+    /* TÌM KIẾM THEO TÊN VÀ LỌC THEO TRẠNG THÁI DANH MỤC */
+    function removeVietnameseTones(str) {
+      if (!str) return '';
+      return str.normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .toLowerCase();
+    }
+
+    function filterCategoryTable() {
+      const searchInput = document.getElementById('cat-search-input');
+      const statusFilter = document.getElementById('cat-status-filter');
+      const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+      const statusVal = statusFilter ? statusFilter.value : 'all';
+      const tbody = document.getElementById('category-table-body');
+      if (!tbody) return;
+
+      const rows = tbody.querySelectorAll('tr.cat-drag-row');
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const nameEl = row.querySelector('.cat-name-label');
+        const nameText = nameEl ? nameEl.innerText.toLowerCase() : '';
+        const normName = removeVietnameseTones(nameText);
+        const normQuery = removeVietnameseTones(query);
+
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        const isChecked = checkbox ? checkbox.checked : true;
+
+        const matchesQuery = !query || nameText.includes(query) || normName.includes(normQuery);
+        const matchesStatus = (statusVal === 'all') ||
+          (statusVal === 'active' && isChecked) ||
+          (statusVal === 'inactive' && !isChecked);
+
+        if (matchesQuery && matchesStatus) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      const countDisplay = document.getElementById('cat-count-display');
+      if (countDisplay) {
+        if (query || statusVal !== 'all') {
+          countDisplay.innerHTML = `<span style="color: var(--primary); font-weight: 700;">${visibleCount}</span> / ${rows.length} Danh Mục`;
+        } else {
+          countDisplay.innerText = `${rows.length} Danh Mục`;
+        }
+      }
+
+      // Xử lý thông báo khi không tìm thấy kết quả
+      let emptyRow = document.getElementById('cat-empty-row');
+      if (visibleCount === 0) {
+        if (!emptyRow) {
+          emptyRow = document.createElement('tr');
+          emptyRow.id = 'cat-empty-row';
+          emptyRow.innerHTML = `
+            <td colspan="5" style="text-align: center; padding: 36px 20px; color: var(--text-muted);">
+              <div style="font-size: 28px; margin-bottom: 8px;">🔍</div>
+              <div style="font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 4px;">Không tìm thấy danh mục phù hợp</div>
+              <div style="font-size: 12px; margin-bottom: 12px;">Vui lòng kiểm tra lại từ khóa hoặc chuyển bộ lọc sang "Tất cả trạng thái".</div>
+              <button class="btn btn-secondary" onclick="resetCategoryFilter()" style="margin: 0 auto; font-size: 12px; padding: 6px 14px;">🔄 Xóa bộ lọc</button>
+            </td>
+          `;
+          tbody.appendChild(emptyRow);
+        }
+        emptyRow.style.display = '';
+      } else if (emptyRow) {
+        emptyRow.style.display = 'none';
+      }
+    }
+
+    function resetCategoryFilter() {
+      const searchInput = document.getElementById('cat-search-input');
+      const statusFilter = document.getElementById('cat-status-filter');
+      if (searchInput) searchInput.value = '';
+      if (statusFilter) statusFilter.value = 'all';
+      filterCategoryTable();
     }
 
     /* INLINE CATEGORY PICKER (load toàn bộ danh sách Thể Loại hiện có để gắn ngay trên bảng) */
@@ -5057,144 +6134,63 @@
       const repKpiTopFav = document.getElementById('rep-kpi-top-fav');
       const repKpiTopLikes = document.getElementById('rep-kpi-top-likes');
       const repKpiUsers = document.getElementById('rep-kpi-users');
-      const repKpiViewsSub = document.getElementById('rep-kpi-views-sub');
-      const categoryVal = document.getElementById('report-category-filter').value;
 
-      // Tab 2 Elements
-      const userBadge = document.getElementById('rep-user-cohort-badge');
-      const userD1 = document.getElementById('rep-user-d1');
-      const userD7 = document.getElementById('rep-user-d7');
-      const userD30 = document.getElementById('rep-user-d30');
-      const userD30Sub = document.getElementById('rep-user-d30-sub');
-      const userWatch = document.getElementById('rep-user-watchtime');
-
-      let periodLabel = '';
+      // Sub-tab 2 Elements
+      const repUsersDateBadge = document.getElementById('rep-users-date-range-badge');
 
       if (currentReportTimeMode === 'day') {
-        const fromDate = document.getElementById('report-from-date').value || '10/08/2026';
-        const toDate = document.getElementById('report-to-date').value || '10/08/2026';
-        periodLabel = fromDate === toDate ? `D-1 (${fromDate})` : `Ngày ${fromDate} -> ${toDate}`;
-        if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: ${periodLabel}`;
+        const fromDate = document.getElementById('report-from-date').value || '2026-08-10';
+        const toDate = document.getElementById('report-to-date').value || '2026-08-20';
 
-        const isMultiDay = fromDate !== toDate;
-        if (repKpiViews) repKpiViews.innerText = isMultiDay ? '4,980,500' : '1,482,900';
-        if (repKpiViewsSub) repKpiViewsSub.innerText = isMultiDay ? '▲ +21.5% so với kỳ trước' : '▲ +18.4% so với kỳ trước';
+        // Format dates DD/MM/YYYY
+        const formatD = (dStr) => {
+          if (!dStr) return '';
+          const parts = dStr.split('-');
+          return parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dStr;
+        };
+        const fDisplay = formatD(fromDate);
+        const tDisplay = formatD(toDate);
+
+        const fDisplayShort = fDisplay.slice(0, 5); // DD/MM
+        if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: ${fDisplay} ➔ ${tDisplay}`;
+        if (repUsersDateBadge) repUsersDateBadge.innerText = `📅 Kỳ Lọc: ${fDisplay} ➔ ${tDisplay}`;
+        document.querySelectorAll('.card-period-badge').forEach(b => b.innerText = `📅 ${fDisplayShort} ➔ ${tDisplay}`);
+
+        if (repKpiViews) repKpiViews.innerText = '1,482,900';
         if (repKpiTopDrama) repKpiTopDrama.innerText = 'Vợ Cũ Lật Kèo';
-        if (repKpiTopViews) repKpiTopViews.innerText = isMultiDay ? '🔥 1.25M Lượt xem' : '🔥 342,000 Lượt xem';
+        if (repKpiTopViews) repKpiTopViews.innerText = '🔥 342,000 Lượt xem';
         if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
-        if (repKpiTopLikes) repKpiTopLikes.innerText = isMultiDay ? '❤️ 112,000 Lượt thích (97.8%)' : '❤️ 36,500 Lượt thích (98.2%)';
-        if (repKpiUsers) repKpiUsers.innerText = isMultiDay ? '385,200' : '124,800';
-
-        // Update Tab 2 (User Retention Cohort) dynamically
-        if (userBadge) userBadge.innerText = `Kỳ lọc: ${periodLabel}`;
-        if (userD1) userD1.innerText = isMultiDay ? '56.8% (Tốt)' : '58.4% (Tốt)';
-        if (userD7) userD7.innerText = isMultiDay ? '33.5%' : '34.8%';
-        if (userD30) {
-          if (isMultiDay) {
-            userD30.innerHTML = '<span style="color: var(--accent-gold);">20.8%</span>';
-            if (userD30Sub) userD30Sub.innerHTML = '🟢 Đã chốt sổ đủ 30 ngày vắt sang tháng sau';
-          } else {
-            userD30.innerHTML = '<span style="color: var(--text-muted); font-size: 15px;">--</span> <span style="font-size: 11px; color: var(--accent-gold); font-weight: 600;">(Đang tích lũy)</span>';
-            if (userD30Sub) userD30Sub.innerHTML = '⏳ Chưa đủ 30 ngày trôi qua (vắt sang tháng sau)';
-          }
-        }
-        if (userWatch) userWatch.innerText = isMultiDay ? '51.2 Phút / Ngày' : '48.5 Phút / Ngày';
+        if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 36,500 Lượt thích (98.2%)';
+        if (repKpiUsers) repKpiUsers.innerText = '124,800';
       } else {
         const monthSelect = document.getElementById('report-month-select');
         const monthText = monthSelect ? monthSelect.options[monthSelect.selectedIndex].text : 'Tháng 08/2026';
-        periodLabel = monthText;
         if (summaryBadge) summaryBadge.innerText = `Kỳ lọc: ${monthText}`;
+        if (repUsersDateBadge) repUsersDateBadge.innerText = `📅 Kỳ Lọc: ${monthText}`;
+        document.querySelectorAll('.card-period-badge').forEach(b => b.innerText = `📅 ${monthText}`);
 
         if (repKpiViews) repKpiViews.innerText = '18,420,500';
-        if (repKpiViewsSub) repKpiViewsSub.innerText = '▲ +24.6% so với tháng trước';
         if (repKpiTopDrama) repKpiTopDrama.innerText = 'Vợ Cũ Lật Kèo';
         if (repKpiTopViews) repKpiTopViews.innerText = '🔥 4.8M Lượt xem';
         if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
         if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 452,000 Lượt thích (98.5%)';
         if (repKpiUsers) repKpiUsers.innerText = '860,500';
-
-        // Update Tab 2 (Month)
-        if (userBadge) userBadge.innerText = `Kỳ lọc: ${monthText}`;
-        if (userD1) userD1.innerText = '54.8% (Tốt)';
-        if (userD7) userD7.innerText = '31.9%';
-        if (userD30) {
-          userD30.innerHTML = '<span style="color: var(--accent-gold);">20.7%*</span>';
-          if (userD30Sub) userD30Sub.innerHTML = '*Chỉ tính trên các tuần đã hoàn thành chu kỳ 30 ngày';
-        }
-        if (userWatch) userWatch.innerText = '53.8 Phút / Ngày';
       }
 
-      // Filter Tab 1 table by category
-      const dramaRows = document.querySelectorAll('#report-drama-table-body tr');
-      dramaRows.forEach(r => {
-        if (categoryVal === 'all') {
-          r.style.display = '';
-        } else {
-          const text = r.innerText;
-          r.style.display = text.includes(categoryVal) ? '' : 'none';
-        }
-      });
-
-      alert(`✅ ĐÃ LỌC BÁO CÁO TOÀN TRANG THÀNH CÔNG!\n\n• Kỳ lọc: ${periodLabel}\n• Thể loại: ${categoryVal === 'all' ? 'Tất cả thể loại' : categoryVal}\n• Đã cập nhật đồng bộ: 4 Thẻ KPI, Bảng Danh Sách Phim (Tab 1), Chỉ Số Giữ Chân User (Tab 2) và Tỷ Trọng Thể Loại (Tab 3).`);
-    }
-
-    function setRetentionDemoCase(caseType) {
-      const userD30 = document.getElementById('rep-user-d30');
-      const userD30Sub = document.getElementById('rep-user-d30-sub');
-      const btnCompleted = document.getElementById('btn-case-completed');
-      const btnPending = document.getElementById('btn-case-pending');
-      const btnPartial = document.getElementById('btn-case-partial');
-
-      if (btnCompleted) btnCompleted.style.opacity = caseType === 'completed' ? '1' : '0.5';
-      if (btnPending) btnPending.style.opacity = caseType === 'pending' ? '1' : '0.5';
-      if (btnPartial) btnPartial.style.opacity = caseType === 'partial' ? '1' : '0.5';
-
-      if (caseType === 'pending') {
-        if (userD30) userD30.innerHTML = '<span style="color: var(--text-muted); font-size: 15px;">--</span> <span style="font-size: 11px; color: var(--accent-gold); font-weight: 600;">(Đang tích lũy)</span>';
-        if (userD30Sub) userD30Sub.innerHTML = '⏳ Chưa đủ 30 ngày vòng đời (vắt sang tháng sau)';
-      } else if (caseType === 'partial') {
-        if (userD30) userD30.innerHTML = '<span style="color: var(--accent-gold);">20.8%*</span>';
-        if (userD30Sub) userD30Sub.innerHTML = '*Chỉ tính trên các nhóm ngày trong kỳ đã đủ 30 ngày';
-      } else {
-        if (userD30) userD30.innerHTML = '<span style="color: var(--accent-gold);">20.8%</span>';
-        if (userD30Sub) userD30Sub.innerHTML = '🟢 Đã chốt sổ đủ 30 ngày vắt sang tháng sau';
-      }
-    }
-
-    function filterReportDramaTable(keyword) {
-      const term = keyword.toLowerCase().trim();
-      const rows = document.querySelectorAll('#report-drama-table-body tr');
-      rows.forEach(r => {
-        const titleEl = r.querySelector('td:nth-child(3)');
-        const titleText = titleEl ? titleEl.innerText.toLowerCase() : r.innerText.toLowerCase();
-        r.style.display = titleText.includes(term) ? '' : 'none';
-      });
-    }
-
-    function sortReportDramaTable(type) {
-      const tbody = document.getElementById('report-drama-table-body');
-      const rows = Array.from(tbody.querySelectorAll('tr'));
-      rows.sort((a, b) => {
-        const valA = parseInt(a.querySelector('td:nth-child(5)')?.innerText.replace(/\D/g, '') || '0', 10);
-        const valB = parseInt(b.querySelector('td:nth-child(5)')?.innerText.replace(/\D/g, '') || '0', 10);
-        return valB - valA;
-      });
-      rows.forEach(r => tbody.appendChild(r));
-      alert('⚡ Đã sắp xếp danh sách theo Lượt xem từ cao xuống thấp!');
+      alert(`✅ ĐÃ LỌC BÁO CÁO THÀNH CÔNG!\n\n• Chế độ: ${currentReportTimeMode === 'day' ? 'Theo Khoảng Ngày' : 'Theo Tháng'}\n• Thể loại: ${document.getElementById('report-category-filter').value}\n• Đã đồng bộ số liệu hành vi & thời lượng tương tác người dùng theo đúng kỳ lọc.`);
     }
 
     function resetReportFilter() {
       document.getElementById('report-from-date').value = '2026-08-10';
-      document.getElementById('report-to-date').value = '2026-08-10';
+      document.getElementById('report-to-date').value = '2026-08-20';
       document.getElementById('report-category-filter').value = 'all';
-      const searchInput = document.getElementById('report-search-drama');
-      if (searchInput) searchInput.value = '';
+      document.getElementById('report-search-drama').value = '';
       setReportTimeMode('day');
     }
 
     function exportCustomReport(type) {
-      const modeLabel = currentReportTimeMode === 'day' ? 'Ngay_20260810' : 'Thang_202608';
-      alert(`📥 XUẤT TẬP TIN BÁO CÁO CHI TIẾT THÀNH CÔNG!\n\n• Tên tệp: PineDrama_Detailed_Metrics_${modeLabel}.xlsx\n• Định dạng: Microsoft Excel (.xlsx)\n• Nội dung bao gồm:\n  + Sheet 1: Hiệu suất từng bộ phim (Views, Likes, Share, Drop-off, Watch Time)\n  + Sheet 2: Chỉ số User Retention Cohort (D1, D7, D30)\n  + Sheet 3: Tỉ lệ lượt xem phân bổ Thể Loại\n• Tệp đã được lưu vào mục 'Lịch Sử Xuất File & Logs'.`);
+      const modeLabel = currentReportTimeMode === 'day' ? 'KhoangNgay_20260810_20260820' : 'Thang_202608';
+      alert(`📥 XUẤT TẬP TIN BÁO CÁO CHI TIẾT THÀNH CÔNG!\n\n• Tên tệp: PineDrama_Detailed_Metrics_${modeLabel}.xlsx\n• Định dạng: Microsoft Excel (.xlsx)\n• Nội dung bao gồm:\n  + Sheet 1: Hiệu suất từng bộ phim (Views, Likes, Share, Drop-off, Watch Time)\n  + Sheet 2: Chỉ số Giữ chân người dùng & Thời lượng tương tác theo kỳ lọc\n  + Sheet 3: Tỉ lệ lượt xem phân bổ Thể Loại\n• Tệp đã được lưu vào mục 'Lịch Sử Xuất File & Logs'.`);
     }
 
     // ==========================================
