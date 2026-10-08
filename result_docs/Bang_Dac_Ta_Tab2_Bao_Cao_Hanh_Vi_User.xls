@@ -1,4 +1,4 @@
-﻿<html xmlns:o="urn:schemas-microsoft-com:office:office"
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:x="urn:schemas-microsoft-com:office:excel"
 xmlns="http://www.w3.org/TR/REC-html40">
 <head>
@@ -42,16 +42,24 @@ xmlns="http://www.w3.org/TR/REC-html40">
     border: 0.5pt solid #0f172a;
     padding: 10px 8px;
     font-size: 10.5pt;
-    height: 40px;
+    height: 42px;
+  }
+  .section-header {
+    background-color: #0f172a;
+    color: #38bdf8;
+    font-weight: bold;
+    font-size: 11pt;
+    padding: 10px 14px;
+    border: 0.5pt solid #0284c7;
   }
   td {
     border: 0.5pt solid #cbd5e1;
-    padding: 8px 10px;
+    padding: 10px 12px;
     vertical-align: top;
     font-size: 10pt;
     white-space: pre-wrap;
     word-wrap: break-word;
-    line-height: 1.45;
+    line-height: 1.5;
   }
   .center {
     text-align: center;
@@ -69,20 +77,23 @@ xmlns="http://www.w3.org/TR/REC-html40">
   .color-green {
     color: #16a34a;
     font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-  }
-  .color-gold {
-    color: #d97706;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
   }
   .color-blue {
     color: #2563eb;
     font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
+  }
+  .color-purple {
+    color: #7c3aed;
+    font-weight: bold;
+  }
+  .badge-ui {
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 9.5pt;
   }
 </style>
 </head>
@@ -91,12 +102,12 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <table border="1" cellspacing="0" cellpadding="0">
   <colgroup>
     <col width="50">
+    <col width="180">
+    <col width="220">
     <col width="170">
-    <col width="200">
-    <col width="110">
     <col width="280">
+    <col width="420">
     <col width="380">
-    <col width="340">
   </colgroup>
   <thead>
     <tr>
@@ -110,56 +121,140 @@ xmlns="http://www.w3.org/TR/REC-html40">
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td colspan="7" class="section-header">I. CÁC CHỈ SỐ HÀNH VI &amp; THỜI LƯỢNG TƯƠNG TÁC NGƯỜI DÙNG (3 THẺ KPI CHÍNH TRÊN UI MỚI)</td>
+    </tr>
     <tr class="row-odd">
       <td class="center bold">1</td>
-      <td>Khối thẻ góc trái trên (Tab 2)</td>
-      <td class="bold">D1 (Quay lại sau 1 ngày)</td>
-      <td class="color-green">58.4%</td>
-      <td>Đo lường tỷ lệ người dùng mới thích thú với app và quyết định quay lại mở app xem tiếp ngay vào ngày hôm sau.</td>
-      <td>1. Khi lọc 1 ngày (ví dụ ngày 10/08):
-Tỷ lệ D1 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 11/08 / Tổng số người dùng mới ngày 10/08) × 100%
+      <td>Thẻ thứ 1 (Bên trái)<br>Khối "Báo Cáo Hành Vi &amp; Thời Lượng Tương Tác Người Dùng" (Tab 2)</td>
+      <td class="bold">TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG<br><span style="font-size: 9pt; color: #64748b;">(Retention Rate)</span></td>
+      <td>
+        <span class="color-green" style="font-size: 13pt;">58.4%</span><br>
+        <span class="color-green" style="font-size: 9.5pt;">▲ +4.2% so với kỳ trước</span><br>
+        <span style="font-size: 8.5pt; color: #64748b;">Phụ đề: Khán giả quay lại mở ứng dụng xem tiếp trong kỳ lọc đã chọn</span>
+      </td>
+      <td>Đo lường năng lực giữ chân khán giả của PineDrama trong kỳ báo cáo: Thể hiện tỷ lệ phần trăm người xem phim có hành vi quay trở lại mở ứng dụng và tiếp tục xem phim trong các ngày tiếp theo của kỳ lọc đã chọn.<br><br>Phản ánh trực tiếp độ hấp dẫn của nội dung, chất lượng kịch bản phim ngắn và hiệu quả giữ chân người xem.</td>
+      <td><b>1. Công thức chỉ số chính (%):</b>
+Tỷ lệ giữ chân người dùng (%) = (Số lượng người dùng quay lại / Tổng số người dùng Active trong kỳ) × 100%
 
-2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
-Tỷ lệ D1 (%) = (Tổng số người dùng mở lại app vào ngày hôm sau của các ngày trong đợt / Tổng số người dùng mới của cả đợt 10/08 đến 20/08) × 100%</td>
-      <td>• Quy tắc màu sắc: ≥ 50% hiển thị màu xanh lá (Tốt); &lt; 40% cảnh báo cam/đỏ.
-• Điều kiện ngày cuối (ngày 20/08): Phải qua hết ngày 21/08 mới chốt được số liệu D1. Nếu ngày kết thúc là hôm nay thì hệ thống chỉ tính lũy kế đến ngày hôm qua.</td>
+• <i>Mẫu số (Tổng người dùng Active trong kỳ):</i> Số Unique Users có ít nhất 1 phiên xem phim trong kỳ lọc.
+• <i>Tử số (Số người dùng quay lại):</i> Số Unique Users có phát sinh xem phim ở ít nhất 2 ngày khác nhau trở lên trong kỳ lọc đã chọn.
+
+* <i>Trường hợp lọc 1 ngày (D-1):</i> Tự động áp dụng chuẩn D1 Retention:
+Tỷ lệ D1 (%) = (Số User mới ngày D0 mở lại app ngày D+1 / Tổng User mới ngày D0) × 100%
+
+<b>2. Công thức biến động so với kỳ trước:</b>
+Biến động (%) = Tỷ lệ giữ chân kỳ này (%) - Tỷ lệ giữ chân kỳ trước liền kề (%) (Điểm phần trăm)
+• Ví dụ: Kỳ này (10/08 - 20/08: 11 ngày) đạt 58.4%, kỳ liền kề trước đó (30/07 - 09/08: 11 ngày) đạt 54.2% ➔ Biến động: +4.2%</td>
+      <td>• <b>Quy tắc màu sắc ngưỡng đánh giá:</b>
+  - Tỷ lệ ≥ 50%: Màu xanh lá neon #00e676 (Mức Tốt / Xuất sắc).
+  - 40% ≤ Tỷ lệ &lt; 50%: Màu vàng/cam #ffb300 (Mức Trung bình).
+  - Tỷ lệ &lt; 40%: Màu đỏ #ff5252 (Mức Cảnh báo rời bỏ cao).
+
+• <b>Quy tắc hiển thị biến động:</b>
+  - Tăng: Icon ▲ kèm dấu + và giá trị, màu xanh lá.
+  - Giảm: Icon ▼ kèm dấu - và giá trị, màu đỏ.
+  - Bằng nhau: 0.0% so với kỳ trước, màu xám.
+
+• <b>Điều kiện chốt số liệu:</b> Dữ liệu giữ chân người dùng chỉ chốt số trọn vẹn sau khi kết thúc 23:59:59 của ngày cuối cùng trong kỳ lọc.
+
+• <b>Làm tròn:</b> Làm tròn 1 chữ số thập phân (Ví dụ: 58.4%).</td>
     </tr>
     <tr class="row-even">
       <td class="center bold">2</td>
-      <td>Khối thẻ góc trái dưới (Tab 2)</td>
-      <td class="bold">D7 (Quay lại sau 7 ngày)</td>
-      <td class="color-green">34.8%</td>
-      <td>Đo lường thói quen xem phim hàng tuần của khán giả mới sau 1 tuần trải nghiệm ứng dụng.</td>
-      <td>1. Khi lọc 1 ngày (ví dụ ngày 10/08):
-Tỷ lệ D7 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 17/08 / Tổng số người dùng mới ngày 10/08) × 100%
+      <td>Thẻ thứ 2 (Ở giữa)<br>Khối "Báo Cáo Hành Vi &amp; Thời Lượng Tương Tác Người Dùng" (Tab 2)</td>
+      <td class="bold">THỜI GIAN XEM TRUNG BÌNH<br><span style="font-size: 9pt; color: #64748b;">(Average Daily Watch Time)</span></td>
+      <td>
+        <span class="color-blue" style="font-size: 13pt;">48.5 Phút / Ngày</span><br>
+        <span class="color-blue" style="font-size: 9.5pt;">▲ +6.5 phút so với kỳ trước</span><br>
+        <span style="font-size: 8.5pt; color: #64748b;">Phụ đề: Thời lượng bình quân mỗi khán giả xem mỗi ngày trong kỳ</span>
+      </td>
+      <td>Khắc họa mức độ "nghiện phim" và tiêu thụ nội dung hàng ngày của khán giả: Trung bình mỗi ngày một khán giả xem phim dành ra bao nhiêu phút trên PineDrama.<br><br>Chỉ số này càng cao chứng tỏ người xem có thói quen xem liên tục nhiều tập phim (cày phim - Binge-watching), mức độ gắn bó với ứng dụng rất sâu.</td>
+      <td><b>1. Công thức chỉ số chính (Phút/Ngày):</b>
+Thời gian xem TB (Phút/Ngày) = (Tổng số phút xem video của tất cả người dùng trong kỳ) / (Tổng số lượt User-Day hoạt động trong kỳ)
 
-2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
-Tỷ lệ D7 (%) = (Tổng số người dùng mở lại app vào ngày thứ 7 của các ngày trong đợt / Tổng số người dùng mới của các ngày đã đủ 7 ngày tuổi) × 100%</td>
-      <td>• Chuẩn ngành: Đạt từ 30% đến 40% là Tốt.
-• Quy tắc ngày chưa đủ hạn: Chỉ tính trên những ngày người dùng đã đủ 7 ngày tuổi (tính đến hôm nay). Những ngày mới đăng ký chưa đủ 7 ngày sẽ không đưa vào mẫu số để không làm giảm sai lệch tỷ lệ.</td>
+• <i>Tổng số phút xem:</i> Tổng thời lượng phát video thực tế của tất cả khán giả trong kỳ (quy đổi ra phút).
+• <i>Tổng số lượt User-Day:</i> Tổng cộng số ngày có xem phim của từng người dùng trong kỳ (Mỗi User xem trong 1 ngày = 1 User-Day).
+• <i>Ví dụ:</i> Trong kỳ lọc 11 ngày, hệ thống ghi nhận tổng 6,052,800 phút xem phim qua 124,800 lượt User-Day ➔ Thời gian xem TB = 6,052,800 / 124,800 = 48.5 Phút/Ngày.
+
+<b>2. Công thức biến động so với kỳ trước:</b>
+Biến động (phút) = Thời gian xem TB kỳ này - Thời gian xem TB kỳ trước liền kề
+• Ví dụ: Kỳ này 48.5 phút/ngày, kỳ trước 42.0 phút/ngày ➔ Biến động: +6.5 phút.</td>
+      <td>• <b>Chuẩn đánh giá ngành phim ngắn:</b>
+  - ≥ 40 Phút/Ngày: Mức Rất cao (khán giả xem từ 30 - 50 tập phim ngắn/ngày).
+  - Từ 25 đến dưới 40 Phút/Ngày: Mức Khá / Ổn định.
+  - Dưới 25 Phút/Ngày: Mức Thấp (cần tối ưu chất lượng mở đầu tập 1-3 và nút bấm tự chuyển tập tiếp theo).
+
+• <b>Quy tắc lọc dữ liệu rác (Anti-Bot &amp; Chống treo máy):</b>
+  - Một phiên xem video (session) liên tục không có thao tác tương tác sau 3 giờ sẽ tạm ngưng tính thời lượng từ phút thứ 181 để tránh sai lệch dữ liệu do ngủ quên hoặc treo máy.
+
+• <b>Quy tắc hiển thị:</b> Làm tròn 1 chữ số thập phân kèm đơn vị "Phút / Ngày", chỉ số biến động hiển thị màu xanh dương neon #40c4ff.</td>
     </tr>
     <tr class="row-odd">
       <td class="center bold">3</td>
-      <td>Khối thẻ góc phải trên (Tab 2)</td>
-      <td class="bold">D30 (Quay lại sau 30 ngày)</td>
-      <td class="color-gold">21.2%</td>
-      <td>Đo lường tỷ lệ khán giả trung thành cốt lõi còn gắn bó với ứng dụng sau 1 tháng trải nghiệm.</td>
-      <td>1. Khi lọc 1 ngày (ví dụ ngày 10/08):
-Tỷ lệ D30 (%) = (Số người dùng mới ngày 10/08 mở lại app vào ngày 09/09 / Tổng số người dùng mới ngày 10/08) × 100%
+      <td>Thẻ thứ 3 (Bên phải)<br>Khối "Báo Cáo Hành Vi &amp; Thời Lượng Tương Tác Người Dùng" (Tab 2)</td>
+      <td class="bold">NGƯỜI DÙNG ACTIVE<br><span style="font-size: 9pt; color: #64748b;">(Active Users in Period)</span></td>
+      <td>
+        <span style="font-size: 13pt; font-weight: bold; color: #0f172a;">124,800 Người</span><br>
+        <span class="color-green" style="font-size: 9.5pt;">▲ +12.8% so với kỳ trước</span><br>
+        <span style="font-size: 8.5pt; color: #64748b;">Phụ đề: Tổng số khán giả thực tế có xem phim trong kỳ lọc đã chọn</span>
+      </td>
+      <td>Đo lường quy mô khán giả thực tế tiếp cận và tiêu thụ nội dung trên nền tảng trong khoảng thời gian được lọc.<br><br>Đây là chỉ số nền tảng quyết định độ lớn của thị phần người xem, sức sống thực tế của ứng dụng và tiềm năng doanh thu (từ quảng cáo, lượt mở khóa tập VIP).</td>
+      <td><b>1. Công thức chỉ số chính (Người):</b>
+Người dùng Active = COUNT(DISTINCT user_id) trong kỳ lọc đã chọn
 
-2. Khi lọc khoảng ngày (ví dụ từ 10/08 đến 20/08):
-Tỷ lệ D30 (%) = (Tổng số người dùng mở lại app vào ngày thứ 30 của các ngày trong đợt / Tổng số người dùng mới của các ngày đã đủ 30 ngày tuổi) × 100%</td>
-      <td>• Chuẩn ngành: ≥ 20% là mức xuất sắc cho ứng dụng phim ngắn.
-• Quy tắc ngày chưa đủ hạn: Tương tự D7, chỉ tính trên các ngày người dùng đã đăng ký đủ 30 ngày để đảm bảo chu kỳ theo dõi đã hoàn tất.</td>
+• <i>Điều kiện tính:</i> Tài khoản đăng nhập (User ID) hoặc thiết bị khách chưa đăng nhập (Device ID / UUID) có phát sinh sự kiện xem phim (Video Play) với thời lượng xem thực tế ≥ 5 giây hoặc hoàn thành ít nhất 1 tập phim.
+• <i>Khử trùng lặp (Deduplication):</i> Mỗi người dùng chỉ được tính 1 lần duy nhất trong toàn bộ kỳ lọc (cho dù người dùng đó xem phim ở tất cả các ngày trong kỳ).
+
+<b>2. Công thức tốc độ tăng trưởng so với kỳ trước:</b>
+Tăng trưởng (%) = [(Người dùng Active kỳ này - Người dùng Active kỳ trước) / Người dùng Active kỳ trước] × 100%
+• Ví dụ: Kỳ này 124,800 người, kỳ trước cùng độ dài đạt 110,638 người ➔ Tăng trưởng: +12.8%.</td>
+      <td>• <b>Phân loại tệp người dùng:</b>
+  - Bao gồm cả Người dùng đã đăng nhập tài khoản và Khách vãng lai (Guest xem phim qua Device ID).
+
+• <b>Quy tắc hiển thị số liệu:</b>
+  - Định dạng phân cách hàng nghìn bằng dấu phẩy kèm chữ "Người" (Ví dụ: 124,800 Người).
+
+• <b>Quy tắc màu sắc biến động:</b>
+  - Tăng trưởng dương: Hiển thị icon ▲, dấu + và màu xanh lá #00e676 (Ví dụ: ▲ +12.8% so với kỳ trước).
+  - Tăng trưởng âm: Hiển thị icon ▼, dấu - và màu đỏ #ff5252.
+  - Không đổi: 0.0% so với kỳ trước, màu xám.</td>
+    </tr>
+    <tr>
+      <td colspan="7" class="section-header">II. CÁC CHỈ SỐ PHÂN TÍCH CHUYÊN SÂU (RETENTION COHORT CHI TIẾT - PHỤC VỤ DRILL-DOWN BÁO CÁO)</td>
     </tr>
     <tr class="row-even">
       <td class="center bold">4</td>
-      <td>Khối thẻ góc phải dưới (Tab 2)</td>
-      <td class="bold">Thời gian xem trung bình mỗi người dùng</td>
-      <td class="color-blue">48.5 Phút / Ngày</td>
-      <td>Đo lường mức độ nghiện phim của khán giả: Trung bình mỗi ngày một khán giả dành bao nhiêu phút để xem phim.</td>
-      <td>Thời gian xem TB = (Tổng số phút xem video của tất cả người dùng trong kỳ) / (Tổng số người dùng có mở xem phim trong kỳ)</td>
-      <td>• Chuẩn ngành: &gt; 40 phút/ngày thể hiện khán giả có thói quen xem liên tục nhiều tập phim (cày phim).</td>
+      <td>Phân tích Cohort chi tiết</td>
+      <td class="bold">D1 Retention (Quay lại sau 1 ngày)</td>
+      <td class="center color-green">58.4%</td>
+      <td>Đo lường tỷ lệ người dùng mới có ấn tượng tích cực với ứng dụng và quyết định quay lại mở app xem tiếp ngay vào ngày hôm sau (D+1).</td>
+      <td>1. Lọc 1 ngày: Tỷ lệ D1 (%) = (Số user mới ngày D0 mở lại app vào ngày D+1 / Tổng user mới ngày D0) × 100%
+2. Lọc khoảng ngày: Là Trung bình có trọng số của các ngày trong đợt lọc đã hoàn thành chu kỳ D+1.</td>
+      <td>• Chuẩn ngành phim ngắn: ≥ 50% là mức Rất tốt; &lt; 40% là cảnh báo nội dung tập đầu chưa đủ cuốn hút.
+• Điều kiện: Chỉ chốt số liệu khi đã qua trọn vẹn ngày D+1.</td>
+    </tr>
+    <tr class="row-odd">
+      <td class="center bold">5</td>
+      <td>Phân tích Cohort chi tiết</td>
+      <td class="bold">D7 Retention (Quay lại sau 7 ngày)</td>
+      <td class="center color-green">34.8%</td>
+      <td>Đo lường thói quen xem phim hàng tuần của khán giả mới sau 1 tuần trải nghiệm ứng dụng (D+7).</td>
+      <td>1. Lọc 1 ngày: Tỷ lệ D7 (%) = (Số user mới ngày D0 còn quay lại vào ngày D+7 / Tổng user mới ngày D0) × 100%
+2. Lọc khoảng ngày: Là Trung bình có trọng số của các nhóm user đã trải qua đủ 7 ngày tuổi tính đến hiện tại.</td>
+      <td>• Chuẩn ngành: Đạt từ 30% đến 40% là Tốt.
+• Ngày chưa đủ hạn 7 ngày sẽ không đưa vào mẫu số để tránh làm sai lệch tỷ lệ.</td>
+    </tr>
+    <tr class="row-even">
+      <td class="center bold">6</td>
+      <td>Phân tích Cohort chi tiết</td>
+      <td class="bold">D30 Retention (Quay lại sau 30 ngày)</td>
+      <td class="center" style="color: #d97706; font-weight: bold;">21.2%</td>
+      <td>Tỷ lệ khán giả trung thành cốt lõi còn gắn bó với ứng dụng sau 1 tháng sử dụng (D+30), mang lại giá trị vòng đời (LTV) lâu dài.</td>
+      <td>1. Lọc 1 ngày: Tỷ lệ D30 (%) = (Số user mới ngày D0 mở lại app ngày D+30 / Tổng user mới ngày D0) × 100%
+2. Lọc khoảng ngày: Trung bình có trọng số của các nhóm user đã trải qua đủ 30 ngày tuổi tính đến hiện tại.</td>
+      <td>• Chuẩn ngành: ≥ 20% là mức xuất sắc cho ứng dụng phim ngắn.
+• Nếu chưa đủ 30 ngày so với hiện tại: Hiển thị dấu gạch ngang "--" (Đang tích lũy chu kỳ), tuyệt đối không để 0% hoặc NaN.</td>
     </tr>
   </tbody>
 </table>
