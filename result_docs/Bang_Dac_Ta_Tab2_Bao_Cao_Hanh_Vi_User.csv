@@ -10,7 +10,7 @@ Biến động (%) = Tỷ lệ giữ chân kỳ này (%) - Tỷ lệ giữ chân
 • Ví dụ: Kỳ này (10/08 - 20/08: 11 ngày) đạt 58.4%, kỳ liền kề trước đó đạt 54.2% ➔ Biến động: +4.2%"	"• Quy tắc màu sắc: Tỷ lệ ≥ 50% hiển thị màu xanh lá neon #00e676 (Mức Tốt / Xuất sắc); 40% ≤ Tỷ lệ < 50% hiển thị màu vàng/cam (Trung bình); Tỷ lệ < 40% hiển thị màu đỏ (Cảnh báo).
 • Quy tắc biến động: Tăng hiển thị icon ▲ dấu + màu xanh lá; Giảm hiển thị icon ▼ dấu - màu đỏ.
 • Điều kiện: Chốt số liệu sau khi kết thúc 23:59:59 của ngày cuối cùng trong kỳ. Làm tròn 1 chữ số thập phân (58.4%)."
-2	Thẻ thứ 2 (Ở giữa) - Khối Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng (Tab 2)	THỜI GIAN XEM TRUNG BÌNH (Average Daily Watch Time)	48.5 Phút / Ngày (▲ +6.5 phút so với kỳ trước)	Khắc họa mức độ nghiện phim và tiêu thụ nội dung hàng ngày của khán giả: Trung bình mỗi ngày một khán giả xem phim dành ra bao nhiêu phút trên PineDrama. Chỉ số này càng cao chứng tỏ khán giả có thói quen xem liên tục nhiều tập phim (cày phim - Binge-watching).	"1. Công thức chỉ số chính (Phút/Ngày):
+2	Thẻ thứ 2 (Bên phải) - Khối Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng (Tab 2)	THỜI GIAN XEM TRUNG BÌNH (Average Daily Watch Time)	48.5 Phút / Ngày (▲ +6.5 phút so với kỳ trước)	Khắc họa mức độ nghiện phim và tiêu thụ nội dung hàng ngày của khán giả: Trung bình mỗi ngày một khán giả xem phim dành ra bao nhiêu phút trên PineDrama. Chỉ số này càng cao chứng tỏ khán giả có thói quen xem liên tục nhiều tập phim (cày phim - Binge-watching).	"1. Công thức chỉ số chính (Phút/Ngày):
 Thời gian xem TB (Phút/Ngày) = (Tổng số phút xem video của tất cả người dùng trong kỳ) / (Tổng số lượt User-Day hoạt động trong kỳ)
 • Tổng số phút xem: Tổng thời lượng phát video thực tế của tất cả khán giả trong kỳ (phút).
 • Tổng số lượt User-Day: Tổng cộng số ngày có xem phim của từng người dùng trong kỳ.
@@ -21,19 +21,3 @@ Biến động (phút) = Thời gian xem TB kỳ này - Thời gian xem TB kỳ 
 • Ví dụ: Kỳ này 48.5 phút/ngày, kỳ trước 42.0 phút/ngày ➔ Biến động: +6.5 phút."	"• Chuẩn ngành phim ngắn: ≥ 40 Phút/Ngày là mức Rất cao; 25 - 40 Phút/Ngày là Khá/Ổn định; < 25 Phút/Ngày là Thấp.
 • Chống treo máy: Phiên xem liên tục không tương tác sau 3 giờ sẽ ngưng tính thời lượng từ phút 181 để tránh sai lệch do ngủ quên/treo máy.
 • Hiển thị: Làm tròn 1 chữ số thập phân, biến động hiển thị màu xanh dương neon #40c4ff."
-3	Thẻ thứ 3 (Bên phải) - Khối Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng (Tab 2)	NGƯỜI DÙNG ACTIVE (Active Users in Period)	124,800 Người (▲ +12.8% so với kỳ trước)	Đo lường quy mô khán giả thực tế tiếp cận và tiêu thụ nội dung trên nền tảng trong khoảng thời gian được lọc. Đây là chỉ số nền tảng quyết định độ lớn của thị phần người xem, sức sống ứng dụng và tiềm năng doanh thu.	"1. Công thức chỉ số chính (Người):
-Người dùng Active = COUNT(DISTINCT user_id) trong kỳ lọc đã chọn
-• Điều kiện: Tài khoản hoặc thiết bị có sự kiện xem phim ≥ 5 giây hoặc hoàn thành ít nhất 1 tập.
-• Khử trùng lặp: Mỗi người dùng chỉ tính 1 lần duy nhất trong toàn kỳ lọc dù xem phim ở nhiều ngày.
-
-2. Công thức tăng trưởng so với kỳ trước:
-Tăng trưởng (%) = [(Active kỳ này - Active kỳ trước) / Active kỳ trước] × 100%
-• Ví dụ: Kỳ này 124,800 người, kỳ trước 110,638 người ➔ Tăng trưởng: +12.8%."	"• Tệp người dùng: Bao gồm cả User có tài khoản và Khách vãng lai (Guest qua Device ID).
-• Hiển thị: Định dạng có dấu phẩy phân cách hàng nghìn kèm chữ 'Người' (124,800 Người).
-• Biến động: Tăng trưởng dương hiển thị icon ▲ dấu + màu xanh lá; Giảm hiển thị icon ▼ dấu - màu đỏ."
-4	Phân tích Cohort chi tiết	D1 Retention (Quay lại sau 1 ngày)	58.4%	Tỷ lệ người dùng mới có ấn tượng tích cực và quay lại mở app xem tiếp ngay vào ngày hôm sau (D+1).	"1. Lọc 1 ngày: Tỷ lệ D1 (%) = (Số user mới ngày D0 mở lại app ngày D+1 / Tổng user mới ngày D0) × 100%
-2. Lọc khoảng ngày: Trung bình có trọng số của các ngày đã hoàn thành chu kỳ D+1."	• Chuẩn ngành phim ngắn: ≥ 50% là Tốt/Xuất sắc; < 40% là cảnh báo nội dung tập đầu chưa đủ cuốn hút. Chỉ chốt số liệu khi qua ngày D+1.
-5	Phân tích Cohort chi tiết	D7 Retention (Quay lại sau 7 ngày)	34.8%	Đo lường thói quen xem phim hàng tuần của khán giả mới sau 1 tuần trải nghiệm ứng dụng (D+7).	"1. Lọc 1 ngày: Tỷ lệ D7 (%) = (Số user mới ngày D0 còn quay lại ngày D+7 / Tổng user mới ngày D0) × 100%
-2. Lọc khoảng ngày: Trung bình có trọng số của các nhóm user đã đủ 7 ngày tuổi."	• Chuẩn ngành: Đạt từ 30% đến 40% là Tốt. Những ngày chưa đủ 7 ngày tuổi không đưa vào mẫu số.
-6	Phân tích Cohort chi tiết	D30 Retention (Quay lại sau 30 ngày)	21.2%	Tỷ lệ khán giả trung thành cốt lõi còn gắn bó với ứng dụng sau 1 tháng sử dụng (D+30).	"1. Lọc 1 ngày: Tỷ lệ D30 (%) = (Số user mới ngày D0 mở lại app ngày D+30 / Tổng user mới ngày D0) × 100%
-2. Lọc khoảng ngày: Trung bình có trọng số của các nhóm user đã đủ 30 ngày tuổi."	• Chuẩn ngành: ≥ 20% là xuất sắc. Nếu chưa đủ 30 ngày hiển thị dấu gạch ngang '--' (Đang tích lũy chu kỳ), không để 0% hoặc NaN.

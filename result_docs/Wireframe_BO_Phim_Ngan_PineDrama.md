@@ -268,7 +268,6 @@ flowchart TD
    * **Thiết kế thẻ tinh gọn tối đa (Executive KPI Minimal):** Loại bỏ toàn bộ thanh tiến độ và mục tiêu chuẩn rườm rà dưới chân thẻ để giao diện thông thoáng, tập trung vào con số thực tế:
      * **TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG:** `58.4%` (▲ +4.2% so với kỳ trước) — Khán giả quay lại mở ứng dụng xem tiếp trong kỳ lọc đã chọn.
      * **THỜI GIAN XEM TRUNG BÌNH:** `48.5 Phút / Ngày` (▲ +6.5 phút so với kỳ trước) — Thời lượng bình quân mỗi khán giả xem mỗi ngày trong kỳ.
-     * **NGƯỜI DÙNG ACTIVE:** `124,800 Người` (▲ +12.8% so với kỳ trước) — Tổng số khán giả thực tế có xem phim trong kỳ lọc đã chọn.
 3. **Báo Cáo Tỷ Trọng Thể Loại (Category Breakdown):**
    * Tỉ lệ lượt xem giữa các thể loại (Ngôn Tình 45.2%, Trả Thù 26.8%, Gia Đình 16.5%, Tổng Tài 11.5%).
 
