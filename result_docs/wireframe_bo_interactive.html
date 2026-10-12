@@ -2893,8 +2893,9 @@
                 <option value="Tổng Tài">👑 Tổng Tài</option>
               </select>
 
-              <!-- Search Drama -->
-              <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim, ..."
+              <!-- Search Drama (Chỉ tìm theo Tên Phim, không tìm theo ID) -->
+              <input type="text" id="report-search-drama" placeholder="🔍 Tìm theo tên phim..."
+                onkeyup="if(event.key === 'Enter') applyReportFilter()"
                 style="flex: 1; min-width: 160px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; color: #fff; font-size: 12.5px;">
 
               <!-- Apply Button -->
@@ -2923,10 +2924,11 @@
               <div class="stat-change up" style="color: var(--primary);" id="rep-kpi-top-likes">❤️ 36,500 Lượt thích
                 (98.2%)</div>
             </div>
-            <div class="stat-card green" title="Thống kê số lượng user mới tạo tài khoản lần đầu so với tổng số user đăng nhập xem phim trong kỳ">
-              <div class="stat-title">USER MỚI KÍCH HOẠT (TẠO LẦN ĐẦU)</div>
+            <div class="stat-card green"
+              title="Thống kê số lượng user mới tạo tài khoản lần đầu so với tổng số user đăng nhập xem phim trong kỳ">
+              <div class="stat-title">USER MỚI KÍCH HOẠT</div>
               <div class="stat-value" id="rep-kpi-users">34,800</div>
-              <div class="stat-change up" id="rep-kpi-users-sub">👥 Chiếm 27.9% user đăng nhập xem phim</div>
+              <div class="stat-change up" id="rep-kpi-users-sub">👥 Chiếm 27.9% tổng khán giả xem phim</div>
             </div>
           </div>
 
@@ -2956,7 +2958,7 @@
                     <tr>
                       <th>STT</th>
                       <th>Poster</th>
-                      <th>Tên Bộ Phim & ID</th>
+                      <th>Tên Bộ Phim</th>
                       <th>Thể Loại</th>
                       <th>👁️ Lượt Xem</th>
                       <th>❤️ Yêu Thích</th>
@@ -2972,7 +2974,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Vợ Cũ Lật Kèo</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-8842 • 80 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">80 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Ngôn Tình</span> <span class="badge badge-category">Trả
                           Thù</span></td>
@@ -2989,7 +2991,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu Triệu Đô</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-7712 • 65 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">65 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Gia Đình</span> <span class="badge badge-category">Ngôn
                           Tình</span></td>
@@ -3006,7 +3008,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Hợp Đồng Hôn Nhân Với Tổng Tài</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-6621 • 92 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">92 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Tổng Tài</span> <span class="badge badge-category">Ngôn
                           Tình</span></td>
@@ -3023,7 +3025,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Hào Môn Trả Thù: Vương Giả Trở Lại</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-5521 • 100 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">100 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Trả Thù</span> <span class="badge badge-category">Hành
                           Động</span></td>
@@ -3041,7 +3043,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Cô Vợ Sát Thủ & Tổng Tài Bá Đạo</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-9901 • 80 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">80 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Ngôn Tình</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">165,000</strong></td>
@@ -3057,7 +3059,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Thiên Kim Thật Sự Trở Về</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-6612 • 72 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">72 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Gia Đình</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">142,500</strong></td>
@@ -3073,7 +3075,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Bản Hợp Đồng Hôn Nhân Giả</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-7703 • 85 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">85 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Tổng Tài</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">128,900</strong></td>
@@ -3089,7 +3091,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Chiến Thần Trở Lại Đô Thị</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-4491 • 60 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">60 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Hành Động</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">115,000</strong></td>
@@ -3105,7 +3107,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Yêu Nhầm Bạn Thân Của Chồng Cũ</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-3382 • 90 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">90 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Drama</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">98,400</strong></td>
@@ -3121,7 +3123,7 @@
                       </td>
                       <td>
                         <strong style="color: #fff;">Tiểu Thư Giả Mạo & Thiếu Gia Mù</strong>
-                        <div style="font-size: 11px; color: var(--text-muted);">ID: DRAMA-2219 • 75 Tập</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">75 Tập</div>
                       </td>
                       <td><span class="badge badge-category">Tình Cảm</span></td>
                       <td><strong style="color: var(--accent-blue); font-size: 14px;">86,200</strong></td>
@@ -6140,7 +6142,7 @@
         if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 36,500 Lượt thích (98.2%)';
         if (repKpiUsers) repKpiUsers.innerText = '34,800';
         const repKpiUsersSub = document.getElementById('rep-kpi-users-sub');
-        if (repKpiUsersSub) repKpiUsersSub.innerHTML = '👥 Chiếm 27.9% user đăng nhập xem phim';
+        if (repKpiUsersSub) repKpiUsersSub.innerHTML = '👥 Chiếm 27.9% tổng khán giả xem phim';
       } else {
         const monthSelect = document.getElementById('report-month-select');
         const monthText = monthSelect ? monthSelect.options[monthSelect.selectedIndex].text : 'Tháng 08/2026';
@@ -6155,10 +6157,43 @@
         if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 452,000 Lượt thích (98.5%)';
         if (repKpiUsers) repKpiUsers.innerText = '248,500';
         const repKpiUsersSub = document.getElementById('rep-kpi-users-sub');
-        if (repKpiUsersSub) repKpiUsersSub.innerHTML = '👥 Chiếm 28.9% user đăng nhập xem phim';
+        if (repKpiUsersSub) repKpiUsersSub.innerHTML = '👥 Chiếm 28.9% tổng khán giả xem phim';
       }
 
-      alert(`✅ ĐÃ LỌC BÁO CÁO THÀNH CÔNG!\n\n• Chế độ: ${currentReportTimeMode === 'day' ? 'Theo Khoảng Ngày' : 'Theo Tháng'}\n• Thể loại: ${document.getElementById('report-category-filter').value}\n• Đã đồng bộ số liệu user mới kích hoạt lần đầu & tỷ lệ tương tác theo kỳ lọc.`);
+      // Lọc danh sách phim trong bảng (CHỈ LỌC THEO TÊN PHIM, TUYỆT ĐỐI KHÔNG LỌC THEO ID)
+      const searchDramaInput = (document.getElementById('report-search-drama') ? document.getElementById('report-search-drama').value : '').trim().toLowerCase();
+      const catFilter = document.getElementById('report-category-filter') ? document.getElementById('report-category-filter').value : 'all';
+      const dramaRows = document.querySelectorAll('#report-drama-table-body tr');
+      let matchedCount = 0;
+
+      dramaRows.forEach(row => {
+        const titleEl = row.querySelector('td:nth-child(3) strong');
+        const dramaTitle = titleEl ? titleEl.innerText.trim().toLowerCase() : '';
+
+        // Chỉ so khớp với tên phim (Title)
+        const matchTitle = !searchDramaInput || dramaTitle.includes(searchDramaInput);
+
+        // So khớp thể loại
+        const catBadges = row.querySelectorAll('td:nth-child(4) .badge-category');
+        let catTexts = [];
+        catBadges.forEach(b => catTexts.push(b.innerText.trim().toLowerCase()));
+        const matchCategory = catFilter === 'all' || catTexts.some(c => c.includes(catFilter.toLowerCase()));
+
+        if (matchTitle && matchCategory) {
+          row.style.display = '';
+          matchedCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      let alertDetails = `✅ ĐÃ LỌC BÁO CÁO THÀNH CÔNG!\n\n• Chế độ: ${currentReportTimeMode === 'day' ? 'Theo Khoảng Ngày' : 'Theo Tháng'}\n• Thể loại: ${catFilter === 'all' ? 'Tất cả' : catFilter}`;
+      if (searchDramaInput) {
+        alertDetails += `\n• Từ khóa Tên Phim: "${document.getElementById('report-search-drama').value.trim()}" (Hệ thống chỉ lọc theo tên phim, không áp dụng tìm theo ID)`;
+      }
+      alertDetails += `\n• Kết quả: Hiển thị ${matchedCount}/${dramaRows.length} bộ phim phù hợp trong kỳ lọc.\n• Đã đồng bộ số liệu hành vi & thời lượng tương tác người dùng.`;
+
+      alert(alertDetails);
     }
 
     function resetReportFilter() {
@@ -6166,6 +6201,12 @@
       document.getElementById('report-to-date').value = '2026-08-20';
       document.getElementById('report-category-filter').value = 'all';
       document.getElementById('report-search-drama').value = '';
+      
+      // Hiển thị lại toàn bộ các hàng trong bảng báo cáo phim
+      document.querySelectorAll('#report-drama-table-body tr').forEach(row => {
+        row.style.display = '';
+      });
+
       setReportTimeMode('day');
     }
 
