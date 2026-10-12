@@ -2850,7 +2850,8 @@
               <div
                 style="font-size: 13px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px;">
                 <span>🎯 Bộ Lọc Báo Cáo Nâng Cao</span>
-                <span class="badge badge-published" id="report-filter-summary-badge">Kỳ lọc: Ngày 10/08/2026 ➔ 20/08/2026</span>
+                <span class="badge badge-published" id="report-filter-summary-badge">Kỳ lọc: Ngày 10/08/2026 ➔
+                  20/08/2026</span>
               </div>
               <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;"
                 onclick="resetReportFilter()">🔄 Đặt lại mặc định</button>
@@ -2893,7 +2894,7 @@
               </select>
 
               <!-- Search Drama -->
-              <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim, ID..."
+              <input type="text" id="report-search-drama" placeholder="🔍 Tìm tên phim, ..."
                 style="flex: 1; min-width: 160px; background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; color: #fff; font-size: 12.5px;">
 
               <!-- Apply Button -->
@@ -2922,10 +2923,10 @@
               <div class="stat-change up" style="color: var(--primary);" id="rep-kpi-top-likes">❤️ 36,500 Lượt thích
                 (98.2%)</div>
             </div>
-            <div class="stat-card green">
-              <div class="stat-title">USER HOẠT ĐỘNG (ACTIVE USERS)</div>
-              <div class="stat-value" id="rep-kpi-users">124,800</div>
-              <div class="stat-change up" id="rep-kpi-users-sub">⏱️ TB 48.5 phút xem/User</div>
+            <div class="stat-card green" title="Thống kê số lượng user mới tạo tài khoản lần đầu so với tổng số user đăng nhập xem phim trong kỳ">
+              <div class="stat-title">USER MỚI KÍCH HOẠT (TẠO LẦN ĐẦU)</div>
+              <div class="stat-value" id="rep-kpi-users">34,800</div>
+              <div class="stat-change up" id="rep-kpi-users-sub">👥 Chiếm 27.9% user đăng nhập xem phim</div>
             </div>
           </div>
 
@@ -3158,9 +3159,11 @@
           <!-- SUB-VIEW 2: BÁO CÁO HÀNH VI & THỜI LƯỢNG TƯƠNG TÁC -->
           <div id="rep-tab-users" class="report-subview">
             <div class="panel-card">
-              <div class="panel-title" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div class="panel-title"
+                style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span>👥 Báo Cáo Hành Vi & Thời Lượng Tương Tác Người Dùng</span>
-                <span class="badge badge-published" id="rep-users-date-range-badge" style="font-size: 11px; padding: 4px 12px; font-weight: 700; background: rgba(0, 230, 118, 0.12); color: #00e676; border: 1px solid rgba(0, 230, 118, 0.3); border-radius: 6px; display: inline-flex; align-items: center; gap: 6px;">
+                <span class="badge badge-published" id="rep-users-date-range-badge"
+                  style="font-size: 11px; padding: 4px 12px; font-weight: 700; background: rgba(0, 230, 118, 0.12); color: #00e676; border: 1px solid rgba(0, 230, 118, 0.3); border-radius: 6px; display: inline-flex; align-items: center; gap: 6px;">
                   📅 Kỳ Lọc: 10/08/2026 ➔ 20/08/2026
                 </span>
               </div>
@@ -3168,9 +3171,11 @@
               <!-- LƯỚI 2 THẺ CHỈ SỐ HÀNH VI TINH GỌN ĐỒNG NHẤT 100% -->
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; font-size: 13px;">
                 <!-- THẺ 1: TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG -->
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+                <div
+                  style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
                   <div>
-                    <div style="font-size: 12.5px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+                    <div
+                      style="font-size: 12.5px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
                       TỶ LỆ GIỮ CHÂN NGƯỜI DÙNG
                     </div>
                     <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
@@ -3178,16 +3183,20 @@
                     </div>
                   </div>
                   <div>
-                    <div style="color: var(--accent-green); font-size: 28px; font-weight: 800; white-space: nowrap; line-height: 1;" id="rep-user-retention-val">
+                    <div
+                      style="color: var(--accent-green); font-size: 28px; font-weight: 800; white-space: nowrap; line-height: 1;"
+                      id="rep-user-retention-val">
                       58.4%
                     </div>
                   </div>
                 </div>
 
                 <!-- THẺ 2: THỜI LƯỢNG XEM TRUNG BÌNH -->
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+                <div
+                  style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
                   <div>
-                    <div style="font-size: 12.5px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+                    <div
+                      style="font-size: 12.5px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
                       THỜI GIAN XEM TRUNG BÌNH
                     </div>
                     <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
@@ -3195,7 +3204,9 @@
                     </div>
                   </div>
                   <div>
-                    <div style="color: var(--accent-blue); font-size: 28px; font-weight: 800; white-space: nowrap; line-height: 1;" id="rep-user-watchtime-val">
+                    <div
+                      style="color: var(--accent-blue); font-size: 28px; font-weight: 800; white-space: nowrap; line-height: 1;"
+                      id="rep-user-watchtime-val">
                       48.5 <span style="font-size: 15px; font-weight: 600; color: #a0aec0;">Phút / Ngày</span>
                     </div>
                   </div>
@@ -6127,7 +6138,9 @@
         if (repKpiTopViews) repKpiTopViews.innerText = '🔥 342,000 Lượt xem';
         if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
         if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 36,500 Lượt thích (98.2%)';
-        if (repKpiUsers) repKpiUsers.innerText = '124,800';
+        if (repKpiUsers) repKpiUsers.innerText = '34,800';
+        const repKpiUsersSub = document.getElementById('rep-kpi-users-sub');
+        if (repKpiUsersSub) repKpiUsersSub.innerHTML = '👥 Chiếm 27.9% user đăng nhập xem phim';
       } else {
         const monthSelect = document.getElementById('report-month-select');
         const monthText = monthSelect ? monthSelect.options[monthSelect.selectedIndex].text : 'Tháng 08/2026';
@@ -6140,10 +6153,12 @@
         if (repKpiTopViews) repKpiTopViews.innerText = '🔥 4.8M Lượt xem';
         if (repKpiTopFav) repKpiTopFav.innerText = 'Hào Môn Trả Thù';
         if (repKpiTopLikes) repKpiTopLikes.innerText = '❤️ 452,000 Lượt thích (98.5%)';
-        if (repKpiUsers) repKpiUsers.innerText = '860,500';
+        if (repKpiUsers) repKpiUsers.innerText = '248,500';
+        const repKpiUsersSub = document.getElementById('rep-kpi-users-sub');
+        if (repKpiUsersSub) repKpiUsersSub.innerHTML = '👥 Chiếm 28.9% user đăng nhập xem phim';
       }
 
-      alert(`✅ ĐÃ LỌC BÁO CÁO THÀNH CÔNG!\n\n• Chế độ: ${currentReportTimeMode === 'day' ? 'Theo Khoảng Ngày' : 'Theo Tháng'}\n• Thể loại: ${document.getElementById('report-category-filter').value}\n• Đã đồng bộ số liệu hành vi & thời lượng tương tác người dùng theo đúng kỳ lọc.`);
+      alert(`✅ ĐÃ LỌC BÁO CÁO THÀNH CÔNG!\n\n• Chế độ: ${currentReportTimeMode === 'day' ? 'Theo Khoảng Ngày' : 'Theo Tháng'}\n• Thể loại: ${document.getElementById('report-category-filter').value}\n• Đã đồng bộ số liệu user mới kích hoạt lần đầu & tỷ lệ tương tác theo kỳ lọc.`);
     }
 
     function resetReportFilter() {
