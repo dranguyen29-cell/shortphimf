@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>PineDrama - Ứng Dụng Phim Ngắn Đỉnh Cao | Bản Thử Nghiệm Android</title>
+  <title>PineDrama - Ứng Dụng Phim Ngắn Đỉnh Cao | Tải File APK Android</title>
   <meta name="description"
-    content="Xem hàng ngàn bộ phim ngắn kịch tính, định dạng 9:16 sắc nét. Tải app PineDrama phiên bản thử nghiệm cho Android (Google Play & APK) để nhận 100 Xu miễn phí!">
+    content="Xem hàng ngàn bộ phim ngắn kịch tính, định dạng 9:16 sắc nét. Tải app PineDrama file APK phiên bản thử nghiệm cho Android để nhận 100 Xu miễn phí!">
 
   <!-- Google Fonts & Lucide Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -348,7 +348,7 @@
       color: #10b981;
     }
 
-    /* STORE PAGE MOCKUP SECTION (GOOGLE PLAY EXCLUSIVE) */
+    /* STORE PAGE MOCKUP SECTION (APK DOWNLOAD STATION) */
     .store-section {
       padding: 40px 0 80px;
     }
@@ -440,7 +440,7 @@
       gap: 8px;
     }
 
-    /* Google Play Inner Layout */
+    /* APK Download Card Inner Layout */
     .store-content {
       padding: 36px;
       background: #0d0d12;
@@ -882,6 +882,106 @@
       color: #cbd5e1;
     }
 
+    /* Device Specific Tips */
+    .device-accordion {
+      margin-top: 36px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 1050px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .device-accordion-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .device-card {
+      background: #181824;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .device-card-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .device-card-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* Toast Notification */
+    .download-toast {
+      position: fixed;
+      bottom: 85px;
+      right: 24px;
+      background: #161622;
+      border: 1px solid #10b981;
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.3);
+      z-index: 1000;
+      transform: translateY(150%);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 380px;
+    }
+
+    .download-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .toast-content h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .toast-content p {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
     /* KHO PHIM HOT PREVIEW */
     .drama-preview-section {
       padding: 40px 0 80px;
@@ -1211,15 +1311,15 @@
         </a>
 
         <nav class="nav-links">
-          <a href="#store-preview" class="nav-link">Giao Diện Tải</a>
+          <a href="#store-preview" class="nav-link">Cổng Tải APK</a>
           <a href="#install-guide" class="nav-link">Hướng Dẫn Cài Đặt</a>
           <a href="#hot-dramas" class="nav-link">Phim Thịnh Hành</a>
           <a href="#reviews" class="nav-link">Đánh Giá</a>
         </nav>
 
-        <a href="#store-preview" class="btn-header-cta" onclick="triggerInstallAction()">
+        <a href="#store-preview" class="btn-header-cta" onclick="simulateDirectDownload()">
           <i data-lucide="download" style="width: 16px; height: 16px;"></i>
-          <span>Cài Đặt Android</span>
+          <span>Tải File APK</span>
         </a>
       </div>
     </div>
@@ -1230,7 +1330,7 @@
     <div class="container">
       <div class="hero-tag">
         <span class="dot"></span>
-        <span>🎉 Phiên Bản Thử Nghiệm Android 1.0.0 - Tặng 100 Xu Tân Thủ</span>
+        <span>🎉 Phiên Bản Thử Nghiệm Android 1.0.0 (APK) - Tặng 100 Xu Tân Thủ</span>
       </div>
 
       <h1 class="hero-title">
@@ -1244,44 +1344,44 @@
         Mỗi tập chỉ 1 - 2 phút, xem mượt mà mọi lúc mọi nơi!
       </p>
 
-      <!-- Fast Store Buttons for Android -->
+      <!-- Fast Store Buttons for Android (APK Only) -->
       <div class="hero-cta-group">
-        <a href="#store-preview" class="store-badge-btn primary-store" onclick="triggerInstallAction()">
-          <i data-lucide="play" style="width: 32px; height: 32px; color: #22c55e;"></i>
+        <button class="store-badge-btn primary-store" onclick="simulateDirectDownload()" style="background: linear-gradient(135deg, #01875f 0%, #00a86b 100%); border-color: #34d399; box-shadow: 0 8px 24px rgba(1, 135, 95, 0.45);">
+          <i data-lucide="file-down" style="width: 32px; height: 32px; color: #ffffff;"></i>
           <div>
-            <div class="subtext">Tải trên</div>
-            <div class="maintext">Google Play</div>
-          </div>
-        </a>
-
-        <button class="store-badge-btn" onclick="simulateDirectDownload()">
-          <i data-lucide="file-down" style="width: 30px; height: 30px; color: #38bdf8;"></i>
-          <div>
-            <div class="subtext">Cài Đặt Nhanh</div>
-            <div class="maintext">Tải File APK</div>
+            <div class="subtext" style="color: #d1fae5;">Tải Trực Tiếp Cho Android</div>
+            <div class="maintext">Tải File APK (38MB)</div>
           </div>
         </button>
+
+        <a href="#install-guide" class="store-badge-btn" style="text-decoration: none;">
+          <i data-lucide="help-circle" style="width: 28px; height: 28px; color: #38bdf8;"></i>
+          <div>
+            <div class="subtext">Chỉ 3 Bước Đơn Giản</div>
+            <div class="maintext">Hướng Dẫn Cài Đặt</div>
+          </div>
+        </a>
       </div>
 
       <div class="hero-perks">
         <span><i data-lucide="check-circle" style="width: 16px; height: 16px;"></i> Miễn phí 100% khi tải</span>
         <span><i data-lucide="smartphone" style="width: 16px; height: 16px;"></i> Tương thích Android 8.0+</span>
         <span><i data-lucide="zap" style="width: 16px; height: 16px;"></i> Full HD 1080p 60fps</span>
-        <span><i data-lucide="shield-check" style="width: 16px; height: 16px;"></i> Quét bảo mật Play Protect</span>
+        <span><i data-lucide="shield-check" style="width: 16px; height: 16px;"></i> Quét an toàn 100% (Clean APK)</span>
       </div>
     </div>
   </section>
 
-  <!-- STORE MOCKUP SECTION (GOOGLE PLAY STORE) -->
+  <!-- STORE MOCKUP SECTION (APK DOWNLOAD STATION) -->
   <section class="store-section" id="store-preview">
     <div class="container">
       <div class="section-header">
         <div class="android-platform-pill">
           <i data-lucide="smartphone" style="width: 16px; height: 16px;"></i>
-          <span>Dành Riêng Cho Hệ Điều Hành Android</span>
+          <span>Gói Cài Đặt Trực Tiếp Cho Android (.APK)</span>
         </div>
-        <h2 class="section-title">Trải Nghiệm Cài Đặt Chuẩn Google Play</h2>
-        <p class="section-desc">Giao diện tải ứng dụng trực quan mô phỏng Google Play Store trên các thiết bị Android
+        <h2 class="section-title">Cổng Tải Ứng Dụng PineDrama APK</h2>
+        <p class="section-desc">Giao diện tải gói cài đặt trực tiếp tốc độ cao từ CDN Pine Studio - Hỗ trợ mọi dòng máy Android
         </p>
       </div>
 
@@ -1295,11 +1395,11 @@
             <div class="store-dot dot-green"></div>
           </div>
           <div class="store-address">
-            <i data-lucide="lock" style="width: 12px; height: 12px;"></i>
-            <span>play.google.com/store/apps/details?id=com.pinestudio.pinedrama</span>
+            <i data-lucide="lock" style="width: 12px; height: 12px; color: #10b981;"></i>
+            <span>download.pinedrama.vn/apk/pinedrama_v1.0.0_beta.apk</span>
           </div>
           <div style="font-size: 11px; color: #22c55e; font-weight: 700; display: flex; align-items: center; gap: 4px;">
-            <i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Google Play Store
+            <i data-lucide="shield-check" style="width: 12px; height: 12px;"></i> Bản Cài Đặt APK Xác Thực
           </div>
         </div>
 
@@ -1320,23 +1420,23 @@
                 <span>Pine Studio Entertainment JSC</span>
                 <i data-lucide="badge-check" style="width: 16px; height: 16px; color: #01875f;"></i>
               </div>
-              <div class="app-genre">#1 Miễn phí phổ biến trong mục Giải Trí • Chứa quảng cáo • Mua hàng trong ứng dụng
+              <div class="app-genre">#1 Ứng Dụng Phim Ngắn Android • Gói Cài Đặt Trực Tiếp (.APK) • Miễn Phí Trọn Đời
               </div>
 
               <div class="store-actions">
-                <button class="btn-store-install" id="btn-main-install" onclick="triggerInstallAction()">
+                <button class="btn-store-install" id="btn-main-install" onclick="simulateDirectDownload()">
                   <i data-lucide="download" style="width: 18px; height: 18px;"></i>
-                  <span id="install-btn-text">CÀI ĐẶT (INSTALL)</span>
+                  <span id="install-btn-text">TẢI FILE APK NGAY (38MB)</span>
                 </button>
 
-                <button class="btn-apk-download" onclick="simulateDirectDownload()">
-                  <i data-lucide="file-down" style="width: 16px; height: 16px; color: #38bdf8;"></i>
-                  <span>Tải File .APK (38MB)</span>
-                </button>
+                <a href="#install-guide" class="btn-apk-download" style="text-decoration: none;">
+                  <i data-lucide="help-circle" style="width: 16px; height: 16px; color: #38bdf8;"></i>
+                  <span>Hướng Dẫn Cài</span>
+                </a>
 
                 <button class="btn-apk-download" onclick="shareApp()">
                   <i data-lucide="share-2" style="width: 16px; height: 16px;"></i>
-                  <span>Chia sẻ</span>
+                  <span>Chia sẻ link</span>
                 </button>
               </div>
             </div>
@@ -1487,75 +1587,75 @@
     </div>
   </section>
 
-  <!-- HƯỚNG DẪN CÀI ĐẶT ANDROID CHI TIẾT -->
+  <!-- HƯỚNG DẪN CÀI ĐẶT ANDROID CHI TIẾT (APK ONLY) -->
   <section class="install-guide-section" id="install-guide">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Hướng Dẫn Cài Đặt Trên Android</h2>
-        <p class="section-desc">2 phương thức cài đặt nhanh chóng chỉ trong 3 bước - Xem phim ngay sau 30 giây</p>
+        <h2 class="section-title">Hướng Dẫn Cài Đặt File APK Trên Android</h2>
+        <p class="section-desc">Chỉ 3 bước đơn giản trong 30 giây - Đã quét bảo mật an toàn 100%, không chứa mã độc</p>
       </div>
 
-      <div class="guide-tabs">
-        <button class="guide-tab-btn active" id="gtab-play" onclick="switchGuide('play')">
-          <i data-lucide="play" style="width: 18px; height: 18px; color: #22c55e;"></i>
-          <span>Cách 1: Cài Qua Google Play Store</span>
-        </button>
-        <button class="guide-tab-btn" id="gtab-apk" onclick="switchGuide('apk')">
-          <i data-lucide="file-down" style="width: 18px; height: 18px; color: #38bdf8;"></i>
-          <span>Cách 2: Cài Trực Tiếp File .APK (Thử Nghiệm)</span>
-        </button>
-      </div>
-
-      <!-- Google Play Guide Cards -->
-      <div class="guide-cards-grid" id="guide-play-content">
-        <div class="guide-card">
-          <div class="step-number">1</div>
-          <h3 class="guide-card-title">Mở Trang Google Play</h3>
-          <p class="guide-card-text">Nhấn nút "Cài Đặt (Google Play)" trên website này để mở trang tải chính thức trên điện thoại Android của bạn.</p>
-          <div class="guide-tip">💡 Mẹo: Ứng dụng sẽ tự động chuyển hướng đến kho ứng dụng CH Play chính thống.</div>
-        </div>
-
-        <div class="guide-card">
-          <div class="step-number">2</div>
-          <h3 class="guide-card-title">Nhấn "Cài Đặt" (Install)</h3>
-          <p class="guide-card-text">Google Play sẽ tự động tải về và quét bảo mật Play Protect an toàn tuyệt đối trước
-            khi cài đặt vào máy.</p>
-          <div class="guide-tip">⚡ Dung lượng nhẹ chỉ ~38MB, cài xong trong tích tắc.</div>
-        </div>
-
-        <div class="guide-card">
-          <div class="step-number">3</div>
-          <h3 class="guide-card-title">Mở App & Nhận 100 Xu</h3>
-          <p class="guide-card-text">Khởi động PineDrama, đăng nhập nhanh qua Google hoặc số điện thoại để kích hoạt
-            ngay 100 Xu xem trọn bộ VIP!</p>
-          <div class="guide-tip">🎁 Gói quà tân thủ tự động cộng vào tài khoản khi mở app lần đầu.</div>
-        </div>
-      </div>
-
-      <!-- APK Guide Cards -->
-      <div class="guide-cards-grid" id="guide-apk-content" style="display: none;">
+      <!-- APK Guide Cards Grid Direct -->
+      <div class="guide-cards-grid">
         <div class="guide-card">
           <div class="step-number">1</div>
           <h3 class="guide-card-title">Tải Gói Cài Đặt APK</h3>
-          <p class="guide-card-text">Bấm nút "Tải File .APK" để tải trực tiếp phiên bản thử nghiệm mới nhất
-            (v1.0.0-beta) về thư mục Download của máy.</p>
-          <div class="guide-tip">📥 Tốc độ tải trực tiếp tốc độ cao từ CDN trong nước.</div>
+          <p class="guide-card-text">Bấm nút "Tải File APK (38MB)" trên website. Trình duyệt Chrome/Cốc Cốc sẽ tải tệp
+            <strong>PineDrama_v1.0.0_beta.apk</strong> về máy.</p>
+          <div class="guide-tip">💡 Mẹo: Nếu thấy thông báo "Tệp có thể gây hại", hãy yên tâm chọn <strong>"Vẫn tải xuống"</strong> (cảnh báo mặc định của Android).</div>
         </div>
 
         <div class="guide-card">
           <div class="step-number">2</div>
           <h3 class="guide-card-title">Cho Phép Cài Nguồn Này</h3>
-          <p class="guide-card-text">Mở file APK vừa tải, nếu xuất hiện thông báo bảo mật, chọn "Cài đặt" và bật "Cho
-            phép từ nguồn này" trong cài đặt trình duyệt.</p>
-          <div class="guide-tip">🔒 File APK bản quyền được ký số an toàn từ Pine Studio, không virus.</div>
+          <p class="guide-card-text">Vuốt thanh thông báo mở file APK vừa tải. Nếu máy hỏi bảo mật, bấm <strong>"Cài đặt"</strong> và bật mục <strong>"Cho phép từ nguồn này"</strong>.</p>
+          <div class="guide-tip">🔒 File APK chính thức được ký số chứng thực an toàn từ Pine Studio Entertainment.</div>
         </div>
 
         <div class="guide-card">
           <div class="step-number">3</div>
-          <h3 class="guide-card-title">Xem Phim Thả Ga</h3>
-          <p class="guide-card-text">Quá trình cài hoàn tất trong 5 giây. Biểu tượng PineDrama sẽ xuất hiện ngay ngoài
-            màn hình chính điện thoại!</p>
-          <div class="guide-tip">🎬 Trải nghiệm phim chất lượng cao Full HD 60fps mượt mà.</div>
+          <h3 class="guide-card-title">Mở App & Nhận 100 Xu VIP</h3>
+          <p class="guide-card-text">Quá trình cài đặt hoàn tất sau 5 giây. Biểu tượng PineDrama xuất hiện ngay ngoài màn hình chính - mở app xem phim thả ga!</p>
+          <div class="guide-tip">🎁 Gói quà tân thủ 100 Xu tự động cộng vào tài khoản khi khởi động ứng dụng lần đầu.</div>
+        </div>
+      </div>
+
+      <!-- Hướng dẫn chi tiết cho từng dòng máy phổ biến -->
+      <div class="device-accordion">
+        <div class="device-accordion-title">
+          <i data-lucide="help-circle" style="width: 20px; height: 20px; color: #38bdf8;"></i>
+          <span>Mẹo cài đặt nhanh theo dòng máy của bạn:</span>
+        </div>
+        <div class="device-grid">
+          <div class="device-card">
+            <div class="device-card-header">
+              <i data-lucide="smartphone" style="width: 16px; height: 16px;"></i>
+              <span>Samsung (One UI)</span>
+            </div>
+            <div class="device-card-desc">
+              Khi thông báo bảo mật hiện lên, chọn <strong>Cài đặt</strong> -> Bật cần gạt tại <strong>Cho phép từ nguồn này</strong> cho trình duyệt (Chrome) -> Nhấn quay lại và chọn <strong>Cài đặt</strong>.
+            </div>
+          </div>
+
+          <div class="device-card">
+            <div class="device-card-header">
+              <i data-lucide="smartphone" style="width: 16px; height: 16px; color: #fb923c;"></i>
+              <span>Xiaomi / Redmi / POCO</span>
+            </div>
+            <div class="device-card-desc">
+              Khi màn hình hiện cảnh báo đếm ngược 10 giây: tích chọn ô <strong>"Tôi nhận thức được các rủi ro..."</strong> -> Bấm <strong>OK</strong> -> Nhấn <strong>Cài đặt</strong> hoàn tất.
+            </div>
+          </div>
+
+          <div class="device-card">
+            <div class="device-card-header">
+              <i data-lucide="smartphone" style="width: 16px; height: 16px; color: #a855f7;"></i>
+              <span>Oppo / Vivo / Realme</span>
+            </div>
+            <div class="device-card-desc">
+              Hệ điều hành sẽ quét virus bảo mật -> Chọn <strong>Tiếp tục cài đặt</strong> -> Nhập mã khóa màn hình của máy (nếu có yêu cầu) để cấp quyền cài.
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1647,14 +1747,14 @@
           <i data-lucide="play" style="width: 18px; height: 18px; fill: white; stroke: white;"></i>
         </div>
         <div>
-          <div style="font-size: 14px; font-weight: 800;">PineDrama Android</div>
-          <div style="font-size: 11px; color: #34d399;">Tặng ngay 100 Xu VIP</div>
+          <div style="font-size: 14px; font-weight: 800;">PineDrama APK</div>
+          <div style="font-size: 11px; color: #34d399;">v1.0.0 • Tặng 100 Xu VIP</div>
         </div>
       </div>
-      <a href="#store-preview" class="sticky-btn" onclick="triggerInstallAction()">
+      <button class="sticky-btn" onclick="simulateDirectDownload()" style="border: none; cursor: pointer;">
         <i data-lucide="download" style="width: 14px; height: 14px;"></i>
-        <span>Cài Ngay</span>
-      </a>
+        <span>Tải APK (38MB)</span>
+      </button>
     </div>
   </div>
 
@@ -1662,67 +1762,90 @@
   <footer>
     <div class="container">
       <p>© 2026 PineDrama Inc. Bản quyền thuộc về Pine Studio. All rights reserved.</p>
-      <p style="margin-top: 6px; font-size: 11px;">Mọi video ngắn đều được cấp phép bản quyền phát hành độc quyền trên
-        hệ thống Android.</p>
+      <p style="margin-top: 6px; font-size: 11px;">Mọi video ngắn đều được cấp phép bản quyền phát hành độc quyền trên ứng dụng PineDrama Android.</p>
     </div>
   </footer>
+
+  <!-- Download Toast Notification Element -->
+  <div class="download-toast" id="downloadToast">
+    <div class="toast-icon">
+      <i data-lucide="file-check" style="width: 22px; height: 22px;"></i>
+    </div>
+    <div class="toast-content">
+      <h4 id="toastTitle">Đang Tải PineDrama APK...</h4>
+      <p id="toastDesc">Gói cài đặt 38MB đang được tải về điện thoại.</p>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Guide Tab Switch (Google Play vs APK)
-    function switchGuide(type) {
-      const gtabPlay = document.getElementById('gtab-play');
-      const gtabApk = document.getElementById('gtab-apk');
-      const guidePlay = document.getElementById('guide-play-content');
-      const guideApk = document.getElementById('guide-apk-content');
-
-      if (type === 'play') {
-        gtabPlay.classList.add('active');
-        gtabApk.classList.remove('active');
-        guidePlay.style.display = 'grid';
-        guideApk.style.display = 'none';
-      } else {
-        gtabApk.classList.add('active');
-        gtabPlay.classList.remove('active');
-        guidePlay.style.display = 'none';
-        guideApk.style.display = 'grid';
-      }
-      lucide.createIcons();
-    }
-
-    // Trigger Install Simulation
-    function triggerInstallAction() {
+    // Trigger Direct APK Download Simulation
+    function simulateDirectDownload() {
       const btn = document.getElementById('btn-main-install');
       const span = document.getElementById('install-btn-text');
 
-      span.innerText = 'Đang kết nối Google Play...';
-      btn.style.opacity = '0.7';
+      if (btn && span) {
+        span.innerText = 'ĐANG TẢI GÓI APK... (38MB)';
+        btn.style.opacity = '0.8';
+        btn.style.pointerEvents = 'none';
+      }
 
+      // Show Toast Notification
+      showDownloadToast('Đang Tải PineDrama_v1.0.0_beta.apk', 'Vui lòng kiểm tra thanh thông báo để mở file cài đặt.');
+
+      // Simulate APK File Download in Browser
       setTimeout(() => {
-        span.innerText = 'ĐÃ BẮT ĐẦU CÀI ĐẶT';
-        btn.style.opacity = '1';
-        btn.style.background = '#00a86b';
-        simulateDirectDownload();
-      }, 700);
+        const dummyApkContent = "PineDrama Android APK Package - Version 1.0.0-Beta (Simulation)";
+        const blob = new Blob([dummyApkContent], { type: "application/vnd.android.package-archive" });
+        const downloadUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = downloadUrl;
+        a.download = "PineDrama_v1.0.0_beta.apk";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+
+        if (btn && span) {
+          span.innerText = 'ĐÃ TẢI XONG • BẤM ĐỂ CÀI ĐẶT';
+          btn.style.opacity = '1';
+          btn.style.pointerEvents = 'auto';
+          btn.style.background = '#00a86b';
+        }
+
+        showDownloadToast('Tải Hoàn Tất! (38.2 MB)', 'Chạm vào tệp vừa tải để cài đặt PineDrama ngay.');
+      }, 1000);
     }
 
-    function simulateDirectDownload() {
-      alert('Đang bắt đầu tải gói cài đặt PineDrama_v1.0.0_beta.apk! Vui lòng kiểm tra thanh thông báo tải xuống trên thiết bị Android của bạn.');
+    function showDownloadToast(title, desc) {
+      const toast = document.getElementById('downloadToast');
+      const toastTitle = document.getElementById('toastTitle');
+      const toastDesc = document.getElementById('toastDesc');
+
+      if (toast && toastTitle && toastDesc) {
+        toastTitle.innerText = title;
+        toastDesc.innerText = desc;
+        toast.classList.add('show');
+
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4500);
+      }
     }
 
     function shareApp() {
       if (navigator.share) {
         navigator.share({
-          title: 'PineDrama - App Phim Ngắn Android Đỉnh Cao',
-          text: 'Tải ngay app PineDrama bản thử nghiệm Android để xem hàng trăm bộ phim ngắn kịch tính và nhận 100 Xu miễn phí!',
+          title: 'PineDrama - App Phim Ngắn Android Đỉnh Cao (APK)',
+          text: 'Tải ngay app PineDrama bản thử nghiệm APK để xem hàng trăm bộ phim ngắn kịch tính và nhận 100 Xu miễn phí!',
           url: window.location.href,
         }).catch(() => { });
       } else {
         navigator.clipboard.writeText(window.location.href);
-        alert('Đã sao chép liên kết tải app Android vào bộ nhớ tạm!');
+        showDownloadToast('Đã sao chép liên kết!', 'Link tải APK PineDrama đã được lưu vào bộ nhớ tạm.');
       }
     }
   </script>
