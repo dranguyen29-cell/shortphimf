@@ -6212,7 +6212,17 @@
 
     function exportCustomReport(type) {
       const modeLabel = currentReportTimeMode === 'day' ? 'KhoangNgay_20260810_20260820' : 'Thang_202608';
-      alert(`📥 XUẤT TẬP TIN BÁO CÁO CHI TIẾT THÀNH CÔNG!\n\n• Tên tệp: PineDrama_Detailed_Metrics_${modeLabel}.xlsx\n• Định dạng: Microsoft Excel (.xlsx)\n• Nội dung bao gồm:\n  + Sheet 1: Hiệu suất từng bộ phim (Views, Likes, Share, Drop-off, Watch Time)\n  + Sheet 2: Chỉ số Giữ chân người dùng & Thời lượng tương tác theo kỳ lọc\n  + Sheet 3: Tỉ lệ lượt xem phân bổ Thể Loại\n• Tệp đã được lưu vào mục 'Lịch Sử Xuất File & Logs'.`);
+      const fileName = `PineDrama_Detailed_Metrics_${modeLabel}.xlsx`;
+      
+      // Kích hoạt tải trực tiếp file template Excel thực tế
+      const downloadLink = document.createElement('a');
+      downloadLink.href = 'Template_Xuat_Bao_Cao_Thong_Ke_PineDrama.xlsx';
+      downloadLink.setAttribute('download', fileName);
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+
+      alert(`📥 XUẤT TẬP TIN BÁO CÁO CHI TIẾT THÀNH CÔNG!\n\n• Tên tệp đã tải: ${fileName}\n• Định dạng: Microsoft Excel (.xlsx)\n• Nội dung bao gồm:\n  + Sheet 1: Hiệu suất từng bộ phim (Views, Likes, Share, Drop-off, Watch Time)\n  + Sheet 2: Chỉ số Giữ chân người dùng & Thời lượng tương tác theo kỳ lọc\n  + Sheet 3: Tỉ lệ lượt xem phân bổ Thể Loại\n  + Sheet 4: Từ điển dữ liệu & Công thức tính toán chuẩn BA/Product Owner\n• Tệp đã được tự động lưu về máy.`);
     }
 
     // ==========================================
