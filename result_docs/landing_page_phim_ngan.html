@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>PineDrama - Ứng Dụng Phim Ngắn Đỉnh Cao | Tải File APK Android</title>
+  <title>PineDrama - Nền Tảng Phim Ngắn Đa Thiết Bị | Xem Trên Web & Tải App Android</title>
   <meta name="description"
-    content="Xem hàng ngàn bộ phim ngắn kịch tính, định dạng 9:16 sắc nét. Tải app PineDrama file APK phiên bản thử nghiệm cho Android để trải nghiệm xem phim không giới hạn!">
+    content="Xem hàng ngàn bộ phim ngắn kịch tính chuẩn 9:16 sắc nét. Thưởng thức trực tiếp trên trình duyệt Web không cần cài đặt hoặc tải App PineDrama APK cho Android để trải nghiệm vuốt chạm 120Hz mượt mà!">
 
   <!-- Google Fonts & Lucide Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,16 +124,22 @@
       z-index: 100;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(10, 10, 15, 0.75);
+      background: rgba(10, 10, 15, 0.85);
       border-bottom: 1px solid var(--border-color);
       transition: all 0.3s ease;
+    }
+
+    header .container {
+      max-width: 1380px;
+      padding: 0 24px;
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 70px;
+      height: 72px;
+      gap: 16px;
     }
 
     .logo-box {
@@ -142,6 +148,15 @@
       gap: 12px;
       text-decoration: none;
       color: #fff;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .logo-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
     }
 
     .logo-icon {
@@ -153,6 +168,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+      flex-shrink: 0;
     }
 
     .logo-text {
@@ -162,27 +178,30 @@
       background: linear-gradient(to right, #fff, #cbd5e1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      white-space: nowrap;
     }
 
     .logo-badge {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       background: rgba(1, 135, 95, 0.2);
       color: #34d399;
       border: 1px solid rgba(1, 135, 95, 0.4);
-      padding: 2px 8px;
-      border-radius: 6px;
-      margin-left: 6px;
-      vertical-align: middle;
+      padding: 3px 9px;
+      border-radius: 8px;
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      justify-content: center;
+      gap: 22px;
+      margin: 0 auto;
+      flex-shrink: 1;
     }
 
     .nav-link {
@@ -190,7 +209,9 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
+      white-space: nowrap; /* Bắt buộc trên 1 dòng duy nhất */
       transition: color 0.2s;
+      padding: 6px 4px;
     }
 
     .nav-link:hover {
@@ -200,21 +221,36 @@
     .btn-header-cta {
       background: var(--android-gradient);
       color: #fff;
-      padding: 10px 20px;
+      padding: 9px 18px;
       border-radius: 30px;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
+      white-space: nowrap; /* Bắt buộc trên 1 dòng duy nhất */
       box-shadow: 0 4px 14px rgba(1, 135, 95, 0.35);
       transition: transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
     }
 
     .btn-header-cta:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(1, 135, 95, 0.5);
+    }
+
+    @media (max-width: 1200px) {
+      .nav-links {
+        gap: 14px;
+      }
+      .nav-link {
+        font-size: 13px;
+      }
+      .btn-header-cta {
+        padding: 8px 14px;
+        font-size: 12.5px;
+      }
     }
 
     /* Hero Section */
@@ -1203,6 +1239,714 @@
       gap: 6px;
     }
 
+    /* ==========================================================
+       CROSS-PLATFORM & WEB EDITION STYLING
+       ========================================================== */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .btn-header-web {
+      background: rgba(255, 51, 102, 0.12);
+      border: 1px solid rgba(255, 51, 102, 0.4);
+      color: #ff6b8b;
+      padding: 9px 18px;
+      border-radius: 30px;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap; /* Bắt buộc trên 1 dòng duy nhất */
+      transition: all 0.25s ease;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    .btn-header-web:hover {
+      background: rgba(255, 51, 102, 0.25);
+      border-color: #ff3366;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(255, 51, 102, 0.35);
+    }
+
+    @media (max-width: 1200px) {
+      .btn-header-web {
+        padding: 8px 14px;
+        font-size: 12.5px;
+      }
+    }
+
+    /* Web Hero CTA */
+    .web-hero-btn {
+      background: linear-gradient(135deg, rgba(255, 51, 102, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%) !important;
+      border: 1.5px solid #ff3366 !important;
+      box-shadow: 0 8px 30px rgba(255, 51, 102, 0.35), inset 0 0 15px rgba(255, 51, 102, 0.15) !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .web-hero-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transform: rotate(30deg);
+      animation: shineLight 4s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes shineLight {
+      0% { transform: translate(-100%, -100%) rotate(30deg); }
+      100% { transform: translate(100%, 100%) rotate(30deg); }
+    }
+
+    .web-hero-btn:hover {
+      background: linear-gradient(135deg, rgba(255, 51, 102, 0.35) 0%, rgba(139, 92, 246, 0.35) 100%) !important;
+      border-color: #ff6b8b !important;
+      box-shadow: 0 12px 35px rgba(255, 51, 102, 0.5), 0 0 25px rgba(255, 51, 102, 0.4) !important;
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .cta-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .web-icon-box {
+      background: rgba(255, 51, 102, 0.2);
+      border: 1px solid rgba(255, 51, 102, 0.4);
+    }
+
+    .android-icon-box {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+
+    /* Cross Platform Ecosystem Section */
+    .cross-platform-section {
+      padding: 60px 0 80px;
+      position: relative;
+    }
+
+    .platform-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .platform-card {
+      background: #12121a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 36px 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7);
+    }
+
+    .platform-card.web-card {
+      border-color: rgba(255, 51, 102, 0.35);
+      background: linear-gradient(180deg, rgba(255, 51, 102, 0.05) 0%, rgba(18, 18, 26, 0.95) 100%);
+    }
+
+    .platform-card.web-card:hover {
+      border-color: rgba(255, 51, 102, 0.7);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 51, 102, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .platform-card.app-card {
+      border-color: rgba(1, 135, 95, 0.35);
+      background: linear-gradient(180deg, rgba(1, 135, 95, 0.06) 0%, rgba(18, 18, 26, 0.95) 100%);
+    }
+
+    .platform-card.app-card:hover {
+      border-color: rgba(1, 135, 95, 0.7);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(1, 135, 95, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .badge-web {
+      background: rgba(255, 51, 102, 0.15);
+      color: #ff6b8b;
+      border: 1px solid rgba(255, 51, 102, 0.3);
+    }
+
+    .badge-app {
+      background: rgba(1, 135, 95, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(1, 135, 95, 0.3);
+    }
+
+    .platform-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .platform-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Device Preview Mockups Inside Platform Card */
+    .device-preview-box {
+      background: #0a0a0f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #171722;
+      border-radius: 10px;
+      padding: 8px 12px;
+      margin-bottom: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .browser-url {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4px 12px;
+      border-radius: 6px;
+      flex: 1;
+      font-size: 11px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preview-screen-content {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: #14141e;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .preview-video-thumb {
+      width: 100px;
+      height: 130px;
+      border-radius: 8px;
+      object-fit: cover;
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .feature-check-list {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .feature-check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #e2e8f0;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .feature-check-list li i {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .btn-card-action {
+      width: 100%;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn-card-web {
+      background: var(--primary-gradient);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(255, 51, 102, 0.4);
+    }
+
+    .btn-card-web:hover {
+      box-shadow: 0 8px 25px rgba(255, 51, 102, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .btn-card-app {
+      background: var(--android-gradient);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(1, 135, 95, 0.4);
+    }
+
+    .btn-card-app:hover {
+      box-shadow: 0 8px 25px rgba(1, 135, 95, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* Seamless Cloud Sync Banner */
+    .sync-banner {
+      background: linear-gradient(135deg, rgba(255, 51, 102, 0.12) 0%, rgba(56, 189, 248, 0.12) 50%, rgba(1, 135, 95, 0.12) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 30px;
+      margin: 40px auto 0;
+      max-width: 1050px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .sync-icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff3366 0%, #38bdf8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 6px 20px rgba(255, 51, 102, 0.35);
+    }
+
+    .sync-content h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .sync-content p {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* INTERACTIVE WEB DEMO PLAYER SECTION */
+    .interactive-web-section {
+      padding: 60px 0 80px;
+      background: linear-gradient(180deg, rgba(18, 18, 26, 0.7) 0%, rgba(10, 10, 15, 0.95) 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .web-demo-container {
+      background: #111118;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 51, 102, 0.12);
+    }
+
+    .web-demo-navbar {
+      background: #171722;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .web-demo-body {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 30px;
+      padding: 30px;
+    }
+
+    /* Mini Vertical Video Player on Web */
+    .interactive-player-card {
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      max-height: 540px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 51, 102, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .player-video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: background 0.4s ease;
+      z-index: 1;
+    }
+
+    .player-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+      z-index: 2;
+    }
+
+    .player-top-info {
+      position: relative;
+      z-index: 3;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .live-web-badge {
+      background: rgba(255, 51, 102, 0.85);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .player-center-play {
+      position: relative;
+      z-index: 3;
+      margin: auto;
+      cursor: pointer;
+    }
+
+    .play-trigger-btn {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 51, 102, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(255, 51, 102, 0.8);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .play-trigger-btn:hover {
+      transform: scale(1.12);
+      background: #ff3366;
+    }
+
+    .player-bottom-controls {
+      position: relative;
+      z-index: 3;
+      padding: 16px;
+    }
+
+    .player-progress-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .player-progress-fill {
+      width: 45%;
+      height: 100%;
+      background: #ff3366;
+      border-radius: 4px;
+      box-shadow: 0 0 8px #ff3366;
+      transition: width 0.3s;
+    }
+
+    .player-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .player-ctrl-btns {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ctrl-icon-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ctrl-icon-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.1);
+    }
+
+    /* Web Demo Playlist & Info Column */
+    .web-demo-info-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .web-film-header h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .web-film-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .web-film-tag {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .web-episodes-wrap {
+      margin: 20px 0;
+    }
+
+    .episodes-title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 10px;
+      max-height: 180px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .episode-btn {
+      background: #181824;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 10px 0;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .episode-btn:hover {
+      background: rgba(255, 51, 102, 0.15);
+      border-color: #ff3366;
+      color: #fff;
+    }
+
+    .episode-btn.active {
+      background: var(--primary-gradient);
+      color: #fff;
+      border-color: #ff3366;
+      box-shadow: 0 4px 12px rgba(255, 51, 102, 0.4);
+    }
+
+    .web-cta-launch-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .web-launch-btn {
+      background: var(--primary-gradient);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(255, 51, 102, 0.4);
+      transition: all 0.2s;
+    }
+
+    .web-launch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 51, 102, 0.6);
+    }
+
+    /* Drama Card Action Buttons */
+    .drama-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .drama-btn-action {
+      flex: 1;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 7px 0;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .drama-btn-web {
+      background: rgba(255, 51, 102, 0.15);
+      border: 1px solid rgba(255, 51, 102, 0.35);
+      color: #ff6b8b;
+    }
+
+    .drama-btn-web:hover {
+      background: #ff3366;
+      color: #fff;
+    }
+
+    .drama-btn-app {
+      background: rgba(1, 135, 95, 0.15);
+      border: 1px solid rgba(1, 135, 95, 0.35);
+      color: #34d399;
+    }
+
+    .drama-btn-app:hover {
+      background: #01875f;
+      color: #fff;
+    }
+
+    /* Sticky Bar Dual Buttons */
+    .sticky-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sticky-web-btn {
+      background: rgba(255, 51, 102, 0.18);
+      border: 1px solid rgba(255, 51, 102, 0.4);
+      color: #ff6b8b;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Media Queries */
+    @media (max-width: 992px) {
+      .platform-cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .web-demo-body {
+        grid-template-columns: 1fr;
+      }
+
+      .interactive-player-card {
+        max-width: 340px;
+        margin: 0 auto;
+      }
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border-color);
@@ -1302,20 +2046,30 @@
           <div class="logo-icon">
             <i data-lucide="play" style="fill: white; stroke: white; width: 20px; height: 20px;"></i>
           </div>
-          <span class="logo-text">PineDrama</span>
+          <div class="logo-brand-wrap">
+            <span class="logo-text">PineDrama</span>
+            <span class="logo-badge"><i data-lucide="layers" style="width: 11px; height: 11px;"></i> Web & App</span>
+          </div>
         </a>
 
         <nav class="nav-links">
+          <a href="#cross-platform" class="nav-link">Đa Nền Tảng</a>
+          <a href="#web-demo-section" class="nav-link">Trải Nghiệm Web</a>
           <a href="#store-preview" class="nav-link">Cổng Tải APK</a>
-          <a href="#install-guide" class="nav-link">Hướng Dẫn Cài Đặt</a>
           <a href="#hot-dramas" class="nav-link">Phim Thịnh Hành</a>
-          <a href="#reviews" class="nav-link">Đánh Giá</a>
+          <a href="#install-guide" class="nav-link">Hướng Dẫn Cài</a>
         </nav>
 
-        <a href="#store-preview" class="btn-header-cta" onclick="simulateDirectDownload()">
-          <i data-lucide="download" style="width: 16px; height: 16px;"></i>
-          <span>Tải File APK</span>
-        </a>
+        <div class="header-actions">
+          <a href="wireframe_web_interactive.html" target="_blank" class="btn-header-web" title="Xem ngay trên trình duyệt web">
+            <i data-lucide="globe" style="width: 15px; height: 15px;"></i>
+            <span>Xem Bản Web</span>
+          </a>
+          <a href="#store-preview" class="btn-header-cta" onclick="simulateDirectDownload()">
+            <i data-lucide="download" style="width: 15px; height: 15px;"></i>
+            <span>Tải App APK</span>
+          </a>
+        </div>
       </div>
     </div>
   </header>
@@ -1325,44 +2079,360 @@
     <div class="container">
       <div class="hero-tag">
         <span class="dot"></span>
-        <span>🎉 Phiên Bản Thử Nghiệm Android 1.0.0 (APK) - Trải Nghiệm Mượt Mà</span>
+        <span>✨ Đa Nền Tảng: Đã Sẵn Sàng Trên Cả Trình Duyệt Web & Ứng Dụng Di Động Android</span>
       </div>
 
       <h1 class="hero-title">
         Thế Giới Phim Ngắn Đỉnh Cao<br>
-        <span class="gradient-text">Cuốn Hút Trong Từng Giây</span>
+        <span class="gradient-text">Xem Ngay Trên Cả Web & App</span>
       </h1>
 
       <p class="hero-subtitle">
-        Trải nghiệm kho phim dọc chuẩn 9:16 kịch tính trên điện thoại Android: Tổng tài, Trọng sinh, Ngôn tình, Gia
-        đấu...
-        Mỗi tập chỉ 1 - 2 phút, xem mượt mà mọi lúc mọi nơi!
+        Trải nghiệm kho phim dọc chuẩn 9:16 kịch tính: Tổng tài, Trọng sinh, Hào môn thế gia, Chiến thần...
+        <strong>Xem trực tiếp tức thì trên Web</strong> (không cần cài đặt) hoặc <strong>cài App Android</strong> để vuốt mượt mà 120Hz mọi lúc mọi nơi!
       </p>
 
-      <!-- Fast Store Buttons for Android (APK Only) -->
+      <!-- Fast Store Buttons for Android & Web -->
       <div class="hero-cta-group">
-        <button class="store-badge-btn primary-store" onclick="simulateDirectDownload()" style="background: linear-gradient(135deg, #01875f 0%, #00a86b 100%); border-color: #34d399; box-shadow: 0 8px 24px rgba(1, 135, 95, 0.45);">
-          <i data-lucide="file-down" style="width: 32px; height: 32px; color: #ffffff;"></i>
-          <div>
-            <div class="subtext" style="color: #d1fae5;">Tải Trực Tiếp Cho Android</div>
-            <div class="maintext">Tải File APK (38MB)</div>
+        <!-- Web CTA -->
+        <a href="wireframe_web_interactive.html" target="_blank" class="store-badge-btn web-hero-btn">
+          <div class="cta-icon-box web-icon-box">
+            <i data-lucide="globe" style="width: 26px; height: 26px; color: #ff3366;"></i>
           </div>
-        </button>
-
-        <a href="#install-guide" class="store-badge-btn" style="text-decoration: none;">
-          <i data-lucide="help-circle" style="width: 28px; height: 28px; color: #38bdf8;"></i>
           <div>
-            <div class="subtext">Chỉ 3 Bước Đơn Giản</div>
-            <div class="maintext">Hướng Dẫn Cài Đặt</div>
+            <div class="subtext" style="color: #fca5a5;">Không Cần Cài Đặt • Bấm Xem Ngay</div>
+            <div class="maintext" style="display: flex; align-items: center; gap: 6px;">
+              Xem Trên Trình Duyệt Web <i data-lucide="arrow-up-right" style="width: 16px; height: 16px; color: #ff6b8b;"></i>
+            </div>
           </div>
         </a>
+
+        <!-- Android APK CTA -->
+        <button class="store-badge-btn primary-store" onclick="simulateDirectDownload()" style="background: linear-gradient(135deg, #01875f 0%, #00a86b 100%); border-color: #34d399; box-shadow: 0 8px 24px rgba(1, 135, 95, 0.45);">
+          <div class="cta-icon-box android-icon-box">
+            <i data-lucide="file-down" style="width: 26px; height: 26px; color: #ffffff;"></i>
+          </div>
+          <div>
+            <div class="subtext" style="color: #d1fae5;">Gói Cài Đặt Android (38MB)</div>
+            <div class="maintext">Tải App PineDrama APK</div>
+          </div>
+        </button>
       </div>
 
       <div class="hero-perks">
-        <span><i data-lucide="check-circle" style="width: 16px; height: 16px;"></i> Miễn phí 100% khi tải</span>
-        <span><i data-lucide="smartphone" style="width: 16px; height: 16px;"></i> Tương thích Android 8.0+</span>
-        <span><i data-lucide="zap" style="width: 16px; height: 16px;"></i> Full HD 1080p 60fps</span>
-        <span><i data-lucide="shield-check" style="width: 16px; height: 16px;"></i> Quét an toàn 100% (Clean APK)</span>
+        <span><i data-lucide="globe" style="width: 16px; height: 16px; color: #ff3366;"></i> Chạy mượt trên mọi trình duyệt Web (PC/Mobile)</span>
+        <span><i data-lucide="smartphone" style="width: 16px; height: 16px; color: #10b981;"></i> App Android vuốt mượt, tải xem Offline</span>
+        <span><i data-lucide="refresh-cw" style="width: 16px; height: 16px; color: #38bdf8;"></i> Đồng bộ tài khoản & lịch sử xem tức thì</span>
+        <span><i data-lucide="check-circle" style="width: 16px; height: 16px; color: #f59e0b;"></i> Hoàn toàn miễn phí, Full HD 1080p</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-PLATFORM SHOWCASE SECTION -->
+  <section class="cross-platform-section" id="cross-platform">
+    <div class="container">
+      <div class="section-header">
+        <div class="android-platform-pill" style="background: rgba(255, 51, 102, 0.12); border-color: rgba(255, 51, 102, 0.3); color: #ff6b8b;">
+          <i data-lucide="monitor-smartphone" style="width: 16px; height: 16px;"></i>
+          <span>Hệ Sinh Thái Đa Nền Tảng Liền Mạch</span>
+        </div>
+        <h2 class="section-title">Một Nền Tảng - Hai Lựa Chọn Thưởng Thức Đỉnh Cao</h2>
+        <p class="section-desc">Linh hoạt thưởng thức phim ngắn chất lượng cao theo đúng thói quen và thiết bị yêu thích của bạn</p>
+      </div>
+
+      <!-- 2 Platform Comparison Cards -->
+      <div class="platform-cards-grid">
+        <!-- PLATFORM 1: WEB EDITION -->
+        <div class="platform-card web-card">
+          <div>
+            <div class="platform-badge badge-web">
+              <i data-lucide="globe" style="width: 14px; height: 14px;"></i>
+              <span>Nền Tảng Web Trực Tuyến</span>
+            </div>
+            <h3 class="platform-title">PineDrama Web Portal<br><span style="color: #ff6b8b; font-size: 20px;">Xem Ngay Không Cần Cài Đặt</span></h3>
+            <p class="platform-desc">
+              Thích hợp cho người dùng muốn xem phim nhanh chóng trên máy tính, laptop, iPad hoặc trình duyệt điện thoại mà không cần tốn dung lượng lưu trữ của máy.
+            </p>
+
+            <!-- Browser Mockup -->
+            <div class="device-preview-box">
+              <div class="browser-bar">
+                <div class="store-dots">
+                  <div class="store-dot dot-red"></div>
+                  <div class="store-dot dot-yellow"></div>
+                  <div class="store-dot dot-green"></div>
+                </div>
+                <div class="browser-url">
+                  <i data-lucide="lock" style="width: 11px; height: 11px; color: #10b981;"></i>
+                  <span>https://pinedrama.vn/watch/tong-tai-bac-ty</span>
+                </div>
+                <i data-lucide="external-link" style="width: 14px; height: 14px; color: #94a3b8;"></i>
+              </div>
+              <div class="preview-screen-content">
+                <div class="preview-video-thumb" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('images/poster_ceo.jpg') center/cover no-repeat;">
+                  <div style="background: rgba(255, 51, 102, 0.9); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="play" style="width: 14px; height: 14px; fill: #fff; stroke: #fff;"></i>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">🎬 Tổng Tài Bạc Tỷ - Tập 01</div>
+                  <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">Đang phát trên Chrome / Safari / Edge</div>
+                  <div style="font-size: 11px; color: #34d399; font-weight: 600;">⚡ Tự động chuyển tập • Phím tắt Spacebar</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Features Checklist -->
+            <ul class="feature-check-list">
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
+                <span><strong>Zero-Install:</strong> Không tốn bất kỳ MB bộ nhớ nào, mở link là xem được ngay lập tức.</span>
+              </li>
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
+                <span><strong>Màn hình lớn:</strong> Thưởng thức trọn vẹn trên PC, Laptop, Tablet với chế độ Rạp phim (Theater Mode).</span>
+              </li>
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
+                <span><strong>Chia sẻ dễ dàng:</strong> Gửi link từng tập phim trực tiếp qua Zalo, Messenger, Facebook cực nhanh.</span>
+              </li>
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
+                <span><strong>Điều khiển bàn phím:</strong> Dùng Spacebar dừng/phát, mũi tên điều hướng và chuyển tập liền mạch.</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="wireframe_web_interactive.html" target="_blank" class="btn-card-action btn-card-web">
+            <i data-lucide="globe" style="width: 18px; height: 18px;"></i>
+            <span>Mở Bản Web PineDrama Ngay</span>
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </div>
+
+        <!-- PLATFORM 2: ANDROID APP (APK) -->
+        <div class="platform-card app-card">
+          <div>
+            <div class="platform-badge badge-app">
+              <i data-lucide="smartphone" style="width: 14px; height: 14px;"></i>
+              <span>Ứng Dụng Di Động Android</span>
+            </div>
+            <h3 class="platform-title">PineDrama Mobile App<br><span style="color: #34d399; font-size: 20px;">Trải Nghiệm Vuốt Chạm 120Hz</span></h3>
+            <p class="platform-desc">
+              Dành cho người dùng thường xuyên xem phim trên điện thoại, yêu thích thao tác vuốt dọc mượt mà như TikTok và muốn tải phim xem khi không có mạng.
+            </p>
+
+            <!-- Mobile App Mockup -->
+            <div class="device-preview-box">
+              <div class="browser-bar" style="background: #14221d;">
+                <i data-lucide="wifi" style="width: 13px; height: 13px; color: #34d399;"></i>
+                <span style="font-size: 11px; color: #6ee7b7; font-weight: 700;">PineDrama Android App Native • 60-120fps</span>
+                <span style="margin-left: auto; font-size: 11px; color: #34d399; font-weight: 800;">100% PIN</span>
+              </div>
+              <div class="preview-screen-content" style="background: #0f1b16;">
+                <div class="preview-video-thumb" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('images/poster_revenge.jpg') center/cover no-repeat;">
+                  <div style="background: rgba(1, 135, 95, 0.9); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="smartphone" style="width: 14px; height: 14px; color: #fff;"></i>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">🔥 Trọng Sinh Trả Thù - Top 1 Hot</div>
+                  <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">Vuốt lên để xem tập tiếp theo</div>
+                  <div style="font-size: 11px; color: #34d399; font-weight: 600;">📥 Đã lưu ngoại tuyến • Xem không cần 4G</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Features Checklist -->
+            <ul class="feature-check-list">
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
+                <span><strong>Thao tác vuốt chuẩn TikTok:</strong> Cử chỉ lướt chuyển tập tức thì không độ trễ, đạt chuẩn 60-120fps.</span>
+              </li>
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
+                <span><strong>Tải xem ngoại tuyến (Offline):</strong> Tải toàn bộ các tập về máy xem trên máy bay, tàu xe không tốn 4G.</span>
+              </li>
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
+                <span><strong>Thông báo tập mới (Push Notification):</strong> Nhận chuông báo tức thì ngay khi phim ra tập mới.</span>
+              </li>
+              <li>
+                <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
+                <span><strong>Tiết kiệm pin & Siêu nhẹ:</strong> Gói APK chỉ 38MB, tối ưu phần cứng cho Samsung, Xiaomi, Oppo...</span>
+              </li>
+            </ul>
+          </div>
+
+          <button onclick="simulateDirectDownload()" class="btn-card-action btn-card-app">
+            <i data-lucide="download" style="width: 18px; height: 18px;"></i>
+            <span>Tải File APK Cho Android (38MB)</span>
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cloud Sync Banner -->
+      <div class="sync-banner">
+        <div class="sync-icon-circle">
+          <i data-lucide="refresh-cw" style="width: 28px; height: 28px;"></i>
+        </div>
+        <div class="sync-content">
+          <h3>Đồng Bộ Đám Mây Xuyên Suốt Giữa Web & App</h3>
+          <p>
+            Chỉ với một tài khoản PineDrama duy nhất, tiến trình xem phim, danh sách phim yêu thích và lịch sử mở khóa tập đều được lưu trữ đám mây. Bạn đang xem dở tập 12 trên máy tính công ty, về nhà mở điện thoại lên sẽ tiếp tục xem ngay từ giây tiếp theo mà không cần tua lại!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE WEB PLAYER DEMO SECTION -->
+  <section class="interactive-web-section" id="web-demo-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="android-platform-pill" style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;">
+          <i data-lucide="play-circle" style="width: 16px; height: 16px;"></i>
+          <span>Trải Nghiệm Trực Tiếp Ngay Tại Đây</span>
+        </div>
+        <h2 class="section-title">Trải Nghiệm Thử Trình Phát PineDrama Web</h2>
+        <p class="section-desc">Bấm chọn các tập bên dưới để trải nghiệm tốc độ tải phim cực nhanh và giao diện Web Player hiện đại</p>
+      </div>
+
+      <!-- Web Demo Frame -->
+      <div class="web-demo-container">
+        <!-- Top Browser Nav -->
+        <div class="web-demo-navbar">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="store-dot dot-red"></div>
+            <div class="store-dot dot-yellow"></div>
+            <div class="store-dot dot-green"></div>
+            <span style="font-size: 12px; color: var(--text-muted); margin-left: 10px; font-weight: 600;">PineDrama Web Player • Phiên bản Trình Duyệt v2.0</span>
+          </div>
+        </div>
+
+        <!-- Body Player & Info -->
+        <div class="web-demo-body">
+          <!-- Left: Mini Vertical Web Player -->
+          <div>
+            <div class="interactive-player-card">
+              <div class="player-video-bg" id="demoPlayerBg" style="background-image: url('images/poster_ceo.jpg');"></div>
+              <div class="player-video-overlay"></div>
+
+              <!-- Player Top Status -->
+              <div class="player-top-info">
+                <div class="live-web-badge">
+                  <i data-lucide="tv" style="width: 12px; height: 12px;"></i>
+                  <span id="demoEpBadge">TẬP 01 / 85</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 6px; font-size: 11px; color: #fff; font-weight: 700;">
+                  1080P 60FPS
+                </div>
+              </div>
+
+              <!-- Center Play Button -->
+              <div class="player-center-play">
+                <div class="play-trigger-btn" id="demoPlayBtn" onclick="toggleDemoPlay()">
+                  <i data-lucide="play" id="demoPlayIcon" style="width: 28px; height: 28px; fill: white; stroke: white; margin-left: 4px;"></i>
+                </div>
+              </div>
+
+              <!-- Bottom Controls -->
+              <div class="player-bottom-controls">
+                <div class="player-progress-bar" onclick="seekDemoProgress(event)">
+                  <div class="player-progress-fill" id="demoProgressFill" style="width: 35%;"></div>
+                </div>
+
+                <div class="player-actions-bar">
+                  <div style="font-size: 12px; color: #e2e8f0; font-weight: 600;">
+                    <span id="demoCurrentTime">00:42</span> / <span>02:15</span>
+                  </div>
+
+                  <div class="player-ctrl-btns">
+                    <button class="ctrl-icon-btn" onclick="prevDemoEpisode()" title="Tập trước">
+                      <i data-lucide="skip-back" style="width: 14px; height: 14px;"></i>
+                    </button>
+                    <button class="ctrl-icon-btn" onclick="nextDemoEpisode()" title="Tập sau">
+                      <i data-lucide="skip-forward" style="width: 14px; height: 14px;"></i>
+                    </button>
+                    <button class="ctrl-icon-btn" onclick="toggleMuteDemo(this)" title="Bật/Tắt âm thanh">
+                      <i data-lucide="volume-2" style="width: 14px; height: 14px;"></i>
+                    </button>
+                    <button class="ctrl-icon-btn" onclick="openFullWebPlayer()" title="Mở bản Web đầy đủ">
+                      <i data-lucide="maximize" style="width: 14px; height: 14px;"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 10px; font-size: 11px; color: var(--text-dim);">
+              💡 Dùng chuột click vào màn hình để Play/Pause hoặc bấm chọn các tập bên phải
+            </div>
+          </div>
+
+          <!-- Right: Film Metadata & Episode List -->
+          <div class="web-demo-info-col">
+            <div>
+              <div class="web-film-header">
+                <div style="font-size: 12px; color: #ff6b8b; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">
+                  Đang phát trực tiếp trên Web
+                </div>
+                <h3 id="demoFilmTitle">Tổng Tài Giấu Nghề Làm Rể</h3>
+                <div class="web-film-tags">
+                  <span class="web-film-tag">⭐ 4.9/5 (28.4k đánh giá)</span>
+                  <span class="web-film-tag">🔥 18.2M Lượt xem</span>
+                  <span class="web-film-tag">Đô Thị • Trọng Sinh • Hài Hước</span>
+                  <span class="web-film-tag" style="color: #34d399;">Đã Hoàn Thành (85 Tập)</span>
+                </div>
+                <p id="demoFilmDesc" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+                  Lâm Vũ - thiếu gia tập đoàn giàu nhất thành phố, giả làm một anh chàng shipper nghèo hèn để kết hôn cùng người trong mộng. Nào ngờ bị nhà vợ khinh khi chèn ép trăm bề cho đến ngày danh phận thực sự lộ diện...
+                </p>
+              </div>
+
+              <!-- Episodes Selection -->
+              <div class="web-episodes-wrap">
+                <div class="episodes-title-bar">
+                  <div style="font-size: 14px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 6px;">
+                    <i data-lucide="list" style="width: 16px; height: 16px; color: #ff3366;"></i>
+                    <span>Danh Sách Tập Phim (Bấm Để Chuyển Tập)</span>
+                  </div>
+                  <span style="font-size: 11px; color: #34d399;">● 100% Miễn Phí Trên Web</span>
+                </div>
+
+                <div class="episodes-grid" id="demoEpisodesGrid">
+                  <button class="episode-btn active" onclick="selectDemoEpisode(1)">Tập 01</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(2)">Tập 02</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(3)">Tập 03</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(4)">Tập 04</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(5)">Tập 05</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(6)">Tập 06</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(7)">Tập 07</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(8)">Tập 08</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(9)">Tập 09</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(10)">Tập 10</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(11)">Tập 11</button>
+                  <button class="episode-btn" onclick="selectDemoEpisode(12)">Tập 12</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Launch Full Web Edition Banner -->
+            <div class="web-cta-launch-box">
+              <div>
+                <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 2px;">
+                  Muốn Xem Toàn Bộ 500+ Bộ Phim Trên Web?
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted);">
+                  Trải nghiệm kho phim khổng lồ, tìm kiếm thông minh và giao diện Rạp Phim đẳng cấp.
+                </div>
+              </div>
+              <a href="wireframe_web_interactive.html" target="_blank" class="web-launch-btn">
+                <span>Vào Trình Duyệt Web Ngay</span>
+                <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1378,6 +2448,23 @@
         <h2 class="section-title">Cổng Tải Ứng Dụng PineDrama APK</h2>
         <p class="section-desc">Giao diện tải gói cài đặt trực tiếp tốc độ cao từ CDN Pine Studio - Hỗ trợ mọi dòng máy Android
         </p>
+      </div>
+
+      <!-- Web Edition Switcher Notice -->
+      <div style="background: linear-gradient(90deg, rgba(255, 51, 102, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid rgba(255, 51, 102, 0.35); border-radius: 16px; padding: 14px 24px; margin: 0 auto 28px; max-width: 920px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="background: rgba(255, 51, 102, 0.2); width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ff6b8b;">
+            <i data-lucide="monitor" style="width: 20px; height: 20px;"></i>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff;">Đang dùng máy tính hoặc không tiện cài app?</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Trải nghiệm trực tiếp trên trình duyệt Web với đầy đủ tính năng và không tốn bộ nhớ.</div>
+          </div>
+        </div>
+        <a href="wireframe_web_interactive.html" target="_blank" style="background: var(--primary-gradient); color: #fff; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(255, 51, 102, 0.4);">
+          <i data-lucide="globe" style="width: 14px; height: 14px;"></i>
+          <span>Mở Bản Web Ngay</span>
+        </a>
       </div>
 
       <!-- Mockup Card -->
@@ -1667,66 +2754,106 @@
 
       <div class="drama-grid">
         <!-- Film 1 -->
-        <div class="drama-item" onclick="simulateDirectDownload()">
-          <div class="drama-thumb drama-thumb-1">
+        <div class="drama-item">
+          <div class="drama-thumb drama-thumb-1" onclick="playDramaOnWeb(1)">
             <span class="episodes-badge">85 Tập • Đã Hoàn Thành</span>
             <div class="play-btn-circle">
               <i data-lucide="play"
                 style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
             </div>
-            <div style="font-size: 11px; color: #e2e8f0;">🔥 18.2M Lượt xem</div>
+            <div style="font-size: 11px; color: #e2e8f0; font-weight: 600;">🔥 18.2M Lượt xem</div>
           </div>
           <div class="drama-info">
             <div class="drama-title">Tổng Tài Giấu Nghề Làm Rể</div>
             <div class="drama-tags">Đô Thị • Trọng Sinh • Hài Hước</div>
+            <div class="drama-actions">
+              <button class="drama-btn-action drama-btn-web" onclick="playDramaOnWeb(1)">
+                <i data-lucide="globe" style="width: 12px; height: 12px;"></i>
+                <span>Xem Trên Web</span>
+              </button>
+              <button class="drama-btn-action drama-btn-app" onclick="simulateDirectDownload()">
+                <i data-lucide="download" style="width: 12px; height: 12px;"></i>
+                <span>Tải App Xem</span>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Film 2 -->
-        <div class="drama-item" onclick="simulateDirectDownload()">
-          <div class="drama-thumb drama-thumb-2">
+        <div class="drama-item">
+          <div class="drama-thumb drama-thumb-2" onclick="playDramaOnWeb(2)">
             <span class="episodes-badge">60 Tập • Đang Chiếu</span>
             <div class="play-btn-circle">
               <i data-lucide="play"
                 style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
             </div>
-            <div style="font-size: 11px; color: #e2e8f0;">🔥 14.5M Lượt xem</div>
+            <div style="font-size: 11px; color: #e2e8f0; font-weight: 600;">🔥 14.5M Lượt xem</div>
           </div>
           <div class="drama-info">
             <div class="drama-title">Đại Nữ Chủ Báo Thù Hào Môn</div>
             <div class="drama-tags">Ngôn Tình • Gia Đấu • Kịch Tính</div>
+            <div class="drama-actions">
+              <button class="drama-btn-action drama-btn-web" onclick="playDramaOnWeb(2)">
+                <i data-lucide="globe" style="width: 12px; height: 12px;"></i>
+                <span>Xem Trên Web</span>
+              </button>
+              <button class="drama-btn-action drama-btn-app" onclick="simulateDirectDownload()">
+                <i data-lucide="download" style="width: 12px; height: 12px;"></i>
+                <span>Tải App Xem</span>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Film 3 -->
-        <div class="drama-item" onclick="simulateDirectDownload()">
-          <div class="drama-thumb drama-thumb-3">
+        <div class="drama-item">
+          <div class="drama-thumb drama-thumb-3" onclick="playDramaOnWeb(3)">
             <span class="episodes-badge">92 Tập • Hoàn Tất</span>
             <div class="play-btn-circle">
               <i data-lucide="play"
                 style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
             </div>
-            <div style="font-size: 11px; color: #e2e8f0;">🔥 22.8M Lượt xem</div>
+            <div style="font-size: 11px; color: #e2e8f0; font-weight: 600;">🔥 22.8M Lượt xem</div>
           </div>
           <div class="drama-info">
             <div class="drama-title">Cô Vợ Thay Thế Của Lãnh Hàn</div>
             <div class="drama-tags">Tình Cảm • Ngọt Ngào • Sủng Ái</div>
+            <div class="drama-actions">
+              <button class="drama-btn-action drama-btn-web" onclick="playDramaOnWeb(3)">
+                <i data-lucide="globe" style="width: 12px; height: 12px;"></i>
+                <span>Xem Trên Web</span>
+              </button>
+              <button class="drama-btn-action drama-btn-app" onclick="simulateDirectDownload()">
+                <i data-lucide="download" style="width: 12px; height: 12px;"></i>
+                <span>Tải App Xem</span>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Film 4 -->
-        <div class="drama-item" onclick="simulateDirectDownload()">
-          <div class="drama-thumb drama-thumb-4">
+        <div class="drama-item">
+          <div class="drama-thumb drama-thumb-4" onclick="playDramaOnWeb(4)">
             <span class="episodes-badge">100 Tập • Hot Nhất</span>
             <div class="play-btn-circle">
               <i data-lucide="play"
                 style="width: 20px; height: 20px; fill: white; stroke: white; margin-left: 2px;"></i>
             </div>
-            <div style="font-size: 11px; color: #e2e8f0;">🔥 30.1M Lượt xem</div>
+            <div style="font-size: 11px; color: #e2e8f0; font-weight: 600;">🔥 30.1M Lượt xem</div>
           </div>
           <div class="drama-info">
             <div class="drama-title">Long Thần Xuất Sơn Vô Địch</div>
             <div class="drama-tags">Võ Thuật • Huyền Huyễn • Siêu Năng</div>
+            <div class="drama-actions">
+              <button class="drama-btn-action drama-btn-web" onclick="playDramaOnWeb(4)">
+                <i data-lucide="globe" style="width: 12px; height: 12px;"></i>
+                <span>Xem Trên Web</span>
+              </button>
+              <button class="drama-btn-action drama-btn-app" onclick="simulateDirectDownload()">
+                <i data-lucide="download" style="width: 12px; height: 12px;"></i>
+                <span>Tải App Xem</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1734,30 +2861,46 @@
     </div>
   </section>
 
-  <!-- Sticky Mobile Bar -->
+  <!-- Sticky Mobile Bar (Dual CTA: Web & App) -->
   <div class="mobile-sticky-cta">
     <div class="mobile-sticky-inner">
       <div class="sticky-app-info">
-        <div class="sticky-app-icon">
+        <div class="sticky-app-icon" style="background: var(--primary-gradient);">
           <i data-lucide="play" style="width: 18px; height: 18px; fill: white; stroke: white;"></i>
         </div>
         <div>
-          <div style="font-size: 14px; font-weight: 800;">PineDrama APK</div>
-          <div style="font-size: 11px; color: #34d399;">v1.0.0 • Xem phim Full HD</div>
+          <div style="font-size: 13px; font-weight: 800;">PineDrama Đa Nền Tảng</div>
+          <div style="font-size: 11px; color: #ff6b8b;">Web Trực Tuyến & App APK</div>
         </div>
       </div>
-      <button class="sticky-btn" onclick="simulateDirectDownload()" style="border: none; cursor: pointer;">
-        <i data-lucide="download" style="width: 14px; height: 14px;"></i>
-        <span>Tải APK (38MB)</span>
-      </button>
+      <div class="sticky-btn-group">
+        <a href="wireframe_web_interactive.html" target="_blank" class="sticky-web-btn" title="Xem trên trình duyệt">
+          <i data-lucide="globe" style="width: 13px; height: 13px;"></i>
+          <span>Xem Web</span>
+        </a>
+        <button class="sticky-btn" onclick="simulateDirectDownload()" style="border: none; cursor: pointer;">
+          <i data-lucide="download" style="width: 13px; height: 13px;"></i>
+          <span>Tải APK</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© 2026 PineDrama Inc. Bản quyền thuộc về Pine Studio. All rights reserved.</p>
-      <p style="margin-top: 6px; font-size: 11px;">Mọi video ngắn đều được cấp phép bản quyền phát hành độc quyền trên ứng dụng PineDrama Android.</p>
+      <div class="footer-links">
+        <a href="wireframe_web_interactive.html" target="_blank" style="color: #ff6b8b; font-weight: 700;">🌐 Xem Bản Web Trực Tuyến</a>
+        <a href="#cross-platform">Hệ Sinh Thái Đa Nền Tảng</a>
+        <a href="#web-demo-section">Trình Phát Thử Nghiệm</a>
+        <a href="#store-preview">Cổng Tải App APK</a>
+        <a href="#install-guide">Hướng Dẫn Cài Đặt Android</a>
+        <a href="#hot-dramas">Phim Thịnh Hành</a>
+      </div>
+      <p>© 2026 PineDrama Inc. Bản quyền thuộc về Pine Studio Entertainment. All rights reserved.</p>
+      <p style="margin-top: 6px; font-size: 12px; color: #94a3b8;">
+        Hệ sinh thái giải trí phim ngắn chất lượng cao: Trực tiếp trên nền tảng Web và Ứng dụng di động Android. Đồng bộ tức thì mọi lúc mọi nơi.
+      </p>
     </div>
   </footer>
 
@@ -1834,13 +2977,198 @@
     function shareApp() {
       if (navigator.share) {
         navigator.share({
-          title: 'PineDrama - App Phim Ngắn Android Đỉnh Cao (APK)',
-          text: 'Tải ngay app PineDrama bản thử nghiệm APK để thưởng thức hàng trăm bộ phim ngắn kịch tính chuẩn Full HD!',
+          title: 'PineDrama - Nền Tảng Phim Ngắn Đa Thiết Bị (Web & App)',
+          text: 'Thưởng thức hàng trăm bộ phim ngắn kịch tính chuẩn Full HD trên Web hoặc tải App APK Android ngay!',
           url: window.location.href,
         }).catch(() => { });
       } else {
         navigator.clipboard.writeText(window.location.href);
-        showDownloadToast('Đã sao chép liên kết!', 'Link tải APK PineDrama đã được lưu vào bộ nhớ tạm.');
+        showDownloadToast('Đã sao chép liên kết!', 'Link PineDrama (Web & App) đã được lưu vào bộ nhớ tạm.');
+      }
+    }
+
+    /* ==========================================================
+       INTERACTIVE WEB DEMO PLAYER SCRIPT
+       ========================================================== */
+    const dramaList = [
+      {
+        id: 1,
+        title: "Tổng Tài Giấu Nghề Làm Rể",
+        desc: "Lâm Vũ - thiếu gia tập đoàn giàu nhất thành phố, giả làm một anh chàng shipper nghèo hèn để kết hôn cùng người trong mộng. Nào ngờ bị nhà vợ khinh khi chèn ép trăm bề cho đến ngày danh phận thực sự lộ diện...",
+        poster: "images/poster_ceo.jpg",
+        tags: "⭐ 4.9/5 (28.4k) • Đô Thị • Trọng Sinh",
+        totalEps: 85
+      },
+      {
+        id: 2,
+        title: "Đại Nữ Chủ Báo Thù Hào Môn",
+        desc: "Bị hãm hại thê thảm ở kiếp trước, tiểu thư danh giá tái sinh trở lại đúng ngày diễn ra đám cưới định mệnh. Với trí tuệ siêu phàm và sự lạnh lùng quyết đoán, từng kẻ phản bội đều phải trả giá...",
+        poster: "images/poster_revenge.jpg",
+        tags: "⭐ 5.0/5 (34.1k) • Ngôn Tình • Gia Đấu",
+        totalEps: 60
+      },
+      {
+        id: 3,
+        title: "Cô Vợ Thay Thế Của Lãnh Hàn",
+        desc: "Vì cứu lấy công ty của cha, cô chấp nhận gả thay em gái vào gia đình quyền quý của Lãnh gia. Người chồng tổng tài nổi tiếng lạnh lùng, tàn nhẫn bỗng chốc trở thành 'thê nô' sủng ái vợ vô bờ bến...",
+        poster: "images/poster_romance.jpg",
+        tags: "⭐ 4.8/5 (21.9k) • Tình Cảm • Ngọt Ngào",
+        totalEps: 92
+      },
+      {
+        id: 4,
+        title: "Long Thần Xuất Sơn Vô Địch",
+        desc: "Mười năm ẩn cư rèn luyện tuyệt kỹ vô song trên đỉnh Côn Lôn, Long Thần tái xuất hạ sơn để tìm lại người chị ruột bị thất lạc. Một quyền chấn nhiếp giang hồ, quét sạch giới ngầm...",
+        poster: "images/poster_warrior.jpg",
+        tags: "⭐ 4.9/5 (45.3k) • Võ Thuật • Huyền Huyễn",
+        totalEps: 100
+      }
+    ];
+
+    let currentEpisode = 1;
+    let isPlaying = false;
+    let progressTimer = null;
+    let currentProgressPercent = 35;
+    let currentActiveFilm = dramaList[0];
+
+    function selectDemoEpisode(epNum) {
+      currentEpisode = epNum;
+
+      // Update Active Episode Button
+      const buttons = document.querySelectorAll('.episode-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx + 1 === epNum) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Update Player UI
+      const badge = document.getElementById('demoEpBadge');
+      if (badge) {
+        badge.innerText = `TẬP ${epNum < 10 ? '0' + epNum : epNum} / ${currentActiveFilm.totalEps}`;
+      }
+
+      // Reset progress
+      currentProgressPercent = Math.floor(Math.random() * 20) + 10;
+      updateProgressBar(currentProgressPercent);
+
+      // Start playing
+      setPlayState(true);
+
+      showDownloadToast(`Đang phát Tập ${epNum} trên Web`, `${currentActiveFilm.title} - Tải nhanh qua CDN`);
+    }
+
+    function toggleDemoPlay() {
+      setPlayState(!isPlaying);
+    }
+
+    function setPlayState(play) {
+      isPlaying = play;
+      const playIcon = document.getElementById('demoPlayIcon');
+      const playBtn = document.getElementById('demoPlayBtn');
+
+      if (isPlaying) {
+        if (playIcon) playIcon.setAttribute('data-lucide', 'pause');
+        if (playBtn) playBtn.style.opacity = '0.7';
+        startProgressSim();
+      } else {
+        if (playIcon) playIcon.setAttribute('data-lucide', 'play');
+        if (playBtn) playBtn.style.opacity = '1';
+        clearInterval(progressTimer);
+      }
+      lucide.createIcons();
+    }
+
+    function startProgressSim() {
+      clearInterval(progressTimer);
+      progressTimer = setInterval(() => {
+        if (currentProgressPercent >= 98) {
+          nextDemoEpisode();
+        } else {
+          currentProgressPercent += 1.5;
+          updateProgressBar(currentProgressPercent);
+        }
+      }, 1000);
+    }
+
+    function updateProgressBar(pct) {
+      const fill = document.getElementById('demoProgressFill');
+      const timeSpan = document.getElementById('demoCurrentTime');
+      if (fill) fill.style.width = pct + '%';
+
+      if (timeSpan) {
+        const totalSec = 135; // 2m 15s
+        const curSec = Math.floor((pct / 100) * totalSec);
+        const mins = Math.floor(curSec / 60);
+        const secs = curSec % 60;
+        timeSpan.innerText = `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
+      }
+    }
+
+    function seekDemoProgress(e) {
+      const bar = e.currentTarget;
+      const rect = bar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      currentProgressPercent = Math.max(0, Math.min(100, Math.round((clickX / rect.width) * 100)));
+      updateProgressBar(currentProgressPercent);
+    }
+
+    function prevDemoEpisode() {
+      if (currentEpisode > 1) {
+        selectDemoEpisode(currentEpisode - 1);
+      }
+    }
+
+    function nextDemoEpisode() {
+      if (currentEpisode < 12) {
+        selectDemoEpisode(currentEpisode + 1);
+      } else {
+        selectDemoEpisode(1);
+      }
+    }
+
+    function toggleMuteDemo(btn) {
+      const icon = btn.querySelector('i');
+      if (icon) {
+        const currentIcon = icon.getAttribute('data-lucide');
+        if (currentIcon === 'volume-2') {
+          icon.setAttribute('data-lucide', 'volume-x');
+          showDownloadToast('Đã tắt tiếng', 'Web Player đã được tắt âm');
+        } else {
+          icon.setAttribute('data-lucide', 'volume-2');
+          showDownloadToast('Đã bật âm thanh', 'Chuẩn âm thanh Dolby Atmos trên Web');
+        }
+        lucide.createIcons();
+      }
+    }
+
+    function openFullWebPlayer() {
+      window.open('wireframe_web_interactive.html', '_blank');
+    }
+
+    function playDramaOnWeb(dramaId) {
+      const film = dramaList.find(d => d.id === dramaId);
+      if (film) {
+        currentActiveFilm = film;
+
+        // Update demo elements
+        const titleEl = document.getElementById('demoFilmTitle');
+        const descEl = document.getElementById('demoFilmDesc');
+        const bgEl = document.getElementById('demoPlayerBg');
+
+        if (titleEl) titleEl.innerText = film.title;
+        if (descEl) descEl.innerText = film.desc;
+        if (bgEl) bgEl.style.backgroundImage = `url('${film.poster}')`;
+
+        selectDemoEpisode(1);
+
+        // Smooth scroll to demo section
+        const demoSection = document.getElementById('web-demo-section');
+        if (demoSection) {
+          demoSection.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     }
   </script>
