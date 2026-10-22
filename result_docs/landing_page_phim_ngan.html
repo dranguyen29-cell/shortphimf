@@ -209,7 +209,8 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
-      white-space: nowrap; /* Bắt buộc trên 1 dòng duy nhất */
+      white-space: nowrap;
+      /* Bắt buộc trên 1 dòng duy nhất */
       transition: color 0.2s;
       padding: 6px 4px;
     }
@@ -229,7 +230,8 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      white-space: nowrap; /* Bắt buộc trên 1 dòng duy nhất */
+      white-space: nowrap;
+      /* Bắt buộc trên 1 dòng duy nhất */
       box-shadow: 0 4px 14px rgba(1, 135, 95, 0.35);
       transition: transform 0.2s, box-shadow 0.2s;
       flex-shrink: 0;
@@ -244,9 +246,11 @@
       .nav-links {
         gap: 14px;
       }
+
       .nav-link {
         font-size: 13px;
       }
+
       .btn-header-cta {
         padding: 8px 14px;
         font-size: 12.5px;
@@ -1262,7 +1266,8 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      white-space: nowrap; /* Bắt buộc trên 1 dòng duy nhất */
+      white-space: nowrap;
+      /* Bắt buộc trên 1 dòng duy nhất */
       transition: all 0.25s ease;
       backdrop-filter: blur(8px);
       flex-shrink: 0;
@@ -1306,8 +1311,13 @@
     }
 
     @keyframes shineLight {
-      0% { transform: translate(-100%, -100%) rotate(30deg); }
-      100% { transform: translate(100%, 100%) rotate(30deg); }
+      0% {
+        transform: translate(-100%, -100%) rotate(30deg);
+      }
+
+      100% {
+        transform: translate(100%, 100%) rotate(30deg);
+      }
     }
 
     .web-hero-btn:hover {
@@ -2061,7 +2071,8 @@
         </nav>
 
         <div class="header-actions">
-          <a href="wireframe_web_interactive.html" target="_blank" class="btn-header-web" title="Xem ngay trên trình duyệt web">
+          <a href="wireframe_web_interactive.html" target="_blank" class="btn-header-web"
+            title="Xem ngay trên trình duyệt web">
             <i data-lucide="globe" style="width: 15px; height: 15px;"></i>
             <span>Xem Bản Web</span>
           </a>
@@ -2089,7 +2100,8 @@
 
       <p class="hero-subtitle">
         Trải nghiệm kho phim dọc chuẩn 9:16 kịch tính: Tổng tài, Trọng sinh, Hào môn thế gia, Chiến thần...
-        <strong>Xem trực tiếp tức thì trên Web</strong> (không cần cài đặt) hoặc <strong>cài App Android</strong> để vuốt mượt mà 120Hz mọi lúc mọi nơi!
+        <strong>Xem trực tiếp tức thì trên Web</strong> (không cần cài đặt) hoặc <strong>cài App Android</strong> để
+        vuốt mượt mà 120Hz mọi lúc mọi nơi!
       </p>
 
       <!-- Fast Store Buttons for Android & Web -->
@@ -2102,13 +2114,15 @@
           <div>
             <div class="subtext" style="color: #fca5a5;">Không Cần Cài Đặt • Bấm Xem Ngay</div>
             <div class="maintext" style="display: flex; align-items: center; gap: 6px;">
-              Xem Trên Trình Duyệt Web <i data-lucide="arrow-up-right" style="width: 16px; height: 16px; color: #ff6b8b;"></i>
+              Xem Trên Trình Duyệt Web <i data-lucide="arrow-up-right"
+                style="width: 16px; height: 16px; color: #ff6b8b;"></i>
             </div>
           </div>
         </a>
 
         <!-- Android APK CTA -->
-        <button class="store-badge-btn primary-store" onclick="simulateDirectDownload()" style="background: linear-gradient(135deg, #01875f 0%, #00a86b 100%); border-color: #34d399; box-shadow: 0 8px 24px rgba(1, 135, 95, 0.45);">
+        <button class="store-badge-btn primary-store" onclick="simulateDirectDownload()"
+          style="background: linear-gradient(135deg, #01875f 0%, #00a86b 100%); border-color: #34d399; box-shadow: 0 8px 24px rgba(1, 135, 95, 0.45);">
           <div class="cta-icon-box android-icon-box">
             <i data-lucide="file-down" style="width: 26px; height: 26px; color: #ffffff;"></i>
           </div>
@@ -2120,10 +2134,14 @@
       </div>
 
       <div class="hero-perks">
-        <span><i data-lucide="globe" style="width: 16px; height: 16px; color: #ff3366;"></i> Chạy mượt trên mọi trình duyệt Web (PC/Mobile)</span>
-        <span><i data-lucide="smartphone" style="width: 16px; height: 16px; color: #10b981;"></i> App Android vuốt mượt, tải xem Offline</span>
-        <span><i data-lucide="refresh-cw" style="width: 16px; height: 16px; color: #38bdf8;"></i> Đồng bộ tài khoản & lịch sử xem tức thì</span>
-        <span><i data-lucide="check-circle" style="width: 16px; height: 16px; color: #f59e0b;"></i> Hoàn toàn miễn phí, Full HD 1080p</span>
+        <span><i data-lucide="globe" style="width: 16px; height: 16px; color: #ff3366;"></i> Chạy mượt trên mọi trình
+          duyệt Web (PC/Mobile)</span>
+        <span><i data-lucide="smartphone" style="width: 16px; height: 16px; color: #10b981;"></i> App Android vuốt mượt,
+          tải xem Online</span>
+        <span><i data-lucide="refresh-cw" style="width: 16px; height: 16px; color: #38bdf8;"></i> Đồng bộ tài khoản &
+          lịch sử xem tức thì</span>
+        <span><i data-lucide="check-circle" style="width: 16px; height: 16px; color: #f59e0b;"></i> Hoàn toàn miễn phí,
+          Full HD 1080p</span>
       </div>
     </div>
   </section>
@@ -2132,12 +2150,14 @@
   <section class="cross-platform-section" id="cross-platform">
     <div class="container">
       <div class="section-header">
-        <div class="android-platform-pill" style="background: rgba(255, 51, 102, 0.12); border-color: rgba(255, 51, 102, 0.3); color: #ff6b8b;">
+        <div class="android-platform-pill"
+          style="background: rgba(255, 51, 102, 0.12); border-color: rgba(255, 51, 102, 0.3); color: #ff6b8b;">
           <i data-lucide="monitor-smartphone" style="width: 16px; height: 16px;"></i>
           <span>Hệ Sinh Thái Đa Nền Tảng Liền Mạch</span>
         </div>
         <h2 class="section-title">Một Nền Tảng - Hai Lựa Chọn Thưởng Thức Đỉnh Cao</h2>
-        <p class="section-desc">Linh hoạt thưởng thức phim ngắn chất lượng cao theo đúng thói quen và thiết bị yêu thích của bạn</p>
+        <p class="section-desc">Linh hoạt thưởng thức phim ngắn chất lượng cao theo đúng thói quen và thiết bị yêu thích
+          của bạn</p>
       </div>
 
       <!-- 2 Platform Comparison Cards -->
@@ -2149,9 +2169,11 @@
               <i data-lucide="globe" style="width: 14px; height: 14px;"></i>
               <span>Nền Tảng Web Trực Tuyến</span>
             </div>
-            <h3 class="platform-title">PineDrama Web Portal<br><span style="color: #ff6b8b; font-size: 20px;">Xem Ngay Không Cần Cài Đặt</span></h3>
+            <h3 class="platform-title">PineDrama Web Portal<br><span style="color: #ff6b8b; font-size: 20px;">Xem Ngay
+                Không Cần Cài Đặt</span></h3>
             <p class="platform-desc">
-              Thích hợp cho người dùng muốn xem phim nhanh chóng trên máy tính, laptop, iPad hoặc trình duyệt điện thoại mà không cần tốn dung lượng lưu trữ của máy.
+              Thích hợp cho người dùng muốn xem phim nhanh chóng trên máy tính, laptop, iPad hoặc trình duyệt điện thoại
+              mà không cần tốn dung lượng lưu trữ của máy.
             </p>
 
             <!-- Browser Mockup -->
@@ -2169,15 +2191,20 @@
                 <i data-lucide="external-link" style="width: 14px; height: 14px; color: #94a3b8;"></i>
               </div>
               <div class="preview-screen-content">
-                <div class="preview-video-thumb" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('images/poster_ceo.jpg') center/cover no-repeat;">
-                  <div style="background: rgba(255, 51, 102, 0.9); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
+                <div class="preview-video-thumb"
+                  style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('images/poster_ceo.jpg') center/cover no-repeat;">
+                  <div
+                    style="background: rgba(255, 51, 102, 0.9); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
                     <i data-lucide="play" style="width: 14px; height: 14px; fill: #fff; stroke: #fff;"></i>
                   </div>
                 </div>
                 <div>
-                  <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">🎬 Tổng Tài Bạc Tỷ - Tập 01</div>
-                  <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">Đang phát trên Chrome / Safari / Edge</div>
-                  <div style="font-size: 11px; color: #34d399; font-weight: 600;">⚡ Tự động chuyển tập • Phím tắt Spacebar</div>
+                  <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">🎬 Tổng Tài Bạc Tỷ -
+                    Tập 01</div>
+                  <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">Đang phát trên Chrome / Safari /
+                    Edge</div>
+                  <div style="font-size: 11px; color: #34d399; font-weight: 600;">⚡ Tự động chuyển tập • Phím tắt
+                    Spacebar</div>
                 </div>
               </div>
             </div>
@@ -2186,19 +2213,23 @@
             <ul class="feature-check-list">
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
-                <span><strong>Zero-Install:</strong> Không tốn bất kỳ MB bộ nhớ nào, mở link là xem được ngay lập tức.</span>
+                <span><strong>Zero-Install:</strong> Không tốn bất kỳ MB bộ nhớ nào, mở link là xem được ngay lập
+                  tức.</span>
               </li>
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
-                <span><strong>Màn hình lớn:</strong> Thưởng thức trọn vẹn trên PC, Laptop, Tablet với chế độ Rạp phim (Theater Mode).</span>
+                <span><strong>Màn hình lớn:</strong> Thưởng thức trọn vẹn trên PC, Laptop, Tablet với chế độ Rạp phim
+                  (Theater Mode).</span>
               </li>
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
-                <span><strong>Chia sẻ dễ dàng:</strong> Gửi link từng tập phim trực tiếp qua Zalo, Messenger, Facebook cực nhanh.</span>
+                <span><strong>Chia sẻ dễ dàng:</strong> Gửi link từng tập phim trực tiếp qua Zalo, Messenger, Facebook
+                  cực nhanh.</span>
               </li>
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #ff3366;"></i>
-                <span><strong>Điều khiển bàn phím:</strong> Dùng Spacebar dừng/phát, mũi tên điều hướng và chuyển tập liền mạch.</span>
+                <span><strong>Điều khiển bàn phím:</strong> Dùng Spacebar dừng/phát, mũi tên điều hướng và chuyển tập
+                  liền mạch.</span>
               </li>
             </ul>
           </div>
@@ -2217,28 +2248,35 @@
               <i data-lucide="smartphone" style="width: 14px; height: 14px;"></i>
               <span>Ứng Dụng Di Động Android</span>
             </div>
-            <h3 class="platform-title">PineDrama Mobile App<br><span style="color: #34d399; font-size: 20px;">Trải Nghiệm Vuốt Chạm 120Hz</span></h3>
+            <h3 class="platform-title">PineDrama Mobile App<br><span style="color: #34d399; font-size: 20px;">Trải
+                Nghiệm Vuốt Chạm 120Hz</span></h3>
             <p class="platform-desc">
-              Dành cho người dùng thường xuyên xem phim trên điện thoại, yêu thích thao tác vuốt dọc mượt mà như TikTok và muốn tải phim xem khi không có mạng.
+              Dành cho người dùng thường xuyên xem phim trên điện thoại, yêu thích thao tác vuốt dọc mượt mà như TikTok
+              và muốn tải phim xem khi không có mạng.
             </p>
 
             <!-- Mobile App Mockup -->
             <div class="device-preview-box">
               <div class="browser-bar" style="background: #14221d;">
                 <i data-lucide="wifi" style="width: 13px; height: 13px; color: #34d399;"></i>
-                <span style="font-size: 11px; color: #6ee7b7; font-weight: 700;">PineDrama Android App Native • 60-120fps</span>
+                <span style="font-size: 11px; color: #6ee7b7; font-weight: 700;">PineDrama Android App Native •
+                  60-120fps</span>
                 <span style="margin-left: auto; font-size: 11px; color: #34d399; font-weight: 800;">100% PIN</span>
               </div>
               <div class="preview-screen-content" style="background: #0f1b16;">
-                <div class="preview-video-thumb" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('images/poster_revenge.jpg') center/cover no-repeat;">
-                  <div style="background: rgba(1, 135, 95, 0.9); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
+                <div class="preview-video-thumb"
+                  style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('images/poster_revenge.jpg') center/cover no-repeat;">
+                  <div
+                    style="background: rgba(1, 135, 95, 0.9); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
                     <i data-lucide="smartphone" style="width: 14px; height: 14px; color: #fff;"></i>
                   </div>
                 </div>
                 <div>
-                  <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">🔥 Trọng Sinh Trả Thù - Top 1 Hot</div>
+                  <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">🔥 Trọng Sinh Trả Thù
+                    - Top 1 Hot</div>
                   <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">Vuốt lên để xem tập tiếp theo</div>
-                  <div style="font-size: 11px; color: #34d399; font-weight: 600;">📥 Đã lưu ngoại tuyến • Xem không cần 4G</div>
+                  <div style="font-size: 11px; color: #34d399; font-weight: 600;">📥 Đã lưu ngoại tuyến • Xem không cần
+                    4G</div>
                 </div>
               </div>
             </div>
@@ -2247,19 +2285,23 @@
             <ul class="feature-check-list">
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
-                <span><strong>Thao tác vuốt chuẩn TikTok:</strong> Cử chỉ lướt chuyển tập tức thì không độ trễ, đạt chuẩn 60-120fps.</span>
+                <span><strong>Thao tác vuốt chuẩn TikTok:</strong> Cử chỉ lướt chuyển tập tức thì không độ trễ, đạt
+                  chuẩn 60-120fps.</span>
               </li>
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
-                <span><strong>Tải xem ngoại tuyến (Offline):</strong> Tải toàn bộ các tập về máy xem trên máy bay, tàu xe không tốn 4G.</span>
+                <span><strong>Tải xem ngoại tuyến (Offline):</strong> Tải toàn bộ các tập về máy xem trên máy bay, tàu
+                  xe không tốn 4G.</span>
               </li>
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
-                <span><strong>Thông báo tập mới (Push Notification):</strong> Nhận chuông báo tức thì ngay khi phim ra tập mới.</span>
+                <span><strong>Thông báo tập mới (Push Notification):</strong> Nhận chuông báo tức thì ngay khi phim ra
+                  tập mới.</span>
               </li>
               <li>
                 <i data-lucide="check" style="width: 18px; height: 18px; color: #01875f;"></i>
-                <span><strong>Tiết kiệm pin & Siêu nhẹ:</strong> Gói APK chỉ 38MB, tối ưu phần cứng cho Samsung, Xiaomi, Oppo...</span>
+                <span><strong>Tiết kiệm pin & Siêu nhẹ:</strong> Gói APK chỉ 38MB, tối ưu phần cứng cho Samsung, Xiaomi,
+                  Oppo...</span>
               </li>
             </ul>
           </div>
@@ -2280,7 +2322,9 @@
         <div class="sync-content">
           <h3>Đồng Bộ Đám Mây Xuyên Suốt Giữa Web & App</h3>
           <p>
-            Chỉ với một tài khoản PineDrama duy nhất, tiến trình xem phim, danh sách phim yêu thích và lịch sử mở khóa tập đều được lưu trữ đám mây. Bạn đang xem dở tập 12 trên máy tính công ty, về nhà mở điện thoại lên sẽ tiếp tục xem ngay từ giây tiếp theo mà không cần tua lại!
+            Chỉ với một tài khoản PineDrama duy nhất, tiến trình xem phim, danh sách phim yêu thích và lịch sử mở khóa
+            tập đều được lưu trữ đám mây. Bạn đang xem dở tập 12 trên máy tính công ty, về nhà mở điện thoại lên sẽ tiếp
+            tục xem ngay từ giây tiếp theo mà không cần tua lại!
           </p>
         </div>
       </div>
@@ -2291,12 +2335,14 @@
   <section class="interactive-web-section" id="web-demo-section">
     <div class="container">
       <div class="section-header">
-        <div class="android-platform-pill" style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;">
+        <div class="android-platform-pill"
+          style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;">
           <i data-lucide="play-circle" style="width: 16px; height: 16px;"></i>
           <span>Trải Nghiệm Trực Tiếp Ngay Tại Đây</span>
         </div>
         <h2 class="section-title">Trải Nghiệm Thử Trình Phát PineDrama Web</h2>
-        <p class="section-desc">Bấm chọn các tập bên dưới để trải nghiệm tốc độ tải phim cực nhanh và giao diện Web Player hiện đại</p>
+        <p class="section-desc">Bấm chọn các tập bên dưới để trải nghiệm tốc độ tải phim cực nhanh và giao diện Web
+          Player hiện đại</p>
       </div>
 
       <!-- Web Demo Frame -->
@@ -2307,7 +2353,8 @@
             <div class="store-dot dot-red"></div>
             <div class="store-dot dot-yellow"></div>
             <div class="store-dot dot-green"></div>
-            <span style="font-size: 12px; color: var(--text-muted); margin-left: 10px; font-weight: 600;">PineDrama Web Player • Phiên bản Trình Duyệt v2.0</span>
+            <span style="font-size: 12px; color: var(--text-muted); margin-left: 10px; font-weight: 600;">PineDrama Web
+              Player • Phiên bản Trình Duyệt v2.0</span>
           </div>
         </div>
 
@@ -2316,7 +2363,8 @@
           <!-- Left: Mini Vertical Web Player -->
           <div>
             <div class="interactive-player-card">
-              <div class="player-video-bg" id="demoPlayerBg" style="background-image: url('images/poster_ceo.jpg');"></div>
+              <div class="player-video-bg" id="demoPlayerBg" style="background-image: url('images/poster_ceo.jpg');">
+              </div>
               <div class="player-video-overlay"></div>
 
               <!-- Player Top Status -->
@@ -2325,7 +2373,8 @@
                   <i data-lucide="tv" style="width: 12px; height: 12px;"></i>
                   <span id="demoEpBadge">TẬP 01 / 85</span>
                 </div>
-                <div style="background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 6px; font-size: 11px; color: #fff; font-weight: 700;">
+                <div
+                  style="background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 6px; font-size: 11px; color: #fff; font-weight: 700;">
                   1080P 60FPS
                 </div>
               </div>
@@ -2333,7 +2382,8 @@
               <!-- Center Play Button -->
               <div class="player-center-play">
                 <div class="play-trigger-btn" id="demoPlayBtn" onclick="toggleDemoPlay()">
-                  <i data-lucide="play" id="demoPlayIcon" style="width: 28px; height: 28px; fill: white; stroke: white; margin-left: 4px;"></i>
+                  <i data-lucide="play" id="demoPlayIcon"
+                    style="width: 28px; height: 28px; fill: white; stroke: white; margin-left: 4px;"></i>
                 </div>
               </div>
 
@@ -2374,7 +2424,8 @@
           <div class="web-demo-info-col">
             <div>
               <div class="web-film-header">
-                <div style="font-size: 12px; color: #ff6b8b; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">
+                <div
+                  style="font-size: 12px; color: #ff6b8b; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">
                   Đang phát trực tiếp trên Web
                 </div>
                 <h3 id="demoFilmTitle">Tổng Tài Giấu Nghề Làm Rể</h3>
@@ -2385,14 +2436,17 @@
                   <span class="web-film-tag" style="color: #34d399;">Đã Hoàn Thành (85 Tập)</span>
                 </div>
                 <p id="demoFilmDesc" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
-                  Lâm Vũ - thiếu gia tập đoàn giàu nhất thành phố, giả làm một anh chàng shipper nghèo hèn để kết hôn cùng người trong mộng. Nào ngờ bị nhà vợ khinh khi chèn ép trăm bề cho đến ngày danh phận thực sự lộ diện...
+                  Lâm Vũ - thiếu gia tập đoàn giàu nhất thành phố, giả làm một anh chàng shipper nghèo hèn để kết hôn
+                  cùng người trong mộng. Nào ngờ bị nhà vợ khinh khi chèn ép trăm bề cho đến ngày danh phận thực sự lộ
+                  diện...
                 </p>
               </div>
 
               <!-- Episodes Selection -->
               <div class="web-episodes-wrap">
                 <div class="episodes-title-bar">
-                  <div style="font-size: 14px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 6px;">
+                  <div
+                    style="font-size: 14px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 6px;">
                     <i data-lucide="list" style="width: 16px; height: 16px; color: #ff3366;"></i>
                     <span>Danh Sách Tập Phim (Bấm Để Chuyển Tập)</span>
                   </div>
@@ -2446,22 +2500,28 @@
           <span>Gói Cài Đặt Trực Tiếp Cho Android (.APK)</span>
         </div>
         <h2 class="section-title">Cổng Tải Ứng Dụng PineDrama APK</h2>
-        <p class="section-desc">Giao diện tải gói cài đặt trực tiếp tốc độ cao từ CDN Pine Studio - Hỗ trợ mọi dòng máy Android
+        <p class="section-desc">Giao diện tải gói cài đặt trực tiếp tốc độ cao từ CDN Pine Studio - Hỗ trợ mọi dòng máy
+          Android
         </p>
       </div>
 
       <!-- Web Edition Switcher Notice -->
-      <div style="background: linear-gradient(90deg, rgba(255, 51, 102, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid rgba(255, 51, 102, 0.35); border-radius: 16px; padding: 14px 24px; margin: 0 auto 28px; max-width: 920px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+      <div
+        style="background: linear-gradient(90deg, rgba(255, 51, 102, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid rgba(255, 51, 102, 0.35); border-radius: 16px; padding: 14px 24px; margin: 0 auto 28px; max-width: 920px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="background: rgba(255, 51, 102, 0.2); width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ff6b8b;">
+          <div
+            style="background: rgba(255, 51, 102, 0.2); width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ff6b8b;">
             <i data-lucide="monitor" style="width: 20px; height: 20px;"></i>
           </div>
           <div>
-            <div style="font-size: 14px; font-weight: 700; color: #fff;">Đang dùng máy tính hoặc không tiện cài app?</div>
-            <div style="font-size: 12px; color: var(--text-muted);">Trải nghiệm trực tiếp trên trình duyệt Web với đầy đủ tính năng và không tốn bộ nhớ.</div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff;">Đang dùng máy tính hoặc không tiện cài app?
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted);">Trải nghiệm trực tiếp trên trình duyệt Web với đầy
+              đủ tính năng và không tốn bộ nhớ.</div>
           </div>
         </div>
-        <a href="wireframe_web_interactive.html" target="_blank" style="background: var(--primary-gradient); color: #fff; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(255, 51, 102, 0.4);">
+        <a href="wireframe_web_interactive.html" target="_blank"
+          style="background: var(--primary-gradient); color: #fff; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(255, 51, 102, 0.4);">
           <i data-lucide="globe" style="width: 14px; height: 14px;"></i>
           <span>Mở Bản Web Ngay</span>
         </a>
@@ -2683,22 +2743,28 @@
           <div class="step-number">1</div>
           <h3 class="guide-card-title">Tải Gói Cài Đặt APK</h3>
           <p class="guide-card-text">Bấm nút "Tải File APK (38MB)" trên website. Trình duyệt Chrome/Cốc Cốc sẽ tải tệp
-            <strong>PineDrama_v1.0.0_beta.apk</strong> về máy.</p>
-          <div class="guide-tip">💡 Mẹo: Nếu thấy thông báo "Tệp có thể gây hại", hãy yên tâm chọn <strong>"Vẫn tải xuống"</strong> (cảnh báo mặc định của Android).</div>
+            <strong>PineDrama_v1.0.0_beta.apk</strong> về máy.
+          </p>
+          <div class="guide-tip">💡 Mẹo: Nếu thấy thông báo "Tệp có thể gây hại", hãy yên tâm chọn <strong>"Vẫn tải
+              xuống"</strong> (cảnh báo mặc định của Android).</div>
         </div>
 
         <div class="guide-card">
           <div class="step-number">2</div>
           <h3 class="guide-card-title">Cho Phép Cài Nguồn Này</h3>
-          <p class="guide-card-text">Vuốt thanh thông báo mở file APK vừa tải. Nếu máy hỏi bảo mật, bấm <strong>"Cài đặt"</strong> và bật mục <strong>"Cho phép từ nguồn này"</strong>.</p>
-          <div class="guide-tip">🔒 File APK chính thức được ký số chứng thực an toàn từ Pine Studio Entertainment.</div>
+          <p class="guide-card-text">Vuốt thanh thông báo mở file APK vừa tải. Nếu máy hỏi bảo mật, bấm <strong>"Cài
+              đặt"</strong> và bật mục <strong>"Cho phép từ nguồn này"</strong>.</p>
+          <div class="guide-tip">🔒 File APK chính thức được ký số chứng thực an toàn từ Pine Studio Entertainment.
+          </div>
         </div>
 
         <div class="guide-card">
           <div class="step-number">3</div>
           <h3 class="guide-card-title">Mở App & Thưởng Thức Ngay</h3>
-          <p class="guide-card-text">Quá trình cài đặt hoàn tất sau 5 giây. Biểu tượng PineDrama xuất hiện ngay ngoài màn hình chính - mở app xem phim thả ga!</p>
-          <div class="guide-tip">🎬 Trải nghiệm xem phim Full HD 60fps sắc nét, vuốt chuyển tập mượt mà chuẩn định dạng dọc 9:16.</div>
+          <p class="guide-card-text">Quá trình cài đặt hoàn tất sau 5 giây. Biểu tượng PineDrama xuất hiện ngay ngoài
+            màn hình chính - mở app xem phim thả ga!</p>
+          <div class="guide-tip">🎬 Trải nghiệm xem phim Full HD 60fps sắc nét, vuốt chuyển tập mượt mà chuẩn định dạng
+            dọc 9:16.</div>
         </div>
       </div>
 
@@ -2715,7 +2781,8 @@
               <span>Samsung (One UI)</span>
             </div>
             <div class="device-card-desc">
-              Khi thông báo bảo mật hiện lên, chọn <strong>Cài đặt</strong> -> Bật cần gạt tại <strong>Cho phép từ nguồn này</strong> cho trình duyệt (Chrome) -> Nhấn quay lại và chọn <strong>Cài đặt</strong>.
+              Khi thông báo bảo mật hiện lên, chọn <strong>Cài đặt</strong> -> Bật cần gạt tại <strong>Cho phép từ nguồn
+                này</strong> cho trình duyệt (Chrome) -> Nhấn quay lại và chọn <strong>Cài đặt</strong>.
             </div>
           </div>
 
@@ -2725,7 +2792,8 @@
               <span>Xiaomi / Redmi / POCO</span>
             </div>
             <div class="device-card-desc">
-              Khi màn hình hiện cảnh báo đếm ngược 10 giây: tích chọn ô <strong>"Tôi nhận thức được các rủi ro..."</strong> -> Bấm <strong>OK</strong> -> Nhấn <strong>Cài đặt</strong> hoàn tất.
+              Khi màn hình hiện cảnh báo đếm ngược 10 giây: tích chọn ô <strong>"Tôi nhận thức được các rủi
+                ro..."</strong> -> Bấm <strong>OK</strong> -> Nhấn <strong>Cài đặt</strong> hoàn tất.
             </div>
           </div>
 
@@ -2735,7 +2803,8 @@
               <span>Oppo / Vivo / Realme</span>
             </div>
             <div class="device-card-desc">
-              Hệ điều hành sẽ quét virus bảo mật -> Chọn <strong>Tiếp tục cài đặt</strong> -> Nhập mã khóa màn hình của máy (nếu có yêu cầu) để cấp quyền cài.
+              Hệ điều hành sẽ quét virus bảo mật -> Chọn <strong>Tiếp tục cài đặt</strong> -> Nhập mã khóa màn hình của
+              máy (nếu có yêu cầu) để cấp quyền cài.
             </div>
           </div>
         </div>
@@ -2890,7 +2959,8 @@
   <footer>
     <div class="container">
       <div class="footer-links">
-        <a href="wireframe_web_interactive.html" target="_blank" style="color: #ff6b8b; font-weight: 700;">🌐 Xem Bản Web Trực Tuyến</a>
+        <a href="wireframe_web_interactive.html" target="_blank" style="color: #ff6b8b; font-weight: 700;">🌐 Xem Bản
+          Web Trực Tuyến</a>
         <a href="#cross-platform">Hệ Sinh Thái Đa Nền Tảng</a>
         <a href="#web-demo-section">Trình Phát Thử Nghiệm</a>
         <a href="#store-preview">Cổng Tải App APK</a>
@@ -2899,7 +2969,8 @@
       </div>
       <p>© 2026 PineDrama Inc. Bản quyền thuộc về Pine Studio Entertainment. All rights reserved.</p>
       <p style="margin-top: 6px; font-size: 12px; color: #94a3b8;">
-        Hệ sinh thái giải trí phim ngắn chất lượng cao: Trực tiếp trên nền tảng Web và Ứng dụng di động Android. Đồng bộ tức thì mọi lúc mọi nơi.
+        Hệ sinh thái giải trí phim ngắn chất lượng cao: Trực tiếp trên nền tảng Web và Ứng dụng di động Android. Đồng bộ
+        tức thì mọi lúc mọi nơi.
       </p>
     </div>
   </footer>
