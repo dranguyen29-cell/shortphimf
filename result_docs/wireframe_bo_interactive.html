@@ -26,6 +26,15 @@
       --text-muted: #8e8e9e;
       --text-sub: #b0b0c2;
       --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color-scheme: dark;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); border-radius: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); border-radius: 6px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 42, 95, 0.5); }
+
+    .unused-placeholder {
     }
 
     * {
@@ -2400,11 +2409,11 @@
           </div>
 
           <!-- FULL PAGE MAIN CONTENT: 2 COLUMNS GRID (CÂN BẰNG CHIỀU CAO 2 CỘT) -->
-          <div style="display: grid; grid-template-columns: 420px 1fr; gap: 24px; align-items: stretch; margin-bottom: 30px;">
+          <div style="display: grid; grid-template-columns: 420px 1fr; gap: 24px; align-items: start; margin-bottom: 30px;">
             
             <!-- LEFT COLUMN: THÔNG TIN BỘ PHIM & METADATA -->
             <div style="display: flex; flex-direction: column; height: 100%;">
-              <div class="panel-card" style="padding: 24px; height: 100%; display: flex; flex-direction: column;">
+              <div class="panel-card" style="padding: 24px; height: auto; position: sticky; top: 0; margin-bottom: 0; display: flex; flex-direction: column;">
                 <div class="panel-title" style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
                   <span style="display: flex; align-items: center; gap: 8px;">🏷️ <strong>1. Thông Tin Chung</strong></span>
                   <span class="badge badge-published" style="font-size: 11px;">Bắt buộc</span>
@@ -2449,7 +2458,7 @@
                   <div style="display: flex; gap: 16px; align-items: flex-start;">
                     <!-- Preview Box -->
                     <div id="poster-preview-box"
-                      style="width: 100px; height: 135px; border-radius: 10px; border: 2px dashed var(--border-color); background: var(--bg-main); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; position: relative; transition: border-color 0.2s;">
+                      style="width: 100px; height: 135px; border-radius: 10px; border: 2px dashed var(--border-color); background: var(--bg-main); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; position: relative; transition: border-color 0.2s; cursor: pointer;" onclick="document.getElementById('poster-file-input').click()" title="Bấm để tải ảnh Poster từ máy tính">
                       <img id="poster-preview-img" src="" alt=""
                         style="width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 8px;">
                       <div id="poster-preview-placeholder" style="text-align: center; pointer-events: none;">
@@ -2459,18 +2468,21 @@
                     </div>
 
                     <!-- Upload Controls -->
-                    <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+                    <div style="flex: 1; height: 135px; display: flex; flex-direction: column; justify-content: space-between;">
                       <div>
                         <label style="font-size: 11px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 5px;">
-                          DÁN LINK ẢNH URL:
+                          DÁN LINK ẢNH URL
                         </label>
                         <input type="text" id="poster-url-input" placeholder="https://example.com/poster.jpg"
                           style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 9px 12px; border-radius: 8px; color: #fff; font-size: 12px; font-family: monospace; outline: none;"
                           oninput="previewPosterUrl(this.value)">
                       </div>
                       <div style="display: flex; gap: 8px;">
+                        <input type="file" id="poster-file-input" accept="image/*" style="display: none;" onchange="previewPosterFile(this)">
+                        <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 6px 10px; flex: 1; justify-content: center; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);"
+                          onclick="document.getElementById('poster-file-input').click()">📁 Tải Ảnh Lên</button>
                         <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 6px 10px; flex: 1; justify-content: center;"
-                          onclick="removePoster()">🗑️ Xóa Ảnh</button>
+                          onclick="removePoster()">🗑️ Xóa Ảnh</button></div><div style="font-size: 11px; color: var(--text-muted); line-height: 1.35;">Định dạng JPG, PNG, WebP • Tỷ lệ dọc 2:3 (Tối đa 2MB)</div><div>
                       </div>
                     </div>
                   </div>
@@ -2479,7 +2491,7 @@
                 <!-- MULTI-SELECT CATEGORY DROPDOWN -->
                 <div>
                   <label style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
-                    GÁN THỂ LOẠI PHIM:
+                    GÁN THỂ LOẠI PHIM
                   </label>
                   <div class="multi-select-container" id="category-multi-select-container">
                     <div class="multi-select-display-box" id="category-display-box" onclick="toggleCategoryDropdown(event)">
@@ -2527,11 +2539,11 @@
                 <div class="panel-title" style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
                   <span style="display: flex; align-items: center; gap: 8px;">
                     <span>🎬 <strong>2. Danh Sách Tập & Đa Phần</strong></span>
-                    <span class="badge badge-published" id="label-active-season-name">Phần 1</span>
+                    <span class="badge badge-published" id="label-active-season-name" style="display: none;">Phần 1</span>
                   </span>
                   <div style="display: flex; gap: 8px;">
                     <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);"
-                      onclick="addNewSeasonPrompt()">➕ Thêm Phần Mới (Season)</button>
+                      onclick="addNewSeasonPrompt()">➕ Thêm Phần Mới</button>
                     <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; color: #ff4d6d; border-color: rgba(255,77,109,0.35);"
                       onclick="deleteCurrentSeason()" title="Xóa phần đang chọn">🗑️ Xóa Phần Này</button>
                   </div>
@@ -2553,7 +2565,7 @@
                   </div>
 
                   <textarea id="bulk-urls-textarea" rows="4"
-                    placeholder="Dán danh sách các link phim bất kỳ tại đây (mỗi dòng 1 link), Gán tuần tự từ trên xuống dưới VD: Dòng 1 -> Tập 1, Dòng 2 -> Tập 2...:&#10;https://cdn.partner-stream.com/video/a8f921bc_raw.m3u8&#10;https://cdn.partner-stream.com/video/77d90e44_raw.m3u8&#10;https://cdn.partner-stream.com/video/f019ab99_raw.m3u8"
+                    placeholder="Dán danh sách link phim tại đây (mỗi dòng 1 link, gán tuần tự Dòng 1 -> Tập 1, Dòng 2 -> Tập 2...):&#10;https://cdn.partner-stream.com/video/a8f921bc_raw.m3u8&#10;https://cdn.partner-stream.com/video/77d90e44_raw.m3u8"
                     style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-family: monospace; font-size: 12px; padding: 10px 12px; resize: vertical; line-height: 1.5; outline: none;"></textarea>
 
                   <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 10px;">
@@ -2568,10 +2580,15 @@
                     TẬP PHIM (<span id="active-season-ep-count" style="color: var(--accent-gold);">5 Tập</span>):
                   </div>
                   <button class="btn btn-secondary" style="font-size: 11.5px; padding: 5px 12px; color: var(--accent-green); border-color: rgba(0,230,118,0.35);"
-                    onclick="addNewSingleEpisode()">➕ Thêm Tập Mới</button>
+                  <div style="display: flex; gap: 8px; align-items: center;">
+                    <button class="btn btn-secondary" style="font-size: 11.5px; padding: 5px 12px; color: var(--accent-blue); border-color: rgba(41,182,246,0.35);"
+                      onclick="loadDemoPaginatedEpisodes()" title="Nạp nhanh 15 tập mẫu để xem giao diện phân trang (>10 tập)">⚡ Demo 15 Tập (Phân Trang)</button>
+                    <button class="btn btn-secondary" style="font-size: 11.5px; padding: 5px 12px; color: var(--accent-green); border-color: rgba(0,230,118,0.35);"
+                      onclick="addNewSingleEpisode()">➕ Thêm Tập Mới</button>
+                  </div>
                 </div>
 
-                <div class="data-table-wrapper" style="border-radius: 10px; border: 1px solid var(--border-color); max-height: 380px; overflow-y: auto;">
+                <div class="data-table-wrapper" style="border-radius: 10px; border: 1px solid var(--border-color); overflow: hidden;">
                   <table class="data-table" style="font-size: 12.5px;">
                     <thead>
                       <tr>
@@ -2583,6 +2600,10 @@
                       </tr>
                     </thead>
                     <tbody id="modal-drama-episodes-tbody"></tbody>
+                  </table>
+                </div>
+                <div id="episode-pagination-bar" style="display: none; justify-content: space-between; align-items: center; margin-top: 12px; padding: 10px 14px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 10px; flex-wrap: wrap; gap: 10px;"></div>
+                <div style="display: none;"><table><tbody>
                   </table>
                 </div>
               </div>
@@ -4797,6 +4818,7 @@
 
     function switchActiveSeason(seasonKey) {
       activeSeasonKey = seasonKey;
+      window.currentEpisodePage = 1;
       if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
       renderSeasonTabs();
     }
@@ -4887,17 +4909,28 @@
       if (countEl) countEl.innerText = `${episodes.length} Tập`;
 
       if (episodes.length === 0) {
+        const pagBar = document.getElementById('episode-pagination-bar');
+        if (pagBar) pagBar.style.display = 'none';
         tbody.innerHTML = `
           <tr>
             <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">
-              Chưa có tập phim nào trong <strong>${activeSeasonKey}</strong>. Hãy dán link hàng loạt ở trên hoặc bấm "+ Thêm 1 Tập Mới".
+              Chưa có tập phim nào trong <strong>${activeSeasonKey}</strong>. Hãy dán link hàng loạt ở trên hoặc bấm "+ Thêm Tập Mới".
             </td>
           </tr>
         `;
         return;
       }
 
-      episodes.forEach((item, index) => {
+      const epPageSize = window.epPageSize || 10;
+      const totalPages = Math.max(1, Math.ceil(episodes.length / epPageSize));
+      if (!window.currentEpisodePage || window.currentEpisodePage > totalPages) window.currentEpisodePage = totalPages;
+      if (window.currentEpisodePage < 1) window.currentEpisodePage = 1;
+      const startIdx = (window.currentEpisodePage - 1) * epPageSize;
+      const pageEpisodes = episodes.slice(startIdx, startIdx + epPageSize);
+      renderEpisodePaginationBar(episodes.length, totalPages, startIdx, startIdx + pageEpisodes.length);
+
+      pageEpisodes.forEach((item, pageIdx) => {
+        const index = startIdx + pageIdx;
         const isBroken = item.status === 'broken';
         const isPublished = item.published !== false;
 
@@ -4946,6 +4979,61 @@
         `;
         tbody.appendChild(row);
       });
+    }
+
+    function renderEpisodePaginationBar(totalItems, totalPages, startIdx, endIdx) {
+      const pagBar = document.getElementById('episode-pagination-bar');
+      if (!pagBar) return;
+      if (totalItems <= 0) {
+        pagBar.style.display = 'none';
+        return;
+      }
+      pagBar.style.display = 'flex';
+      const curPage = window.currentEpisodePage || 1;
+      let pageBtns = '';
+      for (let p = 1; p <= totalPages; p++) {
+        const isActive = p === curPage;
+        pageBtns += `<button type="button" onclick="goToEpisodePage(${p})" style="min-width: 30px; height: 28px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid ${isActive ? 'var(--primary)' : 'var(--border-color)'}; background: ${isActive ? 'var(--primary-gradient)' : 'var(--bg-card)'}; color: #fff;">${p}</button>`;
+      }
+      pagBar.innerHTML = `
+        <div style="font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+          <span>Hiển thị <strong style="color: #fff;">#${startIdx + 1} – #${endIdx}</strong> trong tổng <strong style="color: var(--accent-gold);">${totalItems} Tập</strong></span>
+          <span class="badge badge-draft" style="font-size: 10.5px; padding: 2px 8px;">10 tập / trang</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <button type="button" onclick="goToEpisodePage(${curPage - 1})" ${curPage <= 1 ? 'disabled' : ''} style="height: 28px; padding: 0 10px; border-radius: 6px; font-size: 11.5px; font-weight: 600; cursor: ${curPage <= 1 ? 'not-allowed' : 'pointer'}; opacity: ${curPage <= 1 ? '0.4' : '1'}; border: 1px solid var(--border-color); background: var(--bg-card); color: #fff;">‹ Trước</button>
+          ${pageBtns}
+          <button type="button" onclick="goToEpisodePage(${curPage + 1})" ${curPage >= totalPages ? 'disabled' : ''} style="height: 28px; padding: 0 10px; border-radius: 6px; font-size: 11.5px; font-weight: 600; cursor: ${curPage >= totalPages ? 'not-allowed' : 'pointer'}; opacity: ${curPage >= totalPages ? '0.4' : '1'}; border: 1px solid var(--border-color); background: var(--bg-card); color: #fff;">Sau ›</button>
+        </div>
+      `;
+    }
+
+    function goToEpisodePage(page) {
+      window.currentEpisodePage = page;
+      renderEpisodeList();
+    }
+
+    function loadDemoPaginatedEpisodes() {
+      currentDramaSeasons[activeSeasonKey] = [
+        { ep: 1, name: 'Tập 1: Định Mệnh Gặp Gỡ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep1.m3u8', status: 'online', published: true },
+        { ep: 2, name: 'Tập 2: Thân Phận Bị Lộ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep2.m3u8', status: 'online', published: true },
+        { ep: 3, name: 'Tập 3: Cạm Bẫy Hào Môn', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep3_broken.m3u8', status: 'broken', published: false },
+        { ep: 4, name: 'Tập 4: Phản Kích Bất Ngờ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep4.m3u8', status: 'online', published: true },
+        { ep: 5, name: 'Tập 5: Bí Mật Năm Xưa', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep5.m3u8', status: 'online', published: true },
+        { ep: 6, name: 'Tập 6: Bản Hợp Đồng Đêm Đó', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep6.m3u8', status: 'online', published: true },
+        { ep: 7, name: 'Tập 7: Đêm Đấu Giá Nghẹt Thở', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep7.m3u8', status: 'online', published: true },
+        { ep: 8, name: 'Tập 8: Kẻ Phản Bội Lộ Diện', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep8.m3u8', status: 'online', published: true },
+        { ep: 9, name: 'Tập 9: Lời Thề Dưới Mưa', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep9.m3u8', status: 'online', published: true },
+        { ep: 10, name: 'Tập 10: Sự Thật Sau Tấm Rèm', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep10.m3u8', status: 'online', published: true },
+        { ep: 11, name: 'Tập 11: Trở Về Từ Vực Thẳm', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep11.m3u8', status: 'online', published: true },
+        { ep: 12, name: 'Tập 12: Cú Lật Kèo Ngoạn Mục', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep12.m3u8', status: 'online', published: true },
+        { ep: 13, name: 'Tập 13: Đối Đầu Trực Diện', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep13.m3u8', status: 'online', published: true },
+        { ep: 14, name: 'Tập 14: Giọt Nước Tràn Ly', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep14.m3u8', status: 'online', published: true },
+        { ep: 15, name: 'Tập 15: Đại Kết Cục Viên Mãn', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep15.m3u8', status: 'online', published: true }
+      ];
+      window.currentEpisodePage = 1;
+      renderSeasonTabs();
+      showToast(`Đã nạp 15 tập mẫu cho "${activeSeasonKey}" (Hiển thị phân trang 10 tập/trang)!`, 'success');
     }
 
     function toggleEpisodePublishStatus(index, isChecked) {
@@ -5139,7 +5227,17 @@
           { ep: 2, name: 'Tập 2: Thân Phận Bị Lộ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep2.m3u8', status: 'online', published: true },
           { ep: 3, name: 'Tập 3: Cạm Bẫy Hào Môn', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep3_broken.m3u8', status: 'broken', published: false },
           { ep: 4, name: 'Tập 4: Phản Kích Bất Ngờ', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep4.m3u8', status: 'online', published: true },
-          { ep: 5, name: 'Tập 5: Bí Mật Năm Xưa', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep5.m3u8', status: 'online', published: true }
+          { ep: 5, name: 'Tập 5: Bí Mật Năm Xưa', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep5.m3u8', status: 'online', published: true },
+          { ep: 6, name: 'Tập 6: Bản Hợp Đồng Đêm Đó', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep6.m3u8', status: 'online', published: true },
+          { ep: 7, name: 'Tập 7: Đêm Đấu Giá Nghẹt Thở', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep7.m3u8', status: 'online', published: true },
+          { ep: 8, name: 'Tập 8: Kẻ Phản Bội Lộ Diện', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep8.m3u8', status: 'online', published: true },
+          { ep: 9, name: 'Tập 9: Lời Thề Dưới Mưa', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep9.m3u8', status: 'online', published: true },
+          { ep: 10, name: 'Tập 10: Sự Thật Sau Tấm Rèm', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep10.m3u8', status: 'online', published: true },
+          { ep: 11, name: 'Tập 11: Trở Về Từ Vực Thẳm', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep11.m3u8', status: 'online', published: true },
+          { ep: 12, name: 'Tập 12: Cú Lật Kèo Ngoạn Mục', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep12.m3u8', status: 'online', published: true },
+          { ep: 13, name: 'Tập 13: Đối Đầu Trực Diện', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep13.m3u8', status: 'online', published: true },
+          { ep: 14, name: 'Tập 14: Giọt Nước Tràn Ly', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep14.m3u8', status: 'online', published: true },
+          { ep: 15, name: 'Tập 15: Đại Kết Cục Viên Mãn', url: 'https://cdn.shortdrama-partner.tv/series/v1/ep15.m3u8', status: 'online', published: true }
         ],
         'Phần 2': [
           { ep: 1, name: 'Tập 1: Trở Lại Báo Thù', url: 'https://cdn.shortdrama-partner.tv/series/v2/ep1.m3u8', status: 'online', published: true },
@@ -5349,7 +5447,7 @@
       newRow.innerHTML = `
         <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
         <td>01</td>
-        <td><div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">URL</div></td>
+        <td>${(document.getElementById('poster-preview-img') && document.getElementById('poster-preview-img').style.display !== 'none' && document.getElementById('poster-preview-img').getAttribute('src')) ? `<div class="table-poster" style="overflow: hidden; padding: 0;"><img src="${document.getElementById('poster-preview-img').getAttribute('src')}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>` : `<div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">URL</div>`}</td>
         <td>
           <strong style="color: #fff;">${title}</strong>
         </td>
