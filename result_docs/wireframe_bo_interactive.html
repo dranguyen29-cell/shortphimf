@@ -2390,14 +2390,11 @@
               </h1>
             </div>
             <div class="btn-group" style="gap: 10px;">
-              <button class="btn btn-secondary" onclick="switchView('view-dramas', document.getElementById('menu-dramas'))">
-                ✕ Hủy Bỏ
-              </button>
               <button class="btn btn-draft" onclick="executeCreateDramaDirect(false)" title="Lưu phim ở trạng thái Tạm Ẩn (Chưa phát hành)">
                 ⏸️ Tạm Ẩn
               </button>
               <button class="btn btn-primary" id="btn-submit-drama-top" onclick="executeCreateDramaDirect(true)" title="Lưu và Phát hành ngay lên App & Web">
-                💾 Xuất Bản Ngay
+                💾 Xuất Bản
               </button>
             </div>
           </div>
@@ -5068,7 +5065,7 @@
       if (headerText) headerText.innerHTML = 'Tạo Mới Phim';
 
       const btnTop = document.getElementById('btn-submit-drama-top');
-      if (btnTop) btnTop.innerHTML = '💾 Xuất Bản Ngay';
+      if (btnTop) btnTop.innerHTML = '💾 Xuất Bản';
 
       const nameInput = document.getElementById('input-drama-title');
       if (nameInput) nameInput.value = '';
@@ -5311,14 +5308,12 @@
 
       const newRowId = `DRAMA-${Math.floor(1000 + Math.random() * 9000)}`;
       const newRow = document.createElement('tr');
-      newRow.style.background = isPublished ? 'rgba(255, 42, 95, 0.08)' : 'rgba(255, 184, 0, 0.08)';
       newRow.innerHTML = `
         <td><input type="checkbox" class="drama-checkbox" onclick="updateBulkBar()"></td>
-        <td><strong style="color: ${isPublished ? 'var(--accent-green)' : 'var(--accent-gold)'};">${isPublished ? 'MỚI' : 'TẠM ẨN'}</strong></td>
+        <td>01</td>
         <td><div class="table-poster" style="background: linear-gradient(135deg, #ff2a5f, #7928ca); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">URL</div></td>
         <td>
           <strong style="color: #fff;">${title}</strong>
-          <div style="font-size: 11px; color: var(--accent-green); margin-top: 2px;">ID: ${newRowId} • <span style="color: var(--accent-gold); font-weight: 700;">${formatBadgeText}</span></div>
         </td>
         <td>
           ${tagBadgesHtml}
@@ -5328,18 +5323,70 @@
         <td>
           <div class="action-btn-group">
             <button class="icon-action-btn" title="Chỉnh sửa chi tiết phim & các tập" onclick="openEditDramaModal('${newRowId}', '${title}', selectedCategories)">✏️</button>
-            <button class="icon-action-btn" title="Xóa phim" onclick="this.closest('tr').remove(); updateBulkBar();">🗑️</button>
+            <button class="icon-action-btn" title="Xóa phim" onclick="this.closest('tr').remove(); reindexDramaRows(); updateBulkBar();">🗑️</button>
           </div>
         </td>
       `;
 
       tbody.insertBefore(newRow, tbody.firstChild);
+      reindexDramaRows();
+      
+      // Hiển thị Toast thông báo nhẹ nhàng (không dùng popup alert chặn người dùng)
       if (isPublished) {
-        alert(`🎉 THÀNH CÔNG RỰC RỠ!\n\nĐã lưu & XUẤT BẢN bộ phim "${title}" thành công!\nĐịnh dạng: ${isSeries ? `Phim Bộ (${seasonsCount} Phần - ${totalEpisodes} Tập)` : 'Phim Lẻ (1 Tập Trọn Vẹn)'}\nThể loại: ${selectedCategories.join(', ') || 'Chưa gán'}\nTrạng thái: 🟢 Đã Xuất Bản (Đang hiển thị trên App & Web)`);
+        showToast(`Đã xuất bản thành công bộ phim "${title}"!`, 'success');
       } else {
-        alert(`📁 ĐÃ LƯU TẠM ẨN THÀNH CÔNG!\n\nĐã lưu bộ phim "${title}" ở trạng thái TẠM ẨN!\nĐịnh dạng: ${isSeries ? `Phim Bộ (${seasonsCount} Phần - ${totalEpisodes} Tập)` : 'Phim Lẻ (1 Tập Trọn Vẹn)'}\nThể loại: ${selectedCategories.join(', ') || 'Chưa gán'}\nTrạng thái: 🔴 Tạm ẩn (Ẩn khỏi App & Web, có thể xuất bản sau)`);
+        showToast(`Đã lưu tạm ẩn bộ phim "${title}"!`, 'draft');
       }
+      
+      // Tự động chuyển hướng về trang Danh Sách Phim
       switchView('view-dramas', document.getElementById('menu-dramas'));
+    }
+
+    function reindexDramaRows() {
+      const rows = document.querySelectorAll('#view-dramas tbody tr');
+      rows.forEach((row, idx) => {
+        const sttCell = row.querySelector('td:nth-child(2)');
+        if (sttCell) {
+          sttCell.innerText = String(idx + 1).padStart(2, '0');
+        }
+      });
+    }
+
+    function showToast(message, type = 'success') {
+      let toastContainer = document.getElementById('toast-container');
+      if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.style.cssText = 'position: fixed; top: 24px; right: 28px; z-index: 99999; display: flex; flex-direction: column; gap: 10px; pointer-events: none;';
+        document.body.appendChild(toastContainer);
+      }
+      const toast = document.createElement('div');
+      const isSuccess = type === 'success';
+      toast.style.cssText = `
+        min-width: 320px;
+        padding: 12px 18px;
+        border-radius: 12px;
+        background: rgba(24, 24, 36, 0.95);
+        border: 1px solid ${isSuccess ? 'rgba(0, 230, 118, 0.5)' : 'rgba(255, 184, 0, 0.5)'};
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        backdrop-filter: blur(12px);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: fadeIn 0.25s ease;
+        pointer-events: auto;
+      `;
+      toast.innerHTML = `<span>${isSuccess ? '✅' : '📁'}</span><span>${message}</span>`;
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-8px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
     }
 
     function executeCreateCategoryAction() {
