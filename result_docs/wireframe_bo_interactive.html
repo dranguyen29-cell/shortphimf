@@ -29,13 +29,26 @@
       color-scheme: dark;
     }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); border-radius: 6px; }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); border-radius: 6px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 42, 95, 0.5); }
-
-    .unused-placeholder {
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
     }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 42, 95, 0.5);
+    }
+
+    .unused-placeholder {}
 
     * {
       box-sizing: border-box;
@@ -1746,7 +1759,8 @@
           <span class="icon">🎬</span>
           <span>Danh Sách Phim</span>
         </a>
-        <a class="menu-item" id="menu-create-drama" onclick="triggerCreateDramaFromSidebar(this)" title="Tạo mới & đăng tải phim nhanh 1-click">
+        <a class="menu-item" id="menu-create-drama" onclick="triggerCreateDramaFromSidebar(this)"
+          title="Tạo mới & đăng tải phim nhanh 1-click">
           <span class="icon">➕</span>
           <span>Tạo Mới Phim</span>
         </a>
@@ -1952,7 +1966,8 @@
             </div>
             <div class="btn-group">
               <!-- <button class="btn btn-api" onclick="openModal('modal-api-sync')">🔄 Kéo Phim Từ API Đối Tác</button> -->
-              <button class="btn btn-primary" onclick="triggerCreateDramaFromSidebar()" title="Tạo mới bộ phim">+ Tạo Mới</button>
+              <button class="btn btn-primary" onclick="triggerCreateDramaFromSidebar()" title="Tạo mới bộ phim">+ Tạo
+                Mới</button>
             </div>
           </div>
 
@@ -2382,7 +2397,8 @@
         <!-- VIEW 2.5: CREATE / EDIT DRAMA (FULL PAGE VIEW) -->
         <section id="view-create-drama" class="view-section">
           <!-- BREADCRUMB -->
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 13px; color: var(--text-muted);">
+          <div
+            style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 13px; color: var(--text-muted);">
             <a href="javascript:void(0)" onclick="switchView('view-dramas', document.getElementById('menu-dramas'))"
               style="color: var(--primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
               <span>◀</span> <span>Danh Sách Phim</span>
@@ -2392,36 +2408,45 @@
           </div>
 
           <!-- PAGE HEADER -->
-          <div class="page-header" style="margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border-color);">
+          <div class="page-header"
+            style="margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border-color);">
             <div>
-              <h1 class="page-title" id="create-drama-header-title" style="display: flex; align-items: center; gap: 10px;">
+              <h1 class="page-title" id="create-drama-header-title"
+                style="display: flex; align-items: center; gap: 10px;">
                 <span>🎬</span> <span id="create-drama-header-text">Tạo Mới Phim</span>
               </h1>
             </div>
             <div class="btn-group" style="gap: 10px;">
-              <button class="btn btn-draft" onclick="executeCreateDramaDirect(false)" title="Lưu phim ở trạng thái Tạm Ẩn (Chưa phát hành)">
+              <button class="btn btn-draft" onclick="executeCreateDramaDirect(false)"
+                title="Lưu phim ở trạng thái Tạm Ẩn (Chưa phát hành)">
                 Tạm Ẩn
               </button>
-              <button class="btn btn-primary" id="btn-submit-drama-top" onclick="executeCreateDramaDirect(true)" title="Lưu và Phát hành ngay lên App & Web">
+              <button class="btn btn-primary" id="btn-submit-drama-top" onclick="executeCreateDramaDirect(true)"
+                title="Lưu và Phát hành ngay lên App & Web">
                 Xuất Bản
               </button>
             </div>
           </div>
 
           <!-- FULL PAGE MAIN CONTENT: 2 COLUMNS GRID (CÂN BẰNG CHIỀU CAO 2 CỘT) -->
-          <div style="display: grid; grid-template-columns: 420px 1fr; gap: 24px; align-items: start; margin-bottom: 30px;">
-            
+          <div
+            style="display: grid; grid-template-columns: 420px 1fr; gap: 24px; align-items: start; margin-bottom: 30px;">
+
             <!-- LEFT COLUMN: THÔNG TIN BỘ PHIM & METADATA -->
             <div style="display: flex; flex-direction: column; height: 100%;">
-              <div class="panel-card" style="padding: 24px; height: auto; position: sticky; top: 0; margin-bottom: 0; display: flex; flex-direction: column;">
-                <div class="panel-title" style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                  <span style="display: flex; align-items: center; gap: 8px;">🏷️ <strong>1. Thông Tin Chung</strong></span>
+              <div class="panel-card"
+                style="padding: 24px; height: auto; position: sticky; top: 0; margin-bottom: 0; display: flex; flex-direction: column;">
+                <div class="panel-title"
+                  style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="display: flex; align-items: center; gap: 8px;">🏷️ <strong>1. Thông Tin
+                      Chung</strong></span>
                   <span class="badge badge-published" style="font-size: 11px;">Bắt buộc</span>
                 </div>
 
                 <!-- TÊN BỘ PHIM -->
                 <div style="margin-bottom: 18px;">
-                  <label style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
+                  <label
+                    style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
                     TÊN BỘ PHIM <span style="color: var(--primary);">*</span>
                   </label>
                   <input type="text" id="input-drama-title" placeholder="Nhập tên bộ phim..."
@@ -2431,7 +2456,8 @@
 
                 <!-- LOẠI HÌNH PHIM -->
                 <div style="margin-bottom: 18px;">
-                  <label style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
+                  <label
+                    style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
                     LOẠI HÌNH PHIM
                   </label>
                   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -2452,25 +2478,31 @@
 
                 <!-- POSTER ĐẠI DIỆN -->
                 <div style="margin-bottom: 18px;">
-                  <label style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 8px;">
+                  <label
+                    style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 8px;">
                     POSTER ĐẠI DIỆN PHIM
                   </label>
                   <div style="display: flex; gap: 16px; align-items: flex-start;">
                     <!-- Preview Box -->
                     <div id="poster-preview-box"
-                      style="width: 100px; height: 135px; border-radius: 10px; border: 2px dashed var(--border-color); background: var(--bg-main); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; position: relative; transition: border-color 0.2s; cursor: pointer;" onclick="document.getElementById('poster-file-input').click()" title="Bấm để tải ảnh Poster từ máy tính">
+                      style="width: 100px; height: 135px; border-radius: 10px; border: 2px dashed var(--border-color); background: var(--bg-main); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; position: relative; transition: border-color 0.2s; cursor: pointer;"
+                      onclick="document.getElementById('poster-file-input').click()"
+                      title="Bấm để tải ảnh Poster từ máy tính">
                       <img id="poster-preview-img" src="" alt=""
                         style="width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 8px;">
                       <div id="poster-preview-placeholder" style="text-align: center; pointer-events: none;">
                         <div style="font-size: 30px; margin-bottom: 4px;">🖼️</div>
-                        <div style="font-size: 10.5px; color: var(--text-muted); line-height: 1.3;">Chưa có<br>poster</div>
+                        <div style="font-size: 10.5px; color: var(--text-muted); line-height: 1.3;">Chưa có<br>poster
+                        </div>
                       </div>
                     </div>
 
                     <!-- Upload Controls -->
-                    <div style="flex: 1; height: 135px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div
+                      style="flex: 1; height: 135px; display: flex; flex-direction: column; justify-content: space-between;">
                       <div>
-                        <label style="font-size: 11px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 5px;">
+                        <label
+                          style="font-size: 11px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 5px;">
                           DÁN LINK ẢNH URL
                         </label>
                         <input type="text" id="poster-url-input" placeholder="https://example.com/poster.jpg"
@@ -2478,11 +2510,18 @@
                           oninput="previewPosterUrl(this.value)">
                       </div>
                       <div style="display: flex; gap: 8px;">
-                        <input type="file" id="poster-file-input" accept="image/*" style="display: none;" onchange="previewPosterFile(this)">
-                        <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 6px 10px; flex: 1; justify-content: center; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);"
+                        <input type="file" id="poster-file-input" accept="image/*" style="display: none;"
+                          onchange="previewPosterFile(this)">
+                        <button type="button" class="btn btn-secondary"
+                          style="font-size: 11px; padding: 6px 10px; flex: 1; justify-content: center; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);"
                           onclick="document.getElementById('poster-file-input').click()">📁 Tải Ảnh Lên</button>
-                        <button type="button" class="btn btn-secondary" style="font-size: 11px; padding: 6px 10px; flex: 1; justify-content: center;"
-                          onclick="removePoster()">🗑️ Xóa Ảnh</button></div><div style="font-size: 11px; color: var(--text-muted); line-height: 1.35;">Định dạng JPG, PNG, WebP • Tỷ lệ dọc 2:3 (Tối đa 2MB)</div><div>
+                        <button type="button" class="btn btn-secondary"
+                          style="font-size: 11px; padding: 6px 10px; flex: 1; justify-content: center;"
+                          onclick="removePoster()">🗑️ Xóa Ảnh</button>
+                      </div>
+                      <div style="font-size: 11px; color: var(--text-muted); line-height: 1.35;">Định dạng JPG, PNG,
+                        WebP • Tỷ lệ dọc 2:3 (Tối đa 2MB)</div>
+                      <div>
                       </div>
                     </div>
                   </div>
@@ -2490,12 +2529,15 @@
 
                 <!-- MULTI-SELECT CATEGORY DROPDOWN -->
                 <div>
-                  <label style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
+                  <label
+                    style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
                     GÁN THỂ LOẠI PHIM
                   </label>
                   <div class="multi-select-container" id="category-multi-select-container">
-                    <div class="multi-select-display-box" id="category-display-box" onclick="toggleCategoryDropdown(event)">
-                      <div id="selected-chips-container" style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;"></div>
+                    <div class="multi-select-display-box" id="category-display-box"
+                      onclick="toggleCategoryDropdown(event)">
+                      <div id="selected-chips-container"
+                        style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;"></div>
                       <span style="color: var(--text-muted); font-size: 12px; margin-left: auto;">▼</span>
                     </div>
                     <div class="multi-select-popover" id="category-popover" style="width: 100%;">
@@ -2512,15 +2554,18 @@
 
             <!-- RIGHT COLUMN: QUẢN LÝ TẬP PHIM / STREAMS -->
             <div style="display: flex; flex-direction: column; height: 100%;">
-              
+
               <!-- PHIM LẺ SECTION -->
-              <div id="section-single-movie-manager" class="panel-card" style="display: none; padding: 24px; height: 100%;">
-                <div class="panel-title" style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+              <div id="section-single-movie-manager" class="panel-card"
+                style="display: none; padding: 24px; height: 100%;">
+                <div class="panel-title"
+                  style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
                   <span>🎟️ <strong>2. Đường Link URL Phim Lẻ</strong></span>
                   <span class="badge badge-category">1 Tập Duy Nhất</span>
                 </div>
                 <div style="margin-bottom: 14px;">
-                  <label style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
+                  <label
+                    style="font-size: 12.5px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">
                     LINK STREAM URL (HLS / m3u8 / MP4) <span style="color: var(--primary);">*</span>
                   </label>
                   <div style="display: flex; gap: 10px; align-items: center;">
@@ -2528,36 +2573,47 @@
                       placeholder="https://cdn.partner-stream.com/movies/phim-le/master.m3u8"
                       value="https://cdn.shortdrama-partner.tv/movies/co-vo-sat-thu-single-movie/master.m3u8"
                       style="flex: 1; background: var(--bg-main); border: 1px solid var(--border-color); padding: 11px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace; outline: none;">
-                    <button class="btn btn-secondary" style="padding: 11px 16px; font-size: 12.5px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35); flex-shrink: 0;"
+                    <button class="btn btn-secondary"
+                      style="padding: 11px 16px; font-size: 12.5px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35); flex-shrink: 0;"
                       onclick="testPlaySingleMovie()">▶️ Phát Thử</button>
                   </div>
                 </div>
               </div>
 
               <!-- PHIM BỘ SECTION: ĐA PHẦN & DANH SÁCH TẬP -->
-              <div id="section-seasons-manager" class="panel-card" style="padding: 24px; height: 100%; display: flex; flex-direction: column;">
-                <div class="panel-title" style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <div id="section-seasons-manager" class="panel-card"
+                style="padding: 24px; height: 100%; display: flex; flex-direction: column;">
+                <div class="panel-title"
+                  style="margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
                   <span style="display: flex; align-items: center; gap: 8px;">
                     <span>🎬 <strong>2. Danh Sách Tập & Đa Phần</strong></span>
-                    <span class="badge badge-published" id="label-active-season-name" style="display: none;">Phần 1</span>
+                    <span class="badge badge-published" id="label-active-season-name" style="display: none;">Phần
+                      1</span>
                   </span>
                   <div style="display: flex; gap: 8px;">
-                    <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);"
+                    <button class="btn btn-secondary"
+                      style="font-size: 12px; padding: 6px 12px; color: var(--accent-gold); border-color: rgba(255,184,0,0.35);"
                       onclick="addNewSeasonPrompt()">➕ Thêm Phần Mới</button>
-                    <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; color: #ff4d6d; border-color: rgba(255,77,109,0.35);"
+                    <button class="btn btn-secondary"
+                      style="font-size: 12px; padding: 6px 12px; color: #ff4d6d; border-color: rgba(255,77,109,0.35);"
                       onclick="deleteCurrentSeason()" title="Xóa phần đang chọn">🗑️ Xóa Phần Này</button>
                   </div>
                 </div>
 
                 <!-- SEASON TABS SELECTOR -->
-                <div id="season-tabs-container" style="display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px;"></div>
+                <div id="season-tabs-container"
+                  style="display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px;"></div>
 
                 <!-- BULK URL IMPORTER -->
-                <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                <div
+                  style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
                     <span style="font-size: 12.5px; font-weight: 700; color: #fff;">⚡ Nạp Link Hàng Loạt</span>
-                    <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-color);">
-                      <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 600;">Bắt đầu từ tập số:</span>
+                    <div
+                      style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+                      <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 600;">Bắt đầu từ tập
+                        số:</span>
                       <input type="number" id="bulk-start-ep" value="1" min="1" max="500"
                         style="width: 55px; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--accent-gold); font-weight: 800; padding: 3px 6px; border-radius: 6px; text-align: center; font-size: 12px;"
                         title="Số thứ tự tập cho dòng link đầu tiên">
@@ -2579,16 +2635,13 @@
                   <div style="font-size: 13px; font-weight: 700; color: #fff;">
                     TẬP PHIM (<span id="active-season-ep-count" style="color: var(--accent-gold);">5 Tập</span>):
                   </div>
-                  <button class="btn btn-secondary" style="font-size: 11.5px; padding: 5px 12px; color: var(--accent-green); border-color: rgba(0,230,118,0.35);"
-                  <div style="display: flex; gap: 8px; align-items: center;">
-                    <button class="btn btn-secondary" style="font-size: 11.5px; padding: 5px 12px; color: var(--accent-blue); border-color: rgba(41,182,246,0.35);"
-                      onclick="loadDemoPaginatedEpisodes()" title="Nạp nhanh 15 tập mẫu để xem giao diện phân trang (>10 tập)">⚡ Demo 15 Tập (Phân Trang)</button>
-                    <button class="btn btn-secondary" style="font-size: 11.5px; padding: 5px 12px; color: var(--accent-green); border-color: rgba(0,230,118,0.35);"
-                      onclick="addNewSingleEpisode()">➕ Thêm Tập Mới</button>
-                  </div>
+                  <button class="btn btn-secondary"
+                    style="font-size: 11.5px; padding: 5px 12px; color: var(--accent-green); border-color: rgba(0,230,118,0.35);"
+                    onclick="addNewSingleEpisode()">➕ Thêm Tập Mới</button>
                 </div>
 
-                <div class="data-table-wrapper" style="border-radius: 10px; border: 1px solid var(--border-color); overflow: hidden;">
+                <div class="data-table-wrapper"
+                  style="border-radius: 10px; border: 1px solid var(--border-color); overflow: hidden;">
                   <table class="data-table" style="font-size: 12.5px;">
                     <thead>
                       <tr>
@@ -2600,10 +2653,15 @@
                       </tr>
                     </thead>
                     <tbody id="modal-drama-episodes-tbody"></tbody>
-                  </table>
-                </div>
-                <div id="episode-pagination-bar" style="display: none; justify-content: space-between; align-items: center; margin-top: 12px; padding: 10px 14px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 10px; flex-wrap: wrap; gap: 10px;"></div>
-                <div style="display: none;"><table><tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="5" style="padding: 0; border: none;">
+                          <div id="episode-pagination-bar"
+                            style="display: none; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(0,0,0,0.25); border-top: 1px solid var(--border-color); flex-wrap: wrap; gap: 10px;">
+                          </div>
+                        </td>
+                      </tr>
+                    </tfoot>
                   </table>
                 </div>
               </div>
@@ -4834,7 +4892,7 @@
         }
         activeSeasonKey = cleanName;
         if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
-      renderSeasonTabs();
+        renderSeasonTabs();
         alert(`✅ Đã tạo thành công "${cleanName}"! Bạn có thể dán link hàng loạt hoặc thêm từng tập cho phần này.`);
       }
     }
@@ -4849,7 +4907,7 @@
         delete currentDramaSeasons[activeSeasonKey];
         activeSeasonKey = Object.keys(currentDramaSeasons)[0];
         if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
-      renderSeasonTabs();
+        renderSeasonTabs();
       }
     }
 
@@ -5139,7 +5197,7 @@
           ep.ep = i + 1;
         });
         if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
-      renderSeasonTabs();
+        renderSeasonTabs();
       }
     }
 
@@ -5466,14 +5524,14 @@
 
       tbody.insertBefore(newRow, tbody.firstChild);
       reindexDramaRows();
-      
+
       // Hiển thị Toast thông báo nhẹ nhàng (không dùng popup alert chặn người dùng)
       if (isPublished) {
         showToast(`Đã xuất bản thành công bộ phim "${title}"!`, 'success');
       } else {
         showToast(`Đã lưu tạm ẩn bộ phim "${title}"!`, 'draft');
       }
-      
+
       // Tự động chuyển hướng về trang Danh Sách Phim
       switchView('view-dramas', document.getElementById('menu-dramas'));
     }
@@ -6420,7 +6478,7 @@
       document.getElementById('report-to-date').value = '2026-08-20';
       document.getElementById('report-category-filter').value = 'all';
       document.getElementById('report-search-drama').value = '';
-      
+
       // Hiển thị lại toàn bộ các hàng trong bảng báo cáo phim
       document.querySelectorAll('#report-drama-table-body tr').forEach(row => {
         row.style.display = '';
@@ -6432,7 +6490,7 @@
     function exportCustomReport(type) {
       const modeLabel = currentReportTimeMode === 'day' ? 'KhoangNgay_20260810_20260820' : 'Thang_202608';
       const fileName = `PineDrama_Detailed_Metrics_${modeLabel}.xlsx`;
-      
+
       // Kích hoạt tải trực tiếp file template Excel thực tế
       const downloadLink = document.createElement('a');
       downloadLink.href = 'Template_Xuat_Bao_Cao_Thong_Ke_PineDrama.xlsx';
