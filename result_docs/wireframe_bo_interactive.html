@@ -2391,10 +2391,10 @@
             </div>
             <div class="btn-group" style="gap: 10px;">
               <button class="btn btn-draft" onclick="executeCreateDramaDirect(false)" title="Lưu phim ở trạng thái Tạm Ẩn (Chưa phát hành)">
-                ⏸️ Tạm Ẩn
+                Tạm Ẩn
               </button>
               <button class="btn btn-primary" id="btn-submit-drama-top" onclick="executeCreateDramaDirect(true)" title="Lưu và Phát hành ngay lên App & Web">
-                💾 Xuất Bản
+                Xuất Bản
               </button>
             </div>
           </div>
@@ -2543,7 +2543,7 @@
                 <!-- BULK URL IMPORTER -->
                 <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
-                    <span style="font-size: 12.5px; font-weight: 700; color: #fff;">⚡ Nạp Link Hàng Loạt (Bulk Importer)</span>
+                    <span style="font-size: 12.5px; font-weight: 700; color: #fff;">⚡ Nạp Link Hàng Loạt</span>
                     <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-color);">
                       <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 600;">Bắt đầu từ tập số:</span>
                       <input type="number" id="bulk-start-ep" value="1" min="1" max="500"
@@ -2558,7 +2558,7 @@
 
                   <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 10px;">
                     <button class="btn btn-primary" style="font-size: 12px; padding: 8px 20px; font-weight: 700;"
-                      onclick="parseBulkUrls()">⚡ Gán Phim</button>
+                      onclick="parseBulkUrls()">Gán Phim</button>
                   </div>
                 </div>
 
@@ -2579,7 +2579,7 @@
                         <th style="width: 180px;">Tên Tập Phim</th>
                         <th>Link URL</th>
                         <th style="width: 150px;">Trạng Thái</th>
-                        <th style="width: 90px; text-align: right;">Hành Động</th>
+                        <th style="width: 115px; text-align: right; white-space: nowrap;">Hành Động</th>
                       </tr>
                     </thead>
                     <tbody id="modal-drama-episodes-tbody"></tbody>
@@ -4797,6 +4797,7 @@
 
     function switchActiveSeason(seasonKey) {
       activeSeasonKey = seasonKey;
+      if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
       renderSeasonTabs();
     }
 
@@ -4810,7 +4811,8 @@
           currentDramaSeasons[cleanName] = [];
         }
         activeSeasonKey = cleanName;
-        renderSeasonTabs();
+        if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
+      renderSeasonTabs();
         alert(`✅ Đã tạo thành công "${cleanName}"! Bạn có thể dán link hàng loạt hoặc thêm từng tập cho phần này.`);
       }
     }
@@ -4824,7 +4826,8 @@
       if (confirm(`Bạn có chắc chắn muốn xóa "${activeSeasonKey}" và toàn bộ link các tập thuộc phần này không?`)) {
         delete currentDramaSeasons[activeSeasonKey];
         activeSeasonKey = Object.keys(currentDramaSeasons)[0];
-        renderSeasonTabs();
+        if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
+      renderSeasonTabs();
       }
     }
 
@@ -4993,6 +4996,7 @@
       if (startEpInput) {
         startEpInput.value = currentDramaSeasons[activeSeasonKey].length + 1;
       }
+      if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
       renderSeasonTabs();
       alert(`🎉 ĐÃ GÁN & NẠP THÀNH CÔNG ${lines.length} TẬP!\n\nĐã tự động đánh số tuần tự từ Tập ${startEp} đến Tập ${startEp + lines.length - 1} theo đúng thứ tự dòng dán cho "${activeSeasonKey}" (bất kể định dạng link raw/hash).`);
     }
@@ -5009,6 +5013,7 @@
         status: 'online',
         published: true
       });
+      if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
       renderSeasonTabs();
     }
 
@@ -5045,7 +5050,8 @@
         currentDramaSeasons[activeSeasonKey].forEach((ep, i) => {
           ep.ep = i + 1;
         });
-        renderSeasonTabs();
+        if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
+      renderSeasonTabs();
       }
     }
 
@@ -5065,16 +5071,16 @@
       if (headerText) headerText.innerHTML = 'Tạo Mới Phim';
 
       const btnTop = document.getElementById('btn-submit-drama-top');
-      if (btnTop) btnTop.innerHTML = '💾 Xuất Bản';
+      if (btnTop) btnTop.innerHTML = 'Xuất Bản';
 
       const nameInput = document.getElementById('input-drama-title');
-      if (nameInput) nameInput.value = '';
+      if (nameInput) { nameInput.value = ''; nameInput.style.borderColor = 'var(--border-color)'; }
 
       const singleUrlInput = document.getElementById('input-single-drama-url');
-      if (singleUrlInput) singleUrlInput.value = '';
+      if (singleUrlInput) { singleUrlInput.value = ''; singleUrlInput.style.borderColor = 'var(--border-color)'; }
 
       const bulkTextarea = document.getElementById('bulk-urls-textarea');
-      if (bulkTextarea) bulkTextarea.value = '';
+      if (bulkTextarea) { bulkTextarea.value = ''; bulkTextarea.style.borderColor = 'var(--border-color)'; }
 
       const isSeriesRadio = document.getElementById('drama-type-series');
       if (isSeriesRadio) isSeriesRadio.checked = true;
@@ -5091,6 +5097,7 @@
         'Phần 1': []
       };
       activeSeasonKey = 'Phần 1';
+      if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
       renderSeasonTabs();
     }
 
@@ -5115,7 +5122,7 @@
       if (headerSub) headerSub.innerText = `Cập nhật thông tin, thay đổi danh sách tập phim và trạng thái phát hành của bộ phim "${dramaTitle}".`;
 
       const btnTop = document.getElementById('btn-submit-drama-top');
-      if (btnTop) btnTop.innerHTML = '💾 Lưu Thay Đổi';
+      if (btnTop) btnTop.innerHTML = 'Lưu Thay Đổi';
 
       const nameInput = document.getElementById('input-drama-title');
       if (nameInput) nameInput.value = dramaTitle;
@@ -5141,6 +5148,7 @@
       };
 
       activeSeasonKey = 'Phần 1';
+      if (document.getElementById('bulk-urls-textarea')) document.getElementById('bulk-urls-textarea').style.borderColor = 'var(--border-color)';
       renderSeasonTabs();
     }
 
@@ -5259,7 +5267,18 @@
     }
 
     function executeCreateDramaDirect(isPublished = true) {
-      const title = document.getElementById('input-drama-title').value.trim() || 'Cô Vợ Sát Thủ & Tổng Tài Bá Đạo';
+      const titleInput = document.getElementById('input-drama-title');
+      const title = titleInput ? titleInput.value.trim() : '';
+      const actionLabel = isPublished ? 'Xuất Bản' : 'Tạm Ẩn';
+      if (!title) {
+        if (titleInput) {
+          titleInput.style.borderColor = '#ff4d6d';
+          titleInput.focus();
+          titleInput.oninput = function () { this.style.borderColor = 'var(--border-color)'; };
+        }
+        showToast(`Không thể ${actionLabel}: Bắt buộc phải nhập Tên Bộ Phim!`, 'error');
+        return;
+      }
       const isSeriesRadio = document.getElementById('drama-type-series');
       const isSeries = isSeriesRadio ? isSeriesRadio.checked : true;
 
@@ -5274,11 +5293,30 @@
         Object.keys(currentDramaSeasons).forEach(k => {
           totalEpisodes += currentDramaSeasons[k].length;
         });
-        if (totalEpisodes === 0) totalEpisodes = 80;
+        if (totalEpisodes === 0) {
+          const bulkTextarea = document.getElementById('bulk-urls-textarea');
+          if (bulkTextarea) {
+            bulkTextarea.style.borderColor = '#ff4d6d';
+            bulkTextarea.focus();
+            bulkTextarea.oninput = function () { this.style.borderColor = 'var(--border-color)'; };
+          }
+          showToast(`Không thể ${actionLabel}: Bắt buộc phải thêm hoặc gán ít nhất 1 tập phim!`, 'error');
+          return;
+        }
         formatBadgeText = `🎬 ${seasonsCount} Phần (${totalEpisodes} Tập)`;
         epsText = `${totalEpisodes}/${totalEpisodes} Tập`;
       } else {
-        const singleUrl = document.getElementById('input-single-drama-url').value.trim();
+        const singleUrlInput = document.getElementById('input-single-drama-url');
+        const singleUrl = singleUrlInput ? singleUrlInput.value.trim() : '';
+        if (!singleUrl) {
+          if (singleUrlInput) {
+            singleUrlInput.style.borderColor = '#ff4d6d';
+            singleUrlInput.focus();
+            singleUrlInput.oninput = function () { this.style.borderColor = 'var(--border-color)'; };
+          }
+          showToast(`Không thể ${actionLabel}: Bắt buộc phải nhập Link Stream URL cho Phim Lẻ!`, 'error');
+          return;
+        }
         formatBadgeText = '🎟️ Phim Lẻ (1 Tập)';
         epsText = '1 Tập (Phim Lẻ)';
       }
@@ -5362,12 +5400,13 @@
       }
       const toast = document.createElement('div');
       const isSuccess = type === 'success';
+      const isError = type === 'error';
       toast.style.cssText = `
         min-width: 320px;
         padding: 12px 18px;
         border-radius: 12px;
         background: rgba(24, 24, 36, 0.95);
-        border: 1px solid ${isSuccess ? 'rgba(0, 230, 118, 0.5)' : 'rgba(255, 184, 0, 0.5)'};
+        border: 1px solid ${isError ? 'rgba(255, 77, 109, 0.7)' : (isSuccess ? 'rgba(0, 230, 118, 0.5)' : 'rgba(255, 184, 0, 0.5)')};
         box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         backdrop-filter: blur(12px);
         color: #fff;
@@ -5379,7 +5418,7 @@
         animation: fadeIn 0.25s ease;
         pointer-events: auto;
       `;
-      toast.innerHTML = `<span>${isSuccess ? '✅' : '📁'}</span><span>${message}</span>`;
+      toast.innerHTML = `<span>${isError ? '⚠️' : (isSuccess ? '✅' : '📁')}</span><span>${message}</span>`;
       toastContainer.appendChild(toast);
       setTimeout(() => {
         toast.style.opacity = '0';

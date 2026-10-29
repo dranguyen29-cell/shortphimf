@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Suno Direct Studio Bridge",
+  "version": "2.5.0",
+  "description": "Kết nối trực tiếp Web Studio (localhost:8088) với tab Suno.com đang mở trên trình duyệt Chrome chính (Không bị dính Captcha/Turnstile).",
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://suno.com/*",
+    "https://*.suno.com/*",
+    "http://localhost:8088/*",
+    "http://127.0.0.1:8088/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
