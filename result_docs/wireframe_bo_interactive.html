@@ -6179,12 +6179,15 @@
       const chartLabels = document.getElementById('chart-axis-labels');
       const topList = document.getElementById('top-dramas-list');
 
-      if (mode === 'd1') {
+      if (mode === 'd1' || mode === 'live' || mode === 'month') {
+        const selectedMonthLabel = ({ '2026-08': 'Tháng 08/2026', '2026-07': 'Tháng 07/2026', '2026-06': 'Tháng 06/2026', '2026-05': 'Tháng 05/2026' })[currentDashboardMonth] || 'Tháng 08/2026';
+        const modePeriodText = mode === 'd1' ? 'D-1 - HÔM QUA' : (mode === 'live' ? 'HÔM NAY' : selectedMonthLabel.toUpperCase());
+        const modeBadgeText = mode === 'd1' ? 'D-1 Đã Chốt Sổ' : (mode === 'live' ? '🔴 Hôm Nay' : selectedMonthLabel);
         // D-1 Mode (Default)
         if (subtitle) subtitle.innerHTML = 'Thống kê hiệu suất & chỉ số người dùng chốt sổ trọn vẹn ngày <strong>D-1 (10/08/2026)</strong>';
         if (statusBadge) statusBadge.innerHTML = 'Đã Chốt Sổ D-1 (10/08)';
 
-        if (statTitle1) statTitle1.innerText = 'TỔNG LƯỢT XEM (D-1 - HÔM QUA)';
+        if (statTitle1) statTitle1.innerText = `TỔNG LƯỢT XEM (${modePeriodText})`;
         if (statVal1) statVal1.innerText = '1,482,900';
         if (statChange1) statChange1.innerText = '▲ +18.4% so với D-2';
 
@@ -6202,7 +6205,7 @@
 
         if (chartTitle) chartTitle.innerText = '📈 Lượng Truy Cập Xem Phim Theo Giờ (D-1 Hourly Traffic: 00:00 - 23:59)';
         if (chartBadge) {
-          chartBadge.innerText = 'D-1 Đã Chốt Sổ';
+          chartBadge.innerText = modeBadgeText;
           chartBadge.className = 'badge badge-published';
         }
 
