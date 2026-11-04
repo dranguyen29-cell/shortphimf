@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PineDrama BO - Back Office Web Admin Prototype</title>
+  <title>Vipshort BO - Back Office Web Admin Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
@@ -1672,8 +1672,8 @@
   <div id="login-overlay-screen" class="login-overlay-screen">
     <div class="login-card">
       <div class="login-brand">
-        <div class="login-brand-logo">P</div>
-        <h2 style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px;">PineDrama Back Office</h2>
+        <div class="login-brand-logo">V</div>
+        <h2 style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px;">Vipshort Back Office</h2>
         <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Cổng Quản Trị Hệ Thống & Vận Hành Phim
           Ngắn</p>
       </div>
@@ -1683,7 +1683,7 @@
           <label>Email / Tên Đăng Nhập</label>
           <div class="login-input-wrapper">
             <span class="login-input-icon">👤</span>
-            <input type="text" id="login-email" placeholder="admin@pinedrama.com" value="hoangbach@pinedrama.com"
+            <input type="text" id="login-email" placeholder="admin@vipshort.com" value="hoangbach@vipshort.com"
               required>
           </div>
         </div>
@@ -1692,7 +1692,7 @@
           <label>Mật Khẩu</label>
           <div class="login-input-wrapper">
             <span class="login-input-icon">🔒</span>
-            <input type="password" id="login-password" placeholder="••••••••••••" value="PineDrama@2026" required>
+            <input type="password" id="login-password" placeholder="••••••••••••" value="Vipshort@2026" required>
             <span onclick="togglePasswordVisibility()"
               style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); font-size: 14px;"
               title="Hiện/Ẩn mật khẩu">👁️</span>
@@ -1720,16 +1720,12 @@
           style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 700; text-align: center; margin-bottom: 10px;">
           ⚡ ĐĂNG NHẬP NHANH DEMO (1-CLICK TEST)
         </div>
-        <div class="demo-role-grid">
-          <button class="demo-role-btn" onclick="quickLoginAs('Hoàng Bách', 'Super Admin', 'hoangbach@pinedrama.com')">
-            👑 Super Admin<br><span style="font-size: 9.5px; color: var(--text-muted);">Full Quyền</span>
+        <div class="demo-role-grid" style="grid-template-columns: 1fr 1fr;">
+          <button class="demo-role-btn" onclick="quickLoginAs('Hoàng Bách', 'Super Admin', 'hoangbach@vipshort.com')">
+            👑 Super Admin<br><span style="font-size: 9.5px; color: var(--text-muted);">Full Admin (Toàn Quyền)</span>
           </button>
-          <button class="demo-role-btn"
-            onclick="quickLoginAs('Thu Trang', 'Content Manager', 'thutrang.content@pinedrama.com')">
-            🎬 Content Manager<br><span style="font-size: 9.5px; color: var(--text-muted);">Danh Sách Phim</span>
-          </button>
-          <button class="demo-role-btn" onclick="quickLoginAs('Hoàng Nam', 'User Moderator', 'nam.mod@pinedrama.com')">
-            🛡️ Moderator<br><span style="font-size: 9.5px; color: var(--text-muted);">Quản Lý User</span>
+          <button class="demo-role-btn" onclick="quickLoginAs('Đặng Minh Châu', 'Admin', 'chau.admin@vipshort.com')">
+            🛡️ Admin<br><span style="font-size: 9.5px; color: var(--text-muted);">Quản Trị Viên Vận Hành</span>
           </button>
         </div>
       </div>
@@ -1741,9 +1737,9 @@
     <!-- SIDEBAR NAV -->
     <aside class="sidebar">
       <div class="brand-header">
-        <div class="brand-logo">P</div>
+        <div class="brand-logo">V</div>
         <div>
-          <div class="brand-title">PineDrama</div>
+          <div class="brand-title">Vipshort</div>
           <div style="font-size: 10px; color: var(--text-muted);">Short Drama CMS</div>
         </div>
         <span class="brand-tag">BO v3.0</span>
@@ -3843,7 +3839,7 @@
                           HB</div>
                         <div>
                           <strong style="color: #fff;">Hoàng Bách</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">hoangbach@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">hoangbach@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -3870,7 +3866,7 @@
                           TT</div>
                         <div>
                           <strong style="color: #fff;">Thu Trang</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">thutrang.content@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">thutrang.content@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -3899,7 +3895,7 @@
                           HN</div>
                         <div>
                           <strong style="color: #fff;">Hoàng Nam</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">nam.mod@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">nam.mod@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -3927,7 +3923,7 @@
                           BT</div>
                         <div>
                           <strong style="color: #fff;">Bảo Trâm</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">tram.analyst@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">tram.analyst@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -3954,7 +3950,7 @@
                           style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #29b6f6, #ab47bc); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
                           TT</div>
                         <div><strong style="color: #fff;">Trần Tuấn</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">tuan.editor@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">tuan.editor@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -3976,7 +3972,7 @@
                           style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #00e676, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
                           MP</div>
                         <div><strong style="color: #fff;">Mai Phương</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">phuong.cskh@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">phuong.cskh@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -3998,7 +3994,7 @@
                           style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ff2a5f, #ffb800); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
                           LP</div>
                         <div><strong style="color: #fff;">Lê Phong</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">phong.dev@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">phong.dev@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -4020,7 +4016,7 @@
                           style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ab47bc, #00e676); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
                           HG</div>
                         <div><strong style="color: #fff;">Hương Giang</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">giang.mkt@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">giang.mkt@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -4042,7 +4038,7 @@
                           style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #7928ca, #ff5e3a); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
                           ĐT</div>
                         <div><strong style="color: #fff;">Đức Trọng</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">trong.qc@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">trong.qc@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -4065,7 +4061,7 @@
                           style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #ff2a5f, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">
                           MT</div>
                         <div><strong style="color: #fff;">Minh Thư</strong>
-                          <div style="font-size: 11px; color: var(--text-muted);">thu.mod@pinedrama.com</div>
+                          <div style="font-size: 11px; color: var(--text-muted);">thu.mod@vipshort.com</div>
                         </div>
                       </div>
                     </td>
@@ -4361,98 +4357,40 @@
 
   <!-- MODAL 5: CẤP TÀI KHOẢN ADMIN MỚI -->
   <div id="modal-create-admin" class="modal-overlay">
-    <div class="modal-content" style="width: 650px;">
-      <div class="modal-header">
+    <div class="modal-content" style="width: 520px; border-radius: 18px; background: #14141f; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 25px 60px rgba(0,0,0,0.7);">
+      <div class="modal-header" style="border-bottom: none; padding-bottom: 4px;">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 20px;">👤</span>
-          <div>
-            <div class="modal-title">➕ Cấp Mới Tài Khoản Quản Trị Viên (Admin BO)</div>
-            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">Tạo tài khoản quản trị và thiết
-              lập quyền hạn truy cập hệ thống</div>
-          </div>
+          <span style="font-size: 18px; color: #a78bfa;">➕</span>
+          <div class="modal-title" style="font-size: 17px; font-weight: 700; color: #fff;">Cấp Mới Tài Khoản Quản Trị Viên (Admin BO)</div>
         </div>
         <button class="close-modal-btn" onclick="closeModal('modal-create-admin')">✕</button>
       </div>
 
-      <div class="modal-body">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-          <div>
-            <label
-              style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">HỌ
-              VÀ TÊN ADMIN <span style="color: var(--primary);">*</span></label>
-            <input type="text" id="new-admin-name" placeholder="Ví dụ: Nguyễn Văn A" value="Đặng Minh Châu"
-              style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-          </div>
-          <div>
-            <label
-              style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">EMAIL
-              ĐĂNG NHẬP <span style="color: var(--primary);">*</span></label>
-            <input type="email" id="new-admin-email" placeholder="email@pinedrama.com" value="chau.editor@pinedrama.com"
-              style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-          </div>
+      <div class="modal-body" style="padding-top: 14px;">
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 11.5px; color: #8f92a1; font-weight: 700; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">USERNAME</label>
+          <input type="text" id="new-admin-username" placeholder="Bắt đầu bằng chữ, 5–30 ký tự"
+            style="width: 100%; background: #0c0c14; border: 1px solid rgba(255, 255, 255, 0.08); padding: 13px 16px; border-radius: 10px; color: #fff; font-size: 13.5px; outline: none;">
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
-          <div>
-            <label
-              style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">MẬT
-              KHẨU KHỞI TẠO <span style="color: var(--primary);">*</span></label>
-            <input type="text" id="new-admin-pass" value="Admin@2026!#"
-              style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px; font-family: monospace;">
-          </div>
-          <div>
-            <label
-              style="font-size: 12px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 6px;">VAI
-              TRÒ (ROLE ĐỊNH DANH) <span style="color: var(--primary);">*</span></label>
-            <select id="new-admin-role"
-              style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 10px; color: #fff; font-size: 13px;">
-              <option value="content">🎬 Content Manager (Danh Sách Phim & Tag)</option>
-              <option value="mod">🛡️ User Moderator (Quản lý User & Khóa Acc)</option>
-              <option value="analyst">📊 Data Analyst (Báo cáo & Thống kê)</option>
-              <option value="super">👑 Super Admin (Toàn quyền hệ thống)</option>
-            </select>
-          </div>
+        <div style="margin-bottom: 18px;">
+          <label style="font-size: 11.5px; color: #8f92a1; font-weight: 700; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">MẬT KHẨU</label>
+          <input type="password" id="new-admin-password" placeholder="8–32 ký tự, hoa, thường, số, ký tự đặc biệt"
+            style="width: 100%; background: #0c0c14; border: 1px solid rgba(255, 255, 255, 0.08); padding: 13px 16px; border-radius: 10px; color: #fff; font-size: 13.5px; outline: none;">
         </div>
 
-        <!-- Role Permissions Checklist -->
-        <div
-          style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 14px;">
-          <label style="font-size: 12.5px; color: #fff; font-weight: 800; display: block; margin-bottom: 10px;">MA TRẬN
-            QUYỀN HẠN ĐƯỢC CẤP PHÉP:</label>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <label
-              style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
-              <input type="checkbox" checked> <span>Xem Dashboard thống kê</span>
-            </label>
-            <label
-              style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
-              <input type="checkbox" checked> <span>Kéo API & Tạo Phim URL</span>
-            </label>
-            <label
-              style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
-              <input type="checkbox" checked> <span>Gán & Quản lý Danh Mục</span>
-            </label>
-            <label
-              style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
-              <input type="checkbox"> <span>Quản lý User & Khóa Acc</span>
-            </label>
-            <label
-              style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;">
-              <input type="checkbox"> <span>Quản lý Tài Khoản Admin khác</span>
-            </label>
-          </div>
-        </div>
-
-        <div style="font-size: 12px; color: var(--accent-green); display: flex; align-items: center; gap: 6px;">
-          <span>✓</span>
-          <span>Thông tin tài khoản và mật khẩu khởi tạo sẽ được gửi bảo mật qua Email của Admin.</span>
+        <div style="margin-bottom: 22px;">
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #fff; cursor: pointer; font-weight: 600;">
+            <input type="checkbox" id="new-admin-is-full" style="width: 17px; height: 17px; accent-color: #ff2a5f; cursor: pointer;">
+            <span>Full Admin (quyền đầy đủ)</span>
+          </label>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('modal-create-admin')">Hủy Bỏ</button>
-        <button class="btn btn-primary" onclick="executeCreateAdminAction()">
-          💾 LƯU & CẤP TÀI KHOẢN
+      <div class="modal-footer" style="border-top: none; display: flex; justify-content: flex-end; gap: 12px; padding-top: 0;">
+        <button class="btn btn-secondary" style="border-radius: 10px; padding: 10px 22px; background: #1c1d2b; border: 1px solid rgba(255,255,255,0.06); color: #fff; font-weight: 600; cursor: pointer;" onclick="closeModal('modal-create-admin')">Hủy</button>
+        <button class="btn" style="border-radius: 10px; padding: 10px 24px; background: linear-gradient(135deg, #ff416c, #ff4b2b); border: none; color: #fff; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 65, 108, 0.35);" onclick="executeCreateAdminAction()">
+          💾 Tạo
         </button>
       </div>
     </div>
@@ -4518,9 +4456,9 @@
     }
 
     function executeLogin() {
-      const email = document.getElementById('login-email').value || 'hoangbach@pinedrama.com';
+      const email = document.getElementById('login-email').value || 'hoangbach@vipshort.com';
       closeLoginScreen();
-      alert(`🎉 ĐĂNG NHẬP THÀNH CÔNG!\n\nChào mừng ${email} quay trở lại PineDrama Back Office!\nPhiên làm việc bảo mật đã được khởi tạo.`);
+      alert(`🎉 ĐĂNG NHẬP THÀNH CÔNG!\n\nChào mừng ${email} quay trở lại Vipshort Back Office!\nPhiên làm việc bảo mật đã được khởi tạo.`);
       switchView('view-dashboard', document.querySelectorAll('.menu-item')[0]);
     }
 
@@ -4555,7 +4493,7 @@
     }
 
     function logoutAction() {
-      if (confirm('Bạn có chắc chắn muốn đăng xuất khỏi phiên làm việc Quản trị viên PineDrama?')) {
+      if (confirm('Bạn có chắc chắn muốn đăng xuất khỏi phiên làm việc Quản trị viên Vipshort?')) {
         openLoginScreen();
       }
     }
@@ -4563,10 +4501,9 @@
     /* 2. ADMIN ACCOUNTS & RBAC FUNCTIONS */
     let currentAdminCount = 4;
 
-    function executeCreateAdminAction() {
-      const name = document.getElementById('new-admin-name').value.trim() || 'Admin Mới';
-      const email = document.getElementById('new-admin-email').value.trim() || 'admin.new@pinedrama.com';
-      const roleVal = document.getElementById('new-admin-role').value;
+        function executeCreateAdminAction() {
+      const username = (document.getElementById('new-admin-username')?.value || '').trim() || 'admin_user';
+      const isFull = document.getElementById('new-admin-is-full')?.checked;
       const tbody = document.getElementById('admin-table-body');
 
       currentAdminCount++;
@@ -4575,21 +4512,14 @@
       const sbCount = document.getElementById('sidebar-admin-count');
       if (sbCount) sbCount.innerText = currentAdminCount;
 
-      let roleBadge = '<span class="badge badge-role-content">🎬 Content Manager</span>';
-      let permText = 'Kéo API, Đăng Phim, Gán Danh Mục';
+      const roleBadge = isFull 
+        ? '<span class="badge badge-role-super">👑 Super Admin</span>' 
+        : '<span class="badge badge-role-admin" style="background: rgba(41, 182, 246, 0.15); color: #29b6f6; border: 1px solid rgba(41, 182, 246, 0.3);">🛡️ Admin</span>';
+      const permText = isFull 
+        ? '★ Full Admin (Toàn quyền hệ thống)' 
+        : 'Quản lý Phim, Danh Mục, User & Báo Cáo';
 
-      if (roleVal === 'mod') {
-        roleBadge = '<span class="badge badge-role-mod">🛡️ User Moderator</span>';
-        permText = 'Quản Lý Người Dùng, Khóa Acc';
-      } else if (roleVal === 'analyst') {
-        roleBadge = '<span class="badge badge-role-analyst">📊 Data Analyst</span>';
-        permText = 'Xem Dashboard & Xuất Báo Cáo';
-      } else if (roleVal === 'super') {
-        roleBadge = '<span class="badge badge-role-super">👑 Super Admin</span>';
-        permText = '★ Full Quyền Hệ Thống';
-      }
-
-      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      const initials = username.substring(0, 2).toUpperCase();
 
       const newRow = document.createElement('tr');
       newRow.style.background = 'rgba(0, 230, 118, 0.08)';
@@ -4599,8 +4529,8 @@
           <div style="display: flex; align-items: center; gap: 10px;">
             <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #00e676, #29b6f6); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px;">${initials}</div>
             <div>
-              <strong style="color: #fff;">${name}</strong>
-              <div style="font-size: 11px; color: var(--text-muted);">${email}</div>
+              <strong style="color: #fff;">${username}</strong>
+              <div style="font-size: 11px; color: var(--text-muted);">${username}@vipshort.com</div>
             </div>
           </div>
         </td>
@@ -4610,8 +4540,8 @@
         <td>Vừa tạo xong</td>
         <td>
           <div class="action-btn-group">
-            <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('${name}')">🔑</button>
-            <button class="icon-action-btn" title="Khóa / Mở tài khoản" onclick="alert('Đã đổi trạng thái tài khoản ${name}!')">🔒</button>
+            <button class="icon-action-btn" title="Đổi mật khẩu" onclick="openChangePasswordModal('${username}')">🔑</button>
+            <button class="icon-action-btn" title="Khóa / Mở tài khoản" onclick="alert('Đã đổi trạng thái tài khoản ${username}!')">🔒</button>
             <button class="icon-action-btn" title="Xóa tài khoản" onclick="this.closest('tr').remove();">🗑️</button>
           </div>
         </td>
@@ -4619,7 +4549,9 @@
 
       tbody.appendChild(newRow);
 
-      alert(`🎉 CẤP TÀI KHOẢN THÀNH CÔNG!\n\nĐã tạo tài khoản cho Quản trị viên "${name}" (${email}) thành công và cấp quyền truy cập hệ thống!`);
+      alert(`🎉 CẤP TÀI KHOẢN THÀNH CÔNG!
+
+Đã tạo tài khoản "${username}" với vai trò ${isFull ? 'Full Admin (Super Admin)' : 'Admin'} thành công!`);
       closeModal('modal-create-admin');
     }
 
@@ -6348,7 +6280,7 @@
       } else if (currentDashboardMode === 'live') {
         reportName = 'Báo cáo Thời Gian Thực (Live)';
       }
-      alert(`📥 XUẤT BÁO CÁO THÀNH CÔNG!\n\n• Tên file: PineDrama_Report_${currentDashboardMode}_${Date.now()}.csv\n• Nội dung: ${reportName}\n• Các chỉ số: Lượt xem, Watch Time, DAU/MAU, Tỷ lệ xem hết bộ 100% Free, Top Phim Hot.`);
+      alert(`📥 XUẤT BÁO CÁO THÀNH CÔNG!\n\n• Tên file: Vipshort_Report_${currentDashboardMode}_${Date.now()}.csv\n• Nội dung: ${reportName}\n• Các chỉ số: Lượt xem, Watch Time, DAU/MAU, Tỷ lệ xem hết bộ 100% Free, Top Phim Hot.`);
     }
 
     // ==========================================
@@ -6492,11 +6424,11 @@
 
     function exportCustomReport(type) {
       const modeLabel = currentReportTimeMode === 'day' ? 'KhoangNgay_20260810_20260820' : 'Thang_202608';
-      const fileName = `PineDrama_Detailed_Metrics_${modeLabel}.xlsx`;
+      const fileName = `Vipshort_Detailed_Metrics_${modeLabel}.xlsx`;
 
       // Kích hoạt tải trực tiếp file template Excel thực tế
       const downloadLink = document.createElement('a');
-      downloadLink.href = 'Template_Xuat_Bao_Cao_Thong_Ke_PineDrama.xlsx';
+      downloadLink.href = 'Template_Xuat_Bao_Cao_Thong_Ke_Vipshort.xlsx';
       downloadLink.setAttribute('download', fileName);
       document.body.appendChild(downloadLink);
       downloadLink.click();
