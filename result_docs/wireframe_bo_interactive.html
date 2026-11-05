@@ -1825,134 +1825,249 @@
 
         <!-- VIEW 1: DASHBOARD -->
         <section id="view-dashboard" class="view-section active">
-          <div class="page-header">
+          <!-- Page Header -->
+          <div class="page-header" style="margin-bottom: 22px;">
             <div>
               <h1 class="page-title">📊 Dashboard Tổng Quan Vận Hành</h1>
-              <span id="dashboard-subtitle" style="display: none;"></span>
-            </div>
-            <div class="dashboard-filter-bar">
-              <!-- Mode Selection Pills -->
-              <div class="filter-time-group">
-                <button class="filter-time-btn active" id="btn-filter-d1" onclick="setDashboardFilter('d1')">
-                  ⚡ Hôm Qua
-                </button>
-                <button class="filter-time-btn" id="btn-filter-live" onclick="setDashboardFilter('live')">
-                  🔴 Hôm Nay
-                </button>
-                <button class="filter-time-btn" id="btn-filter-month" onclick="setDashboardFilter('month')">
-                  📅 Theo Tháng
-                </button>
-              </div>
-
-              <!-- Month Picker Dropdown -->
-              <div id="month-picker-wrapper" style="display: inline-block;">
-                <select id="filter-month-select" class="filter-month-select"
-                  onchange="setDashboardFilter('month', this.value)" title="Chọn tháng cần xem">
-                  <option value="2026-08" selected>Tháng 08/2026 (Hiện tại)</option>
-                  <option value="2026-07">Tháng 07/2026</option>
-                  <option value="2026-06">Tháng 06/2026</option>
-                  <option value="2026-05">Tháng 05/2026</option>
-                </select>
-              </div>
-
-              <!-- Export Button -->
-              <button class="btn btn-primary" onclick="exportDashboardReport()">📥 Xuất Báo Cáo</button>
+              <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Giám sát hiệu suất nội dung, lưu lượng truy cập và chỉ số giữ chân người xem</p>
             </div>
           </div>
 
-          <!-- Stat Cards -->
-          <div class="grid-4">
-            <div class="stat-card">
-              <div class="stat-title" id="stat-title-1">TỔNG LƯỢT XEM (D-1 - HÔM QUA)</div>
-              <div class="stat-value" id="stat-val-1">1,482,900</div>
-              <div class="stat-change up" id="stat-change-1">▲ +18.4% so với D-2</div>
+          <!-- ============================================================ -->
+          <!-- BLOCK 1: KHUNG CHỈ SỐ TỔNG QUAN & TOP 5 PHIM (DÙNG CHUNG FILTER) -->
+          <!-- ============================================================ -->
+          <div class="panel-card" style="margin-bottom: 24px; border: 1px solid rgba(255, 42, 95, 0.25); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35); background: linear-gradient(180deg, rgba(26,27,38,0.95) 0%, rgba(20,20,30,0.98) 100%);">
+            <!-- Block 1 Header & Shared Filter -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
+              <div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: #ff2a5f; background: rgba(255,42,95,0.15); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(255,42,95,0.3);">BLOCK 1</span>
+                  <h2 style="font-size: 17px; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
+                    ⚡ Hiệu Suất Tổng Quan & Xếp Hạng Top Phim
+                  </h2>
+                </div>
+                <div id="dashboard-subtitle" style="font-size: 12.5px; color: var(--text-muted); margin-top: 5px;">
+                  Thống kê hiệu suất & chỉ số người dùng chốt sổ trọn vẹn ngày <strong>D-1 (10/08/2026)</strong>
+                </div>
+              </div>
+
+              <!-- Shared Filter Bar for Block 1 -->
+              <div class="dashboard-filter-bar">
+                <div class="filter-time-group">
+                  <button class="filter-time-btn active" id="btn-filter-d1" onclick="setDashboardFilter('d1')">
+                    ⚡ Hôm Qua
+                  </button>
+                  <button class="filter-time-btn" id="btn-filter-live" onclick="setDashboardFilter('live')">
+                    🔴 Hôm Nay
+                  </button>
+                  <button class="filter-time-btn" id="btn-filter-month" onclick="setDashboardFilter('month')">
+                    📅 Theo Tháng
+                  </button>
+                </div>
+
+                <div id="month-picker-wrapper" style="display: inline-block;">
+                  <select id="filter-month-select" class="filter-month-select"
+                    onchange="setDashboardFilter('month', this.value)" title="Chọn tháng cần xem">
+                    <option value="2026-08" selected>Tháng 08/2026 (Hiện tại)</option>
+                    <option value="2026-07">Tháng 07/2026</option>
+                    <option value="2026-06">Tháng 06/2026</option>
+                    <option value="2026-05">Tháng 05/2026</option>
+                  </select>
+                </div>
+
+                <button class="btn btn-primary" onclick="exportDashboardReport()">📥 Xuất Báo Cáo</button>
+              </div>
             </div>
-            <div class="stat-card gold">
-              <div class="stat-title" id="stat-title-2">THỜI LƯỢNG XEM (WATCH TIME D-1)</div>
-              <div class="stat-value" id="stat-val-2">82,450 Giờ</div>
-              <div class="stat-change up" id="stat-change-2">▲ +12.1% tăng trưởng</div>
+
+            <!-- 4 Stat Cards in Block 1 -->
+            <div class="grid-4" style="margin-bottom: 22px;">
+              <div class="stat-card">
+                <div class="stat-title" id="stat-title-1">TỔNG LƯỢT XEM (D-1 - HÔM QUA)</div>
+                <div class="stat-value" id="stat-val-1">1,482,900</div>
+                <div class="stat-change up" id="stat-change-1">▲ +18.4% so với D-2</div>
+              </div>
+              <div class="stat-card gold">
+                <div class="stat-title" id="stat-title-2">THỜI LƯỢNG XEM (WATCH TIME D-1)</div>
+                <div class="stat-value" id="stat-val-2">82,450 Giờ</div>
+                <div class="stat-change up" id="stat-change-2">▲ +12.1% tăng trưởng</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-title" id="stat-title-3">DAU (USER HOẠT ĐỘNG D-1)</div>
+                <div class="stat-value" id="stat-val-3">124,800</div>
+                <div class="stat-change up" id="stat-change-3">▲ +8.9% người dùng mới</div>
+              </div>
+              <div class="stat-card blue">
+                <div class="stat-title" id="stat-title-4">TỶ LỆ XEM HẾT BỘ (100% FREE D-1)</div>
+                <div class="stat-value" id="stat-val-4">68.5%</div>
+                <div class="stat-change up" id="stat-change-4">▲ +5.2% trọn bộ 80 tập</div>
+              </div>
             </div>
-            <div class="stat-card green">
-              <div class="stat-title" id="stat-title-3">DAU (USER HOẠT ĐỘNG D-1)</div>
-              <div class="stat-value" id="stat-val-3">124,800</div>
-              <div class="stat-change up" id="stat-change-3">▲ +8.9% người dùng mới</div>
-            </div>
-            <div class="stat-card blue">
-              <div class="stat-title" id="stat-title-4">TỶ LỆ XEM HẾT BỘ (100% FREE D-1)</div>
-              <div class="stat-value" id="stat-val-4">68.5%</div>
-              <div class="stat-change up" id="stat-change-4">▲ +5.2% trọn bộ 80 tập</div>
+
+            <!-- Top 5 Phim Hot Section (Cùng nằm trong Block 1) -->
+            <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 14px; padding: 18px 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 16px;">🔥</span>
+                  <span id="top-dramas-title" style="font-size: 14.5px; font-weight: 700; color: #fff;">Top 5 Phim Hot Nhất Hôm Qua (D-1)</span>
+                </div>
+                <span style="font-size: 12px; color: var(--text-muted);">Đồng bộ tự động theo bộ filter thời gian của Block 1</span>
+              </div>
+              <div id="top-dramas-list" style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #ffd700, #ff9100); color: #000; font-weight: 800; font-size: 12px;">1</span>
+                    <div>
+                      <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Vợ Cũ Lật Kèo</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình, Trọng Sinh</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="badge badge-published" style="font-weight: 700;">342K Lượt xem</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #cfd8dc, #90a4ae); color: #000; font-weight: 800; font-size: 12px;">2</span>
+                    <div>
+                      <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 65/65 Tập • Gia Đình, Hài Hước</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="badge badge-published" style="font-weight: 700;">285K Lượt xem</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #d7ccc8, #a1887f); color: #000; font-weight: 800; font-size: 12px;">3</span>
+                    <div>
+                      <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Hợp Đồng Hôn Nhân Với Tổng Tài</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 92/92 Tập • Tổng Tài, Ngọt Sủng</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="badge badge-published" style="font-weight: 700;">210K Lượt xem</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">4</span>
+                    <div>
+                      <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Đích Nữ Trùng Sinh Báo Thù</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 78/78 Tập • Cổ Trang, Quyền Mưu</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="badge badge-published" style="font-weight: 700;">186K Lượt xem</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">5</span>
+                    <div>
+                      <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Cô Vợ Câm Của Lục Thiếu</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 70/70 Tập • Ngược Luyến, Đô Thị</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="badge badge-published" style="font-weight: 700;">154K Lượt xem</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="grid-2">
-            <div class="panel-card">
-              <div class="panel-title">
-                <span id="chart-panel-title">📈 Lượng Truy Cập Xem Phim Theo Giờ (D-1 Hourly Traffic: 00:00 -
-                  23:59)</span>
+          <!-- ============================================================ -->
+          <!-- BLOCK 2: KHUNG BIỂU ĐỒ TRUY CẬP (CÓ FILTER THEO NGÀY RIÊNG) -->
+          <!-- ============================================================ -->
+          <div class="panel-card" style="margin-bottom: 24px; border: 1px solid rgba(121, 40, 202, 0.3); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35); background: linear-gradient(180deg, rgba(26,27,38,0.95) 0%, rgba(20,20,30,0.98) 100%);">
+            <!-- Block 2 Header with Separate Date Filter -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
+              <div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: #c084fc; background: rgba(121,40,202,0.18); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(121,40,202,0.35);">BLOCK 2</span>
+                  <h2 style="font-size: 17px; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
+                    📈 Biểu Đồ Lượng Truy Cập Xem Phim Theo Khung Giờ
+                  </h2>
+                </div>
+                <div id="chart-panel-subtitle" style="font-size: 12.5px; color: var(--text-muted); margin-top: 5px;">
+                  Phân bổ lưu lượng xem phim theo các mốc 4 giờ trong ngày (00:00 - 23:59)
+                </div>
+              </div>
+
+              <!-- Filter riêng theo ngày cho Biểu Đồ -->
+              <div class="dashboard-filter-bar">
+                <div class="filter-time-group">
+                  <button class="filter-time-btn active" id="btn-chart-d1" onclick="setChartDateFilter('d1')">
+                    ⚡ Hôm Qua (10/08)
+                  </button>
+                  <button class="filter-time-btn" id="btn-chart-today" onclick="setChartDateFilter('today')">
+                    🔴 Hôm Nay (11/08)
+                  </button>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">📅 Chọn ngày:</span>
+                  <input type="date" id="chart-date-input" value="2026-08-10" max="2026-08-11"
+                    onchange="setChartDateFilter('custom', this.value)" class="filter-month-select"
+                    style="padding: 6px 12px; font-size: 12.5px; border-color: rgba(121,40,202,0.4);">
+                </div>
+
                 <span class="badge badge-published" id="chart-badge">D-1 Đã Chốt Sổ</span>
               </div>
-              <div id="chart-bars-container"
-                style="height: 220px; width: 100%; display: flex; align-items: flex-end; gap: 12px; padding-top: 20px; border-bottom: 1px solid var(--border-color);">
-                <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"
-                  title="00:00 - 04:00"></div>
-                <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"
-                  title="04:00 - 08:00"></div>
-                <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;"
-                  title="08:00 - 12:00"></div>
-                <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;"
-                  title="12:00 - 16:00"></div>
-                <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;"
-                  title="16:00 - 19:00"></div>
-                <div
-                  style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);"
-                  title="19:00 - 22:00 (Peak)"></div>
-                <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;"
-                  title="22:00 - 24:00"></div>
-              </div>
-              <div id="chart-axis-labels"
-                style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 8px;">
-                <span>00:00</span>
-                <span>04:00</span>
-                <span>08:00</span>
-                <span>12:00</span>
-                <span>16:00</span>
-                <span>20:00 (Peak)</span>
-                <span>23:59</span>
-              </div>
             </div>
 
-            <div class="panel-card">
-              <div class="panel-title" id="top-dramas-title">🔥 Top 5 Phim Hot Nhất Hôm Qua (D-1)</div>
-              <div id="top-dramas-list" style="display: flex; flex-direction: column; gap: 12px;">
-                <div
-                  style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-                  <div>
-                    <div style="font-size: 13px; font-weight: 700; color: #fff;">1. Vợ Cũ Lật Kèo</div>
-                    <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình</div>
-                  </div>
-                  <span class="badge badge-published">342K Lượt xem</span>
-                </div>
-                <div
-                  style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-                  <div>
-                    <div style="font-size: 13px; font-weight: 700; color: #fff;">2. Mẹ Chồng Siêu Cấp & Nàng Dâu</div>
-                    <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 65/65 Tập • Gia Đình</div>
-                  </div>
-                  <span class="badge badge-published">285K Lượt xem</span>
-                </div>
-                <div
-                  style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-                  <div>
-                    <div style="font-size: 13px; font-weight: 700; color: #fff;">3. Hợp Đồng Hôn Nhân Với Tổng Tài</div>
-                    <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 92/92 Tập • Tổng Tài</div>
-                  </div>
-                  <span class="badge badge-published">210K Lượt xem</span>
-                </div>
+            <!-- Biểu Đồ Cột -->
+            <div id="chart-bars-container"
+              style="height: 230px; width: 100%; display: flex; align-items: flex-end; gap: 14px; padding-top: 24px; border-bottom: 1px solid var(--border-color);">
+              <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"
+                title="00:00 - 04:00: 44,500 lượt xem"></div>
+              <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;"
+                title="04:00 - 08:00: 22,200 lượt xem"></div>
+              <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;"
+                title="08:00 - 12:00: 66,700 lượt xem"></div>
+              <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;"
+                title="12:00 - 16:00: 126,000 lượt xem (Giờ nghỉ trưa)"></div>
+              <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;"
+                title="16:00 - 19:00: 89,000 lượt xem"></div>
+              <div
+                style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 18px rgba(255,42,95,0.55);"
+                title="19:00 - 22:00 (🔥 Peak Giờ Vàng): 218,500 lượt xem"></div>
+              <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;"
+                title="22:00 - 24:00: 111,200 lượt xem"></div>
+            </div>
+            <div id="chart-axis-labels"
+              style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-muted); margin-top: 10px; font-weight: 600;">
+              <span>00:00</span>
+              <span>04:00</span>
+              <span>08:00</span>
+              <span>12:00 (Nghỉ trưa)</span>
+              <span>16:00</span>
+              <span style="color: #ff4d6d; font-weight: 700;">20:00 (🔥 Peak Tối)</span>
+              <span>23:59</span>
+            </div>
+
+            <!-- Insights Mini Pills -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <div style="background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">⏰ Khung Giờ Cao Điểm (Peak)</div>
+                <div id="chart-stat-peak" style="font-size: 15px; font-weight: 800; color: #ff4d6d; margin-top: 4px;">20:00 - 22:00</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">⚡ Lưu Lượng Đỉnh</div>
+                <div id="chart-stat-peakval" style="font-size: 15px; font-weight: 800; color: #fff; margin-top: 4px;">218,500 Lượt/Giờ</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">📱 Thiết Bị Phổ Biến</div>
+                <div id="chart-stat-device" style="font-size: 15px; font-weight: 800; color: #00e676; margin-top: 4px;">Mobile App (88.6%)</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">⏱️ Thời Lượng Xem TB / Session</div>
+                <div id="chart-stat-duration" style="font-size: 15px; font-weight: 800; color: #29b6f6; margin-top: 4px;">14.2 Phút / Session</div>
               </div>
             </div>
           </div>
         </section>
-
 
         <!-- VIEW 2: DRAMAS & API IMPORT -->
         <section id="view-dramas" class="view-section">
@@ -6070,14 +6185,16 @@
     // ==========================================
     let currentDashboardMode = 'd1';
     let currentDashboardMonth = '2026-08';
+    let currentChartDateMode = 'd1';
+    let currentChartDate = '2026-08-10';
 
+    // BLOCK 1: FILTER CHUNG CHO 4 STAT CARDS & TOP 5 PHIM
     function setDashboardFilter(mode, monthVal) {
       if (monthVal) {
         currentDashboardMonth = monthVal;
       }
       currentDashboardMode = mode;
 
-      // Update button active state
       const btnD1 = document.getElementById('btn-filter-d1');
       const btnLive = document.getElementById('btn-filter-live');
       const btnMonth = document.getElementById('btn-filter-month');
@@ -6087,7 +6204,6 @@
       if (btnMonth) btnMonth.classList.toggle('active', mode === 'month');
 
       const subtitle = document.getElementById('dashboard-subtitle');
-      const statusBadge = document.getElementById('badge-status-text');
       const statTitle1 = document.getElementById('stat-title-1');
       const statVal1 = document.getElementById('stat-val-1');
       const statChange1 = document.getElementById('stat-change-1');
@@ -6104,74 +6220,176 @@
       const statVal4 = document.getElementById('stat-val-4');
       const statChange4 = document.getElementById('stat-change-4');
 
-      const chartTitle = document.getElementById('chart-panel-title');
-      const chartBadge = document.getElementById('chart-badge');
       const topTitle = document.getElementById('top-dramas-title');
-      const chartBars = document.getElementById('chart-bars-container');
-      const chartLabels = document.getElementById('chart-axis-labels');
       const topList = document.getElementById('top-dramas-list');
 
-      if (mode === 'd1' || mode === 'live' || mode === 'month') {
-        const selectedMonthLabel = ({ '2026-08': 'Tháng 08/2026', '2026-07': 'Tháng 07/2026', '2026-06': 'Tháng 06/2026', '2026-05': 'Tháng 05/2026' })[currentDashboardMonth] || 'Tháng 08/2026';
-        const modePeriodText = mode === 'd1' ? 'D-1 - HÔM QUA' : (mode === 'live' ? 'HÔM NAY' : selectedMonthLabel.toUpperCase());
-        const modeBadgeText = mode === 'd1' ? 'D-1 Đã Chốt Sổ' : (mode === 'live' ? '🔴 Hôm Nay' : selectedMonthLabel);
+      if (mode === 'd1') {
         // D-1 Mode (Default)
         if (subtitle) subtitle.innerHTML = 'Thống kê hiệu suất & chỉ số người dùng chốt sổ trọn vẹn ngày <strong>D-1 (10/08/2026)</strong>';
-        if (statusBadge) statusBadge.innerHTML = 'Đã Chốt Sổ D-1 (10/08)';
 
-        if (statTitle1) statTitle1.innerText = `TỔNG LƯỢT XEM (${modePeriodText})`;
+        if (statTitle1) statTitle1.innerText = 'TỔNG LƯỢT XEM (D-1 - HÔM QUA)';
         if (statVal1) statVal1.innerText = '1,482,900';
-        if (statChange1) statChange1.innerText = '▲ +18.4% so với D-2';
+        if (statChange1) { statChange1.className = 'stat-change up'; statChange1.innerText = '▲ +18.4% so với D-2'; }
 
         if (statTitle2) statTitle2.innerText = 'THỜI LƯỢNG XEM (WATCH TIME D-1)';
         if (statVal2) statVal2.innerText = '82,450 Giờ';
-        if (statChange2) statChange2.innerText = '▲ +12.1% tăng trưởng';
+        if (statChange2) { statChange2.className = 'stat-change up'; statChange2.innerText = '▲ +12.1% tăng trưởng'; }
 
         if (statTitle3) statTitle3.innerText = 'DAU (USER HOẠT ĐỘNG D-1)';
         if (statVal3) statVal3.innerText = '124,800';
-        if (statChange3) statChange3.innerText = '▲ +8.9% người dùng mới';
+        if (statChange3) { statChange3.className = 'stat-change up'; statChange3.innerText = '▲ +8.9% người dùng mới'; }
 
         if (statTitle4) statTitle4.innerText = 'TỶ LỆ XEM HẾT BỘ (100% FREE D-1)';
         if (statVal4) statVal4.innerText = '68.5%';
-        if (statChange4) statChange4.innerText = '▲ +5.2% trọn bộ 80 tập';
-
-        if (chartTitle) chartTitle.innerText = '📈 Lượng Truy Cập Xem Phim Theo Giờ (D-1 Hourly Traffic: 00:00 - 23:59)';
-        if (chartBadge) {
-          chartBadge.innerText = modeBadgeText;
-          chartBadge.className = 'badge badge-published';
-        }
-
-        if (chartBars) {
-          chartBars.innerHTML = `
-            <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="00:00 - 04:00"></div>
-            <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="04:00 - 08:00"></div>
-            <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;" title="08:00 - 12:00"></div>
-            <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;" title="12:00 - 16:00"></div>
-            <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;" title="16:00 - 19:00"></div>
-            <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);" title="19:00 - 22:00 (Peak)"></div>
-            <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;" title="22:00 - 24:00"></div>
-          `;
-        }
-        if (chartLabels) {
-          chartLabels.innerHTML = `
-            <span>00:00</span><span>04:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>20:00 (Peak)</span><span>23:59</span>
-          `;
-        }
+        if (statChange4) { statChange4.className = 'stat-change up'; statChange4.innerText = '▲ +5.2% trọn bộ 80 tập'; }
 
         if (topTitle) topTitle.innerText = '🔥 Top 5 Phim Hot Nhất Hôm Qua (D-1)';
         if (topList) {
           topList.innerHTML = `
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">1. Vợ Cũ Lật Kèo</div><div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình</div></div>
-              <span class="badge badge-published">342K Lượt xem</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #ffd700, #ff9100); color: #000; font-weight: 800; font-size: 12px;">1</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Vợ Cũ Lật Kèo</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình, Trọng Sinh</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">342K Lượt xem</span>
+              </div>
             </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">2. Mẹ Chồng Siêu Cấp & Nàng Dâu</div><div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 65/65 Tập • Gia Đình</div></div>
-              <span class="badge badge-published">285K Lượt xem</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #cfd8dc, #90a4ae); color: #000; font-weight: 800; font-size: 12px;">2</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 65/65 Tập • Gia Đình, Hài Hước</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">285K Lượt xem</span>
+              </div>
             </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">3. Hợp Đồng Hôn Nhân Với Tổng Tài</div><div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 92/92 Tập • Tổng Tài</div></div>
-              <span class="badge badge-published">210K Lượt xem</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #d7ccc8, #a1887f); color: #000; font-weight: 800; font-size: 12px;">3</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Hợp Đồng Hôn Nhân Với Tổng Tài</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 92/92 Tập • Tổng Tài, Ngọt Sủng</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">210K Lượt xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">4</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Đích Nữ Trùng Sinh Báo Thù</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 78/78 Tập • Cổ Trang, Quyền Mưu</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">186K Lượt xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">5</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Cô Vợ Câm Của Lục Thiếu</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 70/70 Tập • Ngược Luyến, Đô Thị</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">154K Lượt xem</span>
+              </div>
+            </div>
+          `;
+        }
+      } else if (mode === 'live') {
+        // Live Realtime Mode
+        if (subtitle) subtitle.innerHTML = 'Thống kê lượt xem và người dùng thời gian thực trong ngày <strong>Hôm nay (11/08/2026 - Realtime)</strong>';
+
+        if (statTitle1) statTitle1.innerText = 'TỔNG LƯỢT XEM HÔM NAY (LIVE)';
+        if (statVal1) statVal1.innerText = '942,600';
+        if (statChange1) { statChange1.className = 'stat-change up'; statChange1.innerText = '▲ Đang tăng (+15.2k/giờ)'; }
+
+        if (statTitle2) statTitle2.innerText = 'THỜI LƯỢNG XEM (WATCH TIME LIVE)';
+        if (statVal2) statVal2.innerText = '51,320 Giờ';
+        if (statChange2) { statChange2.className = 'stat-change up'; statChange2.innerText = '▲ Tính đến thời điểm hiện tại'; }
+
+        if (statTitle3) statTitle3.innerText = 'CCU HIỆN TẠI (ĐANG ONLINE)';
+        if (statVal3) statVal3.innerText = '38,450 CCU';
+        if (statChange3) { statChange3.className = 'stat-change up'; statChange3.innerText = '▲ Cao điểm trưa & tối'; }
+
+        if (statTitle4) statTitle4.innerText = 'TỶ LỆ XEM HẾT BỘ (LIVE)';
+        if (statVal4) statVal4.innerText = '66.8%';
+        if (statChange4) { statChange4.className = 'stat-change up'; statChange4.innerText = '▲ Ước tính trong ngày'; }
+
+        if (topTitle) topTitle.innerText = '🔥 Top 5 Phim Đang Hot Nhất Hiện Tại (Live Realtime)';
+        if (topList) {
+          topList.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #ffd700, #ff9100); color: #000; font-weight: 800; font-size: 12px;">1</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Vợ Cũ Lật Kèo</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 80/80 Tập • Ngôn Tình</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700; background: rgba(255,42,95,0.2); color: #ff4d6d; border-color: rgba(255,42,95,0.4);">🔴 215K Đang xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #cfd8dc, #90a4ae); color: #000; font-weight: 800; font-size: 12px;">2</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 65/65 Tập • Gia Đình</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">198K Đang xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #d7ccc8, #a1887f); color: #000; font-weight: 800; font-size: 12px;">3</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Thiên Kim Trở Về</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 88/88 Tập • Đô Thị, Hào Môn</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">162K Đang xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">4</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Hợp Đồng Hôn Nhân Với Tổng Tài</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 92/92 Tập • Tổng Tài</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">145K Đang xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">5</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Chọc Phải Tổng Tài Lạnh Lùng</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Trọn bộ 60/60 Tập • Ngọt Sủng</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">118K Đang xem</span>
+              </div>
             </div>
           `;
         }
@@ -6186,90 +6404,223 @@
         const selectedMonthLabel = monthNames[currentDashboardMonth] || 'Tháng Đã Chọn';
 
         if (subtitle) subtitle.innerHTML = `Thống kê tổng hợp số liệu lũy kế trong <strong>${selectedMonthLabel}</strong>`;
-        if (statusBadge) statusBadge.innerHTML = `Lũy Kế ${selectedMonthLabel}`;
 
         if (statTitle1) statTitle1.innerText = `TỔNG LƯỢT XEM ${selectedMonthLabel.toUpperCase()}`;
         if (statVal1) statVal1.innerText = currentDashboardMonth === '2026-08' ? '18,420,500' : '42,150,000';
-        if (statChange1) statChange1.innerText = '▲ +24.6% so với tháng trước';
+        if (statChange1) { statChange1.className = 'stat-change up'; statChange1.innerText = '▲ +24.6% so với tháng trước'; }
 
         if (statTitle2) statTitle2.innerText = 'THỜI LƯỢNG XEM (WATCH TIME THÁNG)';
         if (statVal2) statVal2.innerText = currentDashboardMonth === '2026-08' ? '1,024,800 Giờ' : '2,310,000 Giờ';
-        if (statChange2) statChange2.innerText = '▲ +19.2% tăng trưởng';
+        if (statChange2) { statChange2.className = 'stat-change up'; statChange2.innerText = '▲ +19.2% tăng trưởng'; }
 
         if (statTitle3) statTitle3.innerText = 'MAU (USER HOẠT ĐỘNG THÁNG)';
         if (statVal3) statVal3.innerText = currentDashboardMonth === '2026-08' ? '860,500' : '1,240,000';
-        if (statChange3) statChange3.innerText = '▲ +15.3% người dùng active';
+        if (statChange3) { statChange3.className = 'stat-change up'; statChange3.innerText = '▲ +15.3% người dùng active'; }
 
         if (statTitle4) statTitle4.innerText = 'TỶ LỆ XEM HẾT BỘ TB THÁNG';
         if (statVal4) statVal4.innerText = '71.2%';
-        if (statChange4) statChange4.innerText = '▲ +3.8% trung bình tháng';
+        if (statChange4) { statChange4.className = 'stat-change up'; statChange4.innerText = '▲ +3.8% trung bình tháng'; }
 
-        if (chartTitle) chartTitle.innerText = `📈 Xu Hướng Lượt Xem Phim Từng Ngày (${selectedMonthLabel}: Ngày 1 - 31)`;
-        if (chartBadge) {
-          chartBadge.innerText = `Theo Tháng: ${selectedMonthLabel}`;
-          chartBadge.className = 'badge badge-category';
-        }
-
-        if (chartBars) {
-          chartBars.innerHTML = `
-            <div style="flex: 1; height: 40%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Tuần 1 (Ngày 1-7)"></div>
-            <div style="flex: 1; height: 65%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Tuần 2 (Ngày 8-14)"></div>
-            <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Tuần 3 (Ngày 15-21)"></div>
-            <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 4px 4px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);" title="Tuần 4 (Ngày 22-28 Peak)"></div>
-            <div style="flex: 1; height: 75%; background: var(--primary-gradient); border-radius: 4px 4px 0 0;" title="Cuối tháng (Ngày 29-31)"></div>
-          `;
-        }
-        if (chartLabels) {
-          chartLabels.innerHTML = `
-            <span>Tuần 1 (01-07)</span><span>Tuần 2 (08-14)</span><span>Tuần 3 (15-21)</span><span>Tuần 4 (22-28 Peak)</span><span>Cuối tháng (29-31)</span>
-          `;
-        }
-
-        if (topTitle) topTitle.innerText = `🔥 Top Phim Hot Nhất Trong ${selectedMonthLabel}`;
+        if (topTitle) topTitle.innerText = `🔥 Top 5 Phim Hot Nhất Trong ${selectedMonthLabel}`;
         if (topList) {
           topList.innerHTML = `
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">1. Vợ Cũ Lật Kèo</div><div style="font-size: 11px; color: var(--text-muted);">80/80 Tập • Ngôn Tình</div></div>
-              <span class="badge badge-published">4.8M Lượt xem</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #ffd700, #ff9100); color: #000; font-weight: 800; font-size: 12px;">1</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Vợ Cũ Lật Kèo</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">80/80 Tập • Ngôn Tình</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">4.8M Lượt xem</span>
+              </div>
             </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">2. Mẹ Chồng Siêu Cấp & Nàng Dâu</div><div style="font-size: 11px; color: var(--text-muted);">65/65 Tập • Gia Đình</div></div>
-              <span class="badge badge-published">3.9M Lượt xem</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #cfd8dc, #90a4ae); color: #000; font-weight: 800; font-size: 12px;">2</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Mẹ Chồng Siêu Cấp & Nàng Dâu</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">65/65 Tập • Gia Đình</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">3.9M Lượt xem</span>
+              </div>
             </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
-              <div><div style="font-size: 13px; font-weight: 700; color: #fff;">3. Hào Môn Trả Thù: Vương Giả Trở Lại</div><div style="font-size: 11px; color: var(--text-muted);">100/100 Tập • Trả Thù</div></div>
-              <span class="badge badge-published">3.1M Lượt xem</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #d7ccc8, #a1887f); color: #000; font-weight: 800; font-size: 12px;">3</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Hào Môn Trả Thù: Vương Giả Trở Lại</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">100/100 Tập • Trả Thù</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">3.1M Lượt xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">4</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Hợp Đồng Hôn Nhân Với Tổng Tài</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">92/92 Tập • Tổng Tài</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">2.7M Lượt xem</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--text-muted); font-weight: 800; font-size: 12px;">5</span>
+                <div>
+                  <div style="font-size: 13.5px; font-weight: 700; color: #fff;">Đích Nữ Trùng Sinh Báo Thù</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">78/78 Tập • Cổ Trang</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="badge badge-published" style="font-weight: 700;">2.3M Lượt xem</span>
+              </div>
             </div>
           `;
         }
-      } else if (mode === 'live') {
-        // Realtime Live Mode
-        if (subtitle) subtitle.innerHTML = 'Thống kê lượt xem và người dùng thời gian thực trong ngày <strong>Hôm nay (11/08/2026 - Realtime)</strong>';
-        if (statusBadge) statusBadge.innerHTML = '🔴 Realtime Live';
+      }
+    }
 
-        if (statTitle1) statTitle1.innerText = 'TỔNG LƯỢT XEM HÔM NAY (LIVE)';
-        if (statVal1) statVal1.innerText = '942,600';
-        if (statChange1) statChange1.innerText = '▲ Đang tăng (+15.2k/giờ)';
+    // BLOCK 2: FILTER RIÊNG THEO NGÀY CHO BIỂU ĐỒ HOURLY TRAFFIC
+    function setChartDateFilter(dateMode, customDate) {
+      currentChartDateMode = dateMode;
 
-        if (statTitle2) statTitle2.innerText = 'THỜI LƯỢNG XEM (WATCH TIME LIVE)';
-        if (statVal2) statVal2.innerText = '51,320 Giờ';
-        if (statChange2) statChange2.innerText = '▲ Tính đến thời điểm hiện tại';
+      const btnD1 = document.getElementById('btn-chart-d1');
+      const btnToday = document.getElementById('btn-chart-today');
+      const dateInput = document.getElementById('chart-date-input');
+      const badge = document.getElementById('chart-badge');
+      const subtitle = document.getElementById('chart-panel-subtitle');
+      const bars = document.getElementById('chart-bars-container');
+      const labels = document.getElementById('chart-axis-labels');
+      const statPeak = document.getElementById('chart-stat-peak');
+      const statPeakVal = document.getElementById('chart-stat-peakval');
+      const statDevice = document.getElementById('chart-stat-device');
+      const statDuration = document.getElementById('chart-stat-duration');
 
-        if (statTitle3) statTitle3.innerText = 'CCU HIỆN TẠI (ĐANG ONLINE)';
-        if (statVal3) statVal3.innerText = '38,450 CCU';
-        if (statChange3) statChange3.innerText = '▲ Cao điểm buổi trưa/tối';
-
-        if (statTitle4) statTitle4.innerText = 'TỶ LỆ XEM HẾT BỘ (LIVE)';
-        if (statVal4) statVal4.innerText = '66.8%';
-        if (statChange4) statChange4.innerText = '▲ Ước tính trong ngày';
-
-        if (chartTitle) chartTitle.innerText = '📈 Lượng Truy Cập Xem Phim Thời Gian Thực (Hourly Realtime)';
-        if (chartBadge) {
-          chartBadge.innerText = '🔴 Realtime Live';
-          chartBadge.className = 'badge badge-category';
+      if (dateMode === 'd1') {
+        currentChartDate = '2026-08-10';
+        if (btnD1) btnD1.classList.add('active');
+        if (btnToday) btnToday.classList.remove('active');
+        if (dateInput) dateInput.value = '2026-08-10';
+        if (badge) {
+          badge.className = 'badge badge-published';
+          badge.innerText = 'D-1 Đã Chốt Sổ (10/08)';
         }
+        if (subtitle) {
+          subtitle.innerHTML = 'Hourly Traffic ngày <strong>10/08/2026 (D-1)</strong> • Dữ liệu đã chốt sổ toàn bộ 24 khung giờ';
+        }
+        if (bars) {
+          bars.innerHTML = `
+            <div style="flex: 1; height: 30%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="00:00 - 04:00: 44,500 lượt xem"></div>
+            <div style="flex: 1; height: 15%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="04:00 - 08:00: 22,200 lượt xem"></div>
+            <div style="flex: 1; height: 45%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;" title="08:00 - 12:00: 66,700 lượt xem"></div>
+            <div style="flex: 1; height: 85%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;" title="12:00 - 16:00: 126,000 lượt xem (Giờ nghỉ trưa)"></div>
+            <div style="flex: 1; height: 60%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;" title="16:00 - 19:00: 89,000 lượt xem"></div>
+            <div style="flex: 1; height: 100%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 18px rgba(255,42,95,0.55);" title="19:00 - 22:00 (🔥 Peak Giờ Vàng): 218,500 lượt xem"></div>
+            <div style="flex: 1; height: 75%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;" title="22:00 - 24:00: 111,200 lượt xem"></div>
+          `;
+        }
+        if (labels) {
+          labels.innerHTML = `
+            <span>00:00</span>
+            <span>04:00</span>
+            <span>08:00</span>
+            <span>12:00 (Nghỉ trưa)</span>
+            <span>16:00</span>
+            <span style="color: #ff4d6d; font-weight: 700;">20:00 (🔥 Peak Tối)</span>
+            <span>23:59</span>
+          `;
+        }
+        if (statPeak) statPeak.innerText = '20:00 - 22:00';
+        if (statPeakVal) statPeakVal.innerText = '218,500 Lượt/Giờ';
+        if (statDevice) statDevice.innerText = 'Mobile App (88.6%)';
+        if (statDuration) statDuration.innerText = '14.2 Phút / Session';
 
-        if (topTitle) topTitle.innerText = '🔥 Top 5 Phim Đang Hot Nhất Hiện Tại (Live)';
+      } else if (dateMode === 'today') {
+        currentChartDate = '2026-08-11';
+        if (btnD1) btnD1.classList.remove('active');
+        if (btnToday) btnToday.classList.add('active');
+        if (dateInput) dateInput.value = '2026-08-11';
+        if (badge) {
+          badge.className = 'badge badge-category';
+          badge.innerText = '🔴 Realtime Hôm Nay (11/08)';
+        }
+        if (subtitle) {
+          subtitle.innerHTML = 'Hourly Traffic ngày <strong>11/08/2026 (Hôm Nay)</strong> • Cập nhật thời gian thực theo từng giờ';
+        }
+        if (bars) {
+          bars.innerHTML = `
+            <div style="flex: 1; height: 28%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="00:00 - 04:00: 38,900 lượt xem"></div>
+            <div style="flex: 1; height: 18%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="04:00 - 08:00: 24,100 lượt xem"></div>
+            <div style="flex: 1; height: 55%; background: rgba(255,42,95,0.45); border-radius: 6px 6px 0 0;" title="08:00 - 12:00: 78,500 lượt xem"></div>
+            <div style="flex: 1; height: 90%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);" title="12:00 - 16:00: 135,400 lượt xem (Đang ghi nhận)"></div>
+            <div style="flex: 1; height: 35%; background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.25); border-radius: 6px 6px 0 0;" title="16:00 - 19:00: Đang cập nhật..."></div>
+            <div style="flex: 1; height: 50%; background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.25); border-radius: 6px 6px 0 0;" title="19:00 - 22:00: Dự báo 220,000 views"></div>
+            <div style="flex: 1; height: 30%; background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.25); border-radius: 6px 6px 0 0;" title="22:00 - 24:00: Chưa chốt"></div>
+          `;
+        }
+        if (labels) {
+          labels.innerHTML = `
+            <span>00:00</span>
+            <span>04:00</span>
+            <span>08:00</span>
+            <span style="color: #ff4d6d; font-weight: 700;">12:00 (🔴 Live Hiện Tại)</span>
+            <span style="color: var(--text-muted); font-style: italic;">16:00 (Đang chạy)</span>
+            <span style="color: var(--text-muted); font-style: italic;">20:00 (Dự báo)</span>
+            <span>23:59</span>
+          `;
+        }
+        if (statPeak) statPeak.innerText = '12:00 - 14:00 (Trưa)';
+        if (statPeakVal) statPeakVal.innerText = '145,200 Lượt/Giờ';
+        if (statDevice) statDevice.innerText = 'Mobile App (91.2%)';
+        if (statDuration) statDuration.innerText = '15.8 Phút / Session';
+
+      } else if (dateMode === 'custom' && customDate) {
+        currentChartDate = customDate;
+        if (btnD1) btnD1.classList.remove('active');
+        if (btnToday) btnToday.classList.remove('active');
+        const formattedDate = customDate.split('-').reverse().join('/');
+        if (badge) {
+          badge.className = 'badge badge-published';
+          badge.innerText = `Ngày ${formattedDate}`;
+        }
+        if (subtitle) {
+          subtitle.innerHTML = `Hourly Traffic ngày <strong>${formattedDate}</strong> • Biểu đồ dữ liệu theo ngày đã chọn`;
+        }
+        if (bars) {
+          bars.innerHTML = `
+            <div style="flex: 1; height: 25%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="00:00 - 04:00: 35,000 lượt xem"></div>
+            <div style="flex: 1; height: 20%; background: rgba(255,42,95,0.3); border-radius: 6px 6px 0 0;" title="04:00 - 08:00: 28,000 lượt xem"></div>
+            <div style="flex: 1; height: 50%; background: rgba(255,42,95,0.4); border-radius: 6px 6px 0 0;" title="08:00 - 12:00: 72,000 lượt xem"></div>
+            <div style="flex: 1; height: 80%; background: var(--primary-gradient); border-radius: 6px 6px 0 0;" title="12:00 - 16:00: 118,000 lượt xem"></div>
+            <div style="flex: 1; height: 65%; background: rgba(255,42,95,0.5); border-radius: 6px 6px 0 0;" title="16:00 - 19:00: 95,000 lượt xem"></div>
+            <div style="flex: 1; height: 95%; background: var(--primary-gradient); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(255,42,95,0.5);" title="19:00 - 22:00 (Peak): 205,000 lượt xem"></div>
+            <div style="flex: 1; height: 70%; background: rgba(255,42,95,0.6); border-radius: 6px 6px 0 0;" title="22:00 - 24:00: 104,000 lượt xem"></div>
+          `;
+        }
+        if (labels) {
+          labels.innerHTML = `
+            <span>00:00</span>
+            <span>04:00</span>
+            <span>08:00</span>
+            <span>12:00</span>
+            <span>16:00</span>
+            <span style="color: #ff4d6d; font-weight: 700;">20:00 (Peak)</span>
+            <span>23:59</span>
+          `;
+        }
+        if (statPeak) statPeak.innerText = '20:00 - 22:00';
+        if (statPeakVal) statPeakVal.innerText = '205,000 Lượt/Giờ';
+        if (statDevice) statDevice.innerText = 'Mobile App (87.9%)';
+        if (statDuration) statDuration.innerText = '13.9 Phút / Session';
       }
     }
 
