@@ -1,10 +1,10 @@
-< !DOCTYPE html>
-  <html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
 
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wireframe Prototype - Web Phim Ngắn PineDrama (100% Free Web Edition)</title>
+    <title>Wireframe Prototype - Web Phim Ngắn Vipshort (100% Free Web Edition)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
@@ -131,18 +131,64 @@
       }
 
       .web-logo {
-        font-size: 22px;
-        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
         color: #fff;
+        flex-shrink: 0;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: linear-gradient(135deg, #ff3366 0%, #ff6b3d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+        flex-shrink: 0;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .web-logo:hover .logo-icon {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+      }
+
+      .logo-brand-wrap {
         display: flex;
         align-items: center;
         gap: 8px;
-        cursor: pointer;
-        text-decoration: none;
+        white-space: nowrap;
       }
 
-      .web-logo span {
-        color: var(--primary);
+      .logo-text {
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        background: linear-gradient(to right, #ffffff, #cbd5e1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        white-space: nowrap;
+      }
+
+      .logo-badge {
+        font-size: 11px;
+        font-weight: 700;
+        background: rgba(255, 51, 102, 0.15);
+        color: #ff3366;
+        border: 1px solid rgba(255, 51, 102, 0.35);
+        padding: 2.5px 8px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        letter-spacing: 0.5px;
       }
 
       .web-menu {
@@ -1366,7 +1412,7 @@
     <!-- PROTOTYPE TOP CONTROLLER BAR (TEST SCREEN SWITCHER) -->
     <div class="prototype-bar">
       <div class="proto-badge">
-        <h1>⚡ PINEDRAMA WEB EDITION</h1>
+        <h1>⚡ VIPSHORT WEB EDITION</h1>
         <span>Wireframe Desktop/Laptop (100% Free)</span>
       </div>
 
@@ -1384,8 +1430,13 @@
     <nav class="web-navbar">
       <div class="web-nav-inner">
         <a class="web-logo" onclick="switchScreen('home', document.querySelectorAll('.nav-btn')[0])">
-          🔥 Pine<span>Drama</span> <span
-            style="font-size:11px; font-weight:700; background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px; color:#ddd;">WEB</span>
+          <div class="logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          </div>
+          <div class="logo-brand-wrap">
+            <span class="logo-text">Vipshort</span>
+            <span class="logo-badge">WEB</span>
+          </div>
         </a>
 
         <ul class="web-menu">
@@ -1949,7 +2000,7 @@
       <div id="screen-auth" class="screen">
         <div class="auth-card-web">
           <div class="auth-brand-head">
-            <h2>🔥 PINE DRAMA WEB</h2>
+            <h2>🔥 VIPSHORT WEB</h2>
             <p style="font-size:13px; color:var(--text-muted);">Đăng nhập tài khoản để đồng bộ tủ phim & lịch sử xem
               trên
               mọi thiết bị</p>
@@ -2042,7 +2093,7 @@
             <div>
               <h3 style="font-size:18px; font-weight:800; color:#fff;" id="profile-user-name">Hoàng Nguyễn</h3>
               <div style="font-size:12px; color:var(--accent-green); font-weight:700; margin:4px 0;">✨ THÀNH VIÊN
-                PINEDRAMA PRO</div>
+                VIPSHORT PRO</div>
               <div style="font-size:12px; color:var(--text-muted);" id="profile-user-meta">ID: 889210 • SĐT: 098****888
               </div>
             </div>
@@ -2436,8 +2487,8 @@
     <footer>
       <div
         style="max-width:var(--web-max-width); margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <div style="font-weight:700; color:#fff;">🔥 PineDrama Web - Nền Tảng Phim Ngắn Trực Tuyến 100% Miễn Phí</div>
-        <div>© 2026 PineDrama Inc. Giữ toàn bộ quyền sở hữu trí tuệ.</div>
+        <div style="font-weight:700; color:#fff;">🔥 Vipshort Web - Nền Tảng Phim Ngắn Trực Tuyến 100% Miễn Phí</div>
+        <div>© 2026 Vipshort Inc. Giữ toàn bộ quyền sở hữu trí tuệ.</div>
       </div>
     </footer>
 
