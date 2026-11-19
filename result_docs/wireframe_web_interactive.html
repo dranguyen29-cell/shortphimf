@@ -2044,6 +2044,11 @@
             </div>
 
             <div class="input-group-web">
+              <label class="input-label-web">Số điện thoại</label>
+              <input type="tel" class="form-input-web" placeholder="0988xxxxxx">
+            </div>
+
+            <div class="input-group-web">
               <label class="input-label-web">Địa chỉ Email</label>
               <input type="email" class="form-input-web" placeholder="email@domain.com">
             </div>
@@ -2102,37 +2107,9 @@
               ✏️ Chỉnh Sửa Hồ Sơ
             </button>
 
-            <!-- BẢNG CHỈNH SỬA AVATAR & INFO (INLINE ACCORDION) -->
+            <!-- BẢNG CHỈNH SỬA INFO (INLINE ACCORDION) -->
             <div id="profile-edit-box-web"
               style="display:none; width:100%; text-align:left; background:rgba(255,255,255,0.04); border:1px solid var(--primary); border-radius:14px; padding:14px; margin-top:8px;">
-              <div style="font-size:12px; font-weight:800; color:var(--primary); margin-bottom:10px;">CHỌN AVATAR MẪU:
-              </div>
-
-              <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
-                <div class="avatar-opt-web"
-                  style="width:36px; height:36px; border-radius:50%; background:#8e44ad; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:11px; cursor:pointer; border:2px solid var(--primary);"
-                  onclick="selectPresetAvatarWeb('text', 'HN')">HN</div>
-                <div class="avatar-opt-web"
-                  style="width:36px; height:36px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop'); background-size:cover; cursor:pointer; border:2px solid transparent;"
-                  onclick="selectPresetAvatarWeb('img', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop')">
-                </div>
-                <div class="avatar-opt-web"
-                  style="width:36px; height:36px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'); background-size:cover; cursor:pointer; border:2px solid transparent;"
-                  onclick="selectPresetAvatarWeb('img', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop')">
-                </div>
-                <div class="avatar-opt-web"
-                  style="width:36px; height:36px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'); background-size:cover; cursor:pointer; border:2px solid transparent;"
-                  onclick="selectPresetAvatarWeb('img', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop')">
-                </div>
-              </div>
-
-              <input type="file" id="web-avatar-upload" accept="image/*" style="display:none;"
-                onchange="handleWebAvatarUpload(this)">
-              <button class="p-btn" style="width:100%; font-size:11px; margin-bottom:10px;"
-                onclick="document.getElementById('web-avatar-upload').click()">
-                📷 Tải ảnh từ máy tính
-              </button>
-
               <div class="input-group-web">
                 <label class="input-label-web">Tên hiển thị:</label>
                 <input type="text" id="edit-name-web" class="form-input-web" value="Hoàng Nguyễn"
@@ -2140,14 +2117,45 @@
               </div>
 
               <div class="input-group-web">
-                <label class="input-label-web">Số điện thoại / Email:</label>
-                <input type="text" id="edit-phone-web" class="form-input-web" value="098****888"
+                <label class="input-label-web">Số điện thoại:</label>
+                <input type="tel" id="edit-phone-web" class="form-input-web" value="098****888"
+                  style="padding:8px 12px; font-size:13px;">
+              </div>
+
+              <div class="input-group-web">
+                <label class="input-label-web">Email:</label>
+                <input type="email" id="edit-email-web" class="form-input-web" value="hoang****@gmail.com"
                   style="padding:8px 12px; font-size:13px;">
               </div>
 
               <div style="display:flex; gap:8px; margin-top:10px;">
                 <button class="p-btn highlight" style="flex:1; padding:8px;" onclick="saveWebProfile()">Lưu</button>
                 <button class="p-btn" style="padding:8px;" onclick="toggleEditProfileWeb()">Hủy</button>
+              </div>
+            </div>
+
+            <button class="p-btn" style="width:100%;" onclick="toggleChangePasswordWeb()">
+              🔒 Đổi Mật Khẩu
+            </button>
+
+            <!-- BẢNG ĐỔI MẬT KHẨU (INLINE ACCORDION) -->
+            <div id="profile-password-box-web"
+              style="display:none; width:100%; text-align:left; background:rgba(255,255,255,0.04); border:1px solid var(--primary); border-radius:14px; padding:14px; margin-top:8px;">
+              <div class="input-group-web">
+                <label class="input-label-web">Mật khẩu mới:</label>
+                <input type="password" id="new-pass-web" class="form-input-web" placeholder="Tối thiểu 6 ký tự..."
+                  style="padding:8px 12px; font-size:13px;">
+              </div>
+
+              <div class="input-group-web">
+                <label class="input-label-web">Xác nhận mật khẩu mới:</label>
+                <input type="password" id="confirm-pass-web" class="form-input-web" placeholder="Nhập lại mật khẩu mới..."
+                  style="padding:8px 12px; font-size:13px;">
+              </div>
+
+              <div style="display:flex; gap:8px; margin-top:10px;">
+                <button class="p-btn highlight" style="flex:1; padding:8px;" onclick="saveChangePasswordWeb()">Cập nhật</button>
+                <button class="p-btn" style="padding:8px;" onclick="toggleChangePasswordWeb()">Hủy</button>
               </div>
             </div>
 
@@ -2925,7 +2933,37 @@
       // Avatar & Profile Edit
       function toggleEditProfileWeb() {
         const box = document.getElementById('profile-edit-box-web');
+        const passBox = document.getElementById('profile-password-box-web');
+        if (passBox) passBox.style.display = 'none';
         box.style.display = box.style.display === 'none' ? 'block' : 'none';
+      }
+
+      function toggleChangePasswordWeb() {
+        const passBox = document.getElementById('profile-password-box-web');
+        const editBox = document.getElementById('profile-edit-box-web');
+        if (editBox) editBox.style.display = 'none';
+        passBox.style.display = passBox.style.display === 'none' ? 'block' : 'none';
+      }
+
+      function saveChangePasswordWeb() {
+        const newPass = document.getElementById('new-pass-web').value.trim();
+        const confirmPass = document.getElementById('confirm-pass-web').value.trim();
+        if (!newPass || !confirmPass) {
+          alert('Vui lòng nhập đầy đủ thông tin mật khẩu!');
+          return;
+        }
+        if (newPass.length < 6) {
+          alert('Mật khẩu mới phải có tối thiểu 6 ký tự!');
+          return;
+        }
+        if (newPass !== confirmPass) {
+          alert('Xác nhận mật khẩu mới không khớp!');
+          return;
+        }
+        document.getElementById('new-pass-web').value = '';
+        document.getElementById('confirm-pass-web').value = '';
+        toggleChangePasswordWeb();
+        alert('🔒 Đổi mật khẩu thành công!');
       }
 
       function selectPresetAvatarWeb(mode, val) {
