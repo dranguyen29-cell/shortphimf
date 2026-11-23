@@ -2028,7 +2028,8 @@
               <label style="display:flex; align-items:center; gap:6px; color:var(--text-muted); cursor:pointer;">
                 <input type="checkbox" checked> Ghi nhớ đăng nhập
               </label>
-              <a href="#" style="color:var(--primary); font-weight:600; text-decoration:none;">Quên mật khẩu?</a>
+              <a href="javascript:void(0)" onclick="openForgotPasswordWeb()"
+                style="color:var(--primary); font-weight:600; text-decoration:none;">Quên mật khẩu?</a>
             </div>
 
             <button class="p-btn highlight" style="width:100%; padding:12px; font-size:14px;" onclick="simulateLogin()">
@@ -2075,6 +2076,51 @@
               onclick="simulateRegister()">
               🚀 TẠO TÀI KHOẢN MỚI
             </button>
+          </div>
+
+          <!-- FORM QUÊN MẬT KHẨU -->
+          <div id="web-form-forgot" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <div style="font-size:15px; font-weight:800; color:#fff;">🔑 Đặt Lại Mật Khẩu</div>
+              <a href="javascript:void(0)" onclick="backToLoginWeb()"
+                style="font-size:12px; color:var(--primary); font-weight:600; text-decoration:none;">← Quay lại Đăng nhập</a>
+            </div>
+
+            <!-- BƯỚC 1: NHẬP & XÁC NHẬN EMAIL -->
+            <div id="web-forgot-step-1">
+              <div class="input-group-web">
+                <label class="input-label-web">Email tài khoản</label>
+                <input type="email" id="forgot-email-web" class="form-input-web" placeholder="email@domain.com">
+              </div>
+
+              <button class="p-btn highlight" style="width:100%; padding:12px; font-size:14px; margin-top:6px;"
+                onclick="verifyForgotEmailWeb()">
+                TIẾP TỤC →
+              </button>
+            </div>
+
+            <!-- BƯỚC 2: NHẬP MẬT KHẨU MỚI -->
+            <div id="web-forgot-step-2" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); border-radius:8px; padding:8px 12px; margin-bottom:14px; font-size:12px;">
+                <span style="color:var(--text-muted);">Email: <strong id="forgot-verified-email-web" style="color:#fff;"></strong></span>
+                <a href="javascript:void(0)" onclick="resetForgotStepWeb()" style="color:var(--primary); font-weight:600; text-decoration:none;">Đổi email</a>
+              </div>
+
+              <div class="input-group-web">
+                <label class="input-label-web">Mật khẩu mới</label>
+                <input type="password" id="forgot-new-pass-web" class="form-input-web" placeholder="Tối thiểu 6 ký tự...">
+              </div>
+
+              <div class="input-group-web">
+                <label class="input-label-web">Xác nhận mật khẩu mới</label>
+                <input type="password" id="forgot-confirm-pass-web" class="form-input-web" placeholder="Nhập lại mật khẩu mới...">
+              </div>
+
+              <button class="p-btn highlight" style="width:100%; padding:12px; font-size:14px; margin-top:6px;"
+                onclick="submitForgotPasswordWeb()">
+                🔄 ĐẶT LẠI MẬT KHẨU
+              </button>
+            </div>
           </div>
 
 
@@ -2859,6 +2905,10 @@
       function toggleAuthTabWeb(el, type) {
         document.querySelectorAll('.auth-tab-btn-web').forEach(b => b.classList.remove('active'));
         el.classList.add('active');
+        const authTabs = document.querySelector('.auth-tabs-web');
+        const forgotForm = document.getElementById('web-form-forgot');
+        if (authTabs) authTabs.style.display = 'flex';
+        if (forgotForm) forgotForm.style.display = 'none';
         if (type === 'login') {
           document.getElementById('web-form-login').style.display = 'block';
           document.getElementById('web-form-register').style.display = 'none';
@@ -2866,6 +2916,59 @@
           document.getElementById('web-form-login').style.display = 'none';
           document.getElementById('web-form-register').style.display = 'block';
         }
+      }
+
+      function openForgotPasswordWeb() {
+        document.querySelector('.auth-tabs-web').style.display = 'none';
+        document.getElementById('web-form-login').style.display = 'none';
+        document.getElementById('web-form-register').style.display = 'none';
+        document.getElementById('web-form-forgot').style.display = 'block';
+        resetForgotStepWeb();
+      }
+
+      function resetForgotStepWeb() {
+        document.getElementById('web-forgot-step-1').style.display = 'block';
+        document.getElementById('web-forgot-step-2').style.display = 'none';
+      }
+
+      function verifyForgotEmailWeb() {
+        const email = document.getElementById('forgot-email-web').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+          alert('Vui lòng nhập đúng định dạng Email (VD: email@domain.com)!');
+          return;
+        }
+        document.getElementById('forgot-verified-email-web').textContent = email;
+        document.getElementById('web-forgot-step-1').style.display = 'none';
+        document.getElementById('web-forgot-step-2').style.display = 'block';
+      }
+
+      function backToLoginWeb() {
+        const loginTab = document.querySelectorAll('.auth-tab-btn-web')[0];
+        toggleAuthTabWeb(loginTab, 'login');
+      }
+
+      function submitForgotPasswordWeb() {
+        const newPass = document.getElementById('forgot-new-pass-web').value.trim();
+        const confirmPass = document.getElementById('forgot-confirm-pass-web').value.trim();
+        if (!newPass || !confirmPass) {
+          alert('Vui lòng nhập đầy đủ mật khẩu mới và xác nhận mật khẩu!');
+          return;
+        }
+        if (newPass.length < 6) {
+          alert('Mật khẩu mới phải có tối thiểu 6 ký tự!');
+          return;
+        }
+        if (newPass !== confirmPass) {
+          alert('Xác nhận mật khẩu mới không khớp!');
+          return;
+        }
+        document.getElementById('forgot-email-web').value = '';
+        document.getElementById('forgot-new-pass-web').value = '';
+        document.getElementById('forgot-confirm-pass-web').value = '';
+        resetForgotStepWeb();
+        backToLoginWeb();
+        showToast('🔑 Đặt lại mật khẩu thành công! Vui lòng đăng nhập lại.');
       }
 
       function handleAccountAction() {

@@ -1359,7 +1359,7 @@
           </div>
 
           <div style="display:flex; justify-content:flex-end; font-size:11px; color:var(--primary); font-weight:600;">
-            <span>Quên mật khẩu?</span>
+            <span style="cursor:pointer;" onclick="openForgotPassword()">Quên mật khẩu?</span>
           </div>
 
           <div class="p-btn highlight" style="margin-top:12px;" onclick="simulateLogin()">⚡ ĐĂNG NHẬP NGAY</div>
@@ -1400,6 +1400,45 @@
           </div>
 
           <div class="p-btn highlight" style="margin-top:8px;" onclick="simulateRegister()">🚀 ĐĂNG KÝ TÀI KHOẢN</div>
+        </div>
+
+        <!-- FORM QUÊN MẬT KHẨU -->
+        <div class="auth-form" id="form-forgot" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="font-size:13px; font-weight:800; color:white;">🔑 Đặt Lại Mật Khẩu</div>
+            <span onclick="backToLogin()"
+              style="font-size:11px; color:var(--primary); font-weight:600; cursor:pointer;">← Quay lại</span>
+          </div>
+
+          <!-- BƯỚC 1: NHẬP & XÁC NHẬN EMAIL -->
+          <div id="forgot-step-1">
+            <div class="input-group">
+              <div class="input-label">Email tài khoản</div>
+              <input type="email" id="forgot-email-input" class="form-input" placeholder="email@domain.com">
+            </div>
+
+            <div class="p-btn highlight" style="margin-top:10px;" onclick="verifyForgotEmail()">TIẾP TỤC →</div>
+          </div>
+
+          <!-- BƯỚC 2: NHẬP MẬT KHẨU MỚI -->
+          <div id="forgot-step-2" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); border-radius:8px; padding:6px 10px; margin-bottom:10px; font-size:11px;">
+              <span style="color:var(--text-muted);">Email: <strong id="forgot-verified-email" style="color:#fff;"></strong></span>
+              <span onclick="resetForgotStep()" style="color:var(--primary); font-weight:600; cursor:pointer;">Đổi email</span>
+            </div>
+
+            <div class="input-group">
+              <div class="input-label">Mật khẩu mới</div>
+              <input type="password" id="forgot-new-pass-input" class="form-input" placeholder="Tối thiểu 6 ký tự...">
+            </div>
+
+            <div class="input-group">
+              <div class="input-label">Xác nhận mật khẩu mới</div>
+              <input type="password" id="forgot-confirm-pass-input" class="form-input" placeholder="Nhập lại mật khẩu mới...">
+            </div>
+
+            <div class="p-btn highlight" style="margin-top:10px;" onclick="submitForgotPassword()">🔄 ĐẶT LẠI MẬT KHẨU</div>
+          </div>
         </div>
       </div>
 
@@ -2098,6 +2137,10 @@
     function toggleAuthTab(el, type) {
       document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
       el.classList.add('active');
+      const authTabs = document.querySelector('.auth-tabs');
+      const forgotForm = document.getElementById('form-forgot');
+      if (authTabs) authTabs.style.display = 'flex';
+      if (forgotForm) forgotForm.style.display = 'none';
       if (type === 'login') {
         document.getElementById('form-login').style.display = 'block';
         document.getElementById('form-register').style.display = 'none';
@@ -2105,6 +2148,59 @@
         document.getElementById('form-login').style.display = 'none';
         document.getElementById('form-register').style.display = 'block';
       }
+    }
+
+    function openForgotPassword() {
+      document.querySelector('.auth-tabs').style.display = 'none';
+      document.getElementById('form-login').style.display = 'none';
+      document.getElementById('form-register').style.display = 'none';
+      document.getElementById('form-forgot').style.display = 'block';
+      resetForgotStep();
+    }
+
+    function resetForgotStep() {
+      document.getElementById('forgot-step-1').style.display = 'block';
+      document.getElementById('forgot-step-2').style.display = 'none';
+    }
+
+    function verifyForgotEmail() {
+      const email = document.getElementById('forgot-email-input').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        alert('Vui lòng nhập đúng định dạng Email (VD: email@domain.com)!');
+        return;
+      }
+      document.getElementById('forgot-verified-email').textContent = email;
+      document.getElementById('forgot-step-1').style.display = 'none';
+      document.getElementById('forgot-step-2').style.display = 'block';
+    }
+
+    function backToLogin() {
+      const loginTab = document.querySelectorAll('.auth-tab-btn')[0];
+      toggleAuthTab(loginTab, 'login');
+    }
+
+    function submitForgotPassword() {
+      const newPass = document.getElementById('forgot-new-pass-input').value.trim();
+      const confirmPass = document.getElementById('forgot-confirm-pass-input').value.trim();
+      if (!newPass || !confirmPass) {
+        alert('Vui lòng nhập đầy đủ mật khẩu mới và xác nhận mật khẩu!');
+        return;
+      }
+      if (newPass.length < 6) {
+        alert('Mật khẩu mới phải có tối thiểu 6 ký tự!');
+        return;
+      }
+      if (newPass !== confirmPass) {
+        alert('Xác nhận mật khẩu mới không khớp!');
+        return;
+      }
+      document.getElementById('forgot-email-input').value = '';
+      document.getElementById('forgot-new-pass-input').value = '';
+      document.getElementById('forgot-confirm-pass-input').value = '';
+      resetForgotStep();
+      backToLogin();
+      alert('🔑 Đặt lại mật khẩu thành công! Vui lòng đăng nhập lại.');
     }
 
     function simulateLogin() {
